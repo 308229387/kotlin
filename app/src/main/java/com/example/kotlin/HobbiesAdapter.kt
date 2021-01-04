@@ -33,7 +33,7 @@ class HobbiesAdapter(val context: Context, private val hobbies: List<Hobby>) :
 
         init {
             itemView.setOnClickListener {
-                Toast.makeText(context, currentHobby!!.title + " Clicked !", Toast.LENGTH_SHORT)
+                Toast.makeText(context, currentHobby!!.title, Toast.LENGTH_SHORT)
                     .show()
             }
         }
@@ -44,6 +44,7 @@ class HobbiesAdapter(val context: Context, private val hobbies: List<Hobby>) :
              title.text = hobby?.title */
 
             itemView.tvTitle.text = hobby?.title
+            hobby?.image?.let { itemView.imgShare.setBackgroundResource(it) }
 
             this.currentHobby = hobby
             this.currentPosition = pos
