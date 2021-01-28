@@ -4,7 +4,7 @@ data class Hobby(var title: String,var image:Int)
 
 object HobbiesData {
 
-    val hobbies = listOf(
+    val hobbies = arrayListOf(
         Hobby("Apple",R.mipmap.apple_pic),
         Hobby("Banana",R.mipmap.banana_pic),
         Hobby("Cherry",R.mipmap.cherry_pic),
