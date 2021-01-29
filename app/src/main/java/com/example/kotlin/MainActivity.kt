@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recylerView.layoutManager = layoutManager
 
-        val adapter = HobbiesAdapter(this, HobbiesData.hobbies)
+        val adapter = HomeAdapter(this, HomeData.data)
         recylerView.adapter = adapter
 
     }

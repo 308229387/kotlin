@@ -1,30 +1,30 @@
 package com.example.kotlin
 
-data class Hobby(var title: String,var image:Int)
+data class Data(var title: String,var image:Int)
 
-object HobbiesData {
+object HomeData {
 
-    val hobbies = arrayListOf(
-        Hobby("Apple",R.mipmap.apple_pic),
-        Hobby("Banana",R.mipmap.banana_pic),
-        Hobby("Cherry",R.mipmap.cherry_pic),
-        Hobby("Grape",R.mipmap.grape_pic),
-        Hobby("Mango",R.mipmap.mango_pic),
-        Hobby("Orange",R.mipmap.orange_pic),
-        Hobby("Pear",R.mipmap.pear_pic),
-        Hobby("Pineapple",R.mipmap.pineapple_pic),
-        Hobby("Strawberry",R.mipmap.strawberry_pic),
-        Hobby("Watermelon",R.mipmap.watermelon_pic),
-        Hobby("Apple",R.mipmap.apple_pic),
-        Hobby("Banana",R.mipmap.banana_pic),
-        Hobby("Cherry",R.mipmap.cherry_pic),
-        Hobby("Grape",R.mipmap.grape_pic),
-        Hobby("Mango",R.mipmap.mango_pic),
-        Hobby("Orange",R.mipmap.orange_pic),
-        Hobby("Pear",R.mipmap.pear_pic),
-        Hobby("Pineapple",R.mipmap.pineapple_pic),
-        Hobby("Strawberry",R.mipmap.strawberry_pic),
-        Hobby("Watermelon",R.mipmap.watermelon_pic)
+    val data = arrayListOf(
+        Data("include实现",R.mipmap.apple_pic),
+        Data("Banana",R.mipmap.banana_pic),
+        Data("Cherry",R.mipmap.cherry_pic),
+        Data("Grape",R.mipmap.grape_pic),
+        Data("Mango",R.mipmap.mango_pic),
+        Data("Orange",R.mipmap.orange_pic),
+        Data("Pear",R.mipmap.pear_pic),
+        Data("Pineapple",R.mipmap.pineapple_pic),
+        Data("Strawberry",R.mipmap.strawberry_pic),
+        Data("Watermelon",R.mipmap.watermelon_pic),
+        Data("Apple",R.mipmap.apple_pic),
+        Data("Banana",R.mipmap.banana_pic),
+        Data("Cherry",R.mipmap.cherry_pic),
+        Data("Grape",R.mipmap.grape_pic),
+        Data("Mango",R.mipmap.mango_pic),
+        Data("Orange",R.mipmap.orange_pic),
+        Data("Pear",R.mipmap.pear_pic),
+        Data("Pineapple",R.mipmap.pineapple_pic),
+        Data("Strawberry",R.mipmap.strawberry_pic),
+        Data("Watermelon",R.mipmap.watermelon_pic)
 
     )
 

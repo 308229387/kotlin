@@ -5,29 +5,30 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_items.view.*
 
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var currentHobby: Hobby? = null
+    var currentData: Data? = null
     var currentPosition: Int = 0
-    private lateinit var listener: HobbiesAdapter.HolderListener
+    private lateinit var listener: HomeAdapter.HolderListener
 
     init {
         itemView.setOnClickListener {
-            listener.delete()
+                listener.jump()
         }
+        itemView.list_item_image.setOnClickListener { listener.delete() }
     }
 
 
-    fun setData(hobby: Hobby?, pos: Int) {
+    fun setData(data: Data?, pos: Int) {
         /* val title =  itemView.findViewById<TextView>(R.id.tvTitle)
          title.text = hobby?.title */
 
-        itemView.tvTitle.text = hobby?.title
-        hobby?.image?.let { itemView.imgShare.setBackgroundResource(it) }
+        itemView.list_item_text.text = data?.title
+        data?.image?.let { itemView.list_item_image.setBackgroundResource(it) }
 
-        this.currentHobby = hobby
+        this.currentData = data
         this.currentPosition = pos
     }
 
-    fun setOnDeleteListener(deleteListener: HobbiesAdapter.HolderListener) {
+    fun setOnListener(deleteListener: HomeAdapter.HolderListener) {
         listener = deleteListener
     }
 }
