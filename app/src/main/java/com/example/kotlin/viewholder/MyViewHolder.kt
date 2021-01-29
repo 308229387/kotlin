@@ -1,7 +1,9 @@
-package com.example.kotlin
+package com.example.kotlin.viewholder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlin.Data
+import com.example.kotlin.adapter.HomeAdapter
 import kotlinx.android.synthetic.main.list_items.view.*
 
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

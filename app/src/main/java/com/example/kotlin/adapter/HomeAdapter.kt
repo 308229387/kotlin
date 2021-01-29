@@ -1,10 +1,15 @@
-package com.example.kotlin
+package com.example.kotlin.adapter
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlin.Data
+import com.example.kotlin.viewholder.MyViewHolder
+import com.example.kotlin.R
+import com.example.kotlin.activity.IncludeActivity
+import com.example.kotlin.activity.PopWindowActivity
 
 class HomeAdapter(private val context: Context, private val dataList: ArrayList<Data>) :
     RecyclerView.Adapter<MyViewHolder>() {
@@ -26,6 +31,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
             override fun jump() {
                 when(dataList[position].title){
                     "include实现" ->context.startActivity(Intent(context, IncludeActivity::class.java))
+                    "dialogFragment实现" ->context.startActivity(Intent(context, PopWindowActivity::class.java))
                 }
 
             }
