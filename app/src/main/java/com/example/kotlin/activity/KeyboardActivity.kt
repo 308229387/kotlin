@@ -15,7 +15,7 @@ class KeyboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nt_nothing)
 
-        (this).init().setHeightListener { height ->
+        HeightProvider(this).init().setHeightListener { height ->
             height_result.text = "键盘高度为$height"
         }
     }
