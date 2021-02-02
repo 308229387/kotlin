@@ -9,6 +9,7 @@ import com.example.kotlin.Data
 import com.example.kotlin.viewholder.MyViewHolder
 import com.example.kotlin.R
 import com.example.kotlin.activity.IncludeActivity
+import com.example.kotlin.activity.KeyboardActivity
 import com.example.kotlin.activity.PopWindowActivity
 
 class HomeAdapter(private val context: Context, private val dataList: ArrayList<Data>) :
@@ -32,6 +33,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                 when(dataList[position].title){
                     "include实现" ->context.startActivity(Intent(context, IncludeActivity::class.java))
                     "dialogFragment实现" ->context.startActivity(Intent(context, PopWindowActivity::class.java))
+                    "键盘高度测量" ->context.startActivity(Intent(context, KeyboardActivity::class.java))
                 }
 
             }

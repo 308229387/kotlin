@@ -7,7 +7,7 @@ object HomeData {
     val data = arrayListOf(
         Data("include实现",R.mipmap.apple_pic),
         Data("dialogFragment实现",R.mipmap.banana_pic),
-        Data("Cherry",R.mipmap.cherry_pic),
+        Data("键盘高度测量",R.mipmap.cherry_pic),
         Data("Grape",R.mipmap.grape_pic),
         Data("Mango",R.mipmap.mango_pic),
         Data("Orange",R.mipmap.orange_pic),
