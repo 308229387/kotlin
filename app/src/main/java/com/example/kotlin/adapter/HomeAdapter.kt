@@ -8,10 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.Data
 import com.example.kotlin.viewholder.MyViewHolder
 import com.example.kotlin.R
-import com.example.kotlin.activity.IncludeActivity
-import com.example.kotlin.activity.KeyboardActivity
-import com.example.kotlin.activity.PopWindowActivity
-import com.example.kotlin.activity.ViewPagerActivity
+import com.example.kotlin.activity.*
 
 class HomeAdapter(private val context: Context, private val dataList: ArrayList<Data>) :
     RecyclerView.Adapter<MyViewHolder>() {
@@ -36,6 +33,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "dialogFragment实现" ->context.startActivity(Intent(context, PopWindowActivity::class.java))
                     "键盘高度测量" ->context.startActivity(Intent(context, KeyboardActivity::class.java))
                     "简易ViewPager" ->context.startActivity(Intent(context, ViewPagerActivity::class.java))
+                    "Grid样式recyclerview" ->context.startActivity(Intent(context, GridActivity::class.java))
                 }
 
             }

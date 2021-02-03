@@ -22,6 +22,7 @@
             android:name=".activity.KeyboardActivity"
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".activity.ViewPagerActivity" />
+        <activity android:name=".activity.GridActivity" />
 
     </application>
 

@@ -5,23 +5,20 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/viewpager1_text"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginTop="100dp"
         android:gravity="center_horizontal"
         android:text="我是第一个view"
-        android:id="@+id/viewpager1_text"
         android:textSize="34sp" />
-
-
-
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
-        android:padding="10dp"
         android:gravity="center_horizontal"
+        android:padding="10dp"
         android:text="非常简单的viewpager，只适合做展示，甚至没有什么数据初始化，如果要显示功能，还是要配合fragment来使用的"
         android:textSize="14sp" />
 </LinearLayout>
