@@ -2,6 +2,8 @@ package com.example.kotlin.activity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.example.kotlin.R
@@ -10,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_viewpager.*
 
 
 class ViewPagerActivity : AppCompatActivity() {
-    private lateinit var views: List<View>
     private lateinit var pagerAdapter: MyPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,11 +22,29 @@ class ViewPagerActivity : AppCompatActivity() {
 
     private fun initView() {
         //得到view数据
-        views = ArrayList()
+        var views = ArrayList<View>()
         val inflater = layoutInflater
-        (views as ArrayList<View>).add(inflater.inflate(R.layout.viewpager_view1, null, false))
-        (views as ArrayList<View>).add(inflater.inflate(R.layout.viewpager_view2, null, false))
-        (views as ArrayList<View>).add(inflater.inflate(R.layout.viewpager_view3, null, false))
+        var view1 = inflater.inflate(R.layout.viewpager_view, null, false)
+        var view2 = inflater.inflate(R.layout.viewpager_view, null, false)
+        var view3 = inflater.inflate(R.layout.viewpager_view, null, false)
+
+        var pagerText1 = view1.findViewById<TextView>(R.id.viewpager_text)
+        var pagerText2 = view2.findViewById<TextView>(R.id.viewpager_text)
+        var pagerText3 = view3.findViewById<TextView>(R.id.viewpager_text)
+
+        pagerText1.text = "我是第一个view"
+        pagerText2.text = "我是第二个view"
+        pagerText3.text = "我是第三个view"
+
+        pagerText1.setOnClickListener { Toast.makeText(this, "第一个view被点击了", Toast.LENGTH_SHORT).show() }
+        pagerText2.setOnClickListener { Toast.makeText(this, "第二个view被点击了", Toast.LENGTH_SHORT).show() }
+        pagerText3.setOnClickListener { Toast.makeText(this, "第三个view被点击了", Toast.LENGTH_SHORT).show() }
+
+        //顺序无所谓，先放进里面再放事件也能响应
+        views.add(view1)
+        views.add(view2)
+        views.add(view3)
+
         //创建Adapter
         pagerAdapter = MyPagerAdapter(views, this)
         viewPager.adapter = pagerAdapter
