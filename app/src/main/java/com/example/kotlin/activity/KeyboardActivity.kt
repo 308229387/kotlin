@@ -1,6 +1,7 @@
 package com.example.kotlin.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin.R
 import com.example.kotlin.utils.HeightProvider
@@ -17,6 +18,7 @@ class KeyboardActivity : AppCompatActivity() {
 
         HeightProvider(this).init().setHeightListener { height ->
             height_result.text = "键盘高度为$height"
+            Log.d(TAG, "键盘高度为$height")
         }
     }
 }
