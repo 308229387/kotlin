@@ -1,0 +1,403 @@
+{
+  "typeName": "classic",
+  "typeThumbnail": "thumbnail.png",
+  "resType": 2,
+  "emotions": [
+    {
+      "desc": "[可爱]",
+      "res": "emotions/keai.png"
+    },
+    {
+      "desc": "[龇牙笑]",
+      "res": "emotions/ziyaxiao.png"
+    },
+    {
+      "desc": "[大笑]",
+      "res": "emotions/daxiao.png"
+    },
+    {
+      "desc": "[调皮]",
+      "res": "emotions/tiaopi.png"
+    },
+    {
+      "desc": "[笑哭]",
+      "res": "emotions/xiaoku.png"
+    },
+    {
+      "desc": "[偷笑]",
+      "res": "emotions/touxiao.png"
+    },
+    {
+      "desc": "[捂脸笑]",
+      "res": "emotions/wulianxiao.png"
+    },
+    {
+      "desc": "[害羞1]",
+      "res": "emotions/shy.png"
+    },
+    {
+      "desc": "[色1]",
+      "res": "emotions/prurience.png"
+    },
+    {
+      "desc": "[发呆]",
+      "res": "emotions/fadai.png"
+    },
+    {
+      "desc": "[抠鼻]",
+      "res": "emotions/koubi.png"
+    },
+    {
+      "desc": "[白眼]",
+      "res": "emotions/baiyan.png"
+    },
+    {
+      "desc": "[再见]",
+      "res": "emotions/bye.png"
+    },
+    {
+      "desc": "[怒]",
+      "res": "emotions/angry.png"
+    },
+    {
+      "desc": "[闭嘴1]",
+      "res": "emotions/shutup.png"
+    },
+    {
+      "desc": "[惊讶1]",
+      "res": "emotions/surprised.png"
+    },
+    {
+      "desc": "[疑问1]",
+      "res": "emotions/doubt.png"
+    },
+    {
+      "desc": "[生病]",
+      "res": "emotions/shengbing.png"
+    },
+    {
+      "desc": "[委屈]",
+      "res": "emotions/weiqu.png"
+    },
+    {
+      "desc": "[哭]",
+      "res": "emotions/cry.png"
+    },
+    {
+      "desc": "[大哭]",
+      "res": "emotions/daku.png"
+    },
+    {
+      "desc": "[呕吐]",
+      "res": "emotions/outu.png"
+    },
+    {
+      "desc": "[睡觉]",
+      "res": "emotions/sleep.png"
+    },
+    {
+      "desc": "[汗]",
+      "res": "emotions/han.png"
+    },
+    {
+      "desc": "[酷]",
+      "res": "emotions/ku.png"
+    },
+    {
+      "desc": "[鬼脸]",
+      "res": "emotions/guilian.png"
+    },
+    {
+      "desc": "[好的]",
+      "res": "emotions/allright.png"
+    },
+    {
+      "desc": "[脸红]",
+      "res": "emotions/lianhong.png"
+    },
+    {
+      "desc": "[机智1]",
+      "res": "emotions/Witty.png"
+    },
+    {
+      "desc": "[皱眉]",
+      "res": "emotions/zhoumei.png"
+    },
+    {
+      "desc": "[吃瓜1]",
+      "res": "emotions/chigua.png"
+    },
+    {
+      "desc": "[加油]",
+      "res": "emotions/jiayou.png"
+    },
+    {
+      "desc": "[流鼻血]",
+      "res": "emotions/liubixue.png"
+    },
+    {
+      "desc": "[围观]",
+      "res": "emotions/weiguan.png"
+    },
+    {
+      "desc": "[右亲亲]",
+      "res": "emotions/youqinqin.png"
+    },
+    {
+      "desc": "[左亲亲]",
+      "res": "emotions/zuoqinqin.png"
+    },
+    {
+      "desc": "[辣眼睛]",
+      "res": "emotions/layanjing.png"
+    },
+    {
+      "desc": "[鼓掌1]",
+      "res": "emotions/clap.png"
+    },
+    {
+      "desc": "[看手机]",
+      "res": "emotions/kanshouji.png"
+    },
+    {
+      "desc": "[改到哭]",
+      "res": "emotions/gaidaoku.png"
+    },
+    {
+      "desc": "[右告辞]",
+      "res": "emotions/yougaoci.png"
+    },
+    {
+      "desc": "[左告辞]",
+      "res": "emotions/zuogaoci.png"
+    },
+    {
+      "desc": "[打脸1]",
+      "res": "emotions/face.png"
+    },
+    {
+      "desc": "[被打脸]",
+      "res": "emotions/beidalian.png"
+    },
+    {
+      "desc": "[扔锅]",
+      "res": "emotions/rengguo.png"
+    },
+    {
+      "desc": "[接锅]",
+      "res": "emotions/jieguo.png"
+    },
+    {
+      "desc": "[背锅]",
+      "res": "emotions/beiguo.png"
+    },
+    {
+      "desc": "[赞同]",
+      "res": "emotions/zantong.png"
+    },
+    {
+      "desc": "[不抬杠]",
+      "res": "emotions/butaigang.png"
+    },
+    {
+      "desc": "[约吗]",
+      "res": "emotions/yuema.png"
+    },
+    {
+      "desc": "[不约]",
+      "res": "emotions/buyue.png"
+    },
+    {
+      "desc": "[求关注]",
+      "res": "emotions/qiuguanzhu.png"
+    },
+    {
+      "desc": "[我真香]",
+      "res": "emotions/wozhenxiang.png"
+    },
+    {
+      "desc": "[锦鲤]",
+      "res": "emotions/jinli.png"
+    },
+    {
+      "desc": "[柠檬精]",
+      "res": "emotions/ningmengjing.png"
+    },
+    {
+      "desc": "[彩虹屁]",
+      "res": "emotions/caihongpi.png"
+    },
+    {
+      "desc": "[扎心]",
+      "res": "emotions/zhaxin.png"
+    },
+    {
+      "desc": "[心碎1]",
+      "res": "emotions/heartbreak.png"
+    },
+    {
+      "desc": "[心]",
+      "res": "emotions/heart.png"
+    },
+    {
+      "desc": "[祈祷]",
+      "res": "emotions/qidao.png"
+    },
+    {
+      "desc": "[棒]",
+      "res": "emotions/good.png"
+    },
+    {
+      "desc": "[踩1]",
+      "res": "emotions/stepon.png"
+    },
+    {
+      "desc": "[比心]",
+      "res": "emotions/bixin.png"
+    },
+    {
+      "desc": "[差一点]",
+      "res": "emotions/chayidian.png"
+    },
+    {
+      "desc": "[胜利]",
+      "res": "emotions/shengli.png"
+    },
+    {
+      "desc": "[强壮1]",
+      "res": "emotions/strong.png"
+    },
+    {
+      "desc": "[送花]",
+      "res": "emotions/songhua.png"
+    },
+    {
+      "desc": "[666]",
+      "res": "emotions/sixsixsix.png"
+    },
+    {
+      "desc": "[庆祝]",
+      "res": "emotions/qingzhu.png"
+    },
+    {
+      "desc": "[喝彩1]",
+      "res": "emotions/cheer.png"
+    },
+    {
+      "desc": "[必胜]",
+      "res": "emotions/bisheng.png"
+    },
+    {
+      "desc": "[Diss]",
+      "res": "emotions/diss.png"
+    },
+    {
+      "desc": "[沙发]",
+      "res": "emotions/shafa.png"
+    },
+    {
+      "desc": "[礼物]",
+      "res": "emotions/gift.png"
+    },
+    {
+      "desc": "[生日蛋糕]",
+      "res": "emotions/cake.png"
+    },
+    {
+      "desc": "[Skr]",
+      "res": "emotions/skr.png"
+    },
+    {
+      "desc": "[恶魔之角]",
+      "res": "emotions/rock.png"
+    },
+    {
+      "desc": "[优秀]",
+      "res": "emotions/youxiu.png"
+    },
+    {
+      "desc": "[100分]",
+      "res": "emotions/onehundred.png"
+    },
+    {
+      "desc": "[双喜]",
+      "res": "emotions/shuangxi.png"
+    },
+    {
+      "desc": "[发财]",
+      "res": "emotions/facai.png"
+    },
+    {
+      "desc": "[福]",
+      "res": "emotions/fu.png"
+    },
+    {
+      "desc": "[红包]",
+      "res": "emotions/hongbao.png"
+    },
+    {
+      "desc": "[月饼]",
+      "res": "emotions/yuebing.png"
+    },
+    {
+      "desc": "[圣诞树]",
+      "res": "emotions/shengdanshu.png"
+    },
+    {
+      "desc": "[热门]",
+      "res": "emotions/remen.png"
+    },
+    {
+      "desc": "[狗粮]",
+      "res": "emotions/gouliang.png"
+    },
+    {
+      "desc": "[学士帽]",
+      "res": "emotions/xueshimao.png"
+    },
+    {
+      "desc": "[晚安]",
+      "res": "emotions/wanan.png"
+    },
+    {
+      "desc": "[咖啡]",
+      "res": "emotions/coffee.png"
+    },
+    {
+      "desc": "[嗯]",
+      "res": "emotions/en.png"
+    },
+    {
+      "desc": "[哈]",
+      "res": "emotions/ha.png"
+    },
+    {
+      "desc": "[呵]",
+      "res": "emotions/he.png"
+    },
+    {
+      "desc": "[+1]",
+      "res": "emotions/addone.png"
+    },
+    {
+      "desc": "[火车头]",
+      "res": "emotions/huochetou.png"
+    },
+    {
+      "desc": "[火车身]",
+      "res": "emotions/huocheshen.png"
+    },
+    {
+      "desc": "[火车尾]",
+      "res": "emotions/huochewei.png"
+    }
+  ],
+  "row": 3,
+  "column": 7,
+  "pageCount": 0,
+  "size": 30,
+  "rowMargin": 0.25,
+  "needDelIcon": true,
+  "priority": 0,
+  "hasSetup": false
+}

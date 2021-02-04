@@ -1,0 +1,231 @@
+{
+  "typeName": "default",
+  "typeThumbnail": "thumbnail.png",
+  "resType": 2,
+  "emotions": [
+    {
+      "desc": "[捂脸]",
+      "res": "emotions/wulian.png"
+    },
+    {
+      "desc": "[呲牙]",
+      "res": "emotions/ciya.png"
+    },
+    {
+      "desc": "[色]",
+      "res": "emotions/se.png"
+    },
+    {
+      "desc": "[流泪]",
+      "res": "emotions/liulei.png"
+    },
+    {
+      "desc": "[害羞]",
+      "res": "emotions/haixiu.png"
+    },
+    {
+      "desc": "[咒骂]",
+      "res": "emotions/zhouma.png"
+    },
+    {
+      "desc": "[得意]",
+      "res": "emotions/deyi.png"
+    },
+    {
+      "desc": "[微笑]",
+      "res": "emotions/weixiao.png"
+    },
+    {
+      "desc": "[盯着]",
+      "res": "emotions/dingzhe.png"
+    },
+    {
+      "desc": "[机智]",
+      "res": "emotions/jizhi.png"
+    },
+    {
+      "desc": "[可怜]",
+      "res": "emotions/kelian.png"
+    },
+    {
+      "desc": "[打脸]",
+      "res": "emotions/dalian.png"
+    },
+    {
+      "desc": "[鼓掌]",
+      "res": "emotions/guzhang.png"
+    },
+    {
+      "desc": "[嘿哈]",
+      "res": "emotions/heiha.png"
+    },
+    {
+      "desc": "[敷面膜]",
+      "res": "emotions/fumianmo.png"
+    },
+    {
+      "desc": "[吃瓜]",
+      "res": "emotions/xigua.png"
+    },
+    {
+      "desc": "[抓狂]",
+      "res": "emotions/zhuakuang.png"
+    },
+    {
+      "desc": "[赞]",
+      "res": "emotions/zan.png"
+    },
+    {
+      "desc": "[合十]",
+      "res": "emotions/heshi.png"
+    },
+    {
+      "desc": "[玫瑰]",
+      "res": "emotions/meigui.png"
+    },
+    {
+      "desc": "[笑脸]",
+      "res": "emotions/xiaolian.png"
+    },
+    {
+      "desc": "[困]",
+      "res": "emotions/kun.png"
+    },
+    {
+      "desc": "[吓]",
+      "res": "emotions/xia.png"
+    },
+    {
+      "desc": "[啵啵]",
+      "res": "emotions/bobo.png"
+    },
+    {
+      "desc": "[惊讶]",
+      "res": "emotions/jingya.png"
+    },
+    {
+      "desc": "[疑问]",
+      "res": "emotions/yiwen.png"
+    },
+    {
+      "desc": "[奸笑]",
+      "res": "emotions/jianxiao.png"
+    },
+    {
+      "desc": "[惊喜]",
+      "res": "emotions/jingxi.png"
+    },
+    {
+      "desc": "[闭嘴]",
+      "res": "emotions/bizui.png"
+    },
+    {
+      "desc": "[蜘蛛侠]",
+      "res": "emotions/zhizhuxia.png"
+    },
+    {
+      "desc": "[羡慕]",
+      "res": "emotions/xianmu.png"
+    },
+    {
+      "desc": "[衰]",
+      "res": "emotions/shuai.png"
+    },
+    {
+      "desc": "[吐彩虹]",
+      "res": "emotions/tucaihong.png"
+    },
+    {
+      "desc": "[发怒]",
+      "res": "emotions/fanu.png"
+    },
+    {
+      "desc": "[睡]",
+      "res": "emotions/shui.png"
+    },
+    {
+      "desc": "[囧]",
+      "res": "emotions/jiong.png"
+    },
+    {
+      "desc": "[奋斗]",
+      "res": "emotions/fendou.png"
+    },
+    {
+      "desc": "[无语]",
+      "res": "emotions/wuyu.png"
+    },
+    {
+      "desc": "[白痴了]",
+      "res": "emotions/baichile.png"
+    },
+    {
+      "desc": "[跪了]",
+      "res": "emotions/guile.png"
+    },
+    {
+      "desc": "[左哼哼]",
+      "res": "emotions/zuohengheng.png"
+    },
+    {
+      "desc": "[右哼哼]",
+      "res": "emotions/youhengheng.png"
+    },
+    {
+      "desc": "[抱抱]",
+      "res": "emotions/baobao.png"
+    },
+    {
+      "desc": "[踩]",
+      "res": "emotions/cai.png"
+    },
+    {
+      "desc": "[握手]",
+      "res": "emotions/woshou.png"
+    },
+    {
+      "desc": "[OK]",
+      "res": "emotions/ok.png"
+    },
+    {
+      "desc": "[强壮]",
+      "res": "emotions/qiangzhuang.png"
+    },
+    {
+      "desc": "[击掌]",
+      "res": "emotions/jizhang.png"
+    },
+    {
+      "desc": "[抱拳]",
+      "res": "emotions/baoquan.png"
+    },
+    {
+      "desc": "[爱心]",
+      "res": "emotions/aixin.png"
+    },
+    {
+      "desc": "[心碎]",
+      "res": "emotions/xinsui.png"
+    },
+    {
+      "desc": "[喝彩]",
+      "res": "emotions/hecai.png"
+    },
+    {
+      "desc": "[啤酒]",
+      "res": "emotions/pijiu.png"
+    },
+    {
+      "desc": "[拍手]",
+      "res": "emotions/paishou.png"
+    }
+  ],
+  "row": 3,
+  "column": 7,
+  "pageCount": 0,
+  "size": 30,
+  "rowMargin": 0.25,
+  "needDelIcon": true,
+  "priority": 1,
+  "hasSetup": false
+}
