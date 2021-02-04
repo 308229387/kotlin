@@ -24,6 +24,7 @@
         <activity android:name=".activity.ViewPagerActivity" />
         <activity android:name=".activity.GridActivity" />
         <activity android:name=".activity.CustomViewpagerActivity" />
+        <activity android:name=".activity.ReadAssetsActivity" />
 
     </application>
 
