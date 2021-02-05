@@ -1,6 +1,7 @@
 package com.example.kotlin.activity
 
 import android.content.res.AssetManager
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin.R
@@ -20,7 +21,8 @@ class ReadAssetsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_assets)
-        assets_result.text = getAssetsInfo().getEmotions()!![1].getRes()
+        assets_text.text = getAssetsInfo().getEmotions()!![1].getRes()
+        getImage()
     }
 
     private fun getAssetsInfo(): EmotionGroup {
@@ -30,5 +32,24 @@ class ReadAssetsActivity : AppCompatActivity() {
         val json: String = YdUtil.readAndClose(`is`)!!
 
         return Gson().fromJson(json, EmotionGroup::class.java)
+    }
+
+    private fun getImage(){
+        try {
+            val assetManager = assets
+            val `is` = assetManager.open("ziyaxiao.png")
+            //以下注释掉的代码不靠谱.若采用,会有异常
+            //InputStream is = assetManager.open("file:///android_asset/Fresh_01.jpg");
+            val bitmap = BitmapFactory.decodeStream(`is`)
+            assets_image.setImageBitmap(bitmap)
+            if (bitmap != null) {
+                println("测试一:width=" + bitmap.width + " ,height=" + bitmap.height)
+            } else {
+                println("bitmap == null")
+            }
+        } catch (e: Exception) {
+            println("异常信息:$e")
+        }
+
     }
 }
