@@ -9,14 +9,13 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.WindowManager.LayoutParams;
 import android.widget.PopupWindow;
 
-public class HeightProvider extends PopupWindow implements OnGlobalLayoutListener {
+public class SoleHeightProvider extends PopupWindow implements OnGlobalLayoutListener {
     private Activity mActivity;
     private View rootView;
     private HeightListener listener;
-    private static int heightMax; // 记录popup内容区的最大高度
-    private static int keyboardHeight; // 记录keyboard高
+    private int heightMax; // 记录popup内容区的最大高度
 
-    public HeightProvider(Activity activity) {
+    public SoleHeightProvider(Activity activity) {
         super(activity);
         this.mActivity = activity;
 
@@ -37,7 +36,7 @@ public class HeightProvider extends PopupWindow implements OnGlobalLayoutListene
         setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
     }
 
-    public HeightProvider init() {
+    public SoleHeightProvider init() {
         if (!isShowing()) {
             final View view = mActivity.getWindow().getDecorView();
             // 延迟加载popupwindow，如果不加延迟就会报错
@@ -51,7 +50,7 @@ public class HeightProvider extends PopupWindow implements OnGlobalLayoutListene
         return this;
     }
 
-    public HeightProvider setHeightListener(HeightListener listener) {
+    public SoleHeightProvider setHeightListener(HeightListener listener) {
         this.listener = listener;
         return this;
     }
@@ -65,21 +64,13 @@ public class HeightProvider extends PopupWindow implements OnGlobalLayoutListene
         }
 
         // 两者的差值就是键盘的高度
-        keyboardHeight = heightMax - rect.bottom;
+        int keyboardHeight = heightMax - rect.bottom;
         if (listener != null) {
-            listener.onHeightChanged(heightMax, keyboardHeight);
+            listener.onHeightChanged(keyboardHeight);
         }
     }
 
     public interface HeightListener {
-        void onHeightChanged(int heightMax, int height);
-    }
-
-    public static boolean isKeyboardShowing() {
-        if (keyboardHeight > heightMax / 3) {
-            return true;
-        } else {
-            return false;
-        }
+        void onHeightChanged(int height);
     }
 }

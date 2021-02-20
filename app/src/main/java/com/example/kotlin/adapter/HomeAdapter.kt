@@ -29,6 +29,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
 
             override fun jump() {
                 when (dataList[position].title) {
+                    "聊天交互框" -> context.startActivity(Intent(context, CommentTestActivity::class.java))
                     "include实现" -> context.startActivity(Intent(context, IncludeActivity::class.java))
                     "dialogFragment实现" -> context.startActivity(Intent(context, PopWindowActivity::class.java))
                     "键盘高度测量" -> context.startActivity(Intent(context, KeyboardActivity::class.java))

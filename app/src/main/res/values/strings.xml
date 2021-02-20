@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">kotlin</string>
+    <string name="comment_hint">阳光跟帖、理性发言，优质评论将会被优先展示</string>
+    <string name="send_comment">发表</string>
 </resources>

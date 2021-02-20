@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/edt_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/comment_background_new"
+        android:gravity="left|top"
+        android:hint="阳光跟帖、理性发言，优质评论将会被优先展示"
+        android:maxLines="3"
+        android:minHeight="56dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="6dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="6dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"
+        android:textColor="#222222"
+        android:textColorHint="#bfbfbf"
+        android:textCursorDrawable="@drawable/comment_dialog_cursor"
+        android:textSize="16dp" />
+
+
+    <Button
+        android:id="@+id/dialog_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_radius50"
+        android:gravity="center"
+        android:text="发表"
+        android:textColor="@color/white"
+        android:textSize="12dp" />
+
+
+</LinearLayout>

@@ -8,14 +8,14 @@ import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import kotlinx.android.synthetic.main.add_fragment_layout.*
-import kotlinx.android.synthetic.main.add_fragment_layout.view.*
+import kotlinx.android.synthetic.main.one_add_fragment_layout.*
+import kotlinx.android.synthetic.main.one_add_fragment_layout.view.*
 
-class AddCommentFragment : DialogFragment() {
+class OneAddCommentFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        var view = inflater.inflate(R.layout.add_fragment_layout, null)
+        var view = inflater.inflate(R.layout.one_add_fragment_layout, null)
         this.dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         setOnListener(view)
         initDialog()

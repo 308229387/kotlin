@@ -5,6 +5,7 @@ data class Data(var title: String, var image: Int)
 object HomeData {
 
     val data = arrayListOf(
+        Data("聊天交互框", R.mipmap.watermelon_pic),
         Data("include实现", R.mipmap.apple_pic),
         Data("dialogFragment实现", R.mipmap.banana_pic),
         Data("键盘高度测量", R.mipmap.cherry_pic),

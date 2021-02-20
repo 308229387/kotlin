@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar_container_ns"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    tools:background="#ffffff">
+
+    <View
+        android:id="@+id/divider_line"
+        style="@style/divider_style"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/button_forward_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_line"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/wright_box"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/write_comment_box_bg">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="11dp"
+                android:background="@mipmap/news_footer_write_comment"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/article_comment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|center_vertical"
+                android:ellipsize="end"
+                android:gravity="left|center_vertical"
+                android:maxLines="1"
+                android:paddingLeft="2dp"
+                android:text="写评论…"
+                android:textColor="#5a5a5a"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/frame_comments_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="3dp"
+            android:paddingRight="15dp"
+            android:scaleType="center"
+            android:src="@mipmap/news_footer_comment"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/footer_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="3dp"
+            android:paddingRight="15dp"
+            android:scaleType="center"
+            android:src="@mipmap/news_footer_favorite"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/button_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="3dp"
+            android:paddingRight="15dp"
+            android:scaleType="center"
+            android:src="@mipmap/news_foot_thumb_up" />
+
+        <ImageView
+            android:id="@+id/normal_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="3dp"
+            android:paddingRight="15dp"
+            android:scaleType="center"
+            android:src="@mipmap/news_footer_share" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

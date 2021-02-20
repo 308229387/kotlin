@@ -1,5 +1,8 @@
 package com.example.kotlin.utils
 
+import android.annotation.SuppressLint
+import android.content.ClipboardManager
+import com.example.kotlin.App
 import java.io.ByteArrayOutputStream
 import java.io.Closeable
 import java.io.IOException
@@ -40,6 +43,17 @@ class YdUtil {
                     var4.printStackTrace()
                     null
                 }
+            }
+        }
+
+        @SuppressLint("WrongConstant")
+        fun getCopyText(): CharSequence? {
+            val clipboard = App.getAppContext()!!.getSystemService("clipboard") as ClipboardManager
+            return if (clipboard == null) {
+                null
+            } else {
+                val clip = clipboard.primaryClip
+                clip?.getItemAt(0)?.text
             }
         }
 

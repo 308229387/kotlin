@@ -8,5 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="press_state">#f6f7f9</color>
-
+    <color name="bottom_bar">#f6f7f9</color>
+    <color name="red_second">#fc4246</color>
+    <color name="emotion_back">#efefef</color>
 </resources>

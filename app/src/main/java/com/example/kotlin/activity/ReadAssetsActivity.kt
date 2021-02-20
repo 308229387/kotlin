@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin.R
 import com.example.kotlin.utils.YdUtil
 import com.google.gson.Gson
-import com.yidian.subway.newscontent.ui.comment.EmotionGroup
+import com.example.kotlin.data.EmotionGroup
 import kotlinx.android.synthetic.main.activity_assets.*
 import java.io.InputStream
 
@@ -25,19 +25,20 @@ class ReadAssetsActivity : AppCompatActivity() {
         getImage()
     }
 
+    //读取json文件
     private fun getAssetsInfo(): EmotionGroup {
         val assetManager: AssetManager = resources.assets
-
         val `is`: InputStream = assetManager.open("$EMOTION_DIR_ASSET/$dir/$EMOTION_JSON_FILE_NAME")
         val json: String = YdUtil.readAndClose(`is`)!!
-
         return Gson().fromJson(json, EmotionGroup::class.java)
     }
 
-    private fun getImage(){
+    //读取图片
+    private fun getImage() {
         try {
             val assetManager = assets
-            val `is` = assetManager.open("ziyaxiao.png")
+            var tempPath = EMOTION_DIR_ASSET + "/" + "classic" + "/" +EMOTION_DIR_ASSET+"/"+ "addone.png"
+            val `is` = assetManager.open(tempPath)
             //以下注释掉的代码不靠谱.若采用,会有异常
             //InputStream is = assetManager.open("file:///android_asset/Fresh_01.jpg");
             val bitmap = BitmapFactory.decodeStream(`is`)

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin.R
-import com.example.kotlin.utils.HeightProvider
+import com.example.kotlin.utils.SoleHeightProvider
 import kotlinx.android.synthetic.main.activity_nt_nothing.*
 
 class KeyboardActivity : AppCompatActivity() {
@@ -16,7 +16,7 @@ class KeyboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nt_nothing)
 
-        HeightProvider(this).init().setHeightListener { height ->
+        SoleHeightProvider(this).init().setHeightListener { height ->
             height_result.text = "键盘高度为$height"
             Log.d(TAG, "键盘高度为$height")
         }

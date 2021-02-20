@@ -1,9 +1,28 @@
 <resources>
 
+    <attr name="view_divider_bg" format="color|reference" />
+    <attr name="summary_text" format="color" />
+
+
     <style name="BottomDialogAnimation">
         <item name="android:windowEnterAnimation">@anim/dialog_bottom_up</item>
         <item name="android:windowExitAnimation">@anim/dialog_bottom_down</item>
     </style>
 
+    <style name="divider_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">#e6e6e6</item>
+    </style>
+
+
+    <bool name="default_circle_indicator_centered">true</bool>
+    <color name="default_circle_indicator_fill_color">#222222</color>
+    <color name="default_circle_indicator_page_color">#D8D8D8</color>
+    <integer name="default_circle_indicator_orientation">0</integer>
+    <dimen name="default_circle_indicator_radius">2dp</dimen>
+    <bool name="default_circle_indicator_snap">false</bool>
+    <color name="default_circle_indicator_stroke_color">#00000000</color>
+    <dimen name="default_circle_indicator_stroke_width">1px</dimen>
 
 </resources>
