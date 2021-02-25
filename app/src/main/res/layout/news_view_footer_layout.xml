@@ -55,50 +55,58 @@
                 android:textColor="#5a5a5a"
                 android:textSize="14sp" />
         </LinearLayout>
-        <ImageView
+
+        <com.example.kotlin.views.CommentFooterButton
             android:id="@+id/frame_comments_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingLeft="12dp"
+            android:layout_marginStart="12dp"
             android:paddingTop="3dp"
-            android:paddingRight="15dp"
+            android:paddingEnd="15dp"
             android:scaleType="center"
-            android:src="@mipmap/news_footer_comment"
-            app:layout_constraintTop_toTopOf="parent" />
-        <ImageView
+            app:light_map_id="@mipmap/news_footer_comment"
+            app:map_id="@mipmap/news_footer_context"
+            tools:ignore="RtlSymmetry" />
+
+        <com.example.kotlin.views.CommentFooterButton
             android:id="@+id/footer_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingLeft="12dp"
+            android:layout_marginStart="12dp"
             android:paddingTop="3dp"
-            android:paddingRight="15dp"
+            android:paddingEnd="15dp"
             android:scaleType="center"
-            android:src="@mipmap/news_footer_favorite"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:light_map_id="@mipmap/news_footer_favorite_light"
+            app:map_id="@mipmap/news_footer_favorite"
+            tools:ignore="RtlSymmetry" />
 
-        <ImageView
+        <com.example.kotlin.views.CommentFooterButton
             android:id="@+id/button_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingLeft="12dp"
+            android:layout_marginStart="12dp"
             android:paddingTop="3dp"
-            android:paddingRight="15dp"
+            android:paddingEnd="15dp"
             android:scaleType="center"
-            android:src="@mipmap/news_foot_thumb_up" />
+            app:light_map_id="@mipmap/comment_up_light"
+            app:map_id="@mipmap/comment_up"
+            tools:ignore="RtlSymmetry" />
 
-        <ImageView
-            android:id="@+id/normal_icon"
+        <com.example.kotlin.views.CommentFooterButton
+            android:id="@+id/share_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingLeft="12dp"
+            android:layout_marginStart="12dp"
             android:paddingTop="3dp"
-            android:paddingRight="15dp"
+            android:layout_marginEnd="15dp"
             android:scaleType="center"
-            android:src="@mipmap/news_footer_share" />
+            app:light_map_id="@mipmap/comment_share"
+            app:map_id="@mipmap/comment_share"
+            tools:ignore="RtlSymmetry" />
 
     </LinearLayout>
 

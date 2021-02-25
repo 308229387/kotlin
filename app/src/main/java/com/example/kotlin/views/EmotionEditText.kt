@@ -8,7 +8,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputConnection
 import android.widget.EditText
 import com.example.kotlin.utils.EmotionHelper
-import com.example.kotlin.utils.YdUtil
+import com.example.kotlin.utils.Utils
 
 @SuppressLint("AppCompatCustomView")
 class EmotionEditText(context: Context, attrs: AttributeSet) : EditText(context, attrs) {
@@ -38,7 +38,7 @@ class EmotionEditText(context: Context, attrs: AttributeSet) : EditText(context,
     override fun onTextContextMenuItem(id: Int): Boolean {
         when (id) {
             android.R.id.paste, android.R.id.pasteAsPlainText -> {
-                val text = YdUtil.getCopyText()
+                val text = Utils.getCopyText()
                 if (text != null) {
                     val indexStart = selectionStart
                     val indexEnd = selectionEnd

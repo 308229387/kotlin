@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin.R
-import com.example.kotlin.utils.YdUtil
+import com.example.kotlin.utils.Utils
 import com.google.gson.Gson
 import com.example.kotlin.data.EmotionGroup
 import kotlinx.android.synthetic.main.activity_assets.*
@@ -29,7 +29,7 @@ class ReadAssetsActivity : AppCompatActivity() {
     private fun getAssetsInfo(): EmotionGroup {
         val assetManager: AssetManager = resources.assets
         val `is`: InputStream = assetManager.open("$EMOTION_DIR_ASSET/$dir/$EMOTION_JSON_FILE_NAME")
-        val json: String = YdUtil.readAndClose(`is`)!!
+        val json: String = Utils.readAndClose(`is`)!!
         return Gson().fromJson(json, EmotionGroup::class.java)
     }
 

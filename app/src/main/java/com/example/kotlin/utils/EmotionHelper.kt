@@ -49,7 +49,7 @@ class EmotionHelper {
         fun getAssetsJson(dir: String): EmotionGroup {
             val assetManager: AssetManager = App.getAppContext()!!.resources.assets
             val `is`: InputStream = assetManager.open(dir)
-            val json: String = YdUtil.readAndClose(`is`)!!
+            val json: String = Utils.readAndClose(`is`)!!
             return Gson().fromJson(json, EmotionGroup::class.java)
         }
 

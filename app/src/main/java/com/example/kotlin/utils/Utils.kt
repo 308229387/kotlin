@@ -2,13 +2,15 @@ package com.example.kotlin.utils
 
 import android.annotation.SuppressLint
 import android.content.ClipboardManager
+import android.content.Context
+import android.util.TypedValue
 import com.example.kotlin.App
 import java.io.ByteArrayOutputStream
 import java.io.Closeable
 import java.io.IOException
 import java.io.InputStream
 
-class YdUtil {
+class Utils {
 
     companion object {
         private fun close(closeable: Closeable?) {
@@ -49,12 +51,14 @@ class YdUtil {
         @SuppressLint("WrongConstant")
         fun getCopyText(): CharSequence? {
             val clipboard = App.getAppContext()!!.getSystemService("clipboard") as ClipboardManager
-            return if (clipboard == null) {
-                null
-            } else {
+            return run {
                 val clip = clipboard.primaryClip
                 clip?.getItemAt(0)?.text
             }
+        }
+
+        fun dp2px(context: Context, dpVal: Float): Int {
+            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, context.resources.displayMetrics).toInt()
         }
 
     }
