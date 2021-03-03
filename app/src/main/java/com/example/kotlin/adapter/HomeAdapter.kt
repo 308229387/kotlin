@@ -37,6 +37,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "Grid样式recyclerview" -> context.startActivity(Intent(context, GridActivity::class.java))
                     "自定义Viewpager" -> context.startActivity(Intent(context, CustomViewpagerActivity::class.java))
                     "从asset中读取资源" -> context.startActivity(Intent(context, ReadAssetsActivity::class.java))
+                    "bottomsheetDialog" -> context.startActivity(Intent(context, BottomDialogActivity::class.java))
                 }
 
             }

@@ -15,7 +15,7 @@ object HomeData {
         Data("标准GridView", R.mipmap.pear_pic),
         Data("Pineapple", R.mipmap.pineapple_pic),
         Data("从asset中读取资源", R.mipmap.strawberry_pic),
-        Data("Watermelon", R.mipmap.watermelon_pic),
+        Data("bottomsheetDialog", R.mipmap.watermelon_pic),
         Data("Apple", R.mipmap.apple_pic),
         Data("Banana", R.mipmap.banana_pic),
         Data("Cherry", R.mipmap.cherry_pic),

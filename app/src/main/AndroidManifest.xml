@@ -27,6 +27,7 @@
         <activity android:name=".activity.CustomViewpagerActivity" />
         <activity android:name=".activity.ReadAssetsActivity" />
         <activity android:name=".activity.CommentTestActivity" />
+        <activity android:name=".activity.BottomDialogActivity" />
     </application>
 
 </manifest>
