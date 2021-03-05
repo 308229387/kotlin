@@ -16,8 +16,8 @@
     android:transformPivotY="-5dp"
     android:translationY="3dp">
 
-    <View
-        android:id="@+id/dialog_bottomsheet_rv_lists"
+    <WebView
+        android:id="@+id/dialog_web_view"
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:layout_marginTop="50dp"
