@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -20,6 +21,7 @@ import kotlinx.android.synthetic.main.add_fragment_layout.view.*
 
 class AddCommentFragment : DialogFragment() {
     private lateinit var vEmojiSwitcher: ImageSwitcher
+    private lateinit var withoutLayout: View
     private lateinit var mEditText: EditText
     private lateinit var mPanelView: EmotionPanelView
     private var mIsKeyboardActive = false //　输入法是否激活
@@ -43,6 +45,7 @@ class AddCommentFragment : DialogFragment() {
         vEmojiSwitcher = view.emoji_switcher
         mEditText = view.edt_comment
         mPanelView = view.panel_view
+        withoutLayout = view.without_layout
     }
 
     //初始化dialog
@@ -50,9 +53,10 @@ class AddCommentFragment : DialogFragment() {
         this.dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val window = this.dialog!!.window
         window!!.decorView.setPadding(0, 0, 0, 0)
+        window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+
         val lp = window.attributes
         lp.width = WindowManager.LayoutParams.MATCH_PARENT
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
         lp.gravity = Gravity.BOTTOM
         lp.windowAnimations = R.style.BottomDialogAnimation
         window.attributes = lp
@@ -62,9 +66,17 @@ class AddCommentFragment : DialogFragment() {
     //设置监听
     @SuppressLint("ClickableViewAccessibility")
     private fun setOnListener() {
+        withoutLayout.setOnClickListener {
+            if(mIsKeyboardActive){
+                hideKeyBoard(edt_comment)
+            }
+            dismiss()
+        }
+
         dialog!!.setOnShowListener {
             showKeyBoard(edt_comment)
             viewHeight = mView.measuredHeight
+            mPanelView.visibility = View.VISIBLE
         }
 
         //隐藏输入法键盘
@@ -89,7 +101,6 @@ class AddCommentFragment : DialogFragment() {
         //表情键
         vEmojiSwitcher.setOnClickListener {
             if (mIsKeyboardActive) {
-                clickEmoji()
                 switchEmoji(1)
                 mPanelView.visibility = View.VISIBLE
                 hideKeyBoard(mEditText)
@@ -97,8 +108,7 @@ class AddCommentFragment : DialogFragment() {
                 switchEmoji(0)
                 showKeyBoard(mEditText)
                 mPanelView.postDelayed({
-                    dismissEmoji()
-                    mPanelView.visibility = View.GONE
+                    mPanelView.visibility = View.INVISIBLE
                 }, 250)
             }
         }
@@ -132,19 +142,6 @@ class AddCommentFragment : DialogFragment() {
         setKeyboardHeightListener()
     }
 
-    private fun clickEmoji() {
-        val params = mWindow.attributes
-        params.y = layoutHeight
-        mWindow.attributes = params
-        mWindow.setGravity(Gravity.TOP)
-    }
-
-    private fun dismissEmoji() {
-        val params = mWindow.attributes
-        params.y = 0
-        mWindow.attributes = params
-        mWindow.setGravity(Gravity.BOTTOM)
-    }
 
     //显示键盘
     private fun showKeyBoard(v: View) {
@@ -183,11 +180,16 @@ class AddCommentFragment : DialogFragment() {
             keyboardHeight = height
             mIsKeyboardActive = HeightProvider.isKeyboardShowing()
 
+
+            Log.d("song_test", "keyboardHeight = $keyboardHeight")
             if (mIsKeyboardActive) {
                 val params = mPanelView.layoutParams
                 params.height = keyboardHeight
                 mPanelView.layoutParams = params
                 layoutHeight = heightMax - height - viewHeight - getTopBarHeight()!!
+            } else if (keyboardHeight == 0 && (mPanelView.visibility != View.VISIBLE)) {
+                mPanelView.visibility = View.GONE
+                Log.d("song_test", "mPanelView.visibility = View.GONE")
             }
         }
     }

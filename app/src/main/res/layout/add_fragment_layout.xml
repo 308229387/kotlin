@@ -2,134 +2,149 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#ffffff"
+    android:layout_height="match_parent"
+    android:background="#00000000"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <View
+        android:id="@+id/without_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
-
-        <com.example.kotlin.views.EmotionEditText
-            android:id="@+id/edt_comment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/comment_background_new"
-            android:gravity="left|top"
-            android:hint="@string/comment_hint"
-            android:maxLines="3"
-            android:minHeight="56dp"
-            android:paddingStart="12dp"
-            android:paddingTop="6dp"
-            android:paddingRight="40dp"
-            android:paddingBottom="6dp"
-            android:scrollbarStyle="outsideOverlay"
-            android:scrollbars="vertical"
-            android:textColor="#222222"
-            android:textColorHint="#bfbfbf"
-            android:textCursorDrawable="@drawable/comment_dialog_cursor"
-            android:textSize="16sp"
-            tools:ignore="RtlHardcoded" />
-
-        <ImageView
-            android:id="@+id/comment_template_switcher"
-            android:layout_width="32dp"
-            android:layout_height="56dp"
-            android:layout_alignTop="@id/edt_comment"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:inAnimation="@anim/fade_in"
-            android:outAnimation="@anim/fade_out"
-            android:paddingTop="8dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="28dp"
-            android:src="@mipmap/comment_template_switcher"
-            tools:ignore="ContentDescription,RtlSymmetry" />
-
-    </RelativeLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="#ffffff"
-        android:clickable="true"
-        android:focusable="true"
-        android:orientation="horizontal">
+        android:background="#fff"
+        android:orientation="vertical">
 
-        <ImageSwitcher
-            android:id="@+id/emoji_switcher"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inAnimation="@anim/fade_in"
-            android:outAnimation="@anim/fade_out"
-            android:paddingStart="15dp"
-            android:paddingTop="12dp"
-            android:paddingEnd="7dp"
-            android:paddingBottom="10dp">
+            android:layout_marginTop="12dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <com.example.kotlin.views.EmotionEditText
+                android:id="@+id/edt_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/comment_background_new"
+                android:gravity="left|top"
+                android:hint="@string/comment_hint"
+                android:maxLines="3"
+                android:minHeight="56dp"
+                android:paddingStart="12dp"
+                android:paddingTop="6dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="6dp"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="vertical"
+                android:textColor="#222222"
+                android:textColorHint="#bfbfbf"
+                android:textCursorDrawable="@drawable/comment_dialog_cursor"
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded" />
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/emoji"
-                tools:ignore="ContentDescription" />
+                android:id="@+id/comment_template_switcher"
+                android:layout_width="32dp"
+                android:layout_height="56dp"
+                android:layout_alignTop="@id/edt_comment"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:inAnimation="@anim/fade_in"
+                android:outAnimation="@anim/fade_out"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="28dp"
+                android:src="@mipmap/comment_template_switcher"
+                tools:ignore="ContentDescription,RtlSymmetry" />
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/keyboard"
-                tools:ignore="ContentDescription" />
-        </ImageSwitcher>
+        </RelativeLayout>
 
-        <ImageSwitcher
-            android:id="@+id/gif_switcher"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inAnimation="@anim/fade_in"
-            android:outAnimation="@anim/fade_out"
-            android:paddingStart="8dp"
-            android:paddingTop="12dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="10dp">
+            android:layout_gravity="top"
+            android:background="#ffffff"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/gif_emoji"
-                tools:ignore="ContentDescription" />
+            <ImageSwitcher
+                android:id="@+id/emoji_switcher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inAnimation="@anim/fade_in"
+                android:outAnimation="@anim/fade_out"
+                android:paddingStart="15dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="7dp"
+                android:paddingBottom="10dp">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/gif_emoji_selected"
-                tools:ignore="ContentDescription" />
-        </ImageSwitcher>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/emoji"
+                    tools:ignore="ContentDescription" />
 
-        <Button
-            android:id="@+id/btn_send"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="60dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_rect_radius100_solid_press_state"
-            android:gravity="center"
-            android:text="@string/send_comment"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/keyboard"
+                    tools:ignore="ContentDescription" />
+            </ImageSwitcher>
+
+            <ImageSwitcher
+                android:id="@+id/gif_switcher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inAnimation="@anim/fade_in"
+                android:outAnimation="@anim/fade_out"
+                android:paddingStart="8dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/gif_emoji"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/gif_emoji_selected"
+                    tools:ignore="ContentDescription" />
+            </ImageSwitcher>
+
+            <Button
+                android:id="@+id/btn_send"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="60dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_rect_radius100_solid_press_state"
+                android:gravity="center"
+                android:text="@string/send_comment"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <com.example.kotlin.views.EmotionPanelView
+            android:id="@+id/panel_view"
+            layout="@layout/panel_view"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:background="@color/emotion_back"
+            android:visibility="invisible" />
+
     </LinearLayout>
 
-    <com.example.kotlin.views.EmotionPanelView
-        android:id="@+id/panel_view"
-        layout="@layout/panel_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/emotion_back"
-        android:visibility="gone" />
 
 </LinearLayout>
