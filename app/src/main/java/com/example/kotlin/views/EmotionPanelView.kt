@@ -83,7 +83,7 @@ class EmotionPanelView(context: Context, attrs: AttributeSet) : LinearLayout(con
 
         try {
             val emotionList: ArrayList<Emotion> =
-                EmotionHelper.getAssetsJson(jsonDir).getEmotions() as ArrayList<Emotion>
+                EmotionHelper.getEmotionsGroup(jsonDir).getEmotions() as ArrayList<Emotion>
             val pageSize: Int =
                 if (emotionList.size % ITEM_GRID_NUM == 0) emotionList.size / ITEM_GRID_NUM else emotionList.size / ITEM_GRID_NUM + 1
             for (i in 0 until pageSize) {

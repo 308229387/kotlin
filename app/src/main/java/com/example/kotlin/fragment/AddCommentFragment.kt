@@ -2,34 +2,51 @@ package com.example.kotlin.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.ImageSwitcher
+import android.widget.*
 import androidx.fragment.app.DialogFragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.kotlin.R
 import com.example.kotlin.data.Emotion
+import com.example.kotlin.data.Expression
 import com.example.kotlin.utils.EmotionHelper
 import com.example.kotlin.utils.HeightProvider
 import com.example.kotlin.views.EmotionEditText
+import com.example.kotlin.views.EmotionGifPanelView
 import com.example.kotlin.views.EmotionPanelView
 import kotlinx.android.synthetic.main.add_fragment_layout.*
 import kotlinx.android.synthetic.main.add_fragment_layout.view.*
 
 class AddCommentFragment : DialogFragment() {
-    private lateinit var vEmojiSwitcher: ImageSwitcher
+    private lateinit var panelView: RelativeLayout
+    private lateinit var gifPanelView: EmotionGifPanelView
+    private lateinit var emotionPanelView: EmotionPanelView
+
+    private lateinit var vGifSwitcher: CheckBox
+    private lateinit var vEmojiSwitcher: CheckBox
+
+    private lateinit var gifShowLayout: RelativeLayout
+    private lateinit var gifShowView: ImageView
+    private lateinit var gifCloseView: ImageView
+    private lateinit var sendBtn: Button
+    private lateinit var actionListener: ActionListener
+
+
     private lateinit var withoutLayout: View
     private lateinit var mEditText: EditText
-    private lateinit var mPanelView: EmotionPanelView
     private var mIsKeyboardActive = false //　输入法是否激活
     private var keyboardHeight = 0 //　键盘高度
     private var layoutHeight = 0 //　配置的布局高度
     private var viewHeight = 0 //　布局高度
     private lateinit var mWindow: Window
     private lateinit var mView: View
+    private var fromExpression: Boolean = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.add_fragment_layout, null)
         initView(view)
@@ -42,10 +59,24 @@ class AddCommentFragment : DialogFragment() {
     private fun initView(view: View) {
         mView = view
         mWindow = this.dialog?.window!!
+        panelView = view.panel_view
+        emotionPanelView = view.panel_emotion_view
+        gifPanelView = view.panel_gif_view
+        gifShowLayout = view.gif_show_layout
+        gifShowView = view.iv_gif_emotion
+        gifCloseView = view.iv_gif_emotion_close
+        vGifSwitcher = view.gif_switcher
+        sendBtn = view.btn_send
+
         vEmojiSwitcher = view.emoji_switcher
         mEditText = view.edt_comment
-        mPanelView = view.panel_view
         withoutLayout = view.without_layout
+
+
+        val typeface: Typeface =
+            Typeface.createFromAsset(activity?.assets, "fonts/YouSheBiaoTiHei.ttf")
+        vEmojiSwitcher.typeface = typeface
+        vGifSwitcher.typeface = typeface
     }
 
     //初始化dialog
@@ -53,10 +84,10 @@ class AddCommentFragment : DialogFragment() {
         this.dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val window = this.dialog!!.window
         window!!.decorView.setPadding(0, 0, 0, 0)
-        window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+        window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);//这句是不让键盘影响布局
 
         val lp = window.attributes
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT//不要设置高不然会被键盘影响
         lp.gravity = Gravity.BOTTOM
         lp.windowAnimations = R.style.BottomDialogAnimation
         window.attributes = lp
@@ -66,17 +97,22 @@ class AddCommentFragment : DialogFragment() {
     //设置监听
     @SuppressLint("ClickableViewAccessibility")
     private fun setOnListener() {
+        sendBtn.setOnClickListener {
+            actionListener.send(edt_comment.text.toString())
+        }
+
         withoutLayout.setOnClickListener {
-            if(mIsKeyboardActive){
+            if (mIsKeyboardActive) {
                 hideKeyBoard(edt_comment)
             }
             dismiss()
         }
 
         dialog!!.setOnShowListener {
-            showKeyBoard(edt_comment)
-            viewHeight = mView.measuredHeight
-            mPanelView.visibility = View.VISIBLE
+            if (!fromExpression) {
+                showKeyBoard(edt_comment)
+                viewHeight = mView.measuredHeight
+            }
         }
 
         //隐藏输入法键盘
@@ -98,22 +134,57 @@ class AddCommentFragment : DialogFragment() {
             b
         }
 
-        //表情键
-        vEmojiSwitcher.setOnClickListener {
-            if (mIsKeyboardActive) {
-                switchEmoji(1)
-                mPanelView.visibility = View.VISIBLE
+        vEmojiSwitcher.setOnCheckedChangeListener { _, checked ->
+            tempClose()
+            if (checked) {
+                panelView.visibility = View.VISIBLE
+                emotionPanelView.visibility = View.VISIBLE
+                vGifSwitcher.isChecked = false
                 hideKeyBoard(mEditText)
             } else {
-                switchEmoji(0)
-                showKeyBoard(mEditText)
-                mPanelView.postDelayed({
-                    mPanelView.visibility = View.INVISIBLE
+                emotionPanelView.visibility = View.GONE
+                emotionPanelView.postDelayed({
+                    if (!vGifSwitcher.isChecked) {
+                        panelView.visibility = View.INVISIBLE
+                    }
                 }, 250)
             }
         }
 
-        mPanelView.setEmotionClickListener(object : EmotionPanelView.OnEmotionClickListener {
+        vGifSwitcher.setOnCheckedChangeListener { _, checked ->
+            tempClose()
+            if (checked) {
+                panelView.visibility = View.VISIBLE
+                gifPanelView.visibility = View.VISIBLE
+                vEmojiSwitcher.isChecked = false
+                hideKeyBoard(mEditText)
+
+            } else {
+                gifPanelView.visibility = View.GONE
+                gifPanelView.postDelayed({
+                    if (!vEmojiSwitcher.isChecked) {
+                        panelView.visibility = View.INVISIBLE
+                    }
+                }, 250)
+            }
+        }
+
+        gifCloseView.setOnClickListener { gifShowLayout.visibility = View.GONE }
+
+        gifPanelView.setGifClickListener(object : EmotionGifPanelView.OnGifClickListener {
+            override fun onGifClick(gif: Expression?) {
+                gifShowLayout.visibility = View.VISIBLE
+
+                Glide.with(activity!!)
+                    .setDefaultRequestOptions(RequestOptions().frame(1000000))
+                    .load(gif!!.url)
+                    .into(gifShowView)
+
+            }
+
+        })
+
+        emotionPanelView.setEmotionClickListener(object : EmotionPanelView.OnEmotionClickListener {
             override fun onEmotionClick(emotion: Emotion?) {
                 when (emotion) {
                     Emotion.DEL -> {
@@ -142,6 +213,17 @@ class AddCommentFragment : DialogFragment() {
         setKeyboardHeightListener()
     }
 
+    //防止连续点击
+    private fun tempClose() {
+        vEmojiSwitcher.isClickable = false
+//        vGifSwitcher.isClickable = false
+        panelView.postDelayed({
+            vEmojiSwitcher.isClickable = true
+//            vGifSwitcher.isClickable = true
+        }, 300)
+        vEmojiSwitcher.isClickable = false
+    }
+
 
     //显示键盘
     private fun showKeyBoard(v: View) {
@@ -162,42 +244,39 @@ class AddCommentFragment : DialogFragment() {
         imm.hideSoftInputFromWindow(v.windowToken, 0)
     }
 
-    //表情与键盘标记切换
-    private fun switchEmoji(index: Int) {
-        if (vEmojiSwitcher.displayedChild == index) {
-            return
-        }
-        if (index == 0) {
-            vEmojiSwitcher.displayedChild = 0
-        } else if (index == 1) {
-            vEmojiSwitcher.displayedChild = 1
-        }
-    }
-
     //高度监听
     private fun setKeyboardHeightListener() {
         HeightProvider(this.activity).init().setHeightListener { heightMax, height ->
             keyboardHeight = height
             mIsKeyboardActive = HeightProvider.isKeyboardShowing()
-
-
-            Log.d("song_test", "keyboardHeight = $keyboardHeight")
             if (mIsKeyboardActive) {
-                val params = mPanelView.layoutParams
+                val params = panelView.layoutParams
                 params.height = keyboardHeight
-                mPanelView.layoutParams = params
-                layoutHeight = heightMax - height - viewHeight - getTopBarHeight()!!
-            } else if (keyboardHeight == 0 && (mPanelView.visibility != View.VISIBLE)) {
-                mPanelView.visibility = View.GONE
-                Log.d("song_test", "mPanelView.visibility = View.GONE")
+                panelView.layoutParams = params
+                panelView.visibility = View.VISIBLE
+                if (getTopBarHeight() != null) {
+                    layoutHeight = heightMax - height - viewHeight - getTopBarHeight()!!
+                }
+            } else if (keyboardHeight == 0 && gifPanelView.visibility != View.VISIBLE && emotionPanelView.visibility != View.VISIBLE) {
+                panelView.visibility = View.GONE
             }
         }
     }
+
 
     //获取状态栏高度
     private fun getTopBarHeight(): Int? {
         val resourceId: Int? = activity?.resources?.getIdentifier("status_bar_height", "dimen", "android")
         return activity?.resources?.getDimensionPixelSize(resourceId!!)
+    }
+
+
+    fun setSendListener(actionListener: ActionListener) {
+        this.actionListener = actionListener
+    }
+
+    interface ActionListener {
+        fun send(str: String)
     }
 
 }

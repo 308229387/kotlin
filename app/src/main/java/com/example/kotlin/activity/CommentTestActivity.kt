@@ -1,6 +1,7 @@
 package com.example.kotlin.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin.R
 import com.example.kotlin.fragment.AddCommentFragment
@@ -16,5 +17,13 @@ class CommentTestActivity : AppCompatActivity() {
         toolbar_container_frame.wright_box.setOnClickListener {
             dialogFragment.show(supportFragmentManager, "")
         }
+
+        dialogFragment.setSendListener(object : AddCommentFragment.ActionListener {
+            override fun send(str: String) {
+                if (str.isNotEmpty()) {
+                    Toast.makeText(this@CommentTestActivity, str, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 }

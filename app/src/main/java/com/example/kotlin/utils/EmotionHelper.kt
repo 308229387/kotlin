@@ -29,6 +29,7 @@ class EmotionHelper {
         const val EMOTION_DEFAULT_JSON = "emotions/default/emotionGroup.json"
         const val EMOTION_CLASSIC_DIR = "emotions/classic"
         const val EMOTION_DEFAULT_DIR = "emotions/default"
+        const val EMOTION_GIF_JSON = "emotions/gif/gifGroup.json"
         private val DRAWABLE_CACHE: MutableMap<String, SoftReference<Drawable>> = HashMap()
         private val PATTERN_EMOTION = Pattern.compile("(\\[.*?])")
 
@@ -46,10 +47,15 @@ class EmotionHelper {
         }
 
         //获取JSON文件
-        fun getAssetsJson(dir: String): EmotionGroup {
+        fun getAssetsJson(dir: String): String {
             val assetManager: AssetManager = App.getAppContext()!!.resources.assets
             val `is`: InputStream = assetManager.open(dir)
-            val json: String = Utils.readAndClose(`is`)!!
+            return  Utils.readAndClose(`is`)!!
+        }
+
+        //获取JSON文件
+        fun getEmotionsGroup(dir: String): EmotionGroup {
+            val json: String = getAssetsJson(dir)
             return Gson().fromJson(json, EmotionGroup::class.java)
         }
 
