@@ -10,7 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import com.example.kotlin.R.drawable
 import com.example.kotlin.R.styleable
-import com.example.kotlin.utils.Utils.Companion.dp2px
+import com.example.kotlin.utils.ToolsUtil.dp2px
 
 @SuppressLint("CustomViewStyleable")
 class CommentFooterButton(context: Context, attrs: AttributeSet) : View(context, attrs, 0) {//获取attrs文件下配置属性

@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">kotlin</string>
-    <string name="comment_hint">阳光跟帖、理性发言，优质评论将会被优先展示</string>
+    <string name="app_name">demo</string>
+    <string name="edit_comment_hint">阳光跟帖、理性发言，优质评论将会被优先展示</string>
     <string name="send_comment">发表</string>
     <string name="comment_biaotai">表态</string>
     <string name="comment_biaoqing">表情</string>

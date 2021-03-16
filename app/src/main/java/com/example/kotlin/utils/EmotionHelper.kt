@@ -50,7 +50,7 @@ class EmotionHelper {
         fun getAssetsJson(dir: String): String {
             val assetManager: AssetManager = App.getAppContext()!!.resources.assets
             val `is`: InputStream = assetManager.open(dir)
-            return  Utils.readAndClose(`is`)!!
+            return ToolsUtil.readAndClose(`is`)!!
         }
 
         //获取JSON文件

@@ -6,15 +6,25 @@
     android:background="#00000000"
     android:orientation="vertical">
 
+
     <View
-        android:id="@+id/without_layout"
+        android:id="@+id/norm_without_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:visibility="gone" />
 
     <LinearLayout
+        android:id="@+id/special_without_layout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="360dp"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/head_back_view"
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
         android:background="@drawable/shape_bg_white_corner_top_lr_dp12"
         android:orientation="vertical">
 
@@ -27,23 +37,22 @@
             android:background="@drawable/comment_background_new"
             android:orientation="vertical">
 
-
-        <com.example.kotlin.views.EmotionEditText
+            <EditText
                 android:id="@+id/edt_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/comment_background_new"
                 android:gravity="left|top"
-                android:hint="@string/comment_hint"
+                android:hint="@string/edit_comment_hint"
                 android:maxLines="3"
                 android:minHeight="56dp"
-                android:paddingStart="12dp"
+                android:paddingLeft="12dp"
                 android:paddingTop="6dp"
-                android:paddingRight="40dp"
+                android:paddingRight="12dp"
                 android:paddingBottom="6dp"
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbars="vertical"
-                android:textColor="#222222"
+                android:textColor="@color/title_text"
                 android:textColorHint="#bfbfbf"
                 android:textCursorDrawable="@drawable/comment_dialog_cursor"
                 android:textSize="16sp"
@@ -74,90 +83,88 @@
 
             </RelativeLayout>
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:background="#ffffff"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal">
-
-
-            <CheckBox
-                android:id="@+id/emoji_switcher"
-                android:layout_width="54dp"
-                android:layout_height="28dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/emotion_radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:scaleType="fitXY"
-                android:text="@string/comment_biaoqing"
-                android:textSize="18sp" />
-
-
-            <CheckBox
-                android:id="@+id/gif_switcher"
-                android:layout_width="54dp"
-                android:layout_height="28dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/emotion_radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:scaleType="fitXY"
-                android:text="@string/comment_biaotai"
-                android:textSize="18sp" />
-
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/btn_send"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="60dp"
-                android:layout_height="26dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_rect_radius100_solid_press_state"
-                android:gravity="center"
-                android:text="@string/send_comment"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/panel_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/emotion_back">
-
-            <com.example.kotlin.views.EmotionPanelView
-                android:id="@+id/panel_emotion_view"
-                layout="@layout/panel_view"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/emotion_back"
-                android:visibility="gone" />
-
-            <com.example.kotlin.views.EmotionGifPanelView
-                android:id="@+id/panel_gif_view"
-                layout="@layout/view_emotion_panel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/emotion_back"
-                android:visibility="gone" />
-
-        </RelativeLayout>
+                android:layout_gravity="top"
+                android:background="#ffffff"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
 
 
+                <CheckBox
+                    android:id="@+id/emoji_switcher"
+                    android:layout_width="54dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/emotion_radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:scaleType="fitXY"
+                    android:text="@string/comment_biaoqing"
+                    android:textSize="18sp" />
+
+
+                <CheckBox
+                    android:id="@+id/gif_switcher"
+                    android:layout_width="54dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/emotion_radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:scaleType="fitXY"
+                    android:text="@string/comment_biaotai"
+                    android:textSize="18sp" />
+
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btn_send"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="60dp"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_rect_radius100_solid_press_state"
+                    android:gravity="center"
+                    android:text="@string/send_comment"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/panel_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/emotion_back">
+
+        <com.example.kotlin.views.EmotionPanelView
+            android:id="@+id/panel_emotion_view"
+            layout="@layout/panel_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/emotion_back"
+            android:visibility="gone" />
+
+        <com.example.kotlin.views.EmotionGifPanelView
+            android:id="@+id/panel_gif_view"
+            layout="@layout/view_emotion_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/emotion_back"
+            android:visibility="gone" />
+
+    </RelativeLayout>
 
 </LinearLayout>
