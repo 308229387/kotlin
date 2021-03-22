@@ -38,6 +38,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "自定义Viewpager" -> context.startActivity(Intent(context, CustomViewpagerActivity::class.java))
                     "从asset中读取资源" -> context.startActivity(Intent(context, ReadAssetsActivity::class.java))
                     "bottomsheetDialog" -> context.startActivity(Intent(context, BottomDialogActivity::class.java))
+                    "获取imei" -> context.startActivity(Intent(context, ImeiActivity::class.java))
                 }
 
             }

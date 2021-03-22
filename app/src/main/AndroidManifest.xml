@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".App"
@@ -31,6 +32,7 @@
         <activity android:name=".activity.ReadAssetsActivity" />
         <activity android:name=".activity.CommentTestActivity" />
         <activity android:name=".activity.BottomDialogActivity" />
+        <activity android:name=".activity.ImeiActivity" />
     </application>
 
 </manifest>
