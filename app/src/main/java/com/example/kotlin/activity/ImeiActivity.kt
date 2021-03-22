@@ -19,8 +19,7 @@ class ImeiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_imei)
         data = StringBuilder()
-
-        imei_text.setOnClickListener {
+        imei_button.setOnClickListener {
             if (Build.VERSION.SDK_INT >= 23 && checkSelfPermission(Manifest.permission.READ_PHONE_STATE) !== PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(arrayOf(Manifest.permission.READ_PHONE_STATE), 100)
             } else {
@@ -64,13 +63,11 @@ class ImeiActivity : AppCompatActivity() {
         checkSimCard()
         val imeiSIM1 = telephonyInfo.imeiSIM1
         val imeiSIM2 = telephonyInfo.imeiSIM2
-
-
         data.append(
             " IMEI1 : " + imeiSIM1 + "\n" +
                     " IMEI2 : " + imeiSIM2 + "\n"
         )
-        imei_text.setText(data.toString())
+        imei_text.text = data.toString()
     }
 
 }

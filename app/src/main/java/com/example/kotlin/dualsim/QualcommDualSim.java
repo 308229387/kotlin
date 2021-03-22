@@ -93,7 +93,7 @@ public class QualcommDualSim extends DualsimBase {
             if (myQualcommTMInstance != null) {
                 try {
                     String result = (String) eval(myQualcommTMInstance, "getDeviceId",
-                        new Object[]{simID}, new Class[]{int.class});
+                            new Object[]{simID}, new Class[]{int.class});
                     if (TextUtils.isEmpty(result)) {
                         return super.getImei(simID);
                     } else {

@@ -25,15 +25,15 @@ public class SamsungDualSim extends DualsimBase {
     private static SamsungDualSim mInstance;
 
     public Class
-        androidMSTMClass,
-        androidMSMClass,
-        samsungMSMClass;
+            androidMSTMClass,
+            androidMSMClass,
+            samsungMSMClass;
 
     private Object
-        //samsung MultiSimManager实例
-        mySamsungMSMObject,
-        //SmsManager实例
-        mySMObject;
+            //samsung MultiSimManager实例
+            mySamsungMSMObject,
+    //SmsManager实例
+    mySMObject;
 
 
     private final static String CLASS_ANDROID_MULTISIMMANAGER = "com.android.internal.telephony.MultiSimManager";
@@ -101,26 +101,26 @@ public class SamsungDualSim extends DualsimBase {
     @Override
     public String getImei(int simID) {
 
-            if (currentapiVersion < 21) {
-                try {
+        if (currentapiVersion < 21) {
+            try {
                     /*Object myObject = null;
                     String result = (String) (myObject = getSimManagerDefault(simID)).getClass()
                             .getDeclaredMethod("getDeviceId").invoke(myObject);*/
-                    String result = (String) eval(getSimManagerDefault(simID), "getDeviceId", null, null);
-                    if (TextUtils.isEmpty(result)) {
-                        return super.getImei(simID);
-                    } else {
-                        return result;
-                    }
-                } catch (Exception e) {
-                    if (BuildConfig.DEBUG) { e.printStackTrace(); }
+                String result = (String) eval(getSimManagerDefault(simID), "getDeviceId", null, null);
+                if (TextUtils.isEmpty(result)) {
                     return super.getImei(simID);
+                } else {
+                    return result;
                 }
-            } else {
+            } catch (Exception e) {
+                if (BuildConfig.DEBUG) { e.printStackTrace(); }
                 return super.getImei(simID);
+            }
+        } else {
+            return super.getImei(simID);
                 /*return (String) (myObject = getSimManagerDefault(simID)).getClass()
                         .getDeclaredMethod("getDeviceId", int.class).invoke(myObject, simID);*/
-            }
+        }
     }
 
 
@@ -197,7 +197,7 @@ public class SamsungDualSim extends DualsimBase {
                 if (androidMSTMClass == null) {
                     androidMSTMClass = Class.forName(CLASS_ANDROID_MULTISIMTELEPHONYMANAGER);
                 }
-               return eval(androidMSTMClass, null, "getDefault", new Object[]{getLogicalSimSlot(simID)}, new Class[]{int.class});
+                return eval(androidMSTMClass, null, "getDefault", new Object[]{getLogicalSimSlot(simID)}, new Class[]{int.class});
             } else {//5.0+直接获取实例
                 if (mySamsungMSMObject == null)
                     return mySamsungMSMObject = Class.forName(CLASS_SAMSUNG_MULTISIMMANAGER).newInstance();
@@ -222,7 +222,7 @@ public class SamsungDualSim extends DualsimBase {
             if (androidMSMClass == null)
                 androidMSMClass = Class.forName(CLASS_ANDROID_MULTISIMMANAGER);
             return (Integer)eval(androidMSMClass, androidMSMClass.newInstance(), "getLogicalSimSlot",
-                new Object[]{simID}, new Class[]{int.class});
+                    new Object[]{simID}, new Class[]{int.class});
 //                    (Integer) androidMSMClass.getDeclaredMethod("getLogicalSimSlot", int.class).invoke(androidMSMClass.newInstance(), simID);
         } catch (Exception e) {
             if (BuildConfig.DEBUG) { e.printStackTrace(); }

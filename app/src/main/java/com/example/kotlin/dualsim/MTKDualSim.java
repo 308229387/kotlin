@@ -31,7 +31,7 @@ public class MTKDualSim extends DualsimBase {
     private Object myMTKTMInstance;
 
     //4.0+ com.mediatek.telephony.smsManagerEx单例
-    private Object mySmsManagerExInstance;
+    private  Object mySmsManagerExInstance;
 
     //4.0- android.telephony.gemini.GeminiSmsManager静态方法类
     private Class myGeminiSmsManagerClass;
@@ -39,7 +39,7 @@ public class MTKDualSim extends DualsimBase {
     private static final String MTK_PLATFORM_KEY = "ro.mediatek.platform";
     private static final String MTK_GIONEE_PLATFORM_KEY = "ro.gn.platform.support";
 
-    static MTKDualSim getInstance(Context context) {
+    static MTKDualSim getInstance(Context context){
         if (mInstance == null) {
             mInstance = new MTKDualSim(context);
         }
@@ -106,6 +106,8 @@ public class MTKDualSim extends DualsimBase {
     }
 
 
+
+
     @Override
     public String getImei(int simID) {
         if (currentapiVersion >= 21) {
@@ -130,6 +132,7 @@ public class MTKDualSim extends DualsimBase {
     }
 
 
+
     /**
      * 初始化SmsManager Class
      */
@@ -139,9 +142,7 @@ public class MTKDualSim extends DualsimBase {
                 myGeminiSmsManagerClass = Class.forName("android.telephony.gemini.GeminiSmsManager");
             }
         } catch (Exception e) {
-            if (BuildConfig.DEBUG) {
-                e.printStackTrace();
-            }
+            if (BuildConfig.DEBUG) { e.printStackTrace(); }
         }
         try {
             if (mySmsManagerExInstance == null)
@@ -149,10 +150,8 @@ public class MTKDualSim extends DualsimBase {
                         , null, "getDefault", null, null);
                         /*(Class.forName("com.mediatek.telephony.SmsManagerEx"))
                         .getDeclaredMethod("getDefault").invoke(null);*/
-        } catch (Exception e) {
-            if (BuildConfig.DEBUG) {
-                e.printStackTrace();
-            }
+        }catch (Exception e) {
+            if (BuildConfig.DEBUG) { e.printStackTrace(); }
         }
     }
 
@@ -168,7 +167,7 @@ public class MTKDualSim extends DualsimBase {
             String normalMTKPlatform;
             Log.d("mydebug", "check MTKSystem");
             if (!TextUtils.isEmpty(normalMTKPlatform = getProperty(MTK_PLATFORM_KEY))) {
-                if (normalMTKPlatform.startsWith("MT") || normalMTKPlatform.startsWith("mt")) {
+                if (normalMTKPlatform.startsWith("MT") || normalMTKPlatform.startsWith("mt")){
                     isMTKSystem = true;
                 }
             }
@@ -177,16 +176,14 @@ public class MTKDualSim extends DualsimBase {
                 String gioneeMTKPlatform;
                 Log.d("mydebug", "check MTKSystem");
                 if (!TextUtils.isEmpty(gioneeMTKPlatform = getProperty(MTK_GIONEE_PLATFORM_KEY))) {
-                    if (gioneeMTKPlatform.startsWith("MT") || gioneeMTKPlatform.startsWith("mt")) {
+                    if (gioneeMTKPlatform.startsWith("MT") || gioneeMTKPlatform.startsWith("mt")){
                         isMTKSystem = true;
                     }
                 }
             }
             Log.d("mydebug", "check MTKSystem");
         } catch (Exception e) {
-            if (BuildConfig.DEBUG) {
-                e.printStackTrace();
-            }
+            if (BuildConfig.DEBUG) { e.printStackTrace(); }
         }
         return isMTKSystem;
     }
