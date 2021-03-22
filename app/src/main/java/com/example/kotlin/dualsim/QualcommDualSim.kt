@@ -1,8 +1,8 @@
 package com.example.kotlin.dualsim
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
-import android.telephony.TelephonyManager
 import android.text.TextUtils
 import android.util.Log
 import com.example.kotlin.BuildConfig
@@ -21,7 +21,7 @@ import java.util.*
  * desc       : 高通芯片双卡类
 </pre> *
  */
-class QualcommDualSim private constructor(context: Context) : DualsimBase(context) {
+open class QualcommDualSim private constructor(context: Context) : DualsimBase(context) {
     //MSimTelephonyManager单例
     private val myQualcommTMInstance: Any?
     override fun update(context: Context): DualsimBase {
@@ -94,13 +94,12 @@ class QualcommDualSim private constructor(context: Context) : DualsimBase(contex
      * 判断是否高通系统
      * 通过CPU，主板型号判断较局限
      *
-     * @param myContext
      * @return
      */
-    fun isQualcommSystem(myContext: Context): Boolean {
+    fun isQualcommSystem(): Boolean {
 
         //华为手机
-        if (isHuaWeiDualSimQualcommSystem(myContext)) {
+        if (isHuaWeiDualSimQualcommSystem()) {
             Log.d("mydebug", "HUAWEI-System")
             return true
         }
@@ -124,7 +123,7 @@ class QualcommDualSim private constructor(context: Context) : DualsimBase(contex
         }
 
         //移动
-        if (isCMDualSimQualcommSystem(myContext)) {
+        if (isCMDualSimQualcommSystem()) {
             Log.d(
                 "mydebug", """
      
@@ -135,7 +134,7 @@ class QualcommDualSim private constructor(context: Context) : DualsimBase(contex
         }
 
         //努比亚
-        if (isNubiaDualSimQualcommSystem(myContext)) {
+        if (isNubiaDualSimQualcommSystem()) {
             Log.d(
                 "mydebug", """
      
@@ -150,10 +149,9 @@ class QualcommDualSim private constructor(context: Context) : DualsimBase(contex
     /**
      * 判断移动双卡系统
      *
-     * @param myContext
      * @return
      */
-    private fun isCMDualSimQualcommSystem(myContext: Context): Boolean {
+    private fun isCMDualSimQualcommSystem(): Boolean {
         if ("CMDC" != Build.MANUFACTURER) {
             Log.d("mydebug", "!cmdc")
             return false
@@ -185,11 +183,9 @@ class QualcommDualSim private constructor(context: Context) : DualsimBase(contex
     /**
      * 判断努比亚双卡系统
      *
-     * @param myContext
      * @return
      */
-    private fun isNubiaDualSimQualcommSystem(myContext: Context): Boolean {
-        var telephonyManager: TelephonyManager
+    private fun isNubiaDualSimQualcommSystem(): Boolean {
         if ("nubia" != Build.MANUFACTURER.toLowerCase(Locale.ENGLISH)) {
             Log.d("mydebug", "!nubia")
             return false
@@ -208,8 +204,8 @@ class QualcommDualSim private constructor(context: Context) : DualsimBase(contex
                 val execResult = getProperty(QUALCOMM_NUBIA_PLATFORM_KEY)
                 Log.d("mydebug", "nubia execResult:$execResult")
                 if (!TextUtils.isEmpty(execResult)) {
-                    var index = 0
-                    if (execResult.toLowerCase().indexOf(QUALCOMM_NUBIA_PLATFORM_VALUE).also { index = it } >= 0) {
+                    var index: Int
+                    if (execResult.toLowerCase(Locale.ROOT).indexOf(QUALCOMM_NUBIA_PLATFORM_VALUE).also { index = it } >= 0) {
                         Log.d("mydebug", "nubia index:$index")
                         return true
                     }
@@ -229,7 +225,7 @@ class QualcommDualSim private constructor(context: Context) : DualsimBase(contex
      * @return
      */
     private val isMiDualSimQualcommSystem: Boolean
-        private get() {
+        get() {
             if ("xiaomi" != Build.MANUFACTURER.toLowerCase(Locale.ENGLISH)) {
                 Log.d("mydebug", "!xiaomi")
                 return false
@@ -250,10 +246,9 @@ class QualcommDualSim private constructor(context: Context) : DualsimBase(contex
     /**
      * 判断华为双卡系统（某个型号）
      *
-     * @param myContext
      * @return
      */
-    private fun isHuaWeiDualSimQualcommSystem(myContext: Context): Boolean {
+    private fun isHuaWeiDualSimQualcommSystem(): Boolean {
         if ("huawei" != Build.MANUFACTURER.toLowerCase(Locale.ENGLISH)) {
             return false
         }
@@ -283,7 +278,7 @@ class QualcommDualSim private constructor(context: Context) : DualsimBase(contex
     }
 
     private val isVivoQualcommSystem: Boolean
-        private get() {
+        get() {
             if ("BBK" != Build.MANUFACTURER) return false
             try {
                 val execResult = getProperty(QUALCOMM_VIVO_PLATFORM)
@@ -298,7 +293,7 @@ class QualcommDualSim private constructor(context: Context) : DualsimBase(contex
             return false
         }
     private val isVivoX5DualSimQualcommSystem: Boolean
-        private get() {
+        get() {
             if ("vivo" != Build.MANUFACTURER.toLowerCase(Locale.ENGLISH)) {
                 return false
             }
@@ -321,12 +316,11 @@ class QualcommDualSim private constructor(context: Context) : DualsimBase(contex
      *
      * @return
      */
-    protected val default: Any?
-        protected get() {
+    private val default: Any?
+        @SuppressLint("PrivateApi")
+        get() {
             try {
                 return eval(Class.forName("android.telephony.MSimTelephonyManager"), null, "getDefault", null, null)
-                /*Class.forName("android.telephony.MSimTelephonyManager")
-                .getDeclaredMethod("getDefault").invoke(null);*/
             } catch (e: Exception) {
             }
             return null

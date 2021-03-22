@@ -1,23 +1,12 @@
 package com.example.kotlin.dualsim
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.text.TextUtils
 import com.example.kotlin.BuildConfig
 import com.example.kotlin.dualsim.TelephonyManagement.TelephonyInfo
 
-/**
- * <pre>
- * copyright  : Copyright ©2004-2018 版权所有　XXXXXXXXXXXXXXXXXXX
- * company    : XXXXXXXXXXXXXXXX
- * @author     : OuyangJinfu
- * e-mail     : jinfu123.-@163.com
- * createDate : 2017/7/18 0018
- * modifyDate : 2017/7/18 0018
- * @version    : 1.0
- * desc       : 三星手机双卡类
-</pre> *
- */
 class SamsungDualSim private constructor(context: Context) : DualsimBase(context) {
     var androidMSTMClass: Class<*>? = null
     var androidMSMClass: Class<*>? = null
@@ -25,8 +14,6 @@ class SamsungDualSim private constructor(context: Context) : DualsimBase(context
     private var   //samsung MultiSimManager实例
             mySamsungMSMObject: Any? = null
 
-    //SmsManager实例
-    private val mySMObject: Any? = null
     override fun update(context: Context): DualsimBase {
         mTelephonyInfo = TelephonyInfo()
         mTelephonyInfo.setStateSIM1(getSimState(TYPE_SIM_MAIN))
@@ -109,17 +96,17 @@ class SamsungDualSim private constructor(context: Context) : DualsimBase(context
      *
      * @return
      */
+    @SuppressLint("PrivateApi")
     private fun checkByStrings(): Boolean {
         try {
             if (androidMSMClass == null) androidMSMClass = Class.forName(CLASS_ANDROID_MULTISIMMANAGER)
-            return if (eval(
+            return eval(
                     androidMSMClass,
                     androidMSMClass!!.newInstance(),
                     "getSimSlotCount",
                     null,
                     null
                 ) as Int /*androidMSMClass.getDeclaredMethod("getSimSlotCount").invoke(androidMSMClass.newInstance())*/ >= 2
-            ) true else false
         } catch (e: Exception) {
         }
         return false
@@ -133,15 +120,14 @@ class SamsungDualSim private constructor(context: Context) : DualsimBase(context
     private fun checkByfunction(): Boolean {
         try {
             if (samsungMSMClass == null) samsungMSMClass = Class.forName(CLASS_SAMSUNG_MULTISIMMANAGER)
-            return if (eval(
-                    samsungMSMClass,
-                    samsungMSMClass!!.newInstance(),
-                    "getSimSlotCount",
-                    null,
-                    null
-                ) as Int /*samsungMSMClass.getDeclaredMethod("getSimSlotCount").invoke(samsungMSMClass.newInstance())*/
-                >= 2
-            ) true else false
+            return (eval(
+                samsungMSMClass,
+                samsungMSMClass!!.newInstance(),
+                "getSimSlotCount",
+                null,
+                null
+            ) as Int /*samsungMSMClass.getDeclaredMethod("getSimSlotCount").invoke(samsungMSMClass.newInstance())*/
+                    >= 2)
         } catch (e: Exception) {
         }
         return false
@@ -153,6 +139,7 @@ class SamsungDualSim private constructor(context: Context) : DualsimBase(context
      * @param simID
      * @return
      */
+    @SuppressLint("PrivateApi")
     private fun getSimManagerDefault(simID: Int): Any? {
         try {
             return if (currentapiVersion < 21) { //5.0-根据simID获取对应实例
@@ -179,6 +166,7 @@ class SamsungDualSim private constructor(context: Context) : DualsimBase(context
      * @param simID
      * @return
      */
+    @SuppressLint("PrivateApi")
     private fun getLogicalSimSlot(simID: Int): Int {
         try {
             if (androidMSMClass == null) androidMSMClass = Class.forName(CLASS_ANDROID_MULTISIMMANAGER)

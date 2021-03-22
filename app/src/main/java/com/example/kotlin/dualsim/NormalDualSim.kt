@@ -3,18 +3,6 @@ package com.example.kotlin.dualsim
 import android.content.Context
 import com.example.kotlin.dualsim.TelephonyManagement.TelephonyInfo
 
-/**
- * <pre>
- * copyright  : Copyright ©2004-2018 版权所有　XXXXXXXXXXXXXXXXX
- * company    : XXXXXXXXXXXXXXXX
- * @author     : OuyangJinfu
- * e-mail     : jinfu123.-@163.com
- * createDate : 2017/7/18 0018
- * modifyDate : 2017/7/18 0018
- * @version    : 1.0
- * desc       : 普通双卡类
-</pre> *
- */
 class NormalDualSim private constructor(context: Context) : DualsimBase(context) {
     override fun update(context: Context): NormalDualSim {
         mTelephonyInfo = TelephonyInfo()

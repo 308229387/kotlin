@@ -1,24 +1,12 @@
 package com.example.kotlin.dualsim
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextUtils
 import android.util.Log
 import com.example.kotlin.BuildConfig
-import com.example.kotlin.dualsim.TelephonyManagement.TelephonyInfo
 
-/**
- * <pre>
- * copyright  : Copyright ©2004-2018 版权所有　XXXXXXXXXXXXXXXXXXXXXX
- * company    : XXXXXXXXXXXXXXXXXXX
- * @author     : OuyangJinfu
- * e-mail     : jinfu123.-@163.com
- * createDate : 2017/7/18 0018
- * modifyDate : 2017/7/18 0018
- * @version    : 1.0
- * desc       : 联发科芯片系统双卡类
-</pre> *
- */
-class MTKDualSim private constructor(context: Context) : DualsimBase(context) {
+open class MTKDualSim private constructor(context: Context) : DualsimBase(context) {
     //Android系统API提供的TelephonyManager
     //    private TelephonyManager mySystemAPITM;
     //MTK芯片系统TelephonyManagerEx单例
@@ -30,7 +18,7 @@ class MTKDualSim private constructor(context: Context) : DualsimBase(context) {
     //4.0- android.telephony.gemini.GeminiSmsManager静态方法类
     private var myGeminiSmsManagerClass: Class<*>? = null
     override fun update(context: Context): DualsimBase {
-        mTelephonyInfo = TelephonyInfo()
+        mTelephonyInfo = TelephonyManagement.TelephonyInfo()
         mTelephonyInfo.setStateSIM1(getSimState(TYPE_SIM_MAIN))
         mTelephonyInfo.setStateSIM2(getSimState(TYPE_SIM_ASSISTANT))
         mTelephonyInfo.setImeiSIM1(getImei(TYPE_SIM_MAIN))
@@ -105,6 +93,7 @@ class MTKDualSim private constructor(context: Context) : DualsimBase(context) {
     /**
      * 初始化SmsManager Class
      */
+    @SuppressLint("PrivateApi")
     private fun initSM() {
         try {
             if (myGeminiSmsManagerClass == null) {
@@ -169,8 +158,8 @@ class MTKDualSim private constructor(context: Context) : DualsimBase(context) {
      *
      * @return
      */
-    protected val mTKTMDefault: Any?
-        protected get() {
+    private val mTKTMDefault: Any?
+        get() {
 //        Class<?> clazz;
             var mtkTMInstance: Any? = null
             try {

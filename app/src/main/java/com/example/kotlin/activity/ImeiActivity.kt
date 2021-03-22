@@ -41,7 +41,7 @@ class ImeiActivity : AppCompatActivity() {
 
 
     private fun checkSimCard() {
-        telephonyInfo = TelephonyManagement.getInstance().updateTelephonyInfo(this).getTelephonyInfo(this)
+        telephonyInfo = TelephonyManagement.instance?.updateTelephonyInfo(this)?.getTelephonyInfo(this)!!
     }
 
 
