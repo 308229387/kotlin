@@ -27,7 +27,7 @@ class ImeiActivity : AppCompatActivity() {
             }
         }
 
-        if (!PermissionUtils.isNeedRequestPermission()) {
+        if (!PermissionUtils.isNeedRequestPermission) {
             checkSimCard()
         } else {
             if (!PermissionUtils.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)) {
