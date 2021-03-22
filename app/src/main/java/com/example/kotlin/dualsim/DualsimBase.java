@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
-import android.net.Network;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -14,6 +13,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.kotlin.BuildConfig;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,8 +27,10 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.reflect.Method;
 import java.net.NetworkInterface;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 
 public abstract class DualsimBase {
@@ -41,12 +44,6 @@ public abstract class DualsimBase {
         }
 
     }
-
-    public interface ForceNetCallback {
-        void call(Network network);
-    }
-
-    protected static final String TAG = "DualsimBase";
 
     /**
      * the data connection was connected by the main SIM
@@ -81,7 +78,6 @@ public abstract class DualsimBase {
 
 
     public int getSimState(int simID) {
-        /** read isready */
         try {
             return getReflexState(mTelephonyManager, "getSimState", simID);
         } catch (DualSimMatchException e) {
@@ -96,7 +92,7 @@ public abstract class DualsimBase {
         return 0;
     }
 
-    @SuppressLint({"NewApi", "MissingPermission"})
+    @SuppressLint({"NewApi", "MissingPermission", "HardwareIds"})
     public String getImei(int simID) {
         try {
             if (currentapiVersion >= 29) {//android Q 通过计算生成id
@@ -119,7 +115,7 @@ public abstract class DualsimBase {
     }
 
 
-    protected Object eval(Object evalObj, String predictedMethodName, Object params[], Class[] paramsCls)
+    protected Object eval(Object evalObj, String predictedMethodName, Object[] params, Class[] paramsCls)
             throws DualSimMatchException {
         try {
             Class<?> telephonyClass = Class.forName(evalObj.getClass().getName());
@@ -138,7 +134,7 @@ public abstract class DualsimBase {
         }
     }
 
-    protected Object eval(Class evalCls, Object evalObj, String predictedMethodName, Object params[], Class[] paramsCls)
+    protected Object eval(Class evalCls, Object evalObj, String predictedMethodName, Object[] params, Class[] paramsCls)
             throws DualSimMatchException {
         if (evalCls == null) {
             return null;
@@ -182,8 +178,7 @@ public abstract class DualsimBase {
 
 
     protected String getProperty(String propertyKey) throws IOException, InterruptedException {
-        String execResult = execCommandGetLine("getprop " + propertyKey);
-        return execResult;
+        return execCommandGetLine("getprop " + propertyKey);
     }
 
     private String execCommandGetLine(String command) throws IOException, InterruptedException {
@@ -206,6 +201,7 @@ public abstract class DualsimBase {
     }
 
 
+    @NotNull
     @Override
     public String toString() {
         return mTelephonyInfo.toString();
@@ -217,7 +213,7 @@ public abstract class DualsimBase {
      * @param context
      * @return
      */
-    @SuppressLint("MissingPermission")
+    @SuppressLint({"MissingPermission", "HardwareIds"})
     private String getRealDeviceID(Context context) {
         if (null == context) {
             return "";
@@ -226,14 +222,14 @@ public abstract class DualsimBase {
         String imeiSerial = "";
         try {
             imeiSerial = (String) Build.class.getField("SERIAL").get(null);
-            if (TextUtils.isEmpty(imeiSerial) || imeiSerial.startsWith("000000") || "unknown".equalsIgnoreCase(imeiSerial)) {
+            if (TextUtils.isEmpty(imeiSerial) || Objects.requireNonNull(imeiSerial).startsWith("000000") || "unknown".equalsIgnoreCase(imeiSerial)) {
                 imeiSerial = Build.SERIAL;
             }
         } catch (Exception e) {
             Log.e("BaseInfoUtils", ">>>get imeiSerial error : ", e);
         }
         try {
-            if (TextUtils.isEmpty(imeiSerial) || imeiSerial.startsWith("000000") || "unknown".equalsIgnoreCase(imeiSerial)) {
+            if (TextUtils.isEmpty(imeiSerial) || Objects.requireNonNull(imeiSerial).startsWith("000000") || "unknown".equalsIgnoreCase(imeiSerial)) {
                 String m_szDevIDShort = "35" + //we make this look like a valid IMEI
                         Build.BOARD.length() % 10 +
                         Build.BRAND.length() % 10 +
@@ -249,18 +245,11 @@ public abstract class DualsimBase {
                         Build.TYPE.length() % 10 +
                         Build.USER.length() % 10; //13 digits
                 String m_szBTMAC = "";
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    BluetoothAdapter bAdapt = BluetoothAdapter.getDefaultAdapter();
-                    if (bAdapt != null) {
-                        m_szBTMAC = bAdapt.getAddress();
-                    }
-                } else {
-                    //小米 MI 3	android 4.2.1 BluetoothManager获取异常
-                    BluetoothManager mbluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
-                    BluetoothAdapter bAdapt = mbluetoothManager.getAdapter();
-                    if (bAdapt != null) {
-                        m_szBTMAC = bAdapt.getAddress();
-                    }
+                //小米 MI 3	android 4.2.1 BluetoothManager获取异常
+                BluetoothManager mbluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
+                BluetoothAdapter bAdapt = mbluetoothManager.getAdapter();
+                if (bAdapt != null) {
+                    m_szBTMAC = bAdapt.getAddress();
                 }
                 String m_szAndroidID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
                 String m_szWLANMAC = getAdresseMAC(context);
@@ -279,13 +268,13 @@ public abstract class DualsimBase {
     private static final String marshmallowMacAddress = "02:00:00:00:00:00";
     private static final String fileAddressMac = "/sys/class/net/wlan0/address";
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint({"MissingPermission", "HardwareIds"})
     public String getAdresseMAC(Context context) {
         WifiManager wifiMan = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInf = wifiMan.getConnectionInfo();
 
         if (wifiInf != null && marshmallowMacAddress.equals(wifiInf.getMacAddress())) {
-            String result = null;
+            String result;
             try {
                 result = getAdressMacByInterface();
                 if (result != null) {
@@ -359,7 +348,7 @@ public abstract class DualsimBase {
 
             char[] crunchifyBuffer = new char[2048];
             try {
-                Reader crunchifyReader = new BufferedReader(new InputStreamReader(crunchifyStream, "UTF-8"));
+                Reader crunchifyReader = new BufferedReader(new InputStreamReader(crunchifyStream, StandardCharsets.UTF_8));
                 int counter;
                 while ((counter = crunchifyReader.read(crunchifyBuffer)) != -1) {
                     crunchifyWriter.write(crunchifyBuffer, 0, counter);

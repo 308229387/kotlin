@@ -160,7 +160,6 @@ open class MTKDualSim private constructor(context: Context) : DualsimBase(contex
      */
     private val mTKTMDefault: Any?
         get() {
-//        Class<?> clazz;
             var mtkTMInstance: Any? = null
             try {
                 mtkTMInstance = eval(Class.forName("com.mediatek.telephony.TelephonyManagerEx"), null, "getDefault", null, null)
