@@ -7,14 +7,14 @@ import android.text.TextUtils
 import com.example.kotlin.BuildConfig
 import com.example.kotlin.dualsim.TelephonyManagement.TelephonyInfo
 
-class SamsungDualSim private constructor(context: Context) : DualsimBase(context) {
+class SamsungDualSim private constructor(context: Context) : DualSimBase(context) {
     var androidMSTMClass: Class<*>? = null
     var androidMSMClass: Class<*>? = null
     var samsungMSMClass: Class<*>? = null
     private var   //samsung MultiSimManager实例
             mySamsungMSMObject: Any? = null
 
-    override fun update(context: Context): DualsimBase {
+    override fun update(context: Context): DualSimBase {
         mTelephonyInfo = TelephonyInfo()
         mTelephonyInfo.setStateSIM1(getSimState(TYPE_SIM_MAIN))
         mTelephonyInfo.setStateSIM2(getSimState(TYPE_SIM_ASSISTANT))

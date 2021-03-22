@@ -21,10 +21,10 @@ import java.util.*
  * desc       : 高通芯片双卡类
 </pre> *
  */
-open class QualcommDualSim private constructor(context: Context) : DualsimBase(context) {
+open class QualcommDualSim private constructor(context: Context) : DualSimBase(context) {
     //MSimTelephonyManager单例
     private val myQualcommTMInstance: Any?
-    override fun update(context: Context): DualsimBase {
+    override fun update(context: Context): DualSimBase {
         mTelephonyInfo = TelephonyInfo()
         mTelephonyInfo.setStateSIM1(getSimState(TYPE_SIM_MAIN))
         mTelephonyInfo.setStateSIM2(getSimState(TYPE_SIM_ASSISTANT))

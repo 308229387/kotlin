@@ -23,14 +23,14 @@ class TelephonyManagement private constructor() {
      * @param context 上下文
      * @return DualsimBase object
      */
-    private fun getDualSimChip(context: Context?): DualsimBase? {
+    private fun getDualSimChip(context: Context?): DualSimBase? {
         if (mDualsimChip != null) {
             return mDualsimChip
         }
         //samsung chip
         if (SamsungDualSim.getInstance(context!!)!!.isSamsungDualSystem) {
-            if (SamsungDualSim.getInstance(context)!!.getSimState(DualsimBase.TYPE_SIM_MAIN) == 0
-                && SamsungDualSim.getInstance(context)!!.getSimState(DualsimBase.TYPE_SIM_ASSISTANT) == 0
+            if (SamsungDualSim.getInstance(context)!!.getSimState(DualSimBase.TYPE_SIM_MAIN) == 0
+                && SamsungDualSim.getInstance(context)!!.getSimState(DualSimBase.TYPE_SIM_ASSISTANT) == 0
             ) {
                 return NormalDualSim.getInstance(context).also { mDualsimChip = it }
             }
@@ -60,7 +60,7 @@ class TelephonyManagement private constructor() {
                 return mInstance
             }
         private var mInstance: TelephonyManagement? = null
-        private var mDualsimChip: DualsimBase? = null
+        private var mDualsimChip: DualSimBase? = null
     }
 
     class TelephonyInfo{

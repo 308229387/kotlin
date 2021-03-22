@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public abstract class DualsimBase {
+public abstract class DualSimBase {
 
     static class DualSimMatchException extends Exception {
 
@@ -63,7 +63,7 @@ public abstract class DualsimBase {
 
     protected Context mContext;
 
-    protected DualsimBase(Context context) {
+    protected DualSimBase(Context context) {
         currentapiVersion = Build.VERSION.SDK_INT;
         mTelephonyManager = ((TelephonyManager) context.
                 getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE));
@@ -74,7 +74,7 @@ public abstract class DualsimBase {
         return mTelephonyInfo;
     }
 
-    public abstract DualsimBase update(Context context);
+    public abstract DualSimBase update(Context context);
 
 
     public int getSimState(int simID) {

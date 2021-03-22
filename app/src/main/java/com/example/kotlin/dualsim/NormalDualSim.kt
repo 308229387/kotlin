@@ -3,7 +3,7 @@ package com.example.kotlin.dualsim
 import android.content.Context
 import com.example.kotlin.dualsim.TelephonyManagement.TelephonyInfo
 
-class NormalDualSim private constructor(context: Context) : DualsimBase(context) {
+class NormalDualSim private constructor(context: Context) : DualSimBase(context) {
     override fun update(context: Context): NormalDualSim {
         mTelephonyInfo = TelephonyInfo()
         mTelephonyInfo.setStateSIM1(getSimState(TYPE_SIM_MAIN))

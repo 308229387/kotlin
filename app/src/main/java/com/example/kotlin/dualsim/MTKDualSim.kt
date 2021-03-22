@@ -6,7 +6,7 @@ import android.text.TextUtils
 import android.util.Log
 import com.example.kotlin.BuildConfig
 
-open class MTKDualSim private constructor(context: Context) : DualsimBase(context) {
+open class MTKDualSim private constructor(context: Context) : DualSimBase(context) {
     //Android系统API提供的TelephonyManager
     //    private TelephonyManager mySystemAPITM;
     //MTK芯片系统TelephonyManagerEx单例
@@ -17,7 +17,7 @@ open class MTKDualSim private constructor(context: Context) : DualsimBase(contex
 
     //4.0- android.telephony.gemini.GeminiSmsManager静态方法类
     private var myGeminiSmsManagerClass: Class<*>? = null
-    override fun update(context: Context): DualsimBase {
+    override fun update(context: Context): DualSimBase {
         mTelephonyInfo = TelephonyManagement.TelephonyInfo()
         mTelephonyInfo.setStateSIM1(getSimState(TYPE_SIM_MAIN))
         mTelephonyInfo.setStateSIM2(getSimState(TYPE_SIM_ASSISTANT))
