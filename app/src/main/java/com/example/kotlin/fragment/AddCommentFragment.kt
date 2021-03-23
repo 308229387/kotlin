@@ -7,6 +7,7 @@ import android.content.DialogInterface
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -53,6 +54,7 @@ class AddCommentFragment : DialogFragment() {
     private lateinit var mView: View
     private var fromExpression: Boolean = false
     private var heightParams: HeightParams = HeightParams(0)
+    private var showKeyTime = 0 //　部分机型重复显示键盘次数
 
     companion object {
         const val TAG = "VideoCommentExpress"
@@ -324,6 +326,21 @@ class AddCommentFragment : DialogFragment() {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
         imm.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT)
+        v.postDelayed({//部分机型有一定概率弹不出键盘，会重复尝试弹3次
+            if (!mIsKeyboardActive && showKeyTime < 4) {
+                showKeyTime++
+                showKeyBoard(v)
+                Log.d("song_test", "重复弹起键盘  showKeyTime = $showKeyTime")
+            } else {
+                showKeyTime = 0
+            }
+        }, 500)
+    }
+
+    private fun showKeyOneMoreTime(v: View) {
+        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        imm.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT)
     }
 
     //隐藏键盘
@@ -393,7 +410,7 @@ class AddCommentFragment : DialogFragment() {
     }
 
     data class HeightParams(
-        var normWithoutHeight: Int
+        var normWithoutHeight: Int,
     )
 
 
