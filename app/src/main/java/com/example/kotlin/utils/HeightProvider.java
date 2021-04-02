@@ -82,4 +82,8 @@ public class HeightProvider extends PopupWindow implements OnGlobalLayoutListene
             return false;
         }
     }
+
+    public static int getHeightMax() {
+        return heightMax;
+    }
 }

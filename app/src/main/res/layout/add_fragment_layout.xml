@@ -6,7 +6,6 @@
     android:background="#00000000"
     android:orientation="vertical">
 
-
     <View
         android:id="@+id/norm_without_layout"
         android:layout_width="match_parent"

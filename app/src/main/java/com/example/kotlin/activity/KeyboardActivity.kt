@@ -48,7 +48,7 @@ class KeyboardActivity : AppCompatActivity() {
         return fullheigh - windowheight - getStatusBarHeight(context);  //导航栏高度
     }
 
-    fun getStatusBarHeight(context: Context): Int {
+    private fun getStatusBarHeight(context: Context): Int {
         var result = 0
         val resourceId = context.resources
             .getIdentifier("status_bar_height", "dimen", "android")
