@@ -152,6 +152,9 @@ class AddCommentFragment : DialogFragment() {
             if (!fromExpression) {
                 showKeyBoard(edt_comment)
             }
+            if (gifData != null) {
+                showGifImage(gifData)
+            }
         }
 
         //点击外部灰色区域
@@ -214,11 +217,8 @@ class AddCommentFragment : DialogFragment() {
                 emotionPanelView.visibility = View.VISIBLE
                 vGifSwitcher.isChecked = false
                 hideKeyBoard(mEditText)
-                //规避显示面板时，点击EditText逻辑冲突
-
-                if (ToolsUtil.judgePhone() && specialWithoutLayout.layoutParams.height > Hawk.get(HawkConfig.WithoutHeight, 0)) {
-                    specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0)
-                }
+                //规避在底部要显示显示面板时，因为gif导致的高度异常问题
+                bottomShowPanel()
             } else {
                 emotionPanelView.visibility = View.GONE
                 if (ToolsUtil.isCustomFastStatus(500)) {
@@ -242,11 +242,8 @@ class AddCommentFragment : DialogFragment() {
                 gifPanelView.visibility = View.VISIBLE
                 vEmojiSwitcher.isChecked = false
                 hideKeyBoard(mEditText)
-                //规避显示面板时，点击EditText逻辑冲突
-
-                if (ToolsUtil.judgePhone() && specialWithoutLayout.layoutParams.height > Hawk.get(HawkConfig.WithoutHeight, 0)) {
-                    specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0)
-                }
+                //规避在底部要显示显示面板时，因为gif导致的高度异常问题
+                bottomShowPanel()
             } else {
                 gifPanelView.visibility = View.GONE
                 if (ToolsUtil.isCustomFastStatus(500)) {
@@ -324,6 +321,31 @@ class AddCommentFragment : DialogFragment() {
         //开启获取键盘高度监听
         setKeyboardHeightListener()
 
+    }
+
+    private fun bottomShowPanel() {
+        if (ToolsUtil.judgePhone() && specialWithoutLayout.layoutParams.height > Hawk.get(HawkConfig.WithoutHeight, 0)) {
+            if (gifShowLayout.visibility == View.GONE) {
+                specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0)
+            } else {
+                specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0) - ToolsUtil.dp2px(requireContext(), 63f)
+            }
+        }
+    }
+
+    private fun showGifImage(gif: Expression?) {
+        gifShowLayout.visibility = View.VISIBLE
+
+        Glide.with(requireActivity())
+            .setDefaultRequestOptions(RequestOptions().frame(1000000))
+            .load(gif!!.url)
+            .into(gifShowView)
+
+        gifData = gif
+
+        if (ToolsUtil.judgePhone())
+            specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0) - ToolsUtil.dp2px(requireContext(), 63f)
+        headBackView.layoutParams.height = ActionBar.LayoutParams.WRAP_CONTENT
     }
 
     //防止连续点击
