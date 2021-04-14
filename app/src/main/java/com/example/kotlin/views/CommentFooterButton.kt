@@ -35,6 +35,10 @@ class CommentFooterButton(context: Context, attrs: AttributeSet) : View(context,
     //小手的缩放倍数
     private var handScale = 1.0f
 
+    //初始化不跳一下的tag
+    private var tag = 0
+
+
     init {
         val typedArray = context.obtainStyledAttributes(attrs, styleable.CommentFooterView)
         map = typedArray.getResourceId(styleable.CommentFooterView_map_id, drawable.ic_launcher_background)
@@ -105,14 +109,6 @@ class CommentFooterButton(context: Context, attrs: AttributeSet) : View(context,
         canvas.restore()
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        if (event!!.action == MotionEvent.ACTION_DOWN) {
-            jump()
-        }
-        return super.onTouchEvent(event)
-    }
-
     private fun jump() {
         isLike = !isLike
         //动画播放时间
@@ -135,6 +131,21 @@ class CommentFooterButton(context: Context, attrs: AttributeSet) : View(context,
         //传递缩放系数
         this.handScale = handScale
         invalidate()
+    }
+
+    fun isChecked(): Boolean {
+        return isLike
+    }
+
+    fun setStatus(boolean: Boolean) {
+        isLike = boolean
+        requestLayout()
+        invalidate()
+        if (tag != 0) {
+            jump()
+        } else {
+            tag++
+        }
     }
 
 

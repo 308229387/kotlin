@@ -25,5 +25,12 @@ class CommentTestActivity : AppCompatActivity() {
                 }
             }
         })
+
+        toolbar_container_frame.footer_favorite.setStatus(true)
+
+        toolbar_container_frame.footer_favorite.setOnClickListener {
+            val status = toolbar_container_frame.footer_favorite.isChecked()
+            toolbar_container_frame.footer_favorite.setStatus(status)
+        }
     }
 }
