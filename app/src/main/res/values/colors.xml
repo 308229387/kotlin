@@ -12,4 +12,5 @@
     <color name="red_second">#fc4246</color>
     <color name="emotion_back">#efefef</color>
     <color name="title_text">#222222</color>
+    <color name="commentSendBtn">#A7A69f</color>
 </resources>

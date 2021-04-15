@@ -7,6 +7,8 @@ import android.content.DialogInterface
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
@@ -36,8 +38,6 @@ class AddCommentFragment : DialogFragment() {
     private lateinit var gifPanelView: EmotionGifPanelView
     private lateinit var gifShowLayout: RelativeLayout
     private lateinit var panelView: RelativeLayout
-    private lateinit var normWithoutLayout: View
-    private lateinit var specialWithoutLayout: LinearLayout
     private lateinit var headBackView: LinearLayout
     private lateinit var gifShowView: ImageView
     private lateinit var gifCloseView: ImageView
@@ -59,40 +59,19 @@ class AddCommentFragment : DialogFragment() {
         initView(view)
         setOnListener()
         initDialog()
-        judgeMobile()
         chooseSource()
         return view
     }
 
-    private fun judgeMobile() {
-        if (ToolsUtil.judgePhone()) {
-            specialWithoutLayout.visibility = View.VISIBLE
-        } else {
-            normWithoutLayout.visibility = View.VISIBLE
-        }
-    }
-
-
     private fun chooseSource() {
         if (tag == "VideoCommentExpress") {
             fromExpression = true
-            //如果有存值
-            if (ToolsUtil.judgePhone()) {
-                //特殊机型要蒙层高度
-                val params = specialWithoutLayout.layoutParams
-                if (Hawk.get(HawkConfig.WithoutHeight, 0) != 0) {
-                    params.height = Hawk.get(HawkConfig.WithoutHeight, 0)
-                } else {
-                    params.height = 600
-                }
-                specialWithoutLayout.layoutParams = params
-            }
             //键盘高度主要用于普通机型
             val panelParams = panelView.layoutParams
             if (Hawk.get(HawkConfig.KeyboardHeight, 0) != 0) {
-                panelParams.height = Hawk.get(HawkConfig.KeyboardHeight)
+                panelParams.height = Hawk.get<Int>(HawkConfig.KeyboardHeight)
             } else {
-                panelParams.height = 835
+                panelParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
             }
             panelView.layoutParams = panelParams
 
@@ -115,8 +94,6 @@ class AddCommentFragment : DialogFragment() {
         gifPanelView = view.panel_gif_view
         panelView = view.panel_view
         headBackView = view.head_back_view
-        normWithoutLayout = view.norm_without_layout
-        specialWithoutLayout = view.special_without_layout1
         gifShowLayout = view.gif_show_layout
         gifShowView = view.iv_gif_emotion
         gifCloseView = view.iv_gif_emotion_close
@@ -132,9 +109,7 @@ class AddCommentFragment : DialogFragment() {
     private fun initDialog() {
         val window = this.dialog!!.window
         window!!.decorView.setPadding(0, 0, 0, 0)
-        if (ToolsUtil.judgePhone()) {
-            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        }
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
         val lp = window.attributes
@@ -142,7 +117,6 @@ class AddCommentFragment : DialogFragment() {
         lp.windowAnimations = R.style.BottomDialogAnimation
         window.attributes = lp
         window.setBackgroundDrawable(ColorDrawable())
-
     }
 
     //设置监听
@@ -168,17 +142,27 @@ class AddCommentFragment : DialogFragment() {
         }
 
         sendBtn.setOnClickListener {
-            if (::actionListener.isInitialized) {
-                if (gifData != null) {
-                    actionListener.send(mEditText.text.toString() + gifData?.content)
-                    gifData = null
-                } else {
-                    actionListener.send(mEditText.text.toString())
+            when {
+                mEditText.text.length > 400 -> {
+                    Toast.makeText(activity, "评论字数需要在400字以内哦",Toast.LENGTH_SHORT).show()
+                }
+                mEditText.text.isEmpty() && gifData == null -> {
+                    Toast.makeText(activity, "评论字数需要在400字以内哦",Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    if (::actionListener.isInitialized) {
+                        if (gifData != null) {
+                            actionListener.send(mEditText.text.toString() + gifData?.content)
+                        } else {
+                            actionListener.send(mEditText.text.toString())
+                        }
+                        mEditText.setText("")
+                        gifData = null
+                    }
+                    closeDialog()
+                    dismiss()
                 }
             }
-            mEditText.setText("")
-            closeDialog()
-            dismiss()
         }
 
         //back键
@@ -190,15 +174,10 @@ class AddCommentFragment : DialogFragment() {
             b
         }
 
-        normWithoutLayout.setOnClickListener {
+        headBackView.setOnClickListener {
             closeDialog()
             dismiss()
         }
-        specialWithoutLayout.setOnClickListener {
-            closeDialog()
-            dismiss()
-        }
-
 
         //不能删，承接touchdown事件，删除会有bug
         gifShowLayout.setOnClickListener {
@@ -213,12 +192,11 @@ class AddCommentFragment : DialogFragment() {
         vEmojiSwitcher.setOnCheckedChangeListener { _, checked ->
             tempClose()
             if (checked) {
+                headBackView.layoutParams.height = Hawk.get(HawkConfig.HeadViewHeight, 1300)
                 panelView.visibility = View.VISIBLE
                 emotionPanelView.visibility = View.VISIBLE
                 vGifSwitcher.isChecked = false
                 hideKeyBoard(mEditText)
-                //规避在底部要显示显示面板时，因为gif导致的高度异常问题
-                bottomShowPanel()
             } else {
                 emotionPanelView.visibility = View.GONE
                 if (ToolsUtil.isCustomFastStatus(500)) {
@@ -238,12 +216,11 @@ class AddCommentFragment : DialogFragment() {
         vGifSwitcher.setOnCheckedChangeListener { _, checked ->
             tempClose()
             if (checked) {
+                headBackView.layoutParams.height = Hawk.get(HawkConfig.HeadViewHeight, 1300)
                 panelView.visibility = View.VISIBLE
                 gifPanelView.visibility = View.VISIBLE
                 vEmojiSwitcher.isChecked = false
                 hideKeyBoard(mEditText)
-                //规避在底部要显示显示面板时，因为gif导致的高度异常问题
-                bottomShowPanel()
             } else {
                 gifPanelView.visibility = View.GONE
                 if (ToolsUtil.isCustomFastStatus(500)) {
@@ -263,14 +240,9 @@ class AddCommentFragment : DialogFragment() {
         gifCloseView.setOnClickListener {
             gifShowLayout.visibility = View.GONE
             gifData = null
-            if (ToolsUtil.judgePhone()) {
-                if (specialWithoutLayout.layoutParams.height > Hawk.get(HawkConfig.WithoutHeight, 0)) {
-                    specialWithoutLayout.layoutParams.height = HeightProvider.getHeightMax() - ToolsUtil.dp2px(requireContext(), 114f) - getTopBarHeight()!!
-                } else {
-                    specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0)
-                }
 
-                headBackView.layoutParams.height = ToolsUtil.dp2px(requireContext(), 114f)
+            if (mEditText.text.isEmpty()) {
+                btnCanNotSendState()
             }
         }
 
@@ -311,26 +283,41 @@ class AddCommentFragment : DialogFragment() {
 
                 gifData = gif
 
-                if (ToolsUtil.judgePhone())
-                    specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0) - ToolsUtil.dp2px(requireContext(), 63f)
-                headBackView.layoutParams.height = ActionBar.LayoutParams.WRAP_CONTENT
+                btnCanSendState()
+            }
+
+        })
+
+        mEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            @SuppressLint("ResourceAsColor")
+            override fun afterTextChanged(p0: Editable?) {
+                if (p0.toString() == "" && gifData == null) {
+                    btnCanNotSendState()
+                } else {
+                    btnCanSendState()
+                }
             }
 
         })
 
         //开启获取键盘高度监听
         setKeyboardHeightListener()
-
     }
 
-    private fun bottomShowPanel() {
-        if (ToolsUtil.judgePhone() && specialWithoutLayout.layoutParams.height > Hawk.get(HawkConfig.WithoutHeight, 0)) {
-            if (gifShowLayout.visibility == View.GONE) {
-                specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0)
-            } else {
-                specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0) - ToolsUtil.dp2px(requireContext(), 63f)
-            }
-        }
+    private fun btnCanSendState() {
+        sendBtn.setBackgroundResource(R.drawable.btn_comment_can_send)
+        sendBtn.setTextColor(resources.getColor(R.color.black))
+    }
+
+    private fun btnCanNotSendState() {
+        sendBtn.setBackgroundResource(R.drawable.btn_comment_can_not_send)
+        sendBtn.setTextColor(resources.getColor(R.color.commentSendBtn))
     }
 
     private fun showGifImage(gif: Expression?) {
@@ -343,9 +330,7 @@ class AddCommentFragment : DialogFragment() {
 
         gifData = gif
 
-        if (ToolsUtil.judgePhone())
-            specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0) - ToolsUtil.dp2px(requireContext(), 63f)
-        headBackView.layoutParams.height = ActionBar.LayoutParams.WRAP_CONTENT
+        btnCanSendState()
     }
 
     //防止连续点击
@@ -411,12 +396,12 @@ class AddCommentFragment : DialogFragment() {
             Log.d("song_test", "keyboardHeight = $keyboardHeight")
             mIsKeyboardActive = HeightProvider.isKeyboardShowing()
             if (Hawk.get(HawkConfig.KeyboardHeight, 0) == 0) {
-                Hawk.put(HawkConfig.KeyboardHeight, keyboardHeight)
+                Hawk.put<Int>(HawkConfig.KeyboardHeight, keyboardHeight)
             }
 
             if (mIsKeyboardActive) {
                 if (Hawk.get(HawkConfig.KeyboardHeight, 0) == 0) {
-                    Hawk.put(HawkConfig.KeyboardHeight, keyboardHeight)
+                    Hawk.put<Int>(HawkConfig.KeyboardHeight, keyboardHeight)
                 }
 
                 val params = panelView.layoutParams
@@ -424,36 +409,21 @@ class AddCommentFragment : DialogFragment() {
                 panelView.layoutParams = params
                 panelView.visibility = View.VISIBLE
 
-                if (ToolsUtil.judgePhone()) {
-                    if (::headBackView.isInitialized && getTopBarHeight() != null) {
-                        layoutHeight = heightMax - height - ToolsUtil.dp2px(requireContext(), 114f) - getTopBarHeight()!!
-                        //正常显示时的蒙层高度
-                        if (Hawk.get(HawkConfig.WithoutHeight, 0) == 0) {
-                            Hawk.put(HawkConfig.WithoutHeight, layoutHeight)
-                        }
-                        if (gifShowLayout.visibility == View.GONE) {
-                            specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0)
-                        } else {
-                            specialWithoutLayout.layoutParams.height = Hawk.get(HawkConfig.WithoutHeight, 0) - ToolsUtil.dp2px(requireContext(), 63f)
-                        }
+                if (::headBackView.isInitialized && getTopBarHeight() != null) {
+                    layoutHeight = heightMax - height - getTopBarHeight()!!
+                    //正常显示时的蒙层高度
+                    if (Hawk.get(HawkConfig.HeadViewHeight, 0) == 0) {
+                        Hawk.put<Int>(HawkConfig.HeadViewHeight, layoutHeight)
                     }
+                    headBackView.layoutParams.height = Hawk.get(HawkConfig.HeadViewHeight, 0)
                 }
 
 
             } else if (keyboardHeight == 0 && !vEmojiSwitcher.isChecked && !vGifSwitcher.isChecked) {
                 panelView.visibility = View.GONE
 
-                try {
-                    if (ToolsUtil.judgePhone()) {
-                        if (gifShowLayout.visibility == View.GONE) {
-                            specialWithoutLayout.layoutParams.height = heightMax - ToolsUtil.dp2px(requireContext(), 114f) - getTopBarHeight()!!
-                        } else {
-                            specialWithoutLayout.layoutParams.height = heightMax - ToolsUtil.dp2px(requireContext(), 63f) - ToolsUtil.dp2px(requireContext(), 114f) - getTopBarHeight()!!
-                        }
-
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
+                if (isAdded) {
+                    headBackView.layoutParams.height = heightMax - getTopBarHeight()!!
                 }
             }
         }

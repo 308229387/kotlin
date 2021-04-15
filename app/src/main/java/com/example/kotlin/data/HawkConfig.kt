@@ -5,7 +5,7 @@ class HawkConfig {
         const val GuestAccountUsername = "guestAccountUsername"
         const val LoginStatus = "loginStatus"
         const val UmToken = "UmToken"
-        const val WithoutHeight = "withoutHeight"
+        const val HeadViewHeight = "headViewHeight"
         const val KeyboardHeight = "keyboardHeight"
         const val YDEncryptionToken = "YDEncryptionToken"
         const val SearchHistory = "searchHistory"
