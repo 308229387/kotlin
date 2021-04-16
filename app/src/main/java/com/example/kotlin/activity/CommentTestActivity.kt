@@ -1,5 +1,6 @@
 package com.example.kotlin.activity
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +32,19 @@ class CommentTestActivity : AppCompatActivity() {
         toolbar_container_frame.footer_favorite.setOnClickListener {
             val status = toolbar_container_frame.footer_favorite.isChecked()
             toolbar_container_frame.footer_favorite.setStatus(status)
+        }
+
+        val typeface: Typeface =
+            Typeface.createFromAsset(assets, "fonts/YouSheBiaoTiHei.ttf")
+
+        comment_emoji.typeface = typeface
+        comment_text.typeface = typeface
+
+        comment_text.setOnClickListener {
+            dialogFragment.show(supportFragmentManager, "")
+        }
+        comment_emoji.setOnClickListener {
+            dialogFragment.show(supportFragmentManager, "VideoCommentExpress")
         }
     }
 }

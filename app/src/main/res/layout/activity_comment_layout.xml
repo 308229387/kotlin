@@ -5,6 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/comment_emoji"
+        android:layout_width="54dp"
+        android:layout_height="28dp"
+        android:button="@null"
+        android:gravity="center"
+        android:scaleType="fitXY"
+        android:text="表情"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar_container_frame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.644"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/comment_text"
+        android:layout_width="54dp"
+        android:layout_height="28dp"
+        android:button="@null"
+        android:gravity="center"
+        android:scaleType="fitXY"
+        android:text="文字"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar_container_frame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
     <include
         android:id="@+id/toolbar_container_frame"
         layout="@layout/news_view_footer_layout"
