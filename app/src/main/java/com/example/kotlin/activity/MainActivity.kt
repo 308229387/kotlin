@@ -18,10 +18,10 @@ class MainActivity : AppCompatActivity() {
     private fun setupRecyclerView(){
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        recylerView.layoutManager = layoutManager
+        recyclerView.layoutManager = layoutManager
 
         val adapter = HomeAdapter(this, HomeData.data)
-        recylerView.adapter = adapter
+        recyclerView.adapter = adapter
 
     }
 }

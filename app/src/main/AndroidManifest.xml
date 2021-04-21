@@ -35,6 +35,7 @@
         <activity android:name=".activity.CommentTestActivity" />
         <activity android:name=".activity.BottomDialogActivity" />
         <activity android:name=".activity.ImeiActivity" />
+        <activity android:name=".activity.AlgorithmActivity" />
     </application>
 
 </manifest>
