@@ -1,4 +1,6 @@
-package com.example.kotlin
+package com.example.kotlin.data
+
+import com.example.kotlin.R
 
 data class Data(var title: String, var image: Int)
 

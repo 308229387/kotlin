@@ -5,7 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlin.Data
+import com.example.kotlin.data.Data
 import com.example.kotlin.R
 import com.example.kotlin.activity.*
 import com.example.kotlin.viewholder.MyViewHolder
@@ -29,7 +29,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
 
             override fun jump() {
                 when (dataList[position].title) {
-                    "算法" -> context.startActivity(Intent(context, AlgorithmActivity::class.java))
+                    "算法" -> context.startActivity(Intent(context, AlgorithmListActivity::class.java))
                     "聊天交互框" -> context.startActivity(Intent(context, CommentTestActivity::class.java))
                     "include实现" -> context.startActivity(Intent(context, IncludeActivity::class.java))
                     "dialogFragment实现" -> context.startActivity(Intent(context, PopWindowActivity::class.java))

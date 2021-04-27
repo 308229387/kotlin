@@ -2,24 +2,29 @@ package com.example.kotlin.viewholder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlin.data.Data
-import com.example.kotlin.adapter.HomeAdapter
+import com.example.kotlin.adapter.AlgorithmAdapter
+import com.example.kotlin.data.AlgorithmItemData
 import kotlinx.android.synthetic.main.list_items.view.*
 
-class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var currentData: Data? = null
+/**
+ * Author: sym
+ * Date: 2021/4/27 2:50 PM
+ * Describe:
+ */
+class AlgorithmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    var currentData: AlgorithmItemData? = null
     var currentPosition: Int = 0
-    private lateinit var listener: HomeAdapter.HolderListener
+    private lateinit var listener: AlgorithmAdapter.HolderListener
 
     init {
         itemView.setOnClickListener {
-                listener.jump()
+            listener.jump()
         }
         itemView.list_item_image.setOnClickListener { listener.delete() }
     }
 
 
-    fun setData(data: Data?, pos: Int) {
+    fun setData(data: AlgorithmItemData, pos: Int) {
         /* val title =  itemView.findViewById<TextView>(R.id.tvTitle)
          title.text = hobby?.title */
 
@@ -30,7 +35,7 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         this.currentPosition = pos
     }
 
-    fun setOnListener(deleteListener: HomeAdapter.HolderListener) {
+    fun setOnListener(deleteListener: AlgorithmAdapter.HolderListener) {
         listener = deleteListener
     }
 }

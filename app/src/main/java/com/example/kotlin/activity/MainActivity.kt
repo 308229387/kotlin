@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin.adapter.HomeAdapter
-import com.example.kotlin.HomeData
+import com.example.kotlin.data.HomeData
 import com.example.kotlin.R
 import kotlinx.android.synthetic.main.activity_main.*
 
