@@ -20,7 +20,7 @@ object HomeData {
         Data("从asset中读取资源", R.mipmap.strawberry_pic),
         Data("bottomsheetDialog", R.mipmap.watermelon_pic),
         Data("获取imei", R.mipmap.apple_pic),
-        Data("Banana", R.mipmap.banana_pic),
+        Data("获取权限", R.mipmap.banana_pic),
         Data("Cherry", R.mipmap.cherry_pic),
         Data("Grape", R.mipmap.grape_pic),
         Data("Mango", R.mipmap.mango_pic),

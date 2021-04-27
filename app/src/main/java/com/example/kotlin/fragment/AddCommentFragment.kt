@@ -1,7 +1,6 @@
 package com.example.kotlin.fragment
 
 import android.annotation.SuppressLint
-import android.app.ActionBar
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Typeface
@@ -144,10 +143,10 @@ class AddCommentFragment : DialogFragment() {
         sendBtn.setOnClickListener {
             when {
                 mEditText.text.length > 400 -> {
-                    Toast.makeText(activity, "评论字数需要在400字以内哦",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "评论字数需要在400字以内哦", Toast.LENGTH_SHORT).show()
                 }
                 mEditText.text.isEmpty() && gifData == null -> {
-                    Toast.makeText(activity, "评论字数需要在400字以内哦",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "评论字数需要在400字以内哦", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                     if (::actionListener.isInitialized) {
