@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.IncludeActivity" />
-        <activity android:name=".activity.PopWindowActivity" />
+        <activity android:name=".activity.FragmentDemoActivity" />
         <activity
             android:name=".activity.KeyboardActivity"
             android:windowSoftInputMode="adjustNothing" />

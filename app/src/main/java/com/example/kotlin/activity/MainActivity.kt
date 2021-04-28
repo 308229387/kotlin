@@ -24,6 +24,5 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = HomeAdapter(this, HomeData.data)
         binding.recyclerView.adapter = adapter
-
     }
 }

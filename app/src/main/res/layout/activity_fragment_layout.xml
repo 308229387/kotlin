@@ -6,21 +6,20 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/pop_text"
+        android:id="@+id/modify_fragment_button"
         android:layout_width="252dp"
         android:layout_height="94dp"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         android:background="@color/black"
         android:gravity="center"
-        android:text="点我出pop弹窗"
+        android:text="切换Fragment"
         android:textColor="@color/white"
         tools:ignore="MissingConstraints" />
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:padding="20dp"
-        android:text="弹起键盘后，调用dialog.dismiss会出现windowtoken为Null的情况，要在touch事件里去处理下，还有就是要监听back键，主动调dismiss" />
+        android:layout_height="match_parent"/>
+
 </LinearLayout>
