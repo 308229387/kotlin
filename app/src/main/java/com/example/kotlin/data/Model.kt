@@ -10,7 +10,7 @@ object HomeData {
         Data("算法", R.mipmap.strawberry_pic),
         Data("聊天交互框", R.mipmap.watermelon_pic),
         Data("include实现", R.mipmap.apple_pic),
-        Data("dialogFragment实现", R.mipmap.banana_pic),
+        Data("Fragment实现", R.mipmap.banana_pic),
         Data("键盘高度测量", R.mipmap.cherry_pic),
         Data("简易ViewPager", R.mipmap.grape_pic),
         Data("Grid样式recyclerview", R.mipmap.mango_pic),

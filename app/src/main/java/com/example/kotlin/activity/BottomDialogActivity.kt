@@ -20,6 +20,7 @@ class BottomDialogActivity : AppCompatActivity() {
         bottomSheetDialog = BottomDialogView(this)
     }
 
+    //不能删除里面的参数，不然会崩
     fun show(view: View?) {
         bottomSheetDialog!!.show()
     }
