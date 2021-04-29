@@ -41,6 +41,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "bottomsheetDialog" -> context.startActivity(Intent(context, BottomDialogActivity::class.java))
                     "获取imei" -> context.startActivity(Intent(context, ImeiActivity::class.java))
                     "获取权限" -> context.startActivity(Intent(context, PermissionActivity::class.java))
+                    "获取权限手机号" -> context.startActivity(Intent(context, GetPhoneNumActivity::class.java))
                 }
 
             }
