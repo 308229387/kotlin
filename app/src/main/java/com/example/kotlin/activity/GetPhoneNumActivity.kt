@@ -12,7 +12,7 @@ import com.tbruyelle.rxpermissions3.RxPermissions
 /**
  * Author: sym
  * Date: 2021/4/29 10:54 AM
- * Describe:
+ * Describe:  https://www.jianshu.com/p/c1219d1d2401   除了一个引用依赖，还有一个rxjava的依赖
  */
 class GetPhoneNumActivity : BaseActivity<ActivityPhoneNumBinding>() {
     @SuppressLint("ServiceCast")
@@ -25,20 +25,20 @@ class GetPhoneNumActivity : BaseActivity<ActivityPhoneNumBinding>() {
         return ActivityPhoneNumBinding.inflate(layoutInflater)
     }
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint("MissingPermission", "HardwareIds")
     private fun getPermissions() {
         val permissions = RxPermissions(this)
         permissions.request(Manifest.permission.READ_PHONE_STATE)
             .subscribe {
                 if (it) {
-                    var tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+                    val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
                     if (tm.line1Number!=null) {
                         viewBind.phoneNumText.text = tm.line1Number
                     } else {
                         viewBind.phoneNumText.text = "无手机卡"
                     }
                 } else {
-                    viewBind.phoneNumText.text = "未获取权限"
+                    viewBind.phoneNumText.text = "未获取到权限"
                 }
             }
 
