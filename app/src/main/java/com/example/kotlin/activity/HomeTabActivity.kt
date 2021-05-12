@@ -51,6 +51,8 @@ class HomeTabActivity : BaseActivity<ActivityHomeTabBinding>() {
         viewBind.viewPager.adapter = ViewPagerAdapter(
             supportFragmentManager, fragmentList
         )
+        //是否可以滑动
+        viewBind.viewPager.setScrollable(false)
         viewBind.navView.itemIconTintList = null
         viewBind.navView.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED;//1 不开动画 0 动画
         menus.forEachIndexed { index, title ->

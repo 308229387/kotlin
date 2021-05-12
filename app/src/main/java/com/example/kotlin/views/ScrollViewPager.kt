@@ -12,18 +12,26 @@ class ScrollViewPager : ViewPager {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
-    private var scrollable = false
+    private var scrollable = true
 
     fun setScrollable(isScrollable: Boolean) {
         scrollable = isScrollable
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        return scrollable
+        return if (scrollable) {
+            super.onInterceptTouchEvent(ev)
+        } else {
+            scrollable
+        }
     }
 
     override fun onTouchEvent(ev: MotionEvent?): Boolean {
-        return scrollable
+        return if (scrollable) {
+            super.onTouchEvent(ev)
+        } else {
+            scrollable
+        }
     }
 
 }
