@@ -12,7 +12,6 @@ import com.example.kotlin.base.BaseActivity
 import com.example.kotlin.databinding.ActivityHomeTabBinding
 import com.example.kotlin.fragment.*
 import com.example.kotlin.views.badgeStyle
-import com.example.kotlin.views.item
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 
 /**
@@ -22,7 +21,7 @@ import com.google.android.material.bottomnavigation.LabelVisibilityMode
  */
 class HomeTabActivity : BaseActivity<ActivityHomeTabBinding>() {
     private var fragmentList = mutableListOf<Fragment>()
-    var menus = arrayListOf("广场", "求职招聘", "燕郊圈", "消息", "我")
+    var menus = arrayListOf("广场", "求职招聘", "燕郊圈", "中间出角标", "2出数字")
     var menuIcons = arrayListOf<Int>(
         R.drawable.ic_launcher_foreground,
         R.mipmap.ic_launcher_round,
@@ -71,14 +70,20 @@ class HomeTabActivity : BaseActivity<ActivityHomeTabBinding>() {
                 if (it.itemId == menuItem.itemId) {
                     viewBind.viewPager.setCurrentItem(menuItem.itemId, false)
                     it.setIcon(R.drawable.ic_launcher_foreground)
-                    if (it.itemId == 1){
+                    if (it.itemId == 1) {
                         viewBind.navView.getOrCreateBadge(1).clearNumber()
-                        viewBind.navView.getOrCreateBadge(1).isVisible=false
+                        viewBind.navView.getOrCreateBadge(1).isVisible = false
 
                     }
-                    if (it.itemId == 4){
-                        viewBind.navView.getOrCreateBadge(1).number =998
-                        viewBind.navView.getOrCreateBadge(1).isVisible=true
+                    if (it.itemId == 2) {
+                        viewBind.navView.getOrCreateBadge(2).isVisible = false
+                    }
+                    if (it.itemId == 3) {
+                        viewBind.navView.getOrCreateBadge(2).isVisible = true
+                    }
+                    if (it.itemId == 4) {
+                        viewBind.navView.getOrCreateBadge(1).number = 998
+                        viewBind.navView.getOrCreateBadge(1).isVisible = true
 
                     }
 
@@ -99,9 +104,9 @@ class HomeTabActivity : BaseActivity<ActivityHomeTabBinding>() {
     private fun addBadgeView() {
         viewBind.navView.badgeStyle(1, null, android.R.color.holo_red_dark)
         viewBind.navView.getOrCreateBadge(1).maxCharacterCount = 3
-        viewBind.navView.getOrCreateBadge(1).number =99
+        viewBind.navView.getOrCreateBadge(1).number = 99
 
-        viewBind.navView.getOrCreateBadge(2).isVisible=true
+        viewBind.navView.getOrCreateBadge(2).isVisible = true
 
     }
 
