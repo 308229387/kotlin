@@ -47,4 +47,9 @@
         <item name="android:windowExitAnimation">@anim/exit_bottom_menu</item>
 
     </style>
+
+    <style name="NavStateColor" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@android:color/black</item>
+    </style>
 </resources>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Build
+import android.util.DisplayMetrics
 import android.util.TypedValue
 import com.example.kotlin.App
 import java.io.ByteArrayOutputStream
@@ -68,6 +69,10 @@ object ToolsUtil {
 
     fun dp2px(context: Context, dpVal: Float): Int {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, context.resources.displayMetrics).toInt()
+    }
+
+    fun dp2px(dpValue: Float): Int {
+        return TypedValue.applyDimension(1, dpValue, DisplayMetrics()).toInt()
     }
 
     fun judgePhone(): Boolean {

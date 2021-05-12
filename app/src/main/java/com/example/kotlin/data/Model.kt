@@ -15,7 +15,7 @@ object HomeData {
         Data("简易ViewPager", R.mipmap.grape_pic),
         Data("Grid样式recyclerview", R.mipmap.mango_pic),
         Data("自定义Viewpager", R.mipmap.orange_pic),
-        Data("标准GridView", R.mipmap.pear_pic),
+        Data("首页Tab", R.mipmap.pear_pic),
         Data("Pineapple", R.mipmap.pineapple_pic),
         Data("从asset中读取资源", R.mipmap.strawberry_pic),
         Data("bottomsheetDialog", R.mipmap.watermelon_pic),
