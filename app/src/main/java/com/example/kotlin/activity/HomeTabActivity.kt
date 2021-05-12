@@ -72,10 +72,14 @@ class HomeTabActivity : BaseActivity<ActivityHomeTabBinding>() {
                     viewBind.viewPager.setCurrentItem(menuItem.itemId, false)
                     it.setIcon(R.drawable.ic_launcher_foreground)
                     if (it.itemId == 1){
-                        viewBind.navView.removeBadge(1)
+                        viewBind.navView.getOrCreateBadge(1).clearNumber()
+                        viewBind.navView.getOrCreateBadge(1).isVisible=false
+
                     }
                     if (it.itemId == 4){
                         viewBind.navView.getOrCreateBadge(1).number =998
+                        viewBind.navView.getOrCreateBadge(1).isVisible=true
+
                     }
 
                 } else {
@@ -96,6 +100,9 @@ class HomeTabActivity : BaseActivity<ActivityHomeTabBinding>() {
         viewBind.navView.badgeStyle(1, null, android.R.color.holo_red_dark)
         viewBind.navView.getOrCreateBadge(1).maxCharacterCount = 3
         viewBind.navView.getOrCreateBadge(1).number =99
+
+        viewBind.navView.getOrCreateBadge(2).isVisible=true
+
     }
 
 
