@@ -5,4 +5,6 @@
     <string name="comment_biaotai">表态</string>
     <string name="comment_biaoqing">表情</string>
     <string name="imei_text">TextView</string>
+    <string name="store_edit_title">编辑门店</string>
+    <string name="store_save_top">保存</string>
 </resources>

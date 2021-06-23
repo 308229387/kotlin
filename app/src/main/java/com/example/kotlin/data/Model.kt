@@ -21,7 +21,7 @@ object HomeData {
         Data("bottomsheetDialog", R.mipmap.watermelon_pic),
         Data("获取imei", R.mipmap.apple_pic),
         Data("获取权限手机号", R.mipmap.banana_pic),
-        Data("Cherry", R.mipmap.cherry_pic),
+        Data("TopBar", R.mipmap.cherry_pic),
         Data("Grape", R.mipmap.grape_pic),
         Data("Mango", R.mipmap.mango_pic),
         Data("Orange", R.mipmap.orange_pic),

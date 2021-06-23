@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CommonTopBarView">
+        <attr name="CommonTopBarView_title_text" format="string" />
+        <attr name="CommonTopBarView_action_text" format="string" />
+    </declare-styleable>
+
+</resources>
