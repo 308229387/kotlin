@@ -38,7 +38,7 @@ class ListViewActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Toast.makeText(this@ListViewActivity, "", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@ListViewActivity, "数据内容为：" + data[position], Toast.LENGTH_SHORT).show()
     }
 
 }
