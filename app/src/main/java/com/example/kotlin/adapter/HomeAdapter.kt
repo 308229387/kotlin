@@ -5,9 +5,9 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlin.data.Data
 import com.example.kotlin.R
 import com.example.kotlin.activity.*
+import com.example.kotlin.data.Data
 import com.example.kotlin.viewholder.MyViewHolder
 
 class HomeAdapter(private val context: Context, private val dataList: ArrayList<Data>) :
@@ -44,6 +44,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "获取权限手机号" -> context.startActivity(Intent(context, GetPhoneNumActivity::class.java))
                     "首页Tab" -> context.startActivity(Intent(context, HomeTabActivity::class.java))
                     "TopBar" -> context.startActivity(Intent(context, TopBarActivity::class.java))
+                    "基础列表listview" -> context.startActivity(Intent(context, ListViewActivity::class.java))
                 }
 
             }
