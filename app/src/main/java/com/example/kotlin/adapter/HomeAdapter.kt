@@ -45,6 +45,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "首页Tab" -> context.startActivity(Intent(context, HomeTabActivity::class.java))
                     "TopBar" -> context.startActivity(Intent(context, TopBarActivity::class.java))
                     "基础列表listview" -> context.startActivity(Intent(context, ListViewActivity::class.java))
+                    "addView" -> context.startActivity(Intent(context, AddViewActivity::class.java))
                 }
 
             }
