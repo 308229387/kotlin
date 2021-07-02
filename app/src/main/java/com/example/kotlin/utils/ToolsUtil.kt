@@ -91,7 +91,7 @@ object ToolsUtil {
         get() {
             val time = System.currentTimeMillis()
             val timeD = time - lastClickTime
-            if (timeD < 600) {
+            if (timeD <600) {
                 return false
             }
             lastClickTime = time

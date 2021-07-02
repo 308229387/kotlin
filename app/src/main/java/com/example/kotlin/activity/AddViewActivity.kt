@@ -65,7 +65,8 @@ class AddViewActivity : BaseActivity<ActivityAddViewBinding>() {
 
         childA.without_layout_a.setOnClickListener {
             if (ToolsUtil.isFastClick) {
-
+                childB.without_layout_b.visibility = View.VISIBLE
+                childA.without_layout_a.visibility = View.GONE
                 viewBind.fatherView.removeAllViews()
                 viewBind.fatherView.addView(childA, params)
                 viewBind.fatherView.addView(childB, params)
@@ -73,9 +74,11 @@ class AddViewActivity : BaseActivity<ActivityAddViewBinding>() {
             }
 
         }
+
         childB.without_layout_b.setOnClickListener {
             if (ToolsUtil.isFastClick) {
-
+                childA.without_layout_a.visibility = View.VISIBLE
+                childB.without_layout_b.visibility = View.GONE
                 viewBind.fatherView.removeAllViews()
                 viewBind.fatherView.addView(childB, params)
                 viewBind.fatherView.addView(childA, params)

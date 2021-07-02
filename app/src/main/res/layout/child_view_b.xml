@@ -22,6 +22,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:background="#80FFFFFF"
         android:id="@+id/without_layout_b"
         android:layout_width="53dp"
         android:layout_height="match_parent"
