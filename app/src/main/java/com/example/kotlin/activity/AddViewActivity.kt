@@ -2,10 +2,12 @@ package com.example.kotlin.activity
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.RelativeLayout
 import com.example.kotlin.R
 import com.example.kotlin.base.BaseActivity
 import com.example.kotlin.databinding.ActivityAddViewBinding
+import com.example.kotlin.utils.ToolsUtil
 import kotlinx.android.synthetic.main.child_view_a.view.*
 import kotlinx.android.synthetic.main.child_view_b.view.*
 
@@ -27,48 +29,79 @@ class AddViewActivity : BaseActivity<ActivityAddViewBinding>() {
         //必须要有这个
         var params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
 
+        var animation = AnimationUtils.loadAnimation(this@AddViewActivity, R.anim.slow_show)
+
         viewBind.addAllViewABtn.setOnClickListener {
-            childA.without_layout_a.visibility = View.VISIBLE
-            viewBind.fatherView.addView(childA, params)
+            if (ToolsUtil.isFastClick) {
+                childA.without_layout_a.visibility = View.VISIBLE
+                viewBind.fatherView.addView(childA, params)
+                childA.startAnimation(animation)
+            }
         }
 
         viewBind.addAllViewBBtn.setOnClickListener {
-            childB.without_layout_b.visibility = View.VISIBLE
-            viewBind.fatherView.addView(childB, params)
+            if (ToolsUtil.isFastClick) {
+
+                childB.without_layout_b.visibility = View.VISIBLE
+                viewBind.fatherView.addView(childB, params)
+                childB.startAnimation(animation)
+            }
         }
 
 
         viewBind.deleteAViewBtn.setOnClickListener {
-            viewBind.fatherView.removeView(childA)
+            if (ToolsUtil.isFastClick) {
+
+                viewBind.fatherView.removeView(childA)
+            }
         }
 
         viewBind.deleteBViewBtn.setOnClickListener {
-            viewBind.fatherView.removeView(childB)
+            if (ToolsUtil.isFastClick) {
+
+                viewBind.fatherView.removeView(childB)
+            }
         }
 
         childA.without_layout_a.setOnClickListener {
-            viewBind.fatherView.removeAllViews()
-            viewBind.fatherView.addView(childA, params)
-            viewBind.fatherView.addView(childB, params)
+            if (ToolsUtil.isFastClick) {
+
+                viewBind.fatherView.removeAllViews()
+                viewBind.fatherView.addView(childA, params)
+                viewBind.fatherView.addView(childB, params)
+                childB.startAnimation(animation)
+            }
+
         }
         childB.without_layout_b.setOnClickListener {
-            viewBind.fatherView.removeAllViews()
-            viewBind.fatherView.addView(childB, params)
-            viewBind.fatherView.addView(childA, params)
+            if (ToolsUtil.isFastClick) {
+
+                viewBind.fatherView.removeAllViews()
+                viewBind.fatherView.addView(childB, params)
+                viewBind.fatherView.addView(childA, params)
+                childA.startAnimation(animation)
+            }
         }
 
         viewBind.onlyAViewBtn.setOnClickListener {
-            viewBind.fatherView.removeAllViews()
-            childA.without_layout_a.visibility = View.GONE
-            viewBind.fatherView.addView(childA, params)
+            if (ToolsUtil.isFastClick) {
+
+                viewBind.fatherView.removeAllViews()
+                childA.without_layout_a.visibility = View.GONE
+                viewBind.fatherView.addView(childA, params)
+                childA.startAnimation(animation)
+            }
         }
 
         viewBind.onlyBViewBtn.setOnClickListener {
-            viewBind.fatherView.removeAllViews()
-            childB.without_layout_b.visibility = View.GONE
-            viewBind.fatherView.addView(childB, params)
-        }
+            if (ToolsUtil.isFastClick) {
 
+                viewBind.fatherView.removeAllViews()
+                childB.without_layout_b.visibility = View.GONE
+                viewBind.fatherView.addView(childB, params)
+                childB.startAnimation(animation)
+            }
+        }
 
     }
 }
