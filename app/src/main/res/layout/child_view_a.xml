@@ -39,10 +39,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="274dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:gravity="center"
+            android:gravity="right|center_vertical"
             android:text="A布局"
             android:textColor="#000"
             android:textSize="18sp" />
