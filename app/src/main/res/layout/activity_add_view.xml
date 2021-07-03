@@ -8,10 +8,11 @@
         android:id="@+id/father_view"
         android:layout_width="match_parent"
         android:layout_height="134dp"
+        android:background="@drawable/home_card_back"
         android:layout_centerInParent="true"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="#00ff00" />
+        />
 
     <LinearLayout
         android:layout_width="300dp"

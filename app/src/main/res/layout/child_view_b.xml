@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="right"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <RelativeLayout
+        android:id="@+id/without_layout_b_all"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="#ff00ff"
+        android:layout_alignParentRight="true">
+
+        <RelativeLayout
+            android:id="@+id/temp_bar"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:background="#80E4f2f0" />
+
+        <LinearLayout
+            android:id="@+id/without_layout_b_part"
+            android:layout_width="69dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/without_right_card_back"
+            android:layout_toRightOf="@id/temp_bar"
+            android:orientation="horizontal" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/card_context_b"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="-30dp"
+        android:layout_toLeftOf="@id/without_layout_b_all"
+        android:background="@drawable/home_card_back"
         android:orientation="vertical">
 
         <TextView
@@ -20,12 +43,4 @@
             android:textColor="#000"
             android:textSize="18sp" />
     </LinearLayout>
-
-    <LinearLayout
-        android:background="#80FFFFFF"
-        android:id="@+id/without_layout_b"
-        android:layout_width="53dp"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" />
-
-</LinearLayout>
+</RelativeLayout>

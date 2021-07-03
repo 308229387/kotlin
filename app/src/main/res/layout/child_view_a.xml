@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:background="#80FFFFFF"
 
-        android:id="@+id/without_layout_a"
-        android:layout_width="53dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical" />
+    <RelativeLayout
+        android:id="@+id/without_layout_a_all"
+        android:layout_width="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/without_layout_a_part"
+            android:layout_width="69dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/without_left_card_back"
+            android:orientation="vertical" />
+
+        <RelativeLayout
+            android:id="@+id/temp_bar"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/without_layout_a_part"
+            android:background="#80E4f2f0" />
+
+    </RelativeLayout>
+
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/card_context_a"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_height="match_parent"
-        android:background="#000"
+        android:layout_marginLeft="-30dp"
+        android:layout_toRightOf="@id/without_layout_a_all"
+        android:background="@drawable/home_card_back"
         android:orientation="vertical">
 
         <TextView
@@ -24,8 +44,9 @@
             android:layout_gravity="right"
             android:gravity="center"
             android:text="A布局"
-            android:textColor="#ffffff"
+            android:textColor="#000"
             android:textSize="18sp" />
     </LinearLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

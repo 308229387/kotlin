@@ -7,6 +7,7 @@ data class Data(var title: String, var image: Int)
 object HomeData {
 
     val data = arrayListOf(
+        Data("addView", R.mipmap.mango_pic),
         Data("算法", R.mipmap.strawberry_pic),
         Data("聊天交互框", R.mipmap.watermelon_pic),
         Data("include实现", R.mipmap.apple_pic),
@@ -23,7 +24,6 @@ object HomeData {
         Data("获取权限手机号", R.mipmap.banana_pic),
         Data("TopBar", R.mipmap.cherry_pic),
         Data("基础列表listview", R.mipmap.grape_pic),
-        Data("addView", R.mipmap.mango_pic),
         Data("Orange", R.mipmap.orange_pic),
         Data("Pear", R.mipmap.pear_pic),
         Data("Pineapple", R.mipmap.pineapple_pic),
