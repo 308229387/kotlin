@@ -1,9 +1,11 @@
 package com.example.kotlin.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.RelativeLayout
+import android.widget.Toast
 import com.example.kotlin.R
 import com.example.kotlin.base.BaseActivity
 import com.example.kotlin.databinding.ActivityAddViewBinding
@@ -22,18 +24,19 @@ class AddViewActivity : BaseActivity<ActivityAddViewBinding>() {
         return ActivityAddViewBinding.inflate(layoutInflater)
     }
 
+    @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var childA = layoutInflater.inflate(R.layout.child_view_a, null)
-        var childB = layoutInflater.inflate(R.layout.child_view_b, null)
+        val childA = layoutInflater.inflate(R.layout.child_view_a, null)
+        val childB = layoutInflater.inflate(R.layout.child_view_b, null)
         //必须要有这个
-        var params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
 
-        var animation = AnimationUtils.loadAnimation(this@AddViewActivity, R.anim.slow_show)
+        val animation = AnimationUtils.loadAnimation(this@AddViewActivity, R.anim.slow_show)
 
         viewBind.addAllViewABtn.setOnClickListener {
             if (ToolsUtil.isFastClick) {
-                childA.without_layout_a_all.visibility = View.VISIBLE
+                childA.without_layout_a.visibility = View.VISIBLE
                 viewBind.fatherView.addView(childA, params)
                 childA.startAnimation(animation)
             }
@@ -41,8 +44,7 @@ class AddViewActivity : BaseActivity<ActivityAddViewBinding>() {
 
         viewBind.addAllViewBBtn.setOnClickListener {
             if (ToolsUtil.isFastClick) {
-
-                childB.without_layout_b_all.visibility = View.VISIBLE
+                childB.without_layout_b.visibility = View.VISIBLE
                 viewBind.fatherView.addView(childB, params)
                 childB.startAnimation(animation)
             }
@@ -51,34 +53,39 @@ class AddViewActivity : BaseActivity<ActivityAddViewBinding>() {
 
         viewBind.deleteAViewBtn.setOnClickListener {
             if (ToolsUtil.isFastClick) {
-
                 viewBind.fatherView.removeView(childA)
             }
         }
 
         viewBind.deleteBViewBtn.setOnClickListener {
             if (ToolsUtil.isFastClick) {
-
                 viewBind.fatherView.removeView(childB)
             }
         }
 
-        childA.without_layout_a_part.setOnClickListener {
+        fun setLayoutClick(status: Boolean) {
+            childA.without_layout_a.isClickable = status
+            childA.go_buy_btn.isClickable = status
+            childB.without_layout_b.isClickable = !status
+            childB.key_a.isClickable = !status
+            childB.key_b.isClickable = !status
+            childB.key_c.isClickable = !status
+            childB.more_key.isClickable = !status
+        }
+
+        childA.without_layout_a.setOnClickListener {
             if (ToolsUtil.isFastClick) {
-                childB.without_layout_b_all.visibility = View.VISIBLE
-                childA.without_layout_a_all.visibility = View.GONE
+                setLayoutClick(false)
                 viewBind.fatherView.removeAllViews()
                 viewBind.fatherView.addView(childA, params)
                 viewBind.fatherView.addView(childB, params)
                 childB.startAnimation(animation)
             }
-
         }
 
-        childB.without_layout_b_part.setOnClickListener {
+        childB.without_layout_b.setOnClickListener {
             if (ToolsUtil.isFastClick) {
-                childA.without_layout_a_all.visibility = View.VISIBLE
-                childB.without_layout_b_all.visibility = View.GONE
+                setLayoutClick(true)
                 viewBind.fatherView.removeAllViews()
                 viewBind.fatherView.addView(childB, params)
                 viewBind.fatherView.addView(childA, params)
@@ -88,9 +95,8 @@ class AddViewActivity : BaseActivity<ActivityAddViewBinding>() {
 
         viewBind.onlyAViewBtn.setOnClickListener {
             if (ToolsUtil.isFastClick) {
-
                 viewBind.fatherView.removeAllViews()
-                childA.without_layout_a_all.visibility = View.GONE
+                childA.without_layout_a.visibility = View.GONE
                 viewBind.fatherView.addView(childA, params)
                 childA.startAnimation(animation)
             }
@@ -99,11 +105,17 @@ class AddViewActivity : BaseActivity<ActivityAddViewBinding>() {
         viewBind.onlyBViewBtn.setOnClickListener {
             if (ToolsUtil.isFastClick) {
                 viewBind.fatherView.removeAllViews()
-                childB.without_layout_b_all.visibility = View.GONE
+                childB.without_layout_b.visibility = View.GONE
                 viewBind.fatherView.addView(childB, params)
                 childB.startAnimation(animation)
             }
         }
+
+        childB.key_a.setOnClickListener { Toast.makeText(this@AddViewActivity, "key_a", Toast.LENGTH_SHORT).show() }
+        childB.key_b.setOnClickListener { Toast.makeText(this@AddViewActivity, "key_b", Toast.LENGTH_SHORT).show() }
+        childB.key_c.setOnClickListener { Toast.makeText(this@AddViewActivity, "key_c", Toast.LENGTH_SHORT).show() }
+        childB.more_key.setOnClickListener { Toast.makeText(this@AddViewActivity, "more_key", Toast.LENGTH_SHORT).show() }
+        childA.go_buy_btn.setOnClickListener { Toast.makeText(this@AddViewActivity, "go_buy_btn", Toast.LENGTH_SHORT).show() }
 
     }
 }

@@ -6,28 +6,12 @@
 
 
     <RelativeLayout
-        android:id="@+id/without_layout_a_all"
-        android:layout_width="wrap_content"
+        android:id="@+id/without_layout_a"
+        android:layout_width="99dp"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="-30dp"
-        android:visibility="gone"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/without_layout_a_part"
-            android:layout_width="69dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/without_left_card_back"
-            android:orientation="vertical" />
-
-        <RelativeLayout
-            android:id="@+id/temp_bar"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@id/without_layout_a_part"
-            android:background="#80E4f2f0" />
-
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:background="@drawable/without_left_card_back"></RelativeLayout>
 
 
     <LinearLayout
@@ -36,7 +20,7 @@
         android:layout_alignParentRight="true"
         android:layout_height="match_parent"
         android:padding="15dp"
-        android:layout_toRightOf="@id/without_layout_a_all"
+        android:layout_toRightOf="@id/without_layout_a"
         android:background="@drawable/home_card_back"
         android:orientation="vertical">
 
@@ -45,25 +29,81 @@
             android:layout_height="35dp"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginRight="15dp"
-                android:background="#f6f7f8"
-                android:layout_weight="1"/>
-
-
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:drawableRight="@mipmap/key_card_arrow"
-                android:drawablePadding="10dp"
-                android:gravity="right|center_vertical"
-                android:text="更多钥匙"
-                android:textColor="#999999"
+                android:layout_height="wrap_content"
+                android:text="社区拼团"
+                android:textColor="#D66948"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/go_buy_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/go_buy_back"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingTop="4dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="4dp"
+                android:text="去购买"
+                android:textColor="#5A968F"
                 android:textSize="12sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/temp_card_icon"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="9.9元20斤大米火爆拼团中"
+                    android:textColor="#333333"
+                    android:layout_marginTop="2dp"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:layout_marginBottom="2dp"
+                    android:text="东北米好吃100人拼团中9.9元，好机机会不容错过"
+                    android:textColor="#666666"
+                    android:ellipsize="end"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
