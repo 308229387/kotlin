@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
@@ -7,8 +9,9 @@
     <RelativeLayout
         android:id="@+id/without_layout_b_all"
         android:layout_width="wrap_content"
+        android:layout_marginStart="-30dp"
         android:layout_height="match_parent"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentEnd="true">
 
         <RelativeLayout
             android:id="@+id/temp_bar"
@@ -21,26 +24,45 @@
             android:layout_width="69dp"
             android:layout_height="match_parent"
             android:background="@drawable/without_right_card_back"
-            android:layout_toRightOf="@id/temp_bar"
+            android:layout_toEndOf="@id/temp_bar"
             android:orientation="horizontal" />
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/card_context_b"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="-30dp"
-        android:layout_toLeftOf="@id/without_layout_b_all"
+        android:layout_alignParentStart="true"
+        android:padding="15dp"
+        android:layout_toStartOf="@id/without_layout_b_all"
         android:background="@drawable/home_card_back"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="274dp"
-            android:layout_height="match_parent"
-            android:gravity="left|center_vertical"
-            android:text="B布局"
-            android:textColor="#000"
-            android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/half_top_card_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:drawablePadding="10dp"
+                android:gravity="right|center_vertical"
+                android:text="更多钥匙"
+                android:textColor="#999999"
+                android:textSize="12sp"
+                tools:ignore="RtlHardcoded"
+                app:drawableRightCompat="@mipmap/key_card_arrow" />
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
