@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
-import com.example.kotlin.activity.*
+import com.example.kotlin.activity.AlgorithmDetailActivity
 import com.example.kotlin.data.AlgorithmItemData
 import com.example.kotlin.viewholder.AlgorithmViewHolder
 
@@ -37,8 +37,10 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
             }
 
             override fun jump() {
+                var intent = Intent(context, AlgorithmDetailActivity::class.java)
+                intent.putExtra("image", R.mipmap.reverse_linked_list)
                 when (dataList[position].title) {
-                    "算法" -> context.startActivity(Intent(context, AlgorithmDetailActivity::class.java))
+                    "反转链表" -> context.startActivity(intent)
                 }
 
             }
