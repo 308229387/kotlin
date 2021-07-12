@@ -53,6 +53,8 @@ android {
 }
 
 dependencies {
+    // 沉浸状态栏依赖包
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
     implementation 'com.bm.photoview:library:1.4.1'
     implementation 'com.google.code.gson:gson:2.8.6'
     //noinspection GradleDependency

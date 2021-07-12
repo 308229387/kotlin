@@ -16,5 +16,6 @@
     <color name="green">#00ff00</color>
     <color name="tab_bottom_normal">#999999</color>
     <color name="tab_bottom_selected">#46c01b</color>
+    <color name="colorPrimary">#008577</color>
 
 </resources>

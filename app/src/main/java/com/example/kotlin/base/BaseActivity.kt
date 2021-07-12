@@ -3,11 +3,12 @@ package com.example.kotlin.base
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.gyf.immersionbar.ImmersionBar
 
 /**
  * Author: sym
  * Date: 2021/4/28 8:46 PM
- * Describe:
+ * Describe:https://github.com/gyf-dev/ImmersionBar   沉侵依赖库，可以改状态栏颜色，字颜色，隐藏显示状态栏等
  */
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     protected lateinit var viewBind:VB
@@ -16,7 +17,12 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewBind = createViewBinding()
         setContentView(viewBind.root)
-    }
+
+
+        ImmersionBar.with(this)
+//            .fitsSystemWindows(true)  //使用该属性,必须指定状态栏颜色
+//            .statusBarColor(R.color.colorPrimary)
+            .init(); }
 
     abstract fun createViewBinding(): VB
 }
