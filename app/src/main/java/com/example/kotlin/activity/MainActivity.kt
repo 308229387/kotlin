@@ -1,7 +1,6 @@
 package com.example.kotlin.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin.adapter.HomeAdapter
 import com.example.kotlin.base.BaseActivity
@@ -12,7 +11,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setupRecyclerView()
+
     }
 
     private fun setupRecyclerView() {
@@ -27,4 +28,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun createViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
     }
+
+
 }

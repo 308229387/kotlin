@@ -2,22 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <com.example.kotlin.views.ScrollViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"/>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="match_parent"
-        style="@style/NavStateColor"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:itemRippleColor="@null"
-        android:background="?android:attr/windowBackground" />
 
 </LinearLayout>

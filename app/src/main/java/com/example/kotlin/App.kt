@@ -18,7 +18,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         mContext = applicationContext;
-        Hawk.init(this).build();
+        Hawk.init(this).build()
     }
 
 
