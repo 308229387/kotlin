@@ -11,9 +11,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setupRecyclerView()
-
     }
 
     private fun setupRecyclerView() {

@@ -14,5 +14,7 @@
     <color name="title_text">#222222</color>
     <color name="commentSendBtn">#A7A69f</color>
     <color name="green">#00ff00</color>
+    <color name="tab_bottom_normal">#999999</color>
+    <color name="tab_bottom_selected">#46c01b</color>
 
 </resources>
