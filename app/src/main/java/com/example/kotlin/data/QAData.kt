@@ -16,8 +16,8 @@ data class QAItemData(var question: String, var image: Int) {
 object QAData {
     val data = arrayListOf(
         QAItemData(QA.performance_optimization, R.mipmap.strawberry_pic),
-        QAItemData("遍历对称二叉数", R.mipmap.apple_pic),
-        QAItemData("查找重复的数", R.mipmap.banana_pic),
+        QAItemData(QA.tcp_shake_hands, R.mipmap.apple_pic),
+        QAItemData(QA.draw_view, R.mipmap.banana_pic),
         QAItemData("创建链表", R.mipmap.cherry_pic),
         QAItemData("两个栈实现队列1", R.mipmap.grape_pic),
         QAItemData("两个栈实现队列2", R.mipmap.mango_pic),

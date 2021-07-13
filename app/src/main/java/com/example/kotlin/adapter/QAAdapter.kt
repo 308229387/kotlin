@@ -29,13 +29,10 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
     }
 
     override fun onBindViewHolder(holder: QAViewHolder, position: Int) {
-        var performance_optimization = R.string.performance_optimization
-        var performance_optimization_answer = R.string.performance_optimization_answer
         val itemData = dataList[position]
         holder.setData(itemData, position)
         holder.setOnListener(object : HolderListener {
             override fun delete() {
-                dataList.removeAt(position)
                 notifyDataSetChanged()
             }
 
@@ -46,11 +43,12 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.performance_optimization)
                         intent.putExtra("answer", QA.performance_optimization_answer)
                     }
-                    "遍历对称二叉数" -> {
-                        intent.putExtra("image", R.drawable.ergodically_symmetric_binary_numbers)
-                    }
-                    "查找重复的数" -> {
-                        intent.putExtra("image", R.drawable.find_duplicate_numbers)
+                    QA.tcp_shake_hands -> {
+                        intent.putExtra("question", QA.tcp_shake_hands)
+                        intent.putExtra("answer", QA.tcp_shake_hands_answer)                    }
+                    QA.draw_view -> {
+                        intent.putExtra("question", QA.draw_view)
+                        intent.putExtra("answer", QA.draw_view_answer)
                     }
                     "创建链表" -> {
                         intent.putExtra("image", R.drawable.create_list)
