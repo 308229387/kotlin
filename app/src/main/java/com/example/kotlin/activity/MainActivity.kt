@@ -13,6 +13,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ImmersionBar.with(this).fitsSystemWindows(true).transparentStatusBar().init()
 
         //已在base中设置透明，把字变暗些
         if (ImmersionBar.isSupportStatusBarDarkFont()) {
@@ -36,6 +37,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun createViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
     }
-
 
 }

@@ -50,6 +50,8 @@
         <activity android:name=".activity.TopBarActivity" />
         <activity android:name=".activity.ListViewActivity" />
         <activity android:name=".activity.AddViewActivity" />
+        <activity android:name=".activity.QAListActivity" />
+        <activity android:name=".activity.QADetailActivity" />
     </application>
 
 </manifest>

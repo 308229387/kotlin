@@ -1,0 +1,4 @@
+<resources>
+    <string name="performance_optimization">性能优化</string>
+    <string name="performance_optimization_answer">性能优化的面很大，我可以结合项目给你介绍一个我们当时遇到的问题，当时交付给日本机场的一个刷脸签到的项目后，客户反馈有些卡，但我们测试的时候并没有测出来这些问题，让它跑了几个小时的核心功能以后，确实出现了不流畅的情况我们是做了两个工作，1个是卡顿监测，1个是内存处理卡顿监测使用的是blockcanary，我们把300ms以上的方法都做了一个分析处理，解决了很多在onCreate、onResume里做的大量的数据处理或是UI刷新，通过分流、懒加载等方式减轻对主线程的阻塞。然后又通过AS的profile看到内存使用情况比刚开始要高很多，一刷脸拍照就会出现内存抖动的情况，而且手动调用FULL GC也并不能把内存降多少，我们就分析，有内存泄漏的情况，然后通过LeakCanary进行检测，发现有Handler和单例引起的内存泄漏，我们是把Handler使用完后，调用了removeCallbackMessage清空了它的队列，然后还用静态+软引用的方式对Handler做了个优化，除此之外，也对单例持有Activity对象换成了application。这两个问题解决后，我们又对刷脸取到的Bitmap照片做了个处理，1是进行了采样率压缩，在不影响识别效果的情况下把照片缩小到了原来的1/4，另外是对使用完的bitmap做了一个recycle和置空的处理。通过这些方式，我们解决了卡顿的情况。这是我们项目中遇到的问题，还有很多手段都可以对内存进行管理，比如注销动态广播、及时关闭IO流，过度绘制，Listview-单个Item刷新、还有多用软引用或弱引用装饰持有的对象啊等等。</string>
+</resources>
