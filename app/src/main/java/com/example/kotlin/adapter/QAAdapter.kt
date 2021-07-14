@@ -50,15 +50,15 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.draw_view)
                         intent.putExtra("answer", QA.draw_view_answer)
                     }
-                    "创建链表" -> {
-                        intent.putExtra("image", R.drawable.create_list)
-                    }
-                    "两个栈实现队列1" -> {
-                        intent.putExtra("image", R.drawable.two_stacks_implement_queues_a)
-                    }
-                    "两个栈实现队列2" -> {
-                        intent.putExtra("image", R.drawable.two_stacks_implement_queues_b)
-                    }
+                    QA.lock_type_use -> {
+                        intent.putExtra("question", QA.lock_type_use)
+                        intent.putExtra("answer", QA.lock_type_use_answer)                    }
+                    QA.activity_life -> {
+                        intent.putExtra("question", QA.activity_life)
+                        intent.putExtra("answer", QA.activity_life_answer)                           }
+                    QA.android_configChanges -> {
+                        intent.putExtra("question", QA.android_configChanges)
+                        intent.putExtra("answer", QA.android_configChanges_answer)                      }
                     "二分查找" -> {
                         intent.putExtra("image", R.drawable.binary_search)
                     }
