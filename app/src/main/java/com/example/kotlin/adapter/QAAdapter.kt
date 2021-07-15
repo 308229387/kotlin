@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
+import com.example.kotlin.activity.AlgorithmDetailActivity
 import com.example.kotlin.activity.QADetailActivity
 import com.example.kotlin.data.QA
 import com.example.kotlin.data.QAItemData
@@ -45,34 +46,43 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                     }
                     QA.tcp_shake_hands -> {
                         intent.putExtra("question", QA.tcp_shake_hands)
-                        intent.putExtra("answer", QA.tcp_shake_hands_answer)                    }
+                        intent.putExtra("answer", QA.tcp_shake_hands_answer)
+                    }
                     QA.draw_view -> {
                         intent.putExtra("question", QA.draw_view)
                         intent.putExtra("answer", QA.draw_view_answer)
                     }
                     QA.lock_type_use -> {
                         intent.putExtra("question", QA.lock_type_use)
-                        intent.putExtra("answer", QA.lock_type_use_answer)                    }
+                        intent.putExtra("answer", QA.lock_type_use_answer)
+                    }
                     QA.activity_life -> {
                         intent.putExtra("question", QA.activity_life)
-                        intent.putExtra("answer", QA.activity_life_answer)                           }
+                        intent.putExtra("answer", QA.activity_life_answer)
+                    }
                     QA.android_configChanges -> {
                         intent.putExtra("question", QA.android_configChanges)
-                        intent.putExtra("answer", QA.android_configChanges_answer)                      }
-                    "二分查找" -> {
-                        intent.putExtra("image", R.drawable.binary_search)
+                        intent.putExtra("answer", QA.android_configChanges_answer)
                     }
-                    "二叉数前中后序" -> {
-                        intent.putExtra("image", R.drawable.binary_number_front_middle_back_order)
+                    QA.fragment_life -> {
+                        intent = Intent(context, AlgorithmDetailActivity::class.java)
+                        intent.putExtra("image", R.drawable.fragment_life_image)
                     }
-                    "二叉数的层序遍历" -> {
-                        intent.putExtra("image", R.drawable.sequential_traversal_of_binary_numbers)
+                    QA.service_life_stop -> {
+                        intent.putExtra("question", QA.service_life_stop)
+                        intent.putExtra("answer", QA.service_life_stop_answer)
                     }
-                    "从尾到头打印链表" -> {
-                        intent.putExtra("image", R.drawable.print_the_list_from_end_to_begin)
+                    QA.activity_launchMode -> {
+                        intent.putExtra("question", QA.activity_launchMode)
+                        intent.putExtra("answer", QA.activity_launchMode_answer)
                     }
-                    "删除倒数第N个节点" -> {
-                        intent.putExtra("image", R.drawable.delete_the_n_penultimate_node)
+                    QA.http_https -> {
+                        intent.putExtra("question", QA.http_https)
+                        intent.putExtra("answer", QA.http_https_answer)
+                    }
+                    QA.jvm_gc -> {
+                        intent.putExtra("question", QA.jvm_gc)
+                        intent.putExtra("answer", QA.jvm_gc_answer)
                     }
                     "合并两个有序链表" -> {
                         intent.putExtra("image", R.drawable.merges_two_ordered_linked_lists)
