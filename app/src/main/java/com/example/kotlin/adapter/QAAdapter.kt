@@ -80,12 +80,13 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.http_https)
                         intent.putExtra("answer", QA.http_https_answer)
                     }
-                    QA.jvm_gc -> {
-                        intent.putExtra("question", QA.jvm_gc)
-                        intent.putExtra("answer", QA.jvm_gc_answer)
+                    QA.jvm_model -> {
+                        intent.putExtra("question", QA.jvm_model)
+                        intent.putExtra("answer", QA.jvm_model_answer)
                     }
-                    "合并两个有序链表" -> {
-                        intent.putExtra("image", R.drawable.merges_two_ordered_linked_lists)
+                    QA.jvm_gc_root -> {
+                        intent.putExtra("question", QA.jvm_gc_root)
+                        intent.putExtra("answer", QA.jvm_gc_root_answer)
                     }
                     "合并有序数组" -> {
                         intent.putExtra("image", R.drawable.merge_ordered_array)
