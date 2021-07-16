@@ -76,7 +76,7 @@ class CirclePageIndicator : View, PageIndicator {
         mPaintPageFill.style = Paint.Style.FILL
         mPaintPageFill.color = a.getColor(R.styleable.CirclePageIndicator_pageColor, defaultPageColor)
         mPaintStroke.style = Paint.Style.STROKE
-        mPaintStroke.color = a.getColor(R.styleable.CirclePageIndicator_strokeColor, defaultStrokeColor)
+        mPaintStroke.color = a.getColor(R.styleable.CirclePageIndicator_strokeColorRound, defaultStrokeColor)
         mPaintStroke.strokeWidth = a.getDimension(R.styleable.CirclePageIndicator_strokeWidth, defaultStrokeWidth)
         mPaintFill.style = Paint.Style.FILL
         mPaintFill.color = a.getColor(R.styleable.CirclePageIndicator_fillColor, defaultFillColor)

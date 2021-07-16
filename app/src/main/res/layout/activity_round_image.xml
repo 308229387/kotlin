@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+
+    <com.example.kotlin.views.RoundImageView
+        android:id="@+id/service_card_image"
+        android:layout_width="170dp"
+        app:borderRadiuss="10dp"
+        android:src="@drawable/binary_number_front_middle_back_order"
+        app:types="TYPE_ROUND"
+        android:layout_height="170dp"
+        android:layout_marginRight="10dp"/>
+
+
+    <com.example.kotlin.views.RoundImageView
+        android:layout_width="70dp"
+        app:borderRadiuss="10dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/binary_number_front_middle_back_order"
+        app:types="TYPE_CIRCLE"
+        android:layout_height="70dp"
+        android:layout_marginRight="10dp"/>
+
+</LinearLayout>

@@ -47,6 +47,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "TopBar" -> context.startActivity(Intent(context, TopBarActivity::class.java))
                     "基础列表listview" -> context.startActivity(Intent(context, ListViewActivity::class.java))
                     "addView" -> context.startActivity(Intent(context, AddViewActivity::class.java))
+                    "圆角、圆头像" -> context.startActivity(Intent(context, RoundImageActivity::class.java))
                 }
 
             }

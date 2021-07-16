@@ -25,7 +25,7 @@ object HomeData {
         Data("获取权限手机号", R.mipmap.banana_pic),
         Data("TopBar", R.mipmap.cherry_pic),
         Data("基础列表listview", R.mipmap.grape_pic),
-        Data("Orange", R.mipmap.orange_pic),
+        Data("圆角、圆头像", R.mipmap.orange_pic),
         Data("Pear", R.mipmap.pear_pic),
         Data("Pineapple", R.mipmap.pineapple_pic),
         Data("Strawberry", R.mipmap.strawberry_pic),

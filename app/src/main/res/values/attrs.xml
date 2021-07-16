@@ -6,4 +6,19 @@
         <attr name="CommonTopBarView_action_text" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="RoundImageView">
+        <attr name="borderRadiuss" format="dimension" />
+        <attr name="notTopLeftRadiuss" format="boolean" />
+        <attr name="notTopRightRadiuss" format="boolean" />
+        <attr name="notBottomLeftRadiuss" format="boolean" />
+        <attr name="notBottomRightRadiuss" format="boolean" />
+        <attr name="types">
+            <enum name="TYPE_CIRCLE" value="0"/>
+            <enum name="TYPE_ROUND" value="1"/>
+        </attr>
+        <attr name="strokeColor" format="color|reference" />
+        <attr name="viewStrokeWidth" format="integer|reference" />
+        <attr name="foreground" format="reference" />
+    </declare-styleable>
+
 </resources>

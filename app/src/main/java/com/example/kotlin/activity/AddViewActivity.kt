@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.child_view_b.view.*
 /**
  * Author: sym
  * Date: 2021/7/2 10:08 AM
- * Describe:
+ * Describe:   卡片切换、卡片.9阴影切图
  */
 class AddViewActivity : BaseActivity<ActivityAddViewBinding>() {
     override fun createViewBinding(): ActivityAddViewBinding {
