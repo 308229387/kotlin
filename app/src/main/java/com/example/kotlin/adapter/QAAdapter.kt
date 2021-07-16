@@ -88,8 +88,9 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.jvm_gc_root)
                         intent.putExtra("answer", QA.jvm_gc_root_answer)
                     }
-                    "合并有序数组" -> {
-                        intent.putExtra("image", R.drawable.merge_ordered_array)
+                    QA.volatile_synchronize_use -> {
+                        intent.putExtra("question", QA.volatile_synchronize_use)
+                        intent.putExtra("answer", QA.volatile_synchronize_use_answer)
                     }
                     "圆圈中最后的数" -> {
                         intent.putExtra("image", R.drawable.the_last_number_in_the_circle)

@@ -27,7 +27,7 @@ object QAData {
         QAItemData(QA.http_https, R.mipmap.strawberry_pic),
         QAItemData(QA.jvm_model, R.mipmap.watermelon_pic),
         QAItemData(QA.jvm_gc_root, R.mipmap.apple_pic),
-        QAItemData("合并有序数组", R.mipmap.banana_pic),
+        QAItemData(QA.volatile_synchronize_use, R.mipmap.banana_pic),
         QAItemData("圆圈中最后的数", R.mipmap.cherry_pic),
         QAItemData("如果有环找到入口", R.mipmap.grape_pic),
         QAItemData("字符串相加", R.mipmap.mango_pic),
