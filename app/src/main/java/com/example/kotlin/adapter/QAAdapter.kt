@@ -92,14 +92,25 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.volatile_synchronize_use)
                         intent.putExtra("answer", QA.volatile_synchronize_use_answer)
                     }
-                    "圆圈中最后的数" -> {
-                        intent.putExtra("image", R.drawable.the_last_number_in_the_circle)
+                    QA.four_components -> {
+                        intent.putExtra("question", QA.four_components)
+                        intent.putExtra("answer", QA.four_components_answer)
                     }
-                    "如果有环找到入口" -> {
-                        intent.putExtra("image", R.drawable.if_a_ring_finds_the_entrance)
+                    QA.handler_four_components_use -> {
+                        intent.putExtra("question", QA.handler_four_components_use)
+                        intent.putExtra("answer", QA.handler_four_components_use_answer)
                     }
-                    "字符串相加" -> {
-                        intent.putExtra("image", R.drawable.string_addition)
+                    QA.solve_anr -> {
+                        intent.putExtra("question", QA.solve_anr)
+                        intent.putExtra("answer", QA.solve_anr_answer)
+                    }
+                    QA.touch_event -> {
+                        intent.putExtra("question", QA.touch_event)
+                        intent.putExtra("answer", QA.touch_event_answer)
+                    }
+                    QA.memory_leak -> {
+                        intent.putExtra("question", QA.memory_leak)
+                        intent.putExtra("answer", QA.memory_leak_answer)
                     }
                     "广度搜索计算二叉数深度" -> {
                         intent.putExtra("image", R.drawable.breadth_search_calculates_binary_number_depth)

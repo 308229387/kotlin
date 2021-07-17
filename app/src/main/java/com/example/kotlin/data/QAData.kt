@@ -15,6 +15,11 @@ data class QAItemData(var question: String, var image: Int) {
 
 object QAData {
     val data = arrayListOf(
+        QAItemData(QA.four_components, R.mipmap.cherry_pic),
+        QAItemData(QA.handler_four_components_use, R.mipmap.grape_pic),
+        QAItemData(QA.solve_anr, R.mipmap.mango_pic),
+        QAItemData(QA.touch_event, R.mipmap.orange_pic),
+        QAItemData(QA.memory_leak, R.mipmap.pear_pic),
         QAItemData(QA.performance_optimization, R.mipmap.strawberry_pic),
         QAItemData(QA.tcp_shake_hands, R.mipmap.apple_pic),
         QAItemData(QA.draw_view, R.mipmap.banana_pic),
@@ -28,10 +33,5 @@ object QAData {
         QAItemData(QA.jvm_model, R.mipmap.watermelon_pic),
         QAItemData(QA.jvm_gc_root, R.mipmap.apple_pic),
         QAItemData(QA.volatile_synchronize_use, R.mipmap.banana_pic),
-        QAItemData("圆圈中最后的数", R.mipmap.cherry_pic),
-        QAItemData("如果有环找到入口", R.mipmap.grape_pic),
-        QAItemData("字符串相加", R.mipmap.mango_pic),
-        QAItemData("广度搜索计算二叉数深度", R.mipmap.orange_pic),
-        QAItemData("快速排序", R.mipmap.pear_pic),
         QAItemData("替换空格", R.mipmap.pineapple_pic))
 }
