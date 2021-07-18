@@ -15,6 +15,9 @@ data class QAItemData(var question: String, var image: Int) {
 
 object QAData {
     val data = arrayListOf(
+        QAItemData(QA.animations, R.mipmap.pineapple_pic),
+        QAItemData(QA.hash_map, R.mipmap.pineapple_pic),
+        QAItemData(QA.aidl, R.mipmap.pineapple_pic),
         QAItemData(QA.four_components, R.mipmap.cherry_pic),
         QAItemData(QA.handler_four_components_use, R.mipmap.grape_pic),
         QAItemData(QA.solve_anr, R.mipmap.mango_pic),
@@ -32,6 +35,6 @@ object QAData {
         QAItemData(QA.http_https, R.mipmap.strawberry_pic),
         QAItemData(QA.jvm_model, R.mipmap.watermelon_pic),
         QAItemData(QA.jvm_gc_root, R.mipmap.apple_pic),
-        QAItemData(QA.volatile_synchronize_use, R.mipmap.banana_pic),
-        QAItemData("替换空格", R.mipmap.pineapple_pic))
+        QAItemData(QA.volatile_synchronize_use, R.mipmap.banana_pic)
+    )
 }
