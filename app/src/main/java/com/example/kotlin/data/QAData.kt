@@ -15,6 +15,13 @@ data class QAItemData(var question: String, var image: Int) {
 
 object QAData {
     val data = arrayListOf(
+        QAItemData(QA.sleep_wait, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_about, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_local, R.mipmap.pineapple_pic),
+        QAItemData(QA.synchronize_lock, R.mipmap.pineapple_pic),
+        QAItemData(QA.java_reference, R.mipmap.pineapple_pic),
+        QAItemData(QA.leak_canary, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_pool, R.mipmap.pineapple_pic),
         QAItemData(QA.animations, R.mipmap.pineapple_pic),
         QAItemData(QA.hash_map, R.mipmap.pineapple_pic),
         QAItemData(QA.aidl, R.mipmap.pineapple_pic),

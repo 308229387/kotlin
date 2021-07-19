@@ -124,6 +124,34 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.aidl)
                         intent.putExtra("answer", QA.aidl_answer)
                     }
+                    QA.thread_pool -> {
+                        intent.putExtra("question", QA.thread_pool)
+                        intent.putExtra("answer", QA.thread_pool_answer)
+                    }
+                    QA.leak_canary -> {
+                        intent.putExtra("question", QA.leak_canary)
+                        intent.putExtra("answer", QA.leak_canary_answer)
+                    }
+                    QA.java_reference -> {
+                        intent.putExtra("question", QA.java_reference)
+                        intent.putExtra("answer", QA.java_reference_answer)
+                    }
+                    QA.synchronize_lock -> {
+                        intent.putExtra("question", QA.synchronize_lock)
+                        intent.putExtra("answer", QA.synchronize_lock_answer)
+                    }
+                    QA.thread_local -> {
+                        intent.putExtra("question", QA.thread_local)
+                        intent.putExtra("answer", QA.thread_local_answer)
+                    }
+                    QA.thread_about -> {
+                        intent.putExtra("question", QA.thread_about)
+                        intent.putExtra("answer", QA.thread_about_answer)
+                    }
+                    QA.sleep_wait -> {
+                        intent.putExtra("question", QA.sleep_wait)
+                        intent.putExtra("answer", QA.sleep_wait_answer)
+                    }
                     "广度搜索计算二叉数深度" -> {
                         intent.putExtra("image", R.drawable.breadth_search_calculates_binary_number_depth)
                     }

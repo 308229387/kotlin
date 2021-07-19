@@ -1,9 +1,12 @@
 package com.example.kotlin.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin.R
-import kotlinx.android.synthetic.main.q_a_detail_layout.*
+import kotlinx.android.synthetic.main.activity_q_a_image_text_detail.*
+import kotlinx.android.synthetic.main.q_a_detail_layout.answer_text
+import kotlinx.android.synthetic.main.q_a_detail_layout.question_text
 
 /**
  * Author: sym
@@ -15,7 +18,7 @@ class QADetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.q_a_detail_layout)
-        if(intent!=null){
+        if (intent != null) {
             question_text.text = intent.getStringExtra("question")
             answer_text.text = intent.getStringExtra("answer")
         }
