@@ -15,6 +15,7 @@ data class QAItemData(var question: String, var image: Int) {
 
 object QAData {
     val data = arrayListOf(
+        QAItemData(QA.version_features, R.mipmap.pineapple_pic),
         QAItemData(QA.sleep_wait, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_about, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_local, R.mipmap.pineapple_pic),

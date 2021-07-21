@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
 import com.example.kotlin.activity.AlgorithmDetailActivity
 import com.example.kotlin.activity.QADetailActivity
+import com.example.kotlin.data.HawkConfig
 import com.example.kotlin.data.QA
 import com.example.kotlin.data.QAItemData
 import com.example.kotlin.viewholder.QAViewHolder
+import com.orhanobut.hawk.Hawk
 
 class QAAdapter(private val context: Context, private val dataList: ArrayList<QAItemData>) :
     RecyclerView.Adapter<QAViewHolder>() {
@@ -34,7 +36,9 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
         holder.setData(itemData, position)
         holder.setOnListener(object : HolderListener {
             override fun delete() {
+                dataList.removeAt(position)
                 notifyDataSetChanged()
+                Hawk.put(HawkConfig.QA,dataList)
             }
 
             override fun jump() {
@@ -151,6 +155,10 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                     QA.sleep_wait -> {
                         intent.putExtra("question", QA.sleep_wait)
                         intent.putExtra("answer", QA.sleep_wait_answer)
+                    }
+                    QA.version_features -> {
+                        intent.putExtra("question", QA.version_features)
+                        intent.putExtra("answer", QA.version_features_answer)
                     }
                     "广度搜索计算二叉数深度" -> {
                         intent.putExtra("image", R.drawable.breadth_search_calculates_binary_number_depth)

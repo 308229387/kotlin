@@ -15,5 +15,6 @@ class HawkConfig {
         const val Nickname = "nickname"
         const val ProfileUrl = "profileUrl"
         const val GifData = "gifData"
+        const val QA = "qa"
     }
 }

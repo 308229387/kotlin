@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
 import com.example.kotlin.activity.*
 import com.example.kotlin.data.Data
+import com.example.kotlin.data.HawkConfig
+import com.example.kotlin.data.QAData
 import com.example.kotlin.viewholder.MyViewHolder
+import com.orhanobut.hawk.Hawk
 
 class HomeAdapter(private val context: Context, private val dataList: ArrayList<Data>) :
     RecyclerView.Adapter<MyViewHolder>() {
@@ -48,6 +51,8 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "基础列表listview" -> context.startActivity(Intent(context, ListViewActivity::class.java))
                     "addView" -> context.startActivity(Intent(context, AddViewActivity::class.java))
                     "圆角、圆头像" -> context.startActivity(Intent(context, RoundImageActivity::class.java))
+                    "重复定时任务" -> context.startActivity(Intent(context, ScheduleTaskActivity::class.java))
+                    "恢复问答" -> Hawk.put(HawkConfig.QA, QAData.data)
                 }
 
             }

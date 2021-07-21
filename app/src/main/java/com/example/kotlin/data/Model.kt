@@ -26,7 +26,7 @@ object HomeData {
         Data("TopBar", R.mipmap.cherry_pic),
         Data("基础列表listview", R.mipmap.grape_pic),
         Data("圆角、圆头像", R.mipmap.orange_pic),
-        Data("Pear", R.mipmap.pear_pic),
+        Data("重复定时任务", R.mipmap.pear_pic),
         Data("Pineapple", R.mipmap.pineapple_pic),
         Data("Strawberry", R.mipmap.strawberry_pic),
         Data("Watermelon", R.mipmap.watermelon_pic),
@@ -48,7 +48,7 @@ object HomeData {
         Data("Pear", R.mipmap.pear_pic),
         Data("Pineapple", R.mipmap.pineapple_pic),
         Data("Strawberry", R.mipmap.strawberry_pic),
-        Data("Watermelon", R.mipmap.watermelon_pic)
+        Data("恢复问答", R.mipmap.watermelon_pic)
     )
 
 }

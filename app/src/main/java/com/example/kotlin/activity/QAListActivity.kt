@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin.R
-import com.example.kotlin.adapter.AlgorithmAdapter
 import com.example.kotlin.adapter.QAAdapter
-import com.example.kotlin.data.AlgorithmData
+import com.example.kotlin.data.HawkConfig
 import com.example.kotlin.data.QAData
-import kotlinx.android.synthetic.main.activity_algorithm_list.*
+import com.example.kotlin.data.QAItemData
+import com.orhanobut.hawk.Hawk
 import kotlinx.android.synthetic.main.activity_q_a_list.*
 
 /**
@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_q_a_list.*
  * Describe:
  */
 class QAListActivity : AppCompatActivity() {
+    private lateinit var dataList: ArrayList<QAItemData>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_q_a_list)
@@ -25,7 +26,14 @@ class QAListActivity : AppCompatActivity() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         q_a_recyclerView.layoutManager = layoutManager
 
-        val adapter = QAAdapter(this, QAData.data)
+        dataList = if (Hawk.contains(HawkConfig.QA)) {
+            Hawk.get<ArrayList<QAItemData>>(HawkConfig.QA)
+        } else {
+            QAData.data
+        }
+
+
+        val adapter = QAAdapter(this, dataList)
         q_a_recyclerView.adapter = adapter
     }
 }

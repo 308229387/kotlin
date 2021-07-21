@@ -65,6 +65,8 @@ import com.example.kotlin.R
         const val thread_local_answer = "ThreadLocal是一个关于创建线程局部变量的类。使用场景如下所示：\n" + "\n" + "* 有助于线程安全，因为每个线程都会有一个对应的实例。承载一些线程相关的数据，避免在方法中来回传递参数。\u2028\n" + "* 实现单个线程单例以及单个线程上下文信息存储，比如交易id等。\n" + "\n" + "\n" + "什么是ThreadLocal\n" + "\n" + "ThreadLocal 是 Thread 的共享变量。有助于线程安全，因为每个线程都会有一个对应的实例。承载一些线程相关的数据，避免在方法中来回传递参数，或加synchronized上锁那么麻烦。\n" + "\n" + "\n" + "ThreadLocal的原理\n" + "\n" + "ThreadLocal中有一个ThreadLocalMap中有一个table数组，元素是Entry。根据ThreadLocal(需要转换获取到Hash Key)能get到对应的Enrty。\u2028 Entry中key为ThreadLocal, value就是存储的数值。\n"
         const val sleep_wait = "sleep、wait、notify、notifyAll区别"
         const val sleep_wait_answer = "sleep、wait最大的不同是在等待时wait会释放锁，而sleep一直持有锁。Wait通常被用于线程间交互，sleep通常被用于暂停执行。\n" + "\n" + "1. sleep是Thread类的静态方法,wait是Object类中定义的方法\n" + "2. Thread.sleep不会导致锁行为的改变，如果当前线程是拥有锁的，那么Thread.sleep不会让线程释放锁,而wait 会释放当前线程锁\n" + "3. Thread.sleep需要设定休眠时间.Object.wait也可以设定wait时间,或者通过线程执行notify/notifyAll进行唤醒\n\nnotify与notifyAll\n\n1. notify唤醒一个线程,如果有多线程在wait,可能是随机一个\n" + "\n" + "2. notifyAll唤醒所有在等待的线程,\n" + "\n" + "3. 使用中尽量使用notifyAll,因为notify容易导致线程死锁(nofity只唤醒一个,其他等待的线程没有唤醒)"
+        const val version_features = "android版本特性"
+        const val version_features_answer = "6.0增加运行时权限\n" + "7.0分屏多任务、夜间模式\n" + "8.0画中画android:supportsPictureInPicture=ture，调用接口、指纹手势\n" + "9.0“刘海”屏幕支持，可以通过windowInsets.getDisplayCutout()、增加ImageDecoder替换BitmapFactory，代码更优雅\n" + "\n" + "//裁剪图像\n" + "imageDecoder.setCrop();\n" + "//调整大小\n" + " imageDecoder.setResize();\n" + "\n" + "10支持可折叠设备、5G 网络\n"
     }
 }
 

@@ -53,6 +53,7 @@
         <activity android:name=".activity.QAListActivity" />
         <activity android:name=".activity.QADetailActivity" />
         <activity android:name=".activity.RoundImageActivity" />
+        <activity android:name=".activity.ScheduleTaskActivity" />
     </application>
 
 </manifest>
