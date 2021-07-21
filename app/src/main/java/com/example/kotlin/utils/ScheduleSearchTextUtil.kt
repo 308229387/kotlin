@@ -39,7 +39,6 @@ class ScheduleSearchTextUtil {
         }
     }
 
-
     constructor() {
         val timer = Timer()
         timer.schedule(object : TimerTask() {
@@ -59,6 +58,5 @@ class ScheduleSearchTextUtil {
     fun setTextToSearch1(textView: TextView?) {
         textView2 = textView
     }
-
 
 }

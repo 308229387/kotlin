@@ -38,7 +38,7 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
             override fun delete() {
                 dataList.removeAt(position)
                 notifyDataSetChanged()
-                Hawk.put(HawkConfig.QA,dataList)
+                Hawk.put(HawkConfig.QA, dataList)
             }
 
             override fun jump() {
@@ -160,14 +160,17 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.version_features)
                         intent.putExtra("answer", QA.version_features_answer)
                     }
-                    "广度搜索计算二叉数深度" -> {
-                        intent.putExtra("image", R.drawable.breadth_search_calculates_binary_number_depth)
+                    QA.handler_thread -> {
+                        intent.putExtra("question", QA.handler_thread)
+                        intent.putExtra("answer", QA.handler_thread_answer)
                     }
-                    "快速排序" -> {
-                        intent.putExtra("image", R.drawable.quick_sort)
+                    QA.invalidate -> {
+                        intent.putExtra("question", QA.invalidate)
+                        intent.putExtra("answer", QA.invalidate_answer)
                     }
-                    "替换空格" -> {
-                        intent.putExtra("image", R.drawable.replace_the_blank_space)
+                    QA.app_start -> {
+                        intent.putExtra("question", QA.app_start)
+                        intent.putExtra("answer", QA.app_start_answer)
                     }
                     "相交链表" -> {
                         intent.putExtra("image", R.drawable.cross_linked_list)
