@@ -83,6 +83,7 @@ class JDSearchActivity : AppCompatActivity() {
                 initZFlowLayout(searchHistory)
             }
         }
+        isDelete = -1
     }
 
     private val mViewList: MutableList<View> = ArrayList()
@@ -113,6 +114,7 @@ class JDSearchActivity : AppCompatActivity() {
                 searchHistory.removeAt(position)
                 Hawk.put(HawkConfig.JDSearch, searchHistory)
                 notifyData()
+                isDelete = -1
             } else {
                 Toast.makeText(this@JDSearchActivity, "选择了$position", Toast.LENGTH_SHORT).show()
             }
@@ -121,7 +123,11 @@ class JDSearchActivity : AppCompatActivity() {
         zl_search_history.setOnLongClickListener { view, position ->
             Toast.makeText(this@JDSearchActivity, "long$position", Toast.LENGTH_SHORT).show()
             (view as TextView).setCompoundDrawablesWithIntrinsicBounds(null, null, resources.getDrawable(R.mipmap.clip_search_delete_item_new), null)
-            isDelete = position
+            if (isDelete == -1) {
+                isDelete = position
+            } else {
+                view.setCompoundDrawablesWithIntrinsicBounds(null, null, resources.getDrawable(R.mipmap.clip_search_delete_item_new), null)
+            }
         }
 
 

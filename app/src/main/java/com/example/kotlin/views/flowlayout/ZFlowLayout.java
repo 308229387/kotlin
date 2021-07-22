@@ -99,6 +99,11 @@ public class ZFlowLayout extends ViewGroup {
 
                 children.get(i).setOnLongClickListener(v -> {
                     if (mOnLongClickListener != null) {
+
+                        for (int j = 0; j < children.size(); j++) {
+                            ((TextView) children.get(j)).setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                        }
+
                         mOnLongClickListener.onLongClick(children.get(finalI), finalI);
                     }
                     return true;
@@ -297,5 +302,6 @@ public class ZFlowLayout extends ViewGroup {
     public interface OnLongClickListener {
         void onLongClick(View view, int position);
     }
+
 
 }
