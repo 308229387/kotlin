@@ -26,6 +26,7 @@ import java.util.*
  * Describe:仿京东搜索
  */
 class JDSearchActivity : AppCompatActivity() {
+    private var isDelete = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,7 @@ class JDSearchActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        iv_clear.setOnClickListener { Toast.makeText(this@JDSearchActivity, "", Toast.LENGTH_SHORT).show() }
+        iv_clear.setOnClickListener { Toast.makeText(this@JDSearchActivity, "删除", Toast.LENGTH_SHORT).show() }
         edit_search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -70,7 +71,7 @@ class JDSearchActivity : AppCompatActivity() {
             mutableListOf()
         }
         if (v != null) {
-            searchHistory.add(0,v.text.toString())
+            searchHistory.add(0, v.text.toString())
             Hawk.put(HawkConfig.JDSearch, searchHistory)
         }
     }
@@ -78,7 +79,7 @@ class JDSearchActivity : AppCompatActivity() {
     private fun notifyData() {
         if (Hawk.contains(HawkConfig.JDSearch)) {
             var searchHistory: MutableList<String> = Hawk.get(HawkConfig.JDSearch)
-            if (searchHistory != null && searchHistory.size > 0) {
+            if (searchHistory != null && searchHistory.size >= 0) {
                 initZFlowLayout(searchHistory)
             }
         }
@@ -87,7 +88,7 @@ class JDSearchActivity : AppCompatActivity() {
     private val mViewList: MutableList<View> = ArrayList()
 
 
-    private fun initZFlowLayout(searchHistory: List<String>) {
+    private fun initZFlowLayout(searchHistory: MutableList<String>) {
 
         mViewList.clear()
         for (i in searchHistory.indices) {
@@ -106,7 +107,24 @@ class JDSearchActivity : AppCompatActivity() {
                 }
             }
         })
-        zl_search_history.setOnTagClickListener { view, position -> }
+        zl_search_history.setOnTagClickListener { view, position ->
+
+            if (position == isDelete) {
+                searchHistory.removeAt(position)
+                Hawk.put(HawkConfig.JDSearch, searchHistory)
+                notifyData()
+            } else {
+                Toast.makeText(this@JDSearchActivity, "选择了$position", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        zl_search_history.setOnLongClickListener { view, position ->
+            Toast.makeText(this@JDSearchActivity, "long$position", Toast.LENGTH_SHORT).show()
+            (view as TextView).setCompoundDrawablesWithIntrinsicBounds(null, null, resources.getDrawable(R.mipmap.clip_search_delete_item_new), null)
+            isDelete = position
+        }
+
+
     }
 
     private fun hideSoftKeyboard() {

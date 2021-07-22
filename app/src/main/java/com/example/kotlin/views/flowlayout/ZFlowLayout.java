@@ -96,6 +96,15 @@ public class ZFlowLayout extends ViewGroup {
                         mOnTagClickListener.onTagClick(children.get(finalI), finalI);
                     }
                 });
+
+                children.get(i).setOnLongClickListener(v -> {
+                    if (mOnLongClickListener != null) {
+                        mOnLongClickListener.onLongClick(children.get(finalI), finalI);
+                    }
+                    return true;
+                });
+
+
             }
         }
     }
@@ -271,6 +280,7 @@ public class ZFlowLayout extends ViewGroup {
 
 
     private OnTagClickListener mOnTagClickListener;
+    private OnLongClickListener mOnLongClickListener;
 
     public void setOnTagClickListener(OnTagClickListener onTagClickListener) {
         mOnTagClickListener = onTagClickListener;
@@ -278,6 +288,14 @@ public class ZFlowLayout extends ViewGroup {
 
     public interface OnTagClickListener {
         void onTagClick(View view, int position);
+    }
+
+    public void setOnLongClickListener(OnLongClickListener longClickListener) {
+        mOnLongClickListener = longClickListener;
+    }
+
+    public interface OnLongClickListener {
+        void onLongClick(View view, int position);
     }
 
 }
