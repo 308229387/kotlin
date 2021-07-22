@@ -34,6 +34,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                 when (dataList[position].title) {
                     "问答" -> context.startActivity(Intent(context, QAListActivity::class.java))
                     "算法" -> context.startActivity(Intent(context, AlgorithmListActivity::class.java))
+                    "仿京东搜索" -> context.startActivity(Intent(context, JDSearchActivity::class.java))
                     "聊天交互框" -> context.startActivity(Intent(context, CommentTestActivity::class.java))
                     "include实现" -> context.startActivity(Intent(context, IncludeActivity::class.java))
                     "Fragment实现" -> context.startActivity(Intent(context, FragmentDemoActivity::class.java))

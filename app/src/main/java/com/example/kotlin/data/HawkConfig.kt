@@ -16,5 +16,6 @@ class HawkConfig {
         const val ProfileUrl = "profileUrl"
         const val GifData = "gifData"
         const val QA = "qa"
+        const val JDSearch = "JDSearch"
     }
 }
