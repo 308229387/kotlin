@@ -93,13 +93,16 @@ public class ZFlowLayout extends ViewGroup {
                 int finalI = i;
                 children.get(i).setOnClickListener(v -> {
                     if (mOnTagClickListener != null) {
+                        for (int j = 0; j < children.size(); j++) {
+                            ((TextView) children.get(j)).setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                        }
+
                         mOnTagClickListener.onTagClick(children.get(finalI), finalI);
                     }
                 });
 
                 children.get(i).setOnLongClickListener(v -> {
                     if (mOnLongClickListener != null) {
-
                         for (int j = 0; j < children.size(); j++) {
                             ((TextView) children.get(j)).setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                         }

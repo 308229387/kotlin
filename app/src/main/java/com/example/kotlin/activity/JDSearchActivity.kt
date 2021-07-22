@@ -116,18 +116,13 @@ class JDSearchActivity : AppCompatActivity() {
                 notifyData()
                 isDelete = -1
             } else {
-                Toast.makeText(this@JDSearchActivity, "选择了$position", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@JDSearchActivity, "选择了${(view as TextView).text}", Toast.LENGTH_SHORT).show()
             }
         }
 
         zl_search_history.setOnLongClickListener { view, position ->
-            Toast.makeText(this@JDSearchActivity, "long$position", Toast.LENGTH_SHORT).show()
             (view as TextView).setCompoundDrawablesWithIntrinsicBounds(null, null, resources.getDrawable(R.mipmap.clip_search_delete_item_new), null)
-            if (isDelete == -1) {
-                isDelete = position
-            } else {
-                view.setCompoundDrawablesWithIntrinsicBounds(null, null, resources.getDrawable(R.mipmap.clip_search_delete_item_new), null)
-            }
+            isDelete = position
         }
 
 
