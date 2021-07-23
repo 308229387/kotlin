@@ -23,7 +23,7 @@ import java.util.*
 /**
  * Author: sym
  * Date: 2021/7/22 10:23 AM
- * Describe:仿京东搜索
+ * Describe:仿京东搜索，想接入，三步：重写initImageView2()、initImageView()、initZFlowLayout，然后实现initZFlowLayout(),传入数据
  */
 class JDSearchActivity : AppCompatActivity() {
     private var isDelete = -1
