@@ -172,14 +172,17 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.app_start)
                         intent.putExtra("answer", QA.app_start_answer)
                     }
-                    "相交链表" -> {
-                        intent.putExtra("image", R.drawable.cross_linked_list)
+                    QA.mvp -> {
+                        intent.putExtra("question", QA.mvp)
+                        intent.putExtra("answer", QA.mvp_answer)
                     }
-                    "移除链表元素" -> {
-                        intent.putExtra("image", R.drawable.remove_linked_list_elements)
+                    QA.intent_service -> {
+                        intent.putExtra("question", QA.intent_service)
+                        intent.putExtra("answer", QA.intent_service_answer)
                     }
-                    "空间足够合并有序数组" -> {
-                        intent.putExtra("image", R.drawable.enough_space_to_merge_ordered_arrays)
+                    QA.assets_res -> {
+                        intent.putExtra("question", QA.assets_res)
+                        intent.putExtra("answer", QA.assets_res_answer)
                     }
                     "第一个只出现一次的字符" -> {
                         intent.putExtra("image", R.drawable.the_first_character_that_appears_only_once)

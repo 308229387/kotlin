@@ -21,8 +21,21 @@ class IncludeActivity : AppCompatActivity() {
             Toast.makeText(this, tv_setting_update_app_title.text, Toast.LENGTH_SHORT).show()
         }
 
+        var i ={x:Int,y:Int->x+y}
+        i(2,3)
+
+        var j :(Int,Int)->Int = {x,y -> x+y}
+
         vEmojiSwitcher = emoji_switcher
 
+        result_for.text = forResult()
+
+        setOnListener()
+    }
+
+  
+
+    private fun setOnListener() {
         visible_test.setOnClickListener {
             if (include_parent.visibility == View.GONE) {
                 include_parent.visibility = View.VISIBLE
@@ -54,6 +67,29 @@ class IncludeActivity : AppCompatActivity() {
         } else if (index == 1) {
             vEmojiSwitcher.displayedChild = 1
         }
+    }
+
+    //区间for循环
+    private fun forResult(): String {
+        val temp = 1..10
+        val temp1 = 1 until 10
+        val temp2 = 1 until 20
+        val str = StringBuffer()
+        val str1 = StringBuffer()
+        val str2 = StringBuffer()
+
+        for (i in temp) {
+            str.append("$i")
+        }
+
+        for (i in temp1) {
+            str1.append(i)
+        }
+
+        for (i in temp2 step 2) {
+            str2.append("$i ")
+        }
+        return "..区间for循环：$str  \n until闭区间for循环：$str1 \n step+until闭区间for循环：$str2"
     }
 
 }

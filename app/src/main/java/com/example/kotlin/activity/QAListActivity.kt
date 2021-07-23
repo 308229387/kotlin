@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_q_a_list.*
  * Describe:
  */
 class QAListActivity : AppCompatActivity() {
+
     private lateinit var dataList: ArrayList<QAItemData>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +27,11 @@ class QAListActivity : AppCompatActivity() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         q_a_recyclerView.layoutManager = layoutManager
 
-        dataList = if (Hawk.contains(HawkConfig.QA)) {
-            Hawk.get<ArrayList<QAItemData>>(HawkConfig.QA)
-        } else {
-            QAData.data
+        if (!Hawk.contains(HawkConfig.QA)) {
+            Hawk.put(HawkConfig.QA, QAData.data)
         }
 
+        dataList = Hawk.get(HawkConfig.QA)
 
         val adapter = QAAdapter(this, dataList)
         q_a_recyclerView.adapter = adapter

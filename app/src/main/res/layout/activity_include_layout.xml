@@ -27,9 +27,9 @@
 
     <ImageSwitcher
         android:id="@+id/emoji_switcher"
-        android:layout_width="147dp"
-        android:layout_height="114dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="69dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="10dp"
         android:inAnimation="@anim/fade_in"
         android:outAnimation="@anim/fade_out"
         android:paddingStart="15dp"
@@ -41,15 +41,21 @@
         tools:layout_editor_absoluteY="153dp">
 
         <ImageView
-            android:layout_width="113dp"
-            android:layout_height="89dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@mipmap/emoji"
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:layout_width="113dp"
-            android:layout_height="89dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@mipmap/keyboard"
             tools:ignore="ContentDescription" />
     </ImageSwitcher>
+    
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/result_for"/>
+        
 </LinearLayout>

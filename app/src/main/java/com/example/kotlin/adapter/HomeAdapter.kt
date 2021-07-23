@@ -2,6 +2,7 @@ package com.example.kotlin.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -53,7 +54,11 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "addView" -> context.startActivity(Intent(context, AddViewActivity::class.java))
                     "圆角、圆头像" -> context.startActivity(Intent(context, RoundImageActivity::class.java))
                     "重复定时任务" -> context.startActivity(Intent(context, ScheduleTaskActivity::class.java))
-                    "恢复问答" -> Hawk.put(HawkConfig.QA, QAData.data)
+                    "恢复问答" -> {
+                        Log.d("song_test", QAData.data.size.toString())
+                        Hawk.put(HawkConfig.QA, QAData.data)
+                    }
+
                 }
 
             }

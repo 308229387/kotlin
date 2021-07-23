@@ -15,7 +15,7 @@ import com.example.kotlin.R
         const val tcp_shake_hands = "Tcp握手过程"
         const val tcp_shake_hands_answer = "TCP三次握手：\n" + "\n" + "1：客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；\n" + "\n" + "2：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态；\n" + "\n" + "3：客户端收到服务器的SYN＋ACK包，向服务器发送确认包ACK(ack=k+1)，此包发送完毕，客户端和服务器进入ESTABLISHED状态，完成三次握手。\n" + "\n" + "四次挥手：\n" + "1、主动关闭方会发一个长度为0的数据包以及FIN关闭标识。\n" + "\n" + "2、被动方收到FIN后，会发一个ACK确认包，确认序号+1。\n" + "\n" + "3、确认无需要发送数据后，被动关闭方也会发一个FIN包，告诉主动关闭方，我也不会再发数据了。\n" + "\n" + "4主动关闭方发ACK确认，确认序号+1。\n\n" + "两次不行，为了防止出现失效的连接请求报文段被服务端接收的情况，从而产生错误。\n" + "\n" + "确认号要加1，因为报文不一定会按发送的时序到达目标，为了区分所以要加1\n" + "\n" + "出现大量的close_wait是因为被动关闭方没有发送FIN包确认关闭，是程序的问题。\n" + "如果是server主动关闭链接,那么Client则有可能进入CLOSE_WAIT,如果Client不发送FIN包，该关不关,那么client就一直会处在CLOSE_WAIT状态\n" + "\n" + "为什么是4次握手，因为被动方收到FIN后，需要先确认，防止主动方因等待时间过长再发FIN，被动方处理完数据后再发FIN"
         const val draw_view = "View的绘制流程"
-        const val draw_view_answer = "介绍下实现一个自定义View的基本流程\n" + "①.自定义View的属性 编写attr.xml文件 ②.在layout布局文件中引用，同时引用命名空间 ③.在View的构造方法中获得我们自定义的属性 ，在自定义控件中进行读取（构造方法拿到attr.xml文件值） ④.重写onMesure 、onLayout、onDraw    如果有需要还可以重写onTouchEvent"
+        const val draw_view_answer = "介绍下实现一个自定义View的基本流程\n" + "①.自定义View的属性 编写attr.xml文件 ②.在layout布局文件中引用，同时引用命名空间 ③.在View的构造方法中获得我们自定义的属性 ，在自定义控件中进行读取（构造方法拿到attr.xml文件值） ④.重写onMesure 、onDraw    如果有需要还可以重写onTouchEvent"
         const val lock_type_use = "锁的分类及用法"
         const val lock_type_use_answer = "Synchronized的用法 ：\n" + "锁主要有三种\n" + "\n" + "类锁:像synchronized(class)或是锁静态方法，这种都是类锁，作用范围比较大，类的所有对象都会被作用到。\n" + "\n" + "第二种是对象锁，像普通方法锁就是，他的作用范围就是一个对象，不同线程不能同时执行一个对象的不同synchronized方法。\n" + "\n" + "还是就是同步代码块，synchronized（obj），这个的作用范围就是被作用的代码块上。"
         const val four_components = "四大组件"
@@ -72,8 +72,13 @@ import com.example.kotlin.R
         const val invalidate = "postInvalidate和Invalidate的区别"
         const val invalidate_answer = "一般来说，如果View确定自身不再适合当前区域，比如说它的LayoutParams发生了改变，需要父布局对其进行重新测量、布局、绘制这三个流程，往往使用requestLayout。而invalidate则是刷新当前View，使当前View进行重绘，不会进行测量、布局流程，因此如果View只需要重绘而不需要测量，布局的时候，使用invalidate方法往往比requestLayout方法更高效\n" + "\n" + "postInvalidate\n" + "这个方法与invalidate方法的作用是一样的，都是使View树重绘，但两者的使用条件不同，postInvalidate是在非UI线程中调用，invalidate则是在UI线程中调用。"
         const val app_start = "APP启动过程及优化"
-        const val app_start_answer = "启动过程：\n" + "1、Launcher通过Binder进程间通信通知AMS，它要启动一个Activity\n" + "2、AMS通知Launcher要进入Paused状态\n" + "3、Launcher告诉AMS已经就绪以后，AMS会通过Zygote.fock创建一个新的进程，用来启动一个APP进程，要启动的Activity就是在这个APP进程中运行的。\n" + "4、App进程通过Binder IPC向sytem_server进程发起绑定Application请求，用来让与AMS进行通信\n" + "5、AMS做完准备工作后，通知APP进程，可以执行Activity启动操作了。向APP进程发送scheduleLaunchActivity\n" + "6、APP进程的ApplicationThread收到请求后，会通过Hanndler向主线程发送LAUNCH_ACTIVITY消息。\n" + "7、主线程在收到Message后，创建Activity，并回调Activity生命周期等方法。\n" + "\n" + "计算冷启动的方式：\n" + "冷启动表示用户首次打开应用，这时进程还没创建，包含了zygot创建进程、Application创建、Activity创建的过程。\n" + "绝对冷启动时间可能通过命令行、或Systrace第三方工具来统计。还有我们应用层可以分析优化的，是在Application的attachBaseContext()方法中起始记录，在Activity中onWindowFocusChanged()方法中做为冷启动的结束时间。这样可以得到Application创建到用户可见的冷启动时间。\n" + "\n" + "冷启动优化：\n" + "在application中配置一个theme，在style中定义广告页或默认图，让用户先看默认图。1.耗时操作子线程中进行。2.非必要初始化懒加载。3.布局层次减少"
-
+        const val app_start_answer = "启动过程：\n" + "1、Launcher响应用户点击，通知AMS\n" + "2、AMS响应Launcher进程请求，通知Launcher要进入Paused状态\n" + "3、Launcher进程挂起Launcher，再次通知AMS\n" + "4、AMS创建新的进程，是通过Zygote.fock创建的，要启动的Activity就是在这个APP进程中运行的。\n" + "5、应用进程初始化\n"
+        const val assets_res = "Assets目录与res目录的区别"
+        const val assets_res_answer = "res/raw中的文件会被映射到R.java文件中，访问的时候直接使用资源ID即可，assets文件夹下的文件不会被映射到R文件中，访问的时候需要AssetManager类。\n" + "\n" + "res/raw不可以有目录结构，而assets则可以有目录结构，也就是assets目录下可以再建立文件夹。"
+        const val intent_service = "介绍下IntentService"
+        const val intent_service_answer = "IntentService其本质上是一个Service，因为它是继承至Service，所以开启IntentService和普通的Service一致。但是他和普通的Service不同之处在于它可以处理异步任务，在任务处理完之后会自动结束。另外，我们可以启动多次IntentService，而每一个耗时任务会以工作队列的方式在IntentService的onHandleIntent回调方法中执行，并且是串行执行。其实IntentService的内部是通过HandleThread和Handle来实现异步操作的。"
+        const val mvp = "介绍下MVP"
+        const val mvp_answer = "MVP模式分离了视图逻辑和业务逻辑，Activity只是用来相应生命周期，其他工作都丢到Presenter中完成，Presenter是Model和View之间的桥梁，为了让结构变得更加简单，View并不能直接对Model进行操作，这也是MVP与MVC最大的不同之处。"
     }
 }
 
