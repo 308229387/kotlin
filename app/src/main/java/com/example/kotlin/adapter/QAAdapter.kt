@@ -184,30 +184,27 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.assets_res)
                         intent.putExtra("answer", QA.assets_res_answer)
                     }
-                    "第一个只出现一次的字符" -> {
-                        intent.putExtra("image", R.drawable.the_first_character_that_appears_only_once)
+                    QA.final_finally_finalize -> {
+                        intent.putExtra("question", QA.final_finally_finalize)
+                        intent.putExtra("answer", QA.final_finally_finalize_answer)
                     }
-                    "路径总和" -> {
-                        intent.putExtra("image", R.drawable.path_to_the_combined)
+                    QA.equals_deng -> {
+                        intent.putExtra("question", QA.equals_deng)
+                        intent.putExtra("answer", QA.equals_deng_answer)
                     }
-                    "连续子数组最大和" -> {
-                        intent.putExtra("image", R.drawable.maximum_sum_of_contiguous_subarrays)
+                    QA.overloading_overriding -> {
+                        intent.putExtra("question", QA.overloading_overriding)
+                        intent.putExtra("answer", QA.overloading_overriding_answer)
                     }
-                    "迭代对称二叉数" -> {
-                        intent.putExtra("image", R.drawable.lterate_symmetric_binomial_numbers)
+                    QA.polymorphism_extends -> {
+                        intent.putExtra("question", QA.polymorphism_extends)
+                        intent.putExtra("answer", QA.polymorphism_extends_answer)
                     }
-                    "递归对称二叉树" -> {
-                        intent.putExtra("image", R.drawable.recursive_symmetric_binary_trees)
+                    QA.generic_reflection -> {
+                        intent.putExtra("question", QA.generic_reflection)
+                        intent.putExtra("answer", QA.generic_reflection_answer)
                     }
-                    "链表中倒数第k个节点" -> {
-                        intent.putExtra("image", R.drawable.the_k_penultimate_node_in_the_linked_list)
-                    }
-                    "链表是否有环" -> {
-                        intent.putExtra("image", R.drawable.whether_a_linked_list_has_a_ring)
-                    }
-                    "青蛙跳台阶" -> {
-                        intent.putExtra("image", R.drawable.frog_jump_the_steps)
-                    }
+
 
                 }
                 context.startActivity(intent)

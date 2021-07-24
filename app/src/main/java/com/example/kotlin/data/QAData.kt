@@ -15,6 +15,11 @@ data class QAItemData(var question: String, var image: Int) {
 
 object QAData {
     val data = arrayListOf(
+        QAItemData(QA.final_finally_finalize, R.mipmap.pineapple_pic),
+        QAItemData(QA.equals_deng, R.mipmap.pineapple_pic),
+        QAItemData(QA.overloading_overriding, R.mipmap.pineapple_pic),
+        QAItemData(QA.polymorphism_extends, R.mipmap.pineapple_pic),
+        QAItemData(QA.generic_reflection, R.mipmap.pineapple_pic),
         QAItemData(QA.assets_res, R.mipmap.pineapple_pic),
         QAItemData(QA.intent_service, R.mipmap.pineapple_pic),
         QAItemData(QA.mvp, R.mipmap.pineapple_pic),

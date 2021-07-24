@@ -94,7 +94,8 @@ public class ZFlowLayout extends ViewGroup {
                 children.get(i).setOnClickListener(v -> {
                     if (mOnTagClickListener != null) {
                         for (int j = 0; j < children.size(); j++) {
-                            ((TextView) children.get(j)).setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                            if (children.get(j) instanceof TextView)
+                                ((TextView) children.get(j)).setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                         }
 
                         mOnTagClickListener.onTagClick(children.get(finalI), finalI);
@@ -104,7 +105,8 @@ public class ZFlowLayout extends ViewGroup {
                 children.get(i).setOnLongClickListener(v -> {
                     if (mOnLongClickListener != null) {
                         for (int j = 0; j < children.size(); j++) {
-                            ((TextView) children.get(j)).setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                            if (children.get(j) instanceof TextView)
+                                ((TextView) children.get(j)).setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                         }
 
                         mOnLongClickListener.onLongClick(children.get(finalI), finalI);

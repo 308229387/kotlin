@@ -1,7 +1,5 @@
 package com.example.kotlin.data
 
-import com.example.kotlin.R
-
 /**
  * Author: sym
  * Date: 2021/7/13 8:11 PM
@@ -79,6 +77,16 @@ import com.example.kotlin.R
         const val intent_service_answer = "IntentService其本质上是一个Service，因为它是继承至Service，所以开启IntentService和普通的Service一致。但是他和普通的Service不同之处在于它可以处理异步任务，在任务处理完之后会自动结束。另外，我们可以启动多次IntentService，而每一个耗时任务会以工作队列的方式在IntentService的onHandleIntent回调方法中执行，并且是串行执行。其实IntentService的内部是通过HandleThread和Handle来实现异步操作的。"
         const val mvp = "介绍下MVP"
         const val mvp_answer = "MVP模式分离了视图逻辑和业务逻辑，Activity只是用来相应生命周期，其他工作都丢到Presenter中完成，Presenter是Model和View之间的桥梁，为了让结构变得更加简单，View并不能直接对Model进行操作，这也是MVP与MVC最大的不同之处。"
+        const val final_finally_finalize = "Java 中的 final, finally 和 finalize?"
+        const val final_finally_finalize_answer = "\n" + "final：对基本类型而言，你不能改变其数值，对于引用，你不能将其指向一个新的引用，即用final关键字修饰方法，它表示该方法不能被覆盖，用final修饰的类是无法被继承的\n" + "finally：是异常处理中进行收场处理的代码块，比如关闭一个数据库连接，清理一些资源占用的问题。不管有没有异常被捕获，finally子句中的代码都会被执行。\n" + "finalize：finalize()是Object中的方法，当垃圾回收器将要回收对象所占内存之前被调用，定位bug"
+        const val equals_deng = " == 和 equals() 有什么区别？"
+        const val equals_deng_answer = " ==用法\n" + "    1. 判断基本类型变量是否相等，且都是数值类型（不一定要求数据类型严格相同），只要两个变量的值相等，就返回true\n" + "    2. 对于两个引用类型变量，只有当他们指向同一个对象时，判断才会返回true。且不能用于比较类型上没有父子关系的两个变量\n" + "\n" + "equals用法\u2028\n" + "    equals（）是Object类提供的一个示例方法，因此所有的引用类型变量都能用它来判断是否和其他的引用类型变量相等。\n" + "    1. Object类的equals（）和==运算符几乎一样，也是要求两个引用类型变量指向同一个对象时才会返回true;\n" + "    2. string类的equals（）已经进行了重写，所以str1.euqals(str2)比较的是str1和str2的内容，而不是比较引用类型变量指向的对象\u2028此外：\n" + "\n" + "默认equals在比较两个对象时，是看他们是否指向同一个地址的。\n" + "但有时，我们希望两个对象只要是某些属性相同就认为他们的quals为true。"
+        const val overloading_overriding = "重载和重写的区别"
+        const val overloading_overriding_answer = "重载：方法重载是一个类中定义了多个方法名相同,而他们的参数的数量不同或数量相同而类型和次序不同,则称为方法的重载(Overloading)。\n" + "\n" + "重写：是在子类存在方法与父类的方法的名字相同,而且参数的个数与类型一样,返回值也一样的方法,就称为重写(Overriding)。如果父类的方法有异常声明，那么子类重写这个方法时候，所要声明的异常不应该比父类的大。只能是小等，或者可以没有\n" + "\n" + "可否重写父类的静态方法\n" + "\n" + "静态方法，是在运行时，虚拟机已经认定此方法属于哪个类。 静态方法的调用不需要实例化， \"重写\"只能适用于实例方法.不能用于静态方法.对于静态方法,只能隐藏... "
+        const val polymorphism_extends = "什么是多态？什么是继承？"
+        const val polymorphism_extends_answer = "多态是：多态是同一个行为具有多个不同表现形式或形态的能力。代码上表现就是同一个接口，使用不同的实例而执行不同操作。多态存在的三个必要条件：继承、重写、父类引用指向子类对象：Parent p = new Child();\n" + "\n" + "继承是：子类继承父类的特征和行为，使得子类具有父类的各种属性和方法。\n"
+        const val generic_reflection = "介绍下 泛型、反射"
+        const val generic_reflection_answer = "泛型：\n" + "在集合中存储对象并在使用前进行类型转换是很不方便的，并且容易出错，为了防止这种情况，泛型产生。泛型提供了编译期的类型安全，确保我们只能把正确类型的对象放入集合中，避免了在运行时出现ClassCastException（类型转换异常）\n" + "\n" + "反射：就是动态加载一个指定的类，并获取该类中的所有的内容，比如有些第三方的JAR文件中的资源，我们没法直接调用，就可以用反射这种比较原始的方法来调用。\n" + "\n" + "1、获得Class对象，就是获取到指定的名称的字节码文件对象。\n" + "Class c = Class.forName(className);\n" + "\n" + "2、实例化对象，获得类的属性、方法或构造函数。\n" + "\u2028Field[] fields = c.getDeclaredFields();\u2028\u2028for (int i = 0; i < fields.length; i++) {\n" + "\n" + "// 打印属性的 修饰符 类型 名称\n" + "System.out.println(Modifier.toString(fields[i].getModifiers()) + \" \" + fields[i].getGenericType() + \" \"+ fields[i].getName());}\n" + "\n" + "\n" + "\n" + "3、访问属性、调用方法、调用构造函数创建对象。"
     }
 }
 
