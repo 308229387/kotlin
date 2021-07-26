@@ -204,6 +204,22 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.generic_reflection)
                         intent.putExtra("answer", QA.generic_reflection_answer)
                     }
+                    QA.join_about -> {
+                        intent.putExtra("question", QA.join_about)
+                        intent.putExtra("answer", QA.join_about_answer)
+                    }
+                    QA.deadlock_about -> {
+                        intent.putExtra("question", QA.deadlock_about)
+                        intent.putExtra("answer", QA.deadlock_about_answer)
+                    }
+                    QA.sum_link -> {
+                        intent.putExtra("question", QA.sum_link)
+                        intent.putExtra("answer", QA.sum_link_answer)
+                    }
+                    QA.array_link -> {
+                        intent.putExtra("question", QA.array_link)
+                        intent.putExtra("answer", QA.array_link_answer)
+                    }
 
 
                 }
