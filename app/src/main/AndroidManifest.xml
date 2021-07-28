@@ -55,6 +55,7 @@
         <activity android:name=".activity.RoundImageActivity" />
         <activity android:name=".activity.ScheduleTaskActivity" />
         <activity android:name=".activity.JDSearchActivity" />
+        <activity android:name=".activity.SpecialQAListActivity" />
     </application>
 
 </manifest>

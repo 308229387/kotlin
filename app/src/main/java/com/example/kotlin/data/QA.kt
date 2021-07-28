@@ -94,8 +94,13 @@ package com.example.kotlin.data
         const val sum_link = "数组和链表的区别"
         const val sum_link_answer = "数组：是将元素在内存中连续存储的；它的优点：因为数据是连续存储的，内存地址连续，所以在查找数据的时候效率比较高；它的缺点：在存储之前，我们需要申请一块连续的内存空间，并且在编译的时候就必须确定好它的空间的大小。在运行的时候空间的大小是无法随着你的需要进行增加和减少而改变的，当数据两比较大的时候，有可能会出现越界的情况，数据比较小的时候，又有可能会浪费掉内存空间。在改变数据个数时，增加、插入、删除数据效率比较低。\n" + "\n" + "链表：是动态申请内存空间，不需要像数组需要提前申请好内存的大小，链表只需在用的时候申请就可以，根据需要来动态申请或者删除内存空间，对于数据增加和删除以及插入比数组灵活。还有就是链表中数据在内存中可以在任意的位置，通过应用来关联数据（就是通过存在元素的指针来联系）"
         const val array_link = "ArrayList和LinkedList的区别，以及应用场景"
-        const val array_link_answer = "ArrayList是基于数组实现的，ArrayList线程不安全。LinkedList是基于双链表实现的\n" + "\n" + "使用场景：\n" + "(1)如果应用程序对各个索引位置的元素进行大量的存取或删除操作，ArrayList对象要远优于LinkedList对象；\n" + "\n" + "(2)如果应用程序主要是对列表进行循环，并且循环时候进行插入或者删除操作，LinkedList对象要远优于ArrayList对象；"
-
+        const val array_link_answer = "Array是基于索引(index)的数据结构，它使用索引在数组中搜索和读取数据是很快的。Array获取数据的时间复杂度是O(1),但是要删除数据却是开销很大的，因为这需要重排数组中后面的所有数据。最差情况是ON\n" + "\n" + "linkedList是基于双链表的，他的特点就是插入和删除非常快，只需要改变相邻节点的指针就可以了，但他如果用来查询就很慢了，最差情况是ON，因为他需要一个一个去找。\n" + "\n" + "除此之外像ArrayList是数组结构，所以他的起始容量是10，当数组需要增长时，就会新增一个为原来1.5倍容量的新数组，然后把原数组的数据原封不动的复制到新数组中，再把新数组赋值给原来的数组对象就完成了。所以会有空间浪费的情况\n" + "\n" + "一般情况下，LinkedList的占用空间更大，因为每个节点要维护指向前后地址的两个节点，但也不是绝对，如果刚好数据量超过ArrayList默认的临时值时，ArrayList占用的空间也是不小的，因为扩容的原因会浪费将近原来数组一半的容量\n"
+        const val string_string_buffer = "String、StringBuffer、StringBuilder的区别"
+        const val string_string_buffer_answer = "String:\n" + "字符串常量不适用于经常要改变值得情况，每次改变相当于生成一个新的对象\n\n" + "StringBuffer:\n" + "字符串变量（线程安全）\n" + "StringBuilder:\n" + "字符串变量\n" + "（\n" + "线程不安全）\n" + "确保单线程下可用，\n" + "效率略高于\n" + "StringBuffer"
+        const val thread_application = "进程和线程的区别"
+        const val thread_application_answer = "进程是cpu资源分配的最小单位，线程是cpu调度的最小单位。进程之间不能共享资源，而线程共享所在进程的地址空间和其它资源。一个进程内可拥有多个线程，进程可开启进程，也可开启线程。一个线程只能属于一个进程，线程可直接使用同进程的资源,线程依赖于进程而存在。"
+        const val hash_map_hashtable = "HashMap与HashTable的区别"
+        const val hash_map_hashtable_answer = " Hashtable 中的方法是Synchronize的，而HashMap是不加锁的，在多线程并发的环境下，可以直接使用Hashtable，但使用HashMap时就必须要自己增加同步处理\n" + "\n" + " Hashtable中，key和value都不允许出现null值。但是如果在Hashtable中有类似put(null,null)的操作\n" + "\n" + "HashMap 要比 HashTable 效率高，现在用hashtable比较少。"
     }
 }
 

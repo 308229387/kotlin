@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
 import com.example.kotlin.activity.AlgorithmDetailActivity
@@ -29,6 +30,7 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
     interface HolderListener {
         fun delete()
         fun jump()
+        fun longClick()
     }
 
     override fun onBindViewHolder(holder: QAViewHolder, position: Int) {
@@ -220,13 +222,36 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.array_link)
                         intent.putExtra("answer", QA.array_link_answer)
                     }
-
+                    QA.string_string_buffer -> {
+                        intent.putExtra("question", QA.string_string_buffer)
+                        intent.putExtra("answer", QA.string_string_buffer_answer)
+                    }
+                    QA.thread_application -> {
+                        intent.putExtra("question", QA.thread_application)
+                        intent.putExtra("answer", QA.thread_application_answer)
+                    }
+                    QA.hash_map_hashtable -> {
+                        intent.putExtra("question", QA.hash_map_hashtable)
+                        intent.putExtra("answer", QA.hash_map_hashtable_answer)
+                    }
 
                 }
                 context.startActivity(intent)
 
 
             }
+
+            override fun longClick() {
+                var specialList: ArrayList<QAItemData> = if (Hawk.contains(HawkConfig.SpecialQA)) {
+                    Hawk.get(HawkConfig.SpecialQA)
+                } else {
+                    ArrayList()
+                }
+                specialList.add(dataList[position])
+                Hawk.put(HawkConfig.SpecialQA, specialList)
+                Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
+            }
+
         })
     }
 

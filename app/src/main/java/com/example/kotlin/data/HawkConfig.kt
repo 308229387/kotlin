@@ -17,5 +17,7 @@ class HawkConfig {
         const val GifData = "gifData"
         const val QA = "qa"
         const val JDSearch = "JDSearch"
+        const val SpecialQA = "SpecialQA"
+        const val WeekQA = "WeekQA"
     }
 }

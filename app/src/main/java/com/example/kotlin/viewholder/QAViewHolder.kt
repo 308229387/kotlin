@@ -2,9 +2,7 @@ package com.example.kotlin.viewholder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlin.adapter.AlgorithmAdapter
 import com.example.kotlin.adapter.QAAdapter
-import com.example.kotlin.data.AlgorithmItemData
 import com.example.kotlin.data.QAItemData
 import kotlinx.android.synthetic.main.list_items.view.*
 
@@ -23,6 +21,12 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             listener.jump()
         }
         itemView.list_item_image.setOnClickListener { listener.delete() }
+        itemView.list_item_image.setOnLongClickListener {
+            listener.longClick()
+            return@setOnLongClickListener true
+        }
+
+
     }
 
 
