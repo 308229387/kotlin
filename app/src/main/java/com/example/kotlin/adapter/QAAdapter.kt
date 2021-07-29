@@ -234,6 +234,10 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.hash_map_hashtable)
                         intent.putExtra("answer", QA.hash_map_hashtable_answer)
                     }
+                    QA.clean_apk -> {
+                        intent.putExtra("question", QA.clean_apk)
+                        intent.putExtra("answer", QA.clean_apk_answer)
+                    }
 
                 }
                 context.startActivity(intent)

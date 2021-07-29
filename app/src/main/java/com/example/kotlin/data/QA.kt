@@ -95,12 +95,14 @@ package com.example.kotlin.data
         const val sum_link_answer = "数组：是将元素在内存中连续存储的；它的优点：因为数据是连续存储的，内存地址连续，所以在查找数据的时候效率比较高；它的缺点：在存储之前，我们需要申请一块连续的内存空间，并且在编译的时候就必须确定好它的空间的大小。在运行的时候空间的大小是无法随着你的需要进行增加和减少而改变的，当数据两比较大的时候，有可能会出现越界的情况，数据比较小的时候，又有可能会浪费掉内存空间。在改变数据个数时，增加、插入、删除数据效率比较低。\n" + "\n" + "链表：是动态申请内存空间，不需要像数组需要提前申请好内存的大小，链表只需在用的时候申请就可以，根据需要来动态申请或者删除内存空间，对于数据增加和删除以及插入比数组灵活。还有就是链表中数据在内存中可以在任意的位置，通过应用来关联数据（就是通过存在元素的指针来联系）"
         const val array_link = "ArrayList和LinkedList的区别，以及应用场景"
         const val array_link_answer = "Array是基于索引(index)的数据结构，它使用索引在数组中搜索和读取数据是很快的。Array获取数据的时间复杂度是O(1),但是要删除数据却是开销很大的，因为这需要重排数组中后面的所有数据。最差情况是ON\n" + "\n" + "linkedList是基于双链表的，他的特点就是插入和删除非常快，只需要改变相邻节点的指针就可以了，但他如果用来查询就很慢了，最差情况是ON，因为他需要一个一个去找。\n" + "\n" + "除此之外像ArrayList是数组结构，所以他的起始容量是10，当数组需要增长时，就会新增一个为原来1.5倍容量的新数组，然后把原数组的数据原封不动的复制到新数组中，再把新数组赋值给原来的数组对象就完成了。所以会有空间浪费的情况\n" + "\n" + "一般情况下，LinkedList的占用空间更大，因为每个节点要维护指向前后地址的两个节点，但也不是绝对，如果刚好数据量超过ArrayList默认的临时值时，ArrayList占用的空间也是不小的，因为扩容的原因会浪费将近原来数组一半的容量\n"
-        const val string_string_buffer = "String、StringBuffer、StringBuilder的区别"
-        const val string_string_buffer_answer = "String:\n" + "字符串常量不适用于经常要改变值得情况，每次改变相当于生成一个新的对象\n\n" + "StringBuffer:\n" + "字符串变量（线程安全）\n" + "StringBuilder:\n" + "字符串变量\n" + "（\n" + "线程不安全）\n" + "确保单线程下可用，\n" + "效率略高于\n" + "StringBuffer"
+        const val string_string_buffer = "介绍下String，为什么要设计成不可变的？以及StringBuffer、StringBuilder"
+        const val string_string_buffer_answer = "String并不是基础类型，是final修饰的java类，之所以被设计成不可变主要是为了保证数据不被污据，方法区中的字符串池，当一个字符串已经被创建并且该字符串在池中，该字符串的引用会立即返回给变量，而不是重新创建一个字符串再将引用返回给变量。如果字符串不是不可变的，那么改变一个引用（如:string2）的字符串将会导致另一个引用（如:string1）出现脏数据。\n" + "\n" + "string不是基本数据类型，那么一个string的内存位置是什么呢？一共有两种情况：\n" + "　　1、string直接赋值：\n" + "　　　　String s = \"haha\";\n" + "　　　　s的引用存在栈内存中，引用指向的haha存在方法区的常量池中（先判断常量池中是否有一个haha，存在则直接指向）\n" + "　　2、string对象new创建\n" + "　　　　String s = new String(\"haha\");\n" + "　　　　s的引用存在于栈内存中，引用指向的haha对象，存在堆内存中（每new一次，在堆中创建一个新的haha对象）\n" + "\n" + "和 String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象\n" + "\n" + "StringBuffer是线程安全的，可以在多线程操作字符串\n" + "StringBuilder是非线程安全的，性能会比StringBuffer好些"
         const val thread_application = "进程和线程的区别"
         const val thread_application_answer = "进程是cpu资源分配的最小单位，线程是cpu调度的最小单位。进程之间不能共享资源，而线程共享所在进程的地址空间和其它资源。一个进程内可拥有多个线程，进程可开启进程，也可开启线程。一个线程只能属于一个进程，线程可直接使用同进程的资源,线程依赖于进程而存在。"
         const val hash_map_hashtable = "HashMap与HashTable的区别"
         const val hash_map_hashtable_answer = " Hashtable 中的方法是Synchronize的，而HashMap是不加锁的，在多线程并发的环境下，可以直接使用Hashtable，但使用HashMap时就必须要自己增加同步处理\n" + "\n" + " Hashtable中，key和value都不允许出现null值。但是如果在Hashtable中有类似put(null,null)的操作\n" + "\n" + "HashMap 要比 HashTable 效率高，现在用hashtable比较少。"
+        const val clean_apk = "APK体积优化"
+        const val clean_apk_answer = "1、使用Lint工具查找没有使用到的资源\n" + "\n" + "2、对图片进行过滤，能用.9就用.9，不能用的可以把图片进行压缩，像tinypng就挺好用的，如果可以就使用一套图就行，我一般用xxhdpi的\n" + "\n" + "3、对lib库进行精简，只保留有用的库\n" + "\n" + "4、使用proguard混淆代码"
     }
 }
 
