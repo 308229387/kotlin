@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
 import com.example.kotlin.activity.AlgorithmDetailActivity
+import com.example.kotlin.activity.QAHorizontalDetailActivity
 import com.example.kotlin.data.AlgorithmItemData
+import com.example.kotlin.data.QA
 import com.example.kotlin.viewholder.AlgorithmViewHolder
 
 class AlgorithmAdapter(private val context: Context, private val dataList: ArrayList<AlgorithmItemData>) :
@@ -40,7 +42,9 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
                 var intent = Intent(context, AlgorithmDetailActivity::class.java)
                 when (dataList[position].title) {
                     "反转链表" -> {
-                        intent.putExtra("image", R.drawable.reverse_linked_list)
+                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                        intent.putExtra("question", QA.reverse_list)
+                        intent.putExtra("answer", QA.reverse_list_answer)
                     }
                     "遍历对称二叉数" -> {
                         intent.putExtra("image", R.drawable.ergodically_symmetric_binary_numbers)

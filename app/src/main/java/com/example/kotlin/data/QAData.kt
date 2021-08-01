@@ -15,6 +15,10 @@ data class QAItemData(var question: String, var image: Int) {
 
 object QAData {
     val data = arrayListOf(
+        QAItemData(QA.reverse_list, R.mipmap.pineapple_pic),
+        QAItemData(QA.interrupt_interrupted, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_status, R.mipmap.pineapple_pic),
+        QAItemData(QA.binder_info, R.mipmap.pineapple_pic),
         QAItemData(QA.clean_apk, R.mipmap.pineapple_pic),
         QAItemData(QA.string_string_buffer, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_application, R.mipmap.pineapple_pic),
