@@ -46,6 +46,16 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
                         intent.putExtra("question", QA.reverse_list)
                         intent.putExtra("answer", QA.reverse_list_answer)
                     }
+                    "链表是否有环" -> {
+                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                        intent.putExtra("question", QA.has_cycle)
+                        intent.putExtra("answer", QA.has_cycle_answer)
+                    }
+                    QA.merge_two_lists -> {
+                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                        intent.putExtra("question", QA.merge_two_lists)
+                        intent.putExtra("answer", QA.merge_two_lists_answer)
+                    }
                     "遍历对称二叉数" -> {
                         intent.putExtra("image", R.drawable.ergodically_symmetric_binary_numbers)
                     }
@@ -75,9 +85,6 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
                     }
                     "删除倒数第N个节点" -> {
                         intent.putExtra("image", R.drawable.delete_the_n_penultimate_node)
-                    }
-                    "合并两个有序链表" -> {
-                        intent.putExtra("image", R.drawable.merges_two_ordered_linked_lists)
                     }
                     "合并有序数组" -> {
                         intent.putExtra("image", R.drawable.merge_ordered_array)
@@ -126,9 +133,6 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
                     }
                     "链表中倒数第k个节点" -> {
                         intent.putExtra("image", R.drawable.the_k_penultimate_node_in_the_linked_list)
-                    }
-                    "链表是否有环" -> {
-                        intent.putExtra("image", R.drawable.whether_a_linked_list_has_a_ring)
                     }
                     "青蛙跳台阶" -> {
                         intent.putExtra("image", R.drawable.frog_jump_the_steps)
