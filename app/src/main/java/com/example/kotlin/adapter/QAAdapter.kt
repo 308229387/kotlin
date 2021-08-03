@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
 import com.example.kotlin.activity.AlgorithmDetailActivity
 import com.example.kotlin.activity.QADetailActivity
-import com.example.kotlin.activity.QAHorizontalDetailActivity
 import com.example.kotlin.data.HawkConfig
 import com.example.kotlin.data.QA
 import com.example.kotlin.data.QAItemData
@@ -251,7 +250,18 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.interrupt_interrupted)
                         intent.putExtra("answer", QA.interrupt_interrupted_answer)
                     }
-
+                    QA.catch_exception -> {
+                        intent.putExtra("question", QA.catch_exception)
+                        intent.putExtra("answer", QA.catch_exception_answer)
+                    }
+                    QA.ui_block -> {
+                        intent.putExtra("question", QA.ui_block)
+                        intent.putExtra("answer", QA.ui_block_answer)
+                    }
+                    QA.not_ui_refresh -> {
+                        intent.putExtra("question", QA.not_ui_refresh)
+                        intent.putExtra("answer", QA.not_ui_refresh_answer)
+                    }
 
                 }
                 context.startActivity(intent)

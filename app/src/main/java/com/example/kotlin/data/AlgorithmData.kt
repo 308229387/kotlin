@@ -16,9 +16,11 @@ data class AlgorithmItemData(var title: String, var image: Int) {
 
 object AlgorithmData {
     val data = arrayListOf(
-        AlgorithmItemData("反转链表", R.mipmap.strawberry_pic),
-        AlgorithmItemData("链表是否有环", R.mipmap.pineapple_pic),
+        AlgorithmItemData(QA.reverse_list, R.mipmap.strawberry_pic),
+        AlgorithmItemData(QA.has_cycle , R.mipmap.pineapple_pic),
         AlgorithmItemData(QA.merge_two_lists, R.mipmap.apple_pic),
+        AlgorithmItemData(QA.k_th_from_end, R.mipmap.apple_pic),
+        AlgorithmItemData(QA.jump_steps, R.mipmap.apple_pic),
 
         AlgorithmItemData("遍历对称二叉数", R.mipmap.apple_pic),
         AlgorithmItemData("查找重复的数", R.mipmap.banana_pic),
@@ -45,7 +47,6 @@ object AlgorithmData {
         AlgorithmItemData("连续子数组最大和", R.mipmap.grape_pic),
         AlgorithmItemData("迭代对称二叉数", R.mipmap.mango_pic),
         AlgorithmItemData("递归对称二叉树", R.mipmap.orange_pic),
-        AlgorithmItemData("链表中倒数第k个节点", R.mipmap.pear_pic),
         AlgorithmItemData("青蛙跳台阶", R.mipmap.strawberry_pic))
 
 }
