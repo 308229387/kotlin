@@ -262,6 +262,10 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.not_ui_refresh)
                         intent.putExtra("answer", QA.not_ui_refresh_answer)
                     }
+                    QA.serializable_parcelable -> {
+                        intent.putExtra("question", QA.serializable_parcelable)
+                        intent.putExtra("answer", QA.serializable_parcelable_answer)
+                    }
 
                 }
                 context.startActivity(intent)

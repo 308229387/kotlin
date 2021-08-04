@@ -66,6 +66,11 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
                         intent.putExtra("question", QA.jump_steps)
                         intent.putExtra("answer", QA.jump_steps_answer)
                     }
+                    QA.delete_node -> {
+                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                        intent.putExtra("question", QA.delete_node)
+                        intent.putExtra("answer", QA.delete_node_answer)
+                    }
 
 
                     "青蛙跳台阶" -> {
