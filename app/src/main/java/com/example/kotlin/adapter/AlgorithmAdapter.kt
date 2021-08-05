@@ -71,11 +71,22 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
                         intent.putExtra("question", QA.delete_node)
                         intent.putExtra("answer", QA.delete_node_answer)
                     }
-
-
-                    "青蛙跳台阶" -> {
-                        intent.putExtra("image", R.drawable.frog_jump_the_steps)
+                    QA.merge_num -> {
+                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                        intent.putExtra("question", QA.merge_num)
+                        intent.putExtra("answer", QA.merge_num_answer)
                     }
+                    QA.merge_num_traverse -> {
+                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                        intent.putExtra("question", QA.merge_num_traverse)
+                        intent.putExtra("answer", QA.merge_num_traverse_answer)
+                    }
+
+
+
+//                    "青蛙跳台阶" -> {
+//                        intent.putExtra("image", R.drawable.frog_jump_the_steps)
+//                    }
 
                 }
                 context.startActivity(intent)

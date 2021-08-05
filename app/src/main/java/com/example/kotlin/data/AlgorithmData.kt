@@ -16,6 +16,8 @@ data class AlgorithmItemData(var title: String, var image: Int) {
 
 object AlgorithmData {
     val data = arrayListOf(
+        AlgorithmItemData(QA.merge_num, R.mipmap.strawberry_pic),
+        AlgorithmItemData(QA.merge_num_traverse, R.mipmap.strawberry_pic),
         AlgorithmItemData(QA.delete_node, R.mipmap.strawberry_pic),
         AlgorithmItemData(QA.reverse_list, R.mipmap.strawberry_pic),
         AlgorithmItemData(QA.has_cycle , R.mipmap.pineapple_pic),
