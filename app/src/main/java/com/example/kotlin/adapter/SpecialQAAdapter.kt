@@ -15,7 +15,7 @@ import com.example.kotlin.viewholder.HolderListener
 import com.example.kotlin.viewholder.QAViewHolder
 import com.orhanobut.hawk.Hawk
 
-class QAAdapter(private val context: Context, private val dataList: ArrayList<QAItemData>) :
+class SpecialQAAdapter(private val context: Context, private val dataList: ArrayList<QAItemData>) :
     RecyclerView.Adapter<QAViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QAViewHolder {
@@ -27,7 +27,6 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
         return dataList.size
     }
 
-
     override fun onBindViewHolder(holder: QAViewHolder, position: Int) {
         val itemData = dataList[position]
         holder.setData(itemData, position)
@@ -35,7 +34,7 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
             override fun delete() {
                 dataList.removeAt(position)
                 notifyDataSetChanged()
-                Hawk.put(HawkConfig.QA, dataList)
+                Hawk.put(HawkConfig.SpecialQA, dataList)
             }
 
             override fun jump() {
@@ -45,14 +44,7 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
             }
 
             override fun longClick() {
-                var specialList: ArrayList<QAItemData> = if (Hawk.contains(HawkConfig.SpecialQA)) {
-                    Hawk.get(HawkConfig.SpecialQA)
-                } else {
-                    ArrayList()
-                }
-                specialList.add(dataList[position])
-                Hawk.put(HawkConfig.SpecialQA, specialList)
-                Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "长按", Toast.LENGTH_SHORT).show()
             }
 
         })

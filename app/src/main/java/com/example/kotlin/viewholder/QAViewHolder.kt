@@ -2,7 +2,6 @@ package com.example.kotlin.viewholder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlin.adapter.QAAdapter
 import com.example.kotlin.data.QAItemData
 import kotlinx.android.synthetic.main.list_items.view.*
 
@@ -14,7 +13,7 @@ import kotlinx.android.synthetic.main.list_items.view.*
 class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var currentData: QAItemData? = null
     var currentPosition: Int = 0
-    private lateinit var listener: QAAdapter.HolderListener
+    private lateinit var listener: HolderListener
 
     init {
         itemView.setOnClickListener {
@@ -41,7 +40,7 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         this.currentPosition = pos
     }
 
-    fun setOnListener(deleteListener: QAAdapter.HolderListener) {
+    fun setOnListener(deleteListener: HolderListener) {
         listener = deleteListener
     }
 }

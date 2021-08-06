@@ -4,11 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin.R
-import com.example.kotlin.adapter.QAAdapter
+import com.example.kotlin.adapter.SpecialQAAdapter
 import com.example.kotlin.data.HawkConfig
 import com.example.kotlin.data.QAItemData
 import com.orhanobut.hawk.Hawk
-import kotlinx.android.synthetic.main.activity_q_a_list.*
 import kotlinx.android.synthetic.main.activity_special_q_a_list.*
 
 /**
@@ -29,7 +28,7 @@ class SpecialQAListActivity : AppCompatActivity() {
 
         if (Hawk.contains(HawkConfig.SpecialQA)) {
             dataList = Hawk.get(HawkConfig.SpecialQA)
-            val adapter = QAAdapter(this, dataList)
+            val adapter = SpecialQAAdapter(this, dataList)
             special_q_a_recyclerView.adapter = adapter
         }
 
