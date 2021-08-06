@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
-import com.example.kotlin.activity.AlgorithmDetailActivity
 import com.example.kotlin.activity.QADetailActivity
 import com.example.kotlin.data.HawkConfig
 import com.example.kotlin.data.QA
@@ -70,10 +69,7 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.android_configChanges)
                         intent.putExtra("answer", QA.android_configChanges_answer)
                     }
-                    QA.fragment_life -> {
-                        intent = Intent(context, AlgorithmDetailActivity::class.java)
-                        intent.putExtra("image", R.drawable.fragment_life_image)
-                    }
+
                     QA.service_life_stop -> {
                         intent.putExtra("question", QA.service_life_stop)
                         intent.putExtra("answer", QA.service_life_stop_answer)
@@ -274,6 +270,20 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.sp_about)
                         intent.putExtra("answer", QA.sp_about_answer)
                     }
+                    QA.fragment_life -> {
+                        intent.putExtra("question", QA.fragment_life)
+                        intent.putExtra("answer", QA.fragment_life_answer)
+                    }
+                    QA.lazy_fragment -> {
+                        intent.putExtra("question", QA.lazy_fragment)
+                        intent.putExtra("answer", QA.lazy_fragment_answer)
+                    }
+
+
+//                    QA.fragment_life -> {
+//                        intent = Intent(context, AlgorithmDetailActivity::class.java)
+//                        intent.putExtra("image", R.drawable.fragment_life_image)
+//                    }
 
                 }
                 context.startActivity(intent)

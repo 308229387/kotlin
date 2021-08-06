@@ -15,6 +15,8 @@ data class QAItemData(var question: String, var image: Int) {
 
 object QAData {
     val data = arrayListOf(
+        QAItemData(QA.lazy_fragment, R.mipmap.pineapple_pic),
+        QAItemData(QA.fragment_life, R.mipmap.pineapple_pic),
         QAItemData(QA.sp_about, R.mipmap.pineapple_pic),
         QAItemData(QA.more_process, R.mipmap.pineapple_pic),
         QAItemData(QA.serializable_parcelable, R.mipmap.pineapple_pic),
@@ -67,7 +69,6 @@ object QAData {
         QAItemData(QA.android_configChanges, R.mipmap.mango_pic),
         QAItemData(QA.activity_launchMode, R.mipmap.orange_pic),
         QAItemData(QA.service_life_stop, R.mipmap.pear_pic),
-        QAItemData(QA.fragment_life, R.mipmap.pineapple_pic),
         QAItemData(QA.http_https, R.mipmap.strawberry_pic),
         QAItemData(QA.jvm_model, R.mipmap.watermelon_pic),
         QAItemData(QA.jvm_gc_root, R.mipmap.apple_pic),
