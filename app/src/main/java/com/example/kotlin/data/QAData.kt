@@ -15,6 +15,9 @@ data class QAItemData(var question: String, var image: Int) {
 
 object QAData {
     val data = arrayListOf(
+        QAItemData(QA.class_load, R.mipmap.pineapple_pic),
+        QAItemData(QA.abstract_interface, R.mipmap.pineapple_pic),
+        QAItemData(QA.blocking_queue, R.mipmap.pineapple_pic),
         QAItemData(QA.lazy_fragment, R.mipmap.pineapple_pic),
         QAItemData(QA.fragment_life, R.mipmap.pineapple_pic),
         QAItemData(QA.sp_about, R.mipmap.pineapple_pic),

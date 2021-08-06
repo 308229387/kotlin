@@ -278,9 +278,20 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                         intent.putExtra("question", QA.lazy_fragment)
                         intent.putExtra("answer", QA.lazy_fragment_answer)
                     }
+                    QA.class_load -> {
+                        intent.putExtra("question", QA.class_load)
+                        intent.putExtra("answer", QA.class_load_answer)
+                    }
+                    QA.abstract_interface -> {
+                        intent.putExtra("question", QA.abstract_interface)
+                        intent.putExtra("answer", QA.abstract_interface_answer)
+                    }
+                    QA.blocking_queue -> {
+                        intent.putExtra("question", QA.blocking_queue)
+                        intent.putExtra("answer", QA.blocking_queue_answer)
+                    }
 
-
-//                    QA.fragment_life -> {
+//                    QA.fragment_life -> {//图片缩放
 //                        intent = Intent(context, AlgorithmDetailActivity::class.java)
 //                        intent.putExtra("image", R.drawable.fragment_life_image)
 //                    }
