@@ -87,6 +87,11 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
                         intent.putExtra("question", AlgorithmQA.string_add)
                         intent.putExtra("answer", AlgorithmQA.string_add_answer)
                     }
+                    AlgorithmQA.first_show_char -> {
+                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                        intent.putExtra("question", AlgorithmQA.first_show_char)
+                        intent.putExtra("answer", AlgorithmQA.first_show_char_answer)
+                    }
 
 
 

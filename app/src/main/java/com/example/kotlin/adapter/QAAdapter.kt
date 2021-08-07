@@ -33,9 +33,14 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
         holder.setData(itemData, position)
         holder.setOnListener(object : HolderListener {
             override fun delete() {
-                dataList.removeAt(position)
-                notifyDataSetChanged()
-                Hawk.put(HawkConfig.QA, dataList)
+                var specialList: ArrayList<QAItemData> = if (Hawk.contains(HawkConfig.SpecialQA)) {
+                    Hawk.get(HawkConfig.SpecialQA)
+                } else {
+                    ArrayList()
+                }
+                specialList.add(dataList[position])
+                Hawk.put(HawkConfig.SpecialQA, specialList)
+                Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
             }
 
             override fun jump() {
@@ -45,14 +50,9 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
             }
 
             override fun longClick() {
-                var specialList: ArrayList<QAItemData> = if (Hawk.contains(HawkConfig.SpecialQA)) {
-                    Hawk.get(HawkConfig.SpecialQA)
-                } else {
-                    ArrayList()
-                }
-                specialList.add(dataList[position])
-                Hawk.put(HawkConfig.SpecialQA, specialList)
-                Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
+                dataList.removeAt(position)
+                notifyDataSetChanged()
+                Hawk.put(HawkConfig.QA, dataList)
             }
 
         })
