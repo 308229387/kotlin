@@ -16,6 +16,8 @@ data class AlgorithmItemData(var title: String, var image: Int) {
 
 object AlgorithmData {
     val data = arrayListOf(
+        AlgorithmItemData(AlgorithmQA.replace_space, R.mipmap.strawberry_pic),
+        AlgorithmItemData(AlgorithmQA.two_sum, R.mipmap.strawberry_pic),
         AlgorithmItemData(AlgorithmQA.first_show_char, R.mipmap.strawberry_pic),
         AlgorithmItemData(AlgorithmQA.string_add, R.mipmap.strawberry_pic),
         AlgorithmItemData(AlgorithmQA.merge_num, R.mipmap.strawberry_pic),

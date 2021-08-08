@@ -92,6 +92,16 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
                         intent.putExtra("question", AlgorithmQA.first_show_char)
                         intent.putExtra("answer", AlgorithmQA.first_show_char_answer)
                     }
+                    AlgorithmQA.two_sum -> {
+                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                        intent.putExtra("question", AlgorithmQA.two_sum)
+                        intent.putExtra("answer", AlgorithmQA.two_sum_answer)
+                    }
+                    AlgorithmQA.replace_space -> {
+                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                        intent.putExtra("question", AlgorithmQA.replace_space)
+                        intent.putExtra("answer", AlgorithmQA.replace_space_answer)
+                    }
 
 
 
