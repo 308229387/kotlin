@@ -258,6 +258,18 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", QA.blocking_queue)
                     intent.putExtra("answer", QA.blocking_queue_answer)
                 }
+                QA.why_no_die -> {
+                    intent.putExtra("question", QA.why_no_die)
+                    intent.putExtra("answer", QA.why_no_die_answer)
+                }
+                QA.delay_message -> {
+                    intent.putExtra("question", QA.delay_message)
+                    intent.putExtra("answer", QA.delay_message_answer)
+                }
+                QA.handler_async -> {
+                    intent.putExtra("question", QA.handler_async)
+                    intent.putExtra("answer", QA.handler_async_answer)
+                }
 
 //                    QA.fragment_life -> {//图片缩放
 //                        intent = Intent(context, AlgorithmDetailActivity::class.java)
