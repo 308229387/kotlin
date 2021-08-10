@@ -9,8 +9,8 @@ import com.example.kotlin.R
  */
 
 
-data class QAItemData(var question: String, var image: Int) {
-}
+data class QAItemData(var question: String, var image: Int)
+
 
 
 object QAData {

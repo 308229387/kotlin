@@ -2,9 +2,9 @@ package com.example.kotlin.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
 import com.example.kotlin.activity.*
@@ -56,7 +56,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "圆角、圆头像" -> context.startActivity(Intent(context, RoundImageActivity::class.java))
                     "重复定时任务" -> context.startActivity(Intent(context, ScheduleTaskActivity::class.java))
                     "恢复问答" -> {
-                        Log.d("song_test", QAData.data.size.toString())
+                        Toast.makeText(context, "已刷新", Toast.LENGTH_SHORT).show()
                         Hawk.put(HawkConfig.QA, QAData.data)
                     }
 

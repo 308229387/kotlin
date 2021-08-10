@@ -40,67 +40,65 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
             }
 
             override fun jump() {
-                var intent = Intent(context, AlgorithmDetailActivity::class.java)
+                var intent = Intent(context, QAHorizontalDetailActivity::class.java)
                 when (dataList[position].title) {
                     AlgorithmQA.reverse_list -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.reverse_list)
                         intent.putExtra("answer", AlgorithmQA.reverse_list_answer)
                     }
                     AlgorithmQA.has_cycle -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.has_cycle)
                         intent.putExtra("answer", AlgorithmQA.has_cycle_answer)
                     }
                     AlgorithmQA.merge_two_lists -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.merge_two_lists)
                         intent.putExtra("answer", AlgorithmQA.merge_two_lists_answer)
                     }
                     AlgorithmQA.k_th_from_end -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.k_th_from_end)
                         intent.putExtra("answer", AlgorithmQA.k_th_from_end_answer)
                     }
                     AlgorithmQA.jump_steps -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.jump_steps)
                         intent.putExtra("answer", AlgorithmQA.jump_steps_answer)
                     }
                     AlgorithmQA.delete_node -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.delete_node)
                         intent.putExtra("answer", AlgorithmQA.delete_node_answer)
                     }
                     AlgorithmQA.merge_num -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.merge_num)
                         intent.putExtra("answer", AlgorithmQA.merge_num_answer)
                     }
                     AlgorithmQA.merge_num_traverse -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.merge_num_traverse)
                         intent.putExtra("answer", AlgorithmQA.merge_num_traverse_answer)
                     }
                     AlgorithmQA.string_add -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.string_add)
                         intent.putExtra("answer", AlgorithmQA.string_add_answer)
                     }
                     AlgorithmQA.first_show_char -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.first_show_char)
                         intent.putExtra("answer", AlgorithmQA.first_show_char_answer)
                     }
                     AlgorithmQA.two_sum -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.two_sum)
                         intent.putExtra("answer", AlgorithmQA.two_sum_answer)
                     }
                     AlgorithmQA.replace_space -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
                         intent.putExtra("question", AlgorithmQA.replace_space)
                         intent.putExtra("answer", AlgorithmQA.replace_space_answer)
+                    }
+                    AlgorithmQA.reverse_print_recursive -> {
+                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                        intent.putExtra("question", AlgorithmQA.reverse_print_recursive)
+                        intent.putExtra("answer", AlgorithmQA.reverse_print_recursive_answer)
+                    }
+                    AlgorithmQA.reverse_print_stack -> {
+                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                        intent.putExtra("question", AlgorithmQA.reverse_print_stack)
+                        intent.putExtra("answer", AlgorithmQA.reverse_print_stack_answer)
                     }
 
 
