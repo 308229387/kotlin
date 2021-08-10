@@ -39,7 +39,7 @@ class SpecialQAAdapter(private val context: Context, private val dataList: Array
 
             override fun jump() {
                 val intent = Intent(context, QADetailActivity::class.java)
-                QAAdapterJumpUtil.setIntent(dataList[position].question, intent)
+                QAAdapterJumpUtil.setIntent(dataList[position].title, intent)
                 context.startActivity(intent)
             }
 

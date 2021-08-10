@@ -3,7 +3,7 @@ package com.example.kotlin.viewholder
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.adapter.AlgorithmAdapter
-import com.example.kotlin.data.AlgorithmItemData
+import com.example.kotlin.data.QAItemData
 import kotlinx.android.synthetic.main.list_items.view.*
 
 /**
@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.list_items.view.*
  * Describe:
  */
 class AlgorithmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var currentData: AlgorithmItemData? = null
+    var currentData: QAItemData? = null
     var currentPosition: Int = 0
     private lateinit var listener: AlgorithmAdapter.HolderListener
 
@@ -24,7 +24,7 @@ class AlgorithmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
 
-    fun setData(data: AlgorithmItemData, pos: Int) {
+    fun setData(data: QAItemData, pos: Int) {
         /* val title =  itemView.findViewById<TextView>(R.id.tvTitle)
          title.text = hobby?.title */
 

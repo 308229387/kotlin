@@ -19,7 +19,7 @@ class QADetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.q_a_detail_layout)
         if (intent != null) {
-            question_text.text = intent.getStringExtra("question")
+            question_text.text = intent.getStringExtra("title")
             answer_text.text = intent.getStringExtra("answer")
         }
     }

@@ -4,16 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
 import com.example.kotlin.activity.AlgorithmDetailActivity
 import com.example.kotlin.activity.QAHorizontalDetailActivity
-import com.example.kotlin.data.AlgorithmItemData
-import com.example.kotlin.data.AlgorithmQA
-import com.example.kotlin.data.QA
+import com.example.kotlin.data.*
 import com.example.kotlin.viewholder.AlgorithmViewHolder
+import com.orhanobut.hawk.Hawk
 
-class AlgorithmAdapter(private val context: Context, private val dataList: ArrayList<AlgorithmItemData>) :
+class AlgorithmAdapter(private val context: Context, private val dataList: ArrayList<QAItemData>) :
     RecyclerView.Adapter<AlgorithmViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlgorithmViewHolder {
@@ -35,8 +35,14 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
         holder.setData(itemData, position)
         holder.setOnListener(object : HolderListener {
             override fun delete() {
-                dataList.removeAt(position)
-                notifyDataSetChanged()
+                var specialList: ArrayList<QAItemData> = if (Hawk.contains(HawkConfig.SpecialQA)) {
+                    Hawk.get(HawkConfig.SpecialQA)
+                } else {
+                    ArrayList()
+                }
+                specialList.add(dataList[position])
+                Hawk.put(HawkConfig.SpecialQA, specialList)
+                Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
             }
 
             override fun jump() {

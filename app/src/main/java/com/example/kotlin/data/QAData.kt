@@ -9,10 +9,6 @@ import com.example.kotlin.R
  */
 
 
-data class QAItemData(var question: String, var image: Int)
-
-
-
 object QAData {
     val data = arrayListOf(
         QAItemData(QA.handler_async, R.mipmap.pineapple_pic),
