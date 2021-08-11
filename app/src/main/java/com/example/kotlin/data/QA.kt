@@ -135,7 +135,7 @@ package com.example.kotlin.data
         const val delay_message = "延迟消息处理"
         const val delay_message_answer = "实现原理在sendMessageAtTime()方法里，消息被处理的时间 = 当前时间+延迟的时间，\n" + "在MessageQueue的enqueueMessage方法中，将延迟时间封装到msg内部.如果此队列中头部元素是null，或者此消息不是延时的消息，则此消息需要被立即处理。如果此消息是延时的消息，则将其添加到队列中，原理就是链表的添加新元素，按照when，也就是延迟的时间来插入的，延迟的时间越长，越靠后，这样就得到一条有序的延时消息链表。然后在MessageQueue的next方法中\n" + "如果链表头部的消息还没有到时间，则会重新设置超时时间并赋值给nextPollTimeoutMillis，然后调用nativePollOnce(ptr, nextPollTimeoutMillis)进行阻塞，这是一个本地方法，会调用底层C++代码，C++代码最终会通过Linux的epoll监听文件描述符的写入事件来实现延迟的。最终再dispatchMessage分发出去。\n" + "\n" + "当前时间是用SystemClock.uptimeMillis() 来获取的，表示系统开机到当前的时间总数，这个时钟是保证单调性,适用于计算不跨越设备的时间间隔。"
         const val why_no_die = "为什么Looper.loop不会卡死"
-        const val why_no_die_answer = "这个和我们平时理解的卡死有些区别，像平时因为在activity生命周期中执行去执行任务，他是会消耗大量CPU资源的，被阻塞了也就会报ANR异常。\n" + "\n" + "但在主线程中，如果我们想让程序一直运行下去，就需要代码是能一直执行下去的，死循环便能保证不会被退出，像Activity的生命周期都是依靠主线程的Looper.loop的，当主线程的MessageQueue没有消息时，便阻塞在loop的queue.next()中的nativePollOnce()方法里，此时主线程会释放CPU资源。直到下个消息到达或者有事务发生，通过往pipe管道写端写入数据来唤醒主线程工作，所以说，主线程很多时候都是处于休眠状态，并不会消耗大量CPU资源，也就不会引起卡死。\n"
+        const val why_no_die_answer = "这个和我们平时理解的卡死有些区别，像平时因为在activity生命周期中执行去执行任务，他是会<font color='#ff0000'><big>消耗大量CPU资源</big></font>的，被阻塞了也就会报ANR异常。\n" + "\n" + "但在主线程中，如果我们想让程序一直运行下去，就需要代码是能一直执行下去的，死循环便能保证不会被退出，像Activity的生命周期都是依靠主线程的Looper.loop的，当主线程的MessageQueue没有消息时，便阻塞在loop的queue.next()中的nativePollOnce()方法里，此时主线程会释放CPU资源。直到下个消息到达或者有事务发生，通过往pipe管道写端写入数据来唤醒主线程工作，所以说，主线程很多时候都是处于休眠状态，并不会消耗大量CPU资源，也就不会引起卡死。\n"
     }
 }
 

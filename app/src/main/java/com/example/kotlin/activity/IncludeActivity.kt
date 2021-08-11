@@ -1,6 +1,7 @@
 package com.example.kotlin.activity
 
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import android.widget.ImageSwitcher
 import android.widget.Toast
@@ -9,9 +10,11 @@ import com.example.kotlin.R
 import kotlinx.android.synthetic.main.activity_include_layout.*
 import kotlinx.android.synthetic.main.include_layout.*
 
+
 class IncludeActivity : AppCompatActivity() {
     private lateinit var vEmojiSwitcher: ImageSwitcher
     private var switcherTag: Boolean = false
+    val textSource = Html.fromHtml("修改TextView中部分文字的<font color='#ff0000'><big>大</big><small>小</small></font>和<font color='#00ff00'>颜色</font>，展示多彩效果！")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,16 +24,17 @@ class IncludeActivity : AppCompatActivity() {
             Toast.makeText(this, tv_setting_update_app_title.text, Toast.LENGTH_SHORT).show()
         }
 
-        var i ={x:Int,y:Int->x+y}
-        i(2,3)
+        var i ={ x: Int, y: Int->x+y}
+        i(2, 3)
 
-        var j :(Int,Int)->Int = {x,y -> x+y}
+        var j : (Int, Int)->Int = { x, y -> x+y}
 
         vEmojiSwitcher = emoji_switcher
 
         result_for.text = forResult()
 
         setOnListener()
+        html_text.text = textSource
     }
 
   

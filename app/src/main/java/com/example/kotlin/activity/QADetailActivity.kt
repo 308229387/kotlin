@@ -1,6 +1,7 @@
 package com.example.kotlin.activity
 
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin.R
@@ -20,7 +21,7 @@ class QADetailActivity : AppCompatActivity() {
         setContentView(R.layout.q_a_detail_layout)
         if (intent != null) {
             question_text.text = intent.getStringExtra("title")
-            answer_text.text = intent.getStringExtra("answer")
+            answer_text.text = Html.fromHtml(intent.getStringExtra("answer"), Html.FROM_HTML_MODE_COMPACT)
         }
     }
 
