@@ -13,21 +13,22 @@ import com.example.kotlin.data.QAItemData
 import com.example.kotlin.utils.QAAdapterJumpUtil
 import com.example.kotlin.viewholder.HolderListener
 import com.example.kotlin.viewholder.QAViewHolder
+import com.example.kotlin.viewholder.SpecialQAViewHolder
 import com.orhanobut.hawk.Hawk
 
 class SpecialQAAdapter(private val context: Context, private val dataList: ArrayList<QAItemData>) :
-    RecyclerView.Adapter<QAViewHolder>() {
+    RecyclerView.Adapter<SpecialQAViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QAViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpecialQAViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.list_items, parent, false)
-        return QAViewHolder(view)
+        return SpecialQAViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return dataList.size
     }
 
-    override fun onBindViewHolder(holder: QAViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SpecialQAViewHolder, position: Int) {
         val itemData = dataList[position]
         holder.setData(itemData, position)
         holder.setOnListener(object : HolderListener {

@@ -38,7 +38,9 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                 } else {
                     ArrayList()
                 }
-                specialList.add(dataList[position])
+                if(!specialList.contains(dataList[position])){
+                    specialList.add(dataList[position])
+                }
                 Hawk.put(HawkConfig.SpecialQA, specialList)
                 Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
 
