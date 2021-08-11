@@ -41,6 +41,10 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                 specialList.add(dataList[position])
                 Hawk.put(HawkConfig.SpecialQA, specialList)
                 Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
+
+                dataList[position].tag = 1 //标记为处理状态
+                notifyDataSetChanged()
+                Hawk.put(HawkConfig.QA, dataList)
             }
 
             override fun jump() {

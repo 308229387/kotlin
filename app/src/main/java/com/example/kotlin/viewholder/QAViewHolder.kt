@@ -1,6 +1,9 @@
 package com.example.kotlin.viewholder
 
+import android.graphics.Color
+import android.os.Build
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.data.QAItemData
 import kotlinx.android.synthetic.main.list_items.view.*
@@ -35,7 +38,11 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         itemView.list_item_text.text = data?.title
         data?.image?.let { itemView.list_item_image.setBackgroundResource(it) }
-
+        if(data.tag == 1){
+            itemView.list_item_text.setTextColor(Color.GREEN)
+        }else{
+            itemView.list_item_text.setTextColor(Color.parseColor("#616161"))
+        }
         this.currentData = data
         this.currentPosition = pos
     }

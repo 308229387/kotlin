@@ -13,7 +13,7 @@ object HomeData {
         Data("仿京东搜索", R.mipmap.watermelon_pic),
         Data("聊天交互框", R.mipmap.watermelon_pic),
         Data("addView", R.mipmap.mango_pic),
-        Data("include实现", R.mipmap.apple_pic),
+        Data("include实现、html文字", R.mipmap.apple_pic),
         Data("Fragment实现", R.mipmap.banana_pic),
         Data("键盘高度测量", R.mipmap.cherry_pic),
         Data("简易ViewPager", R.mipmap.grape_pic),
