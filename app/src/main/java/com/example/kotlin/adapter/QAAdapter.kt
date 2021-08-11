@@ -40,9 +40,12 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                 }
                 if(!specialList.contains(dataList[position])){
                     specialList.add(dataList[position])
+                    Hawk.put(HawkConfig.SpecialQA, specialList)
+                    Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(context, "已在关注列表", Toast.LENGTH_SHORT).show()
                 }
-                Hawk.put(HawkConfig.SpecialQA, specialList)
-                Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
+
 
                 dataList[position].tag = 1 //标记为处理状态
                 notifyDataSetChanged()

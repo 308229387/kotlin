@@ -1,5 +1,6 @@
 package com.example.kotlin.viewholder
 
+import android.graphics.Color
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.adapter.AlgorithmAdapter
@@ -30,6 +31,12 @@ class AlgorithmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         itemView.list_item_text.text = data.title
         data.image?.let { itemView.list_item_image.setBackgroundResource(it) }
+
+        if(data.tag == 1){
+            itemView.list_item_text.setTextColor(Color.GREEN)
+        }else{
+            itemView.list_item_text.setTextColor(Color.parseColor("#616161"))
+        }
 
         this.currentData = data
         this.currentPosition = pos
