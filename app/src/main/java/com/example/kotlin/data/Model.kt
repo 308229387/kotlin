@@ -29,7 +29,7 @@ object HomeData {
         Data("基础列表listview", R.mipmap.grape_pic),
         Data("圆角、圆头像", R.mipmap.orange_pic),
         Data("重复定时任务", R.mipmap.pear_pic),
-        Data("Pineapple", R.mipmap.pineapple_pic),
+        Data("RxJava学习", R.mipmap.pineapple_pic),
         Data("Strawberry", R.mipmap.strawberry_pic),
         Data("Watermelon", R.mipmap.watermelon_pic),
         Data("Apple", R.mipmap.apple_pic),
