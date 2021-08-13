@@ -1,15 +1,14 @@
 package com.example.kotlin.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
-import com.example.kotlin.activity.AlgorithmDetailActivity
-import com.example.kotlin.activity.QAHorizontalDetailActivity
-import com.example.kotlin.data.*
+import com.example.kotlin.data.HawkConfig
+import com.example.kotlin.data.QAItemData
+import com.example.kotlin.utils.QAAdapterJumpUtil
 import com.example.kotlin.viewholder.AlgorithmViewHolder
 import com.orhanobut.hawk.Hawk
 
@@ -41,11 +40,11 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
                     ArrayList()
                 }
 
-                if(!specialList.contains(dataList[position])){
+                if (!specialList.contains(dataList[position])) {
                     specialList.add(dataList[position])
                     Hawk.put(HawkConfig.SpecialQA, specialList)
                     Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
-                }else{
+                } else {
                     Toast.makeText(context, "已在关注列表", Toast.LENGTH_SHORT).show()
                 }
 
@@ -57,77 +56,7 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
             }
 
             override fun jump() {
-                var intent = Intent(context, QAHorizontalDetailActivity::class.java)
-                when (dataList[position].title) {
-                    AlgorithmQA.reverse_list -> {
-                        intent.putExtra("question", AlgorithmQA.reverse_list)
-                        intent.putExtra("answer", AlgorithmQA.reverse_list_answer)
-                    }
-                    AlgorithmQA.has_cycle -> {
-                        intent.putExtra("question", AlgorithmQA.has_cycle)
-                        intent.putExtra("answer", AlgorithmQA.has_cycle_answer)
-                    }
-                    AlgorithmQA.merge_two_lists -> {
-                        intent.putExtra("question", AlgorithmQA.merge_two_lists)
-                        intent.putExtra("answer", AlgorithmQA.merge_two_lists_answer)
-                    }
-                    AlgorithmQA.k_th_from_end -> {
-                        intent.putExtra("question", AlgorithmQA.k_th_from_end)
-                        intent.putExtra("answer", AlgorithmQA.k_th_from_end_answer)
-                    }
-                    AlgorithmQA.jump_steps -> {
-                        intent.putExtra("question", AlgorithmQA.jump_steps)
-                        intent.putExtra("answer", AlgorithmQA.jump_steps_answer)
-                    }
-                    AlgorithmQA.delete_node -> {
-                        intent.putExtra("question", AlgorithmQA.delete_node)
-                        intent.putExtra("answer", AlgorithmQA.delete_node_answer)
-                    }
-                    AlgorithmQA.merge_num -> {
-                        intent.putExtra("question", AlgorithmQA.merge_num)
-                        intent.putExtra("answer", AlgorithmQA.merge_num_answer)
-                    }
-                    AlgorithmQA.merge_num_traverse -> {
-                        intent.putExtra("question", AlgorithmQA.merge_num_traverse)
-                        intent.putExtra("answer", AlgorithmQA.merge_num_traverse_answer)
-                    }
-                    AlgorithmQA.string_add -> {
-                        intent.putExtra("question", AlgorithmQA.string_add)
-                        intent.putExtra("answer", AlgorithmQA.string_add_answer)
-                    }
-                    AlgorithmQA.first_show_char -> {
-                        intent.putExtra("question", AlgorithmQA.first_show_char)
-                        intent.putExtra("answer", AlgorithmQA.first_show_char_answer)
-                    }
-                    AlgorithmQA.two_sum -> {
-                        intent.putExtra("question", AlgorithmQA.two_sum)
-                        intent.putExtra("answer", AlgorithmQA.two_sum_answer)
-                    }
-                    AlgorithmQA.replace_space -> {
-                        intent.putExtra("question", AlgorithmQA.replace_space)
-                        intent.putExtra("answer", AlgorithmQA.replace_space_answer)
-                    }
-                    AlgorithmQA.reverse_print_recursive -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
-                        intent.putExtra("question", AlgorithmQA.reverse_print_recursive)
-                        intent.putExtra("answer", AlgorithmQA.reverse_print_recursive_answer)
-                    }
-                    AlgorithmQA.reverse_print_stack -> {
-                        intent = Intent(context, QAHorizontalDetailActivity::class.java)
-                        intent.putExtra("question", AlgorithmQA.reverse_print_stack)
-                        intent.putExtra("answer", AlgorithmQA.reverse_print_stack_answer)
-                    }
-
-
-
-//                    "青蛙跳台阶" -> {
-//                        intent.putExtra("image", R.drawable.frog_jump_the_steps)
-//                    }
-
-                }
-                context.startActivity(intent)
-
-
+                QAAdapterJumpUtil.setIntent(context, dataList[position].title)
             }
         })
     }
