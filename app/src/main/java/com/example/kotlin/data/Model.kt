@@ -50,7 +50,8 @@ object HomeData {
         Data("Pear", R.mipmap.pear_pic),
         Data("Pineapple", R.mipmap.pineapple_pic),
         Data("Strawberry", R.mipmap.strawberry_pic),
-        Data("恢复问答", R.mipmap.watermelon_pic)
+        Data("恢复问答", R.mipmap.watermelon_pic),
+        Data("恢复算法", R.mipmap.watermelon_pic)
     )
 
 }

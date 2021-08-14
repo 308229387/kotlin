@@ -8,9 +8,14 @@ import com.example.kotlin.R
  * Describe:
  */
 
-
 object QAData {
     val data = arrayListOf(
+        QAItemData(QA.content_provider, R.mipmap.pineapple_pic),
+        QAItemData(QA.how_many_string, R.mipmap.pineapple_pic),
+        QAItemData(QA.jet_pack, R.mipmap.pineapple_pic),
+        QAItemData(QA.r_x_java, R.mipmap.pineapple_pic),
+        QAItemData(QA.fragment_activity_communication, R.mipmap.pineapple_pic),
+        QAItemData(QA.volatile_principle, R.mipmap.pineapple_pic),
         QAItemData(QA.handler_async, R.mipmap.pineapple_pic),
         QAItemData(QA.delay_message, R.mipmap.pineapple_pic),
         QAItemData(QA.why_no_die, R.mipmap.pineapple_pic),

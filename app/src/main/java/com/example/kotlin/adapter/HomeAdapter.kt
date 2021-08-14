@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
 import com.example.kotlin.activity.*
+import com.example.kotlin.data.AlgorithmData
 import com.example.kotlin.data.Data
 import com.example.kotlin.data.HawkConfig
 import com.example.kotlin.data.QAData
@@ -59,6 +60,10 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "恢复问答" -> {
                         Toast.makeText(context, "已刷新", Toast.LENGTH_SHORT).show()
                         Hawk.put(HawkConfig.QA, QAData.data)
+                    }
+                    "恢复算法" -> {
+                        Toast.makeText(context, "已刷新", Toast.LENGTH_SHORT).show()
+                        Hawk.put(HawkConfig.AlgorithmQA, AlgorithmData.data)
                     }
 
                 }

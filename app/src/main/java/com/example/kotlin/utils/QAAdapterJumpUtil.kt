@@ -337,6 +337,40 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.handler_async)
                     intent.putExtra("answer", QA.handler_async_answer)
                 }
+                QA.content_provider -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.content_provider)
+                    intent.putExtra("answer", QA.content_provider_answer)
+                }
+                QA.how_many_string -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.how_many_string)
+                    intent.putExtra("answer", QA.how_many_string_answer)
+                }
+                QA.volatile_principle -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.volatile_principle)
+                    intent.putExtra("answer", QA.volatile_principle_answer)
+                }
+                QA.fragment_activity_communication -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.fragment_activity_communication)
+                    intent.putExtra("answer", QA.fragment_activity_communication_answer)
+                }
+                QA.r_x_java -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.r_x_java)
+                    intent.putExtra("answer", QA.r_x_java_answer)
+                }
+                QA.jet_pack -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.jet_pack)
+                    intent.putExtra("answer", QA.jet_pack_answer)
+                }
+
+
+
+
 
 
 
@@ -408,12 +442,21 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.reverse_print_stack)
                     intent.putExtra("answer", AlgorithmQA.reverse_print_stack_answer)
                 }
-
-
-//                    QA.fragment_life -> {//图片缩放
-//                        intent = Intent(context, AlgorithmDetailActivity::class.java)
-//                        intent.putExtra("image", R.drawable.fragment_life_image)
-//                    }
+                AlgorithmQA.create_list -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.create_list)
+                    intent.putExtra("answer", AlgorithmQA.create_list_answer)
+                }
+                AlgorithmQA.remove_n_from_end -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.remove_n_from_end)
+                    intent.putExtra("answer", AlgorithmQA.remove_n_from_end_answer)
+                }
+                AlgorithmQA.remove_elements -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.remove_elements)
+                    intent.putExtra("answer", AlgorithmQA.remove_elements_answer)
+                }
 
             }
             context.startActivity(intent)
