@@ -457,6 +457,41 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.remove_elements)
                     intent.putExtra("answer", AlgorithmQA.remove_elements_answer)
                 }
+                AlgorithmQA.if_has_circle -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.if_has_circle)
+                    intent.putExtra("answer", AlgorithmQA.if_has_circle_answer)
+                }
+                AlgorithmQA.cross_list_find_cross -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.cross_list_find_cross)
+                    intent.putExtra("answer", AlgorithmQA.cross_list_find_cross_answer)
+                }
+                AlgorithmQA.odd_even_list -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.odd_even_list)
+                    intent.putExtra("answer", AlgorithmQA.odd_even_list_answer)
+                }
+                AlgorithmQA.is_palindrome -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.is_palindrome)
+                    intent.putExtra("answer", AlgorithmQA.is_palindrome_answer)
+                }
+                AlgorithmQA.add_two_num -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.add_two_num)
+                    intent.putExtra("answer", AlgorithmQA.add_two_num_answer)
+                }
+                AlgorithmQA.pre_order_traversal_recursive -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.pre_order_traversal_recursive)
+                    intent.putExtra("answer", AlgorithmQA.pre_order_traversal_recursive_answer)
+                }
+                AlgorithmQA.iteration_pre_order -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.iteration_pre_order)
+                    intent.putExtra("answer", AlgorithmQA.iteration_pre_order_answer)
+                }
 
             }
             context.startActivity(intent)

@@ -11,6 +11,13 @@ import com.example.kotlin.R
 
 object AlgorithmData {
     val data = arrayListOf(
+        QAItemData(AlgorithmQA.if_has_circle, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.cross_list_find_cross, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.odd_even_list, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.is_palindrome, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.add_two_num, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.pre_order_traversal_recursive, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.iteration_pre_order, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.remove_elements, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.remove_n_from_end, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.create_list, R.mipmap.banana_pic),

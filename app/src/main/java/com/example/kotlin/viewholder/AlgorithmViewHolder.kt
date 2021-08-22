@@ -29,7 +29,7 @@ class AlgorithmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         /* val title =  itemView.findViewById<TextView>(R.id.tvTitle)
          title.text = hobby?.title */
 
-        itemView.list_item_text.text = data.title
+        itemView.list_item_text.text = (pos+1).toString()+"、"+data.title
         data.image?.let { itemView.list_item_image.setBackgroundResource(it) }
 
         if(data.tag == 1){
