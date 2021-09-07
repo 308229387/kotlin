@@ -148,6 +148,8 @@ package com.example.kotlin.data
         const val r_x_java_answer = "RxJava的作用\n" + "Rxjava是一个用来实现异步的、基于事件的第三方库，适用于程序逻辑比较复杂的场景，它能够保持代码的良好的阅读性。可以理解成Android Handler 的升级版。\n" + "\n" + "原理\n" + "RxJava 有四个基本概念：Observable (可观察者，即被观察者)、 Observer (观察者)、 subscribe (订阅)、事件。Observable 和 Observer 通过 subscribe() 方法实现订阅关系，从而 Observable 可以在需要的时候发出事件来通知 Observer。\n" + "\n" + "线程切换\n" + " RxJava 在切换线程时用到了两个方法 subscribeOn() 和 observeOn() \n" + "* subscribeOn() : 影响的是最开始的被观察者所在的线程。当使用多个 subscribeOn() 的时候，只有第一个 subscribeOn() 起作用；\n" + "* observeOn() : 影响的是跟在后面的操作（指定观察者运行的线程）。所以如果想要多次改变线程，可以多次使用 observeOn；\n" + ".subscribeOn(Schedulers.io())\n" + ".observeOn(AndroidSchedulers.mainThread())\n" + "\n" + "map与flatMap\n" + "map() 是把发射对象转成另外一个对象发射出去\n" + "flatMap()，他调用的是个Observable，常用来解决循环嵌套，也可以用于嵌套的异步，是把发射对象转成另外一个Observable,进而把这个Observable发射的对象发射出去\n"
         const val jet_pack = "介绍下JetPack"
         const val jet_pack_answer = "Jetpack是一套组件库，它提供了核心库、架构组件、UI组件、帮助我们在不同版本的机器上实现相同的功能代码，像常用的viewPager、fragment、recyclerview这些都是它提供的。\n" + "\n" + "核心库：有appcompat、core\n" + "架构组件：databinding、lifecyle\n" + "UI组件: constraintlayout、recyclerview\n" + "\n" + "其他还有些还有像车载、打印机等不常用的组件"
+
+
     }
 }
 

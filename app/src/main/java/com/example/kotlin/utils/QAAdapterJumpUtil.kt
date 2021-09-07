@@ -492,6 +492,36 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.iteration_pre_order)
                     intent.putExtra("answer", AlgorithmQA.iteration_pre_order_answer)
                 }
+                AlgorithmQA.inorder_traversal -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.inorder_traversal)
+                    intent.putExtra("answer", AlgorithmQA.inorder_traversal_answer)
+                }
+                AlgorithmQA.recursive_inorder_traversal -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.recursive_inorder_traversal)
+                    intent.putExtra("answer", AlgorithmQA.recursive_inorder_traversal_answer)
+                }
+                AlgorithmQA.post_order_traversal -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.post_order_traversal)
+                    intent.putExtra("answer", AlgorithmQA.post_order_traversal_answer)
+                }
+                AlgorithmQA.recursive_post_order_traversal -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.recursive_post_order_traversal)
+                    intent.putExtra("answer", AlgorithmQA.recursive_post_order_traversal_answer)
+                }
+                AlgorithmQA.level_order -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.level_order)
+                    intent.putExtra("answer", AlgorithmQA.level_order_answer)
+                }
+                AlgorithmQA.recursive_level_order -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.recursive_level_order)
+                    intent.putExtra("answer", AlgorithmQA.recursive_level_order_answer)
+                }
 
             }
             context.startActivity(intent)
