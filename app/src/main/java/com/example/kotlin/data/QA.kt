@@ -156,6 +156,14 @@ package com.example.kotlin.data
         const val concurrent_hash_map_answer = "1.8版本之前底层用的是HashEntry数组去存储元素。使用的是分段锁技术,将ConcurrentHashMap将锁一段一段的存储，然后给每一段数据配一把锁（segment），当一个线程占用一把锁（segment）访问其中一段数据的时候，其他段的数据也能被其它的线程访问，默认分配16个segment，效率要比hashtable要高很多。\n" + "\n" + "JDK1.8中ConcurrentHashMap取消了segment分段锁，而采用CAS(原子操作)和synchronized来保证并发安全。数据结构跟HashMap1.8的结构一样，数组+链表/红黑二叉树。\n" + "synchronized只锁定当前链表或红黑二叉树的首节点，这样只要hash不冲突，就不会产生并发，效率又提升了很多。"
         const val auto_adapter_screen = "屏幕适配方案"
         const val auto_adapter_screen_answer = "1、自适配图片，也就是在res下的选择相应的dpi，不过没特殊需求的话推荐xxdpi，1080*1920，这样就可以满足向上向下兼容，节省资源\n" + "\n" + "2、如果有特殊需求，可以创建指定的分辨率布局进行适配，手机会根据分辨率去找设定的不同大小的layout的布局，layout-800 * 480\n" + "\n" + "3、dp+自适应布局+weight比例布局直接适配\n" + "\n" + "4、另外还可以对value进行指定适配，比如把一些dimen值按比例进行自定义值   value-1080*1920\n" + "\n" + "5、还有一种是修改手机的设备密度 density，他是通过appDisplayMetrics.density动态设置，来使不同分辨率，来实现UI样式统一，不过这种方式只能一刀切的将整个项目进行适配，但适配范围是不可控的，一般不用。"
+        const val http_error_code = "http错误码"
+        const val http_error_code_answer = "1xx   信息性状态码，接受的请求正在处理\n" + "\n" + "2xx\t成功状态码，请求正常\n" + "200： 请求成功。一般用于GET与POST请求\n" + "201 - Created 服务器已经创建了文档，Location头给出了它的URL\n" + "202 - Accepted 已经接受请求，但处理尚未完成\n" + "\n" + "3xx\t重定向状态码\n" + "301 Moved Permanently：永久性重定向\n" + "302 Found：临时性重定向\n" + "\n" + "4xx\t客户端错误状态码\n" + "400：Bad Request 请求出现语法错误\n" + "401 - Unauthorized 访问被拒绝，客户试图未经授权访问受密码保护的页面。\n" + "403 - Forbidden 资源不可用。服务器理解客户的请求，但拒绝处理它。通常由于服务器上文件或目录的权限设置导致\n" + "404 - Not Found 无法找到指定位置的资源。这也是一个常用的应答\n" + "\n" + "5xx\t服务端错误状态码\n" + "500 - Internal Server Error 服务器遇到了意料不到的情况，不能完成客户的请求\n" + "502 - Bad Gateway 服务器用作网关或代理服务器时收到了终端服务器的无效响应\n" + "503 - Service Unavailable 服务不可用，服务器由于维护或者负载过重未能应答\n"
+        const val url_process = "输入一个网址的全过程"
+        const val url_process_answer = "输入网址后，首先会从浏览器、系统、路由器当中查看是否有缓存，如果有从缓存当中显示页面，没有的话再进行DNS域名解析，把域名转换成IP，然后TCP连接，进行请求，请求成功后再把数据进行解析，页面渲染。"
+        const val tcp_udp_different = "TCP、UDP协议的区别"
+        const val tcp_udp_different_answer = "UDP：面向无连接，速率快。不可靠\n" + "\n" + "TCP：在传递数据之前先建立连接，数据传输结束后还要释放资源。可靠但传输速率相对慢。\n" + "\n" + "TCP的可靠性体现在：在传递数据之前建立连接，在数据传递时，通过确认、窗口、重传、拥塞机制来保证数据传输的可靠性。\n" + "\n" + "适用场景：UDP：适用于实时应用（IP电话、视频会议、直播等）。TCP:适用于要求可靠传输的应用，例如文件传输"
+        const val net_work_level = "网络通信一共有几层"
+        const val net_work_level_answer = "OSI模型，也就是开放式系统互联通信参考模型。这个模型把网络通信的工作分为7层，分别是\n" + "物理层,\n" + "数据链路层,\n" + "网络层,\n" + "传输层,\n" + "会话层，\n" + "表示层\n" + "和应用层。\n" + "\n" + "1至4层被认为是低层，这些层与数据移动密切相关。5至7层是高层，包含应用程序级的数据。每一层负责一项具体的工作，然后把数据传送到下一层"
     }
 }
 

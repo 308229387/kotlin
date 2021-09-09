@@ -387,7 +387,26 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.design_patterns)
                     intent.putExtra("answer", QA.design_patterns_answer)
                 }
-
+                QA.net_work_level -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.net_work_level)
+                    intent.putExtra("answer", QA.net_work_level_answer)
+                }
+                QA.tcp_udp_different -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.tcp_udp_different)
+                    intent.putExtra("answer", QA.tcp_udp_different_answer)
+                }
+                QA.url_process -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.url_process)
+                    intent.putExtra("answer", QA.url_process_answer)
+                }
+                QA.http_error_code -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.http_error_code)
+                    intent.putExtra("answer", QA.http_error_code_answer)
+                }
 
 
 

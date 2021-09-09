@@ -10,6 +10,10 @@ import com.example.kotlin.R
 
 object QAData {
     val data = arrayListOf(
+        QAItemData(QA.http_error_code, R.mipmap.pineapple_pic),
+        QAItemData(QA.url_process, R.mipmap.pineapple_pic),
+        QAItemData(QA.tcp_udp_different, R.mipmap.pineapple_pic),
+        QAItemData(QA.net_work_level, R.mipmap.pineapple_pic),
         QAItemData(QA.design_patterns, R.mipmap.pineapple_pic),
         QAItemData(QA.https_process, R.mipmap.pineapple_pic),
         QAItemData(QA.concurrent_hash_map, R.mipmap.pineapple_pic),
