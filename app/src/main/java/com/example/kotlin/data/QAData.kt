@@ -10,6 +10,10 @@ import com.example.kotlin.R
 
 object QAData {
     val data = arrayListOf(
+        QAItemData(QA.design_patterns, R.mipmap.pineapple_pic),
+        QAItemData(QA.https_process, R.mipmap.pineapple_pic),
+        QAItemData(QA.concurrent_hash_map, R.mipmap.pineapple_pic),
+        QAItemData(QA.auto_adapter_screen, R.mipmap.pineapple_pic),
         QAItemData(QA.content_provider, R.mipmap.pineapple_pic),
         QAItemData(QA.how_many_string, R.mipmap.pineapple_pic),
         QAItemData(QA.jet_pack, R.mipmap.pineapple_pic),

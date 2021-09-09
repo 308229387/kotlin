@@ -367,6 +367,26 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.jet_pack)
                     intent.putExtra("answer", QA.jet_pack_answer)
                 }
+                QA.auto_adapter_screen -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.auto_adapter_screen)
+                    intent.putExtra("answer", QA.auto_adapter_screen_answer)
+                }
+                QA.concurrent_hash_map -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.concurrent_hash_map)
+                    intent.putExtra("answer", QA.concurrent_hash_map_answer)
+                }
+                QA.https_process -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.https_process)
+                    intent.putExtra("answer", QA.https_process_answer)
+                }
+                QA.design_patterns -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.design_patterns)
+                    intent.putExtra("answer", QA.design_patterns_answer)
+                }
 
 
 
