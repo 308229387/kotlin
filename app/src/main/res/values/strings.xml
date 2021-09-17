@@ -7,4 +7,13 @@
     <string name="imei_text">TextView</string>
     <string name="store_edit_title">编辑门店</string>
     <string name="store_save_top">保存</string>
+    <string name="rc_permission_grant_needed">您需要在设置中打开权限</string>
+    <string name="rc_permission_background_location_grant_tip">您需要提供后台位置权限，请在设置页面选择始终允许</string>
+    <string name="rc_permission_microphone">（麦克风）。</string>
+    <string name="rc_permission_microphone_and_camera">（麦克风，相机）。</string>
+    <string name="rc_permission_camera">（相机）。</string>
+    <string name="rc_dialog_ok">确定</string>
+    <string name="rc_confirm">确认</string>
+    <string name="rc_cancel">取消</string>
+    <string name="rc_not_prompt">不再提示</string>
 </resources>

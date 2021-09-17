@@ -30,7 +30,7 @@ object HomeData {
         Data("圆角、圆头像", R.mipmap.orange_pic),
         Data("重复定时任务", R.mipmap.pear_pic),
         Data("RxJava学习", R.mipmap.pineapple_pic),
-        Data("Strawberry", R.mipmap.strawberry_pic),
+        Data("权限管理", R.mipmap.strawberry_pic),
         Data("Watermelon", R.mipmap.watermelon_pic),
         Data("Apple", R.mipmap.apple_pic),
         Data("Banana", R.mipmap.banana_pic),
