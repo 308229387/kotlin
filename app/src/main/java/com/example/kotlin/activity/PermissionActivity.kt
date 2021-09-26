@@ -18,15 +18,17 @@ class PermissionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPermissionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val permissions = arrayOf(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
+        val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         binding.autoPhoneBtn.setOnClickListener {
             PermissionCheckUtil.requestPermissions(this@PermissionActivity, permissions, 100)
         }
         binding.autoRecordBtn.setOnClickListener {
             val permissions1 = arrayOf(Manifest.permission.RECORD_AUDIO)
             PermissionCheckUtil.requestPermissions(this@PermissionActivity, permissions1, 100)
+        }
+        binding.customRecordBtn.setOnClickListener {
+            val permissions2 = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            PermissionCheckUtil.requestPermissions(this@PermissionActivity, permissions2, 100)
         }
     }
 }
