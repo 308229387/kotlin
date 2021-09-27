@@ -34,8 +34,8 @@ import java.util.Set;
 
 
 
-public class PermissionCheckUtil {
-    private static final String TAG = PermissionCheckUtil.class.getSimpleName();
+public class SimplePermissionUtil {
+    private static final String TAG = SimplePermissionUtil.class.getSimpleName();
     public static final int REQUEST_CODE_ASK_PERMISSIONS = 100;
     private static final String PROMPT = "prompt";
     private static final String IS_PROMPT = "isPrompt";
