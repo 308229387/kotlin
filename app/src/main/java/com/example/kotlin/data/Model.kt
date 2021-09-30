@@ -31,7 +31,7 @@ object HomeData {
         Data("重复定时任务", R.mipmap.pear_pic),
         Data("RxJava学习", R.mipmap.pineapple_pic),
         Data("权限管理", R.mipmap.strawberry_pic),
-        Data("Watermelon", R.mipmap.watermelon_pic),
+        Data("触摸滑动事件", R.mipmap.watermelon_pic),
         Data("Apple", R.mipmap.apple_pic),
         Data("Banana", R.mipmap.banana_pic),
         Data("Cherry", R.mipmap.cherry_pic),

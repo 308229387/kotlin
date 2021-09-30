@@ -58,6 +58,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "重复定时任务" -> context.startActivity(Intent(context, ScheduleTaskActivity::class.java))
                     "RxJava学习" -> context.startActivity(Intent(context, RxJavaLeanActivity::class.java))
                     "权限管理" -> context.startActivity(Intent(context, PermissionActivity::class.java))
+                    "触摸滑动事件" -> context.startActivity(Intent(context, TouchEventActivity::class.java))
                     "恢复问答" -> {
                         Toast.makeText(context, "已刷新", Toast.LENGTH_SHORT).show()
                         Hawk.put(HawkConfig.QA, QAData.data)

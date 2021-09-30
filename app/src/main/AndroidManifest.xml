@@ -60,6 +60,9 @@
         <activity android:name=".activity.JDSearchActivity" />
         <activity android:name=".activity.SpecialQAListActivity" />
         <activity android:name=".activity.RxJavaLeanActivity" />
+        <activity android:name=".activity.TouchEventActivity" />
+
+
         <activity
             android:name=".activity.QAHorizontalDetailActivity"
             android:screenOrientation="landscape" />

@@ -8,10 +8,6 @@ import android.view.View
 import android.widget.Button
 import com.example.kotlin.R
 
-/**
- * create by kenrich
- * on 2021/9/1
- */
 class RecordSettingDialog : BaseDialog, View.OnClickListener {
     private var listener: RecordDialogCallBack? = null
     private var leftStr: String? = null
