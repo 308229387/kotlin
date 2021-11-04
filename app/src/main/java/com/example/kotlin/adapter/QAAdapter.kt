@@ -19,7 +19,7 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
     RecyclerView.Adapter<QAViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QAViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.list_items, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.q_a_list_items, parent, false)
         return QAViewHolder(view)
     }
 

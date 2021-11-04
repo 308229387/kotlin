@@ -7,6 +7,8 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.data.QAItemData
 import kotlinx.android.synthetic.main.list_items.view.*
+import kotlinx.android.synthetic.main.list_items.view.list_item_text
+import kotlinx.android.synthetic.main.q_a_list_items.view.*
 
 /**
  * Author: sym
@@ -22,8 +24,8 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.setOnClickListener {
             listener.jump()
         }
-        itemView.list_item_image.setOnClickListener { listener.delete() }
-        itemView.list_item_image.setOnLongClickListener {
+        itemView.q_a_list_item_image.setOnClickListener { listener.delete() }
+        itemView.q_a_list_item_image.setOnLongClickListener {
             listener.longClick()
             return@setOnLongClickListener true
         }
@@ -33,15 +35,12 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
     fun setData(data: QAItemData, pos: Int) {
-        /* val title =  itemView.findViewById<TextView>(R.id.tvTitle)
-         title.text = hobby?.title */
-
-        itemView.list_item_text.text = data?.title
-        data?.image?.let { itemView.list_item_image.setBackgroundResource(it) }
+        itemView.q_a_list_item_text.text = data?.title
+        data?.image?.let { itemView.q_a_list_item_image.setBackgroundResource(it) }
         if(data.tag == 1){
-            itemView.list_item_text.setTextColor(Color.GREEN)
+            itemView.q_a_list_item_text.setTextColor(Color.GREEN)
         }else{
-            itemView.list_item_text.setTextColor(Color.parseColor("#616161"))
+            itemView.q_a_list_item_text.setTextColor(Color.parseColor("#616161"))
         }
         this.currentData = data
         this.currentPosition = pos
