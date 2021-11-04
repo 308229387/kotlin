@@ -7,6 +7,8 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.data.QAItemData
 import kotlinx.android.synthetic.main.list_items.view.*
+import kotlinx.android.synthetic.main.list_items.view.list_item_image
+import kotlinx.android.synthetic.main.q_a_list_items.view.*
 
 /**
  * Author: sym
@@ -22,8 +24,8 @@ class SpecialQAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.setOnClickListener {
             listener.jump()
         }
-        itemView.list_item_image.setOnClickListener { listener.delete() }
-        itemView.list_item_image.setOnLongClickListener {
+        itemView.q_a_list_item_image.setOnClickListener { listener.delete() }
+        itemView.q_a_list_item_image.setOnLongClickListener {
             listener.longClick()
             return@setOnLongClickListener true
         }
@@ -31,11 +33,20 @@ class SpecialQAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
     fun setData(data: QAItemData, pos: Int) {
-        /* val title =  itemView.findViewById<TextView>(R.id.tvTitle)
-         title.text = hobby?.title */
+        itemView.q_a_list_item_text.text = data?.title
+        data?.image?.let { itemView.q_a_list_item_image.setBackgroundResource(it) }
 
-        itemView.list_item_text.text = data?.title
-        data?.image?.let { itemView.list_item_image.setBackgroundResource(it) }
+        if(data.lastTime!=null&&data.lastTime.isNotEmpty()){
+            itemView.remember_last_time.text = "last : "+data.lastTime
+        }else{
+            itemView.remember_last_time.text = "未学习"
+        }
+
+        if(data.nextTime!=null&&data.nextTime.isNotEmpty()){
+            itemView.remember_next_time.text = "next : "+data.nextTime
+        }else{
+            itemView.remember_next_time.text = ""
+        }
         this.currentData = data
         this.currentPosition = pos
     }

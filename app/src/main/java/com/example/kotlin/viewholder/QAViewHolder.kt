@@ -45,6 +45,11 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }else{
             itemView.remember_last_time.text = "未学习"
         }
+        if(data.nextTime!=null&&data.nextTime.isNotEmpty()){
+            itemView.remember_next_time.text = "next : "+data.nextTime
+        }else{
+            itemView.remember_next_time.text = ""
+        }
         this.currentData = data
         this.currentPosition = pos
     }

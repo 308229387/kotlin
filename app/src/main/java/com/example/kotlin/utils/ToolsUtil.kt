@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream
 import java.io.Closeable
 import java.io.IOException
 import java.io.InputStream
+import java.text.SimpleDateFormat
 import java.util.*
 
 object ToolsUtil {
@@ -118,6 +119,20 @@ object ToolsUtil {
         }
         tempLastClickTime = time
         return true
+    }
+
+    fun beforeAfterDate(days: Int): String? {
+        val nowTime = System.currentTimeMillis()
+        val changeTimes = days * 24L * 60 * 60 * 1000
+        return getStrTime((nowTime + changeTimes).toString(), "yyyy-MM-dd")
+    }
+
+    fun getStrTime(timeStamp: String?, format: String?): String? {
+        var timeString: String? = null
+        val sdf = SimpleDateFormat(format)
+        val l = java.lang.Long.valueOf(timeStamp)
+        timeString = sdf.format(Date(l)) //单位秒
+        return timeString
     }
 }
 

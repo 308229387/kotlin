@@ -40,7 +40,7 @@
             android:text="last：2021-10-5"/>
 
         <TextView
-            android:id="@+id/remember_count"
+            android:id="@+id/remember_next_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
