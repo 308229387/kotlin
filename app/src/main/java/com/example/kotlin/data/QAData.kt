@@ -129,7 +129,9 @@ object QAData {
 
 
         QAItemData("进程", R.mipmap.pineapple_pic,1),
-        QAItemData(QA.more_process, R.mipmap.pineapple_pic),
+        QAItemData(QA.more_process_purpose, R.mipmap.pineapple_pic),
+        QAItemData(QA.more_process_use, R.mipmap.pineapple_pic),
+        QAItemData(QA.more_process_question, R.mipmap.pineapple_pic),
         QAItemData(QA.interrupt_interrupted, R.mipmap.pineapple_pic),
         QAItemData(QA.binder_info, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_application, R.mipmap.pineapple_pic),

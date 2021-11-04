@@ -33,6 +33,7 @@ class SpecialQAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
     fun setData(data: QAItemData, pos: Int) {
+        itemView.card_layout.visibility = View.VISIBLE
         itemView.q_a_list_item_text.text = data?.title
         data?.image?.let { itemView.q_a_list_item_image.setBackgroundResource(it) }
 

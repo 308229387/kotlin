@@ -364,10 +364,20 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.serializable_parcelable)
                     intent.putExtra("answer", QA.serializable_parcelable_answer)
                 }
-                QA.more_process -> {
+                QA.more_process_purpose -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.more_process)
-                    intent.putExtra("answer", QA.more_process_answer)
+                    intent.putExtra("title", QA.more_process_purpose)
+                    intent.putExtra("answer", QA.more_process_purpose_answer)
+                }
+                QA.more_process_use -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.more_process_use)
+                    intent.putExtra("answer", QA.more_process_use_answer)
+                }
+                QA.more_process_question -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.more_process_question)
+                    intent.putExtra("answer", QA.more_process_question_answer)
                 }
                 QA.sp_about -> {
                     intent = Intent(context, QADetailActivity::class.java)
