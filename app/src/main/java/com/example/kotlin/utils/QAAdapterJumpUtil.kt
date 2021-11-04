@@ -83,10 +83,20 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.four_components)
                     intent.putExtra("answer", QA.four_components_answer)
                 }
-                QA.handler_four_components_use -> {
+                QA.handler_four_components -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.handler_four_components_use)
-                    intent.putExtra("answer", QA.handler_four_components_use_answer)
+                    intent.putExtra("title", QA.handler_four_components)
+                    intent.putExtra("answer", QA.handler_four_components_answer)
+                }
+                QA.handler_use -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.handler_use)
+                    intent.putExtra("answer", QA.handler_use_answer)
+                }
+                QA.handler_child_create -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.handler_child_create)
+                    intent.putExtra("answer", QA.handler_child_create_answer)
                 }
                 QA.solve_anr -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -301,6 +311,11 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.fragment_life)
                     intent.putExtra("answer", QA.fragment_life_answer)
+                }
+                QA.fragment_life_change -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.fragment_life_change)
+                    intent.putExtra("answer", QA.fragment_life_change_answer)
                 }
                 QA.lazy_fragment -> {
                     intent = Intent(context, QADetailActivity::class.java)
