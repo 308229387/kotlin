@@ -28,7 +28,9 @@ object QAData {
         QAItemData(QA.activity_launchMode, R.mipmap.orange_pic),
         QAItemData(QA.android_configChanges, R.mipmap.mango_pic),
         QAItemData(QA.fragment_activity_communication, R.mipmap.pineapple_pic),
-        QAItemData(QA.lazy_fragment, R.mipmap.grape_pic),
+        QAItemData(QA.lazy_fragment_purpose, R.mipmap.grape_pic),
+        QAItemData(QA.lazy_fragment_support, R.mipmap.grape_pic),
+        QAItemData(QA.lazy_fragment_androidx, R.mipmap.grape_pic),
         QAItemData(QA.fragment_life, R.mipmap.banana_pic),
         QAItemData(QA.fragment_life_change, R.mipmap.banana_pic),
         QAItemData(QA.intent_service, R.mipmap.pineapple_pic),
@@ -48,6 +50,11 @@ object QAData {
         QAItemData("数据类型与存储", R.mipmap.pineapple_pic,1),
         QAItemData(QA.concurrent_hash_map, R.mipmap.pineapple_pic),
         QAItemData(QA.sp_about, R.mipmap.pineapple_pic),
+        QAItemData(QA.sp_why_light, R.mipmap.pineapple_pic),
+        QAItemData(QA.sp_save_steps, R.mipmap.pineapple_pic),
+        QAItemData(QA.sp_principle, R.mipmap.pineapple_pic),
+        QAItemData(QA.sp_two_save_method, R.mipmap.pineapple_pic),
+        QAItemData(QA.sp_why_no_safe, R.mipmap.pineapple_pic),
         QAItemData(QA.serializable_parcelable, R.mipmap.pineapple_pic),
         QAItemData(QA.hash_map_hashtable, R.mipmap.pineapple_pic),
         QAItemData(QA.array_link, R.mipmap.pineapple_pic),
@@ -63,6 +70,11 @@ object QAData {
         QAItemData(QA.solve_anr, R.mipmap.mango_pic),
         QAItemData(QA.memory_leak, R.mipmap.pear_pic),
         QAItemData(QA.performance_optimization, R.mipmap.strawberry_pic),
+        QAItemData(QA.app_start_process, R.mipmap.pineapple_pic),
+        QAItemData(QA.app_start_about_role, R.mipmap.pineapple_pic),
+        QAItemData(QA.app_start_start_time, R.mipmap.pineapple_pic),
+        QAItemData(QA.app_start_optimize, R.mipmap.pineapple_pic),
+        QAItemData(QA.app_start_method_sequence, R.mipmap.pineapple_pic),
 
 
         QAItemData("JVM", R.mipmap.pineapple_pic,1),
@@ -74,6 +86,11 @@ object QAData {
         QAItemData("view与显示", R.mipmap.pineapple_pic,1),
         QAItemData(QA.auto_adapter_screen, R.mipmap.pineapple_pic),
         QAItemData(QA.animations, R.mipmap.pineapple_pic),
+        QAItemData(QA.touch_event, R.mipmap.orange_pic),
+        QAItemData(QA.touch_event_move, R.mipmap.orange_pic),
+        QAItemData(QA.touch_event_target, R.mipmap.orange_pic),
+        QAItemData(QA.touch_event_conflict, R.mipmap.orange_pic),
+        QAItemData(QA.touch_event_x_different, R.mipmap.orange_pic),
         QAItemData(QA.touch_event, R.mipmap.orange_pic),
         QAItemData(QA.draw_view, R.mipmap.banana_pic),
 
@@ -143,7 +160,6 @@ object QAData {
 
 
         QAItemData("系统架构", R.mipmap.pineapple_pic,1),
-        QAItemData(QA.app_start, R.mipmap.pineapple_pic),
         QAItemData(QA.assets_res, R.mipmap.pineapple_pic),
         QAItemData(QA.version_features, R.mipmap.pineapple_pic),
 

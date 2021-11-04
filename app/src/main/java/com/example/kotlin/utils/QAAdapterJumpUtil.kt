@@ -108,6 +108,26 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.touch_event)
                     intent.putExtra("answer", QA.touch_event_answer)
                 }
+                QA.touch_event_move -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.touch_event_move)
+                    intent.putExtra("answer", QA.touch_event_move_answer)
+                }
+                QA.touch_event_target -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.touch_event_target)
+                    intent.putExtra("answer", QA.touch_event_target_answer)
+                }
+                QA.touch_event_conflict -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.touch_event_conflict)
+                    intent.putExtra("answer", QA.touch_event_conflict_answer)
+                }
+                QA.touch_event_x_different -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.touch_event_x_different)
+                    intent.putExtra("answer", QA.touch_event_x_different_answer)
+                }
                 QA.memory_leak -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.memory_leak)
@@ -215,10 +235,30 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.invalidate)
                     intent.putExtra("answer", QA.invalidate_answer)
                 }
-                QA.app_start -> {
+                QA.app_start_process -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.app_start)
-                    intent.putExtra("answer", QA.app_start_answer)
+                    intent.putExtra("title", QA.app_start_process)
+                    intent.putExtra("answer", QA.app_start_process_answer)
+                }
+                QA.app_start_about_role -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.app_start_about_role)
+                    intent.putExtra("answer", QA.app_start_about_role_answer)
+                }
+                QA.app_start_start_time -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.app_start_start_time)
+                    intent.putExtra("answer", QA.app_start_start_time_answer)
+                }
+                QA.app_start_optimize -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.app_start_optimize)
+                    intent.putExtra("answer", QA.app_start_optimize_answer)
+                }
+                QA.app_start_method_sequence -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.app_start_method_sequence)
+                    intent.putExtra("answer", QA.app_start_method_sequence_answer)
                 }
                 QA.mvp -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -344,6 +384,31 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.sp_about)
                     intent.putExtra("answer", QA.sp_about_answer)
                 }
+                QA.sp_why_light -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.sp_why_light)
+                    intent.putExtra("answer", QA.sp_why_light_answer)
+                }
+                QA.sp_save_steps -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.sp_save_steps)
+                    intent.putExtra("answer", QA.sp_save_steps_answer)
+                }
+                QA.sp_principle -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.sp_principle)
+                    intent.putExtra("answer", QA.sp_principle_answer)
+                }
+                QA.sp_two_save_method -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.sp_two_save_method)
+                    intent.putExtra("answer", QA.sp_two_save_method_answer)
+                }
+                QA.sp_why_no_safe -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.sp_why_no_safe)
+                    intent.putExtra("answer", QA.sp_why_no_safe_answer)
+                }
                 QA.fragment_life -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.fragment_life)
@@ -354,10 +419,20 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.fragment_life_change)
                     intent.putExtra("answer", QA.fragment_life_change_answer)
                 }
-                QA.lazy_fragment -> {
+                QA.lazy_fragment_purpose -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.lazy_fragment)
-                    intent.putExtra("answer", QA.lazy_fragment_answer)
+                    intent.putExtra("title", QA.lazy_fragment_purpose)
+                    intent.putExtra("answer", QA.lazy_fragment_purpose_answer)
+                }
+                QA.lazy_fragment_support -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.lazy_fragment_support)
+                    intent.putExtra("answer", QA.lazy_fragment_support_answer)
+                }
+                QA.lazy_fragment_androidx -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.lazy_fragment_androidx)
+                    intent.putExtra("answer", QA.lazy_fragment_androidx_answer)
                 }
                 QA.class_load -> {
                     intent = Intent(context, QADetailActivity::class.java)
