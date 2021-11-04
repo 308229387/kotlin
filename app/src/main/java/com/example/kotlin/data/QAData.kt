@@ -99,7 +99,14 @@ object QAData {
 
         QAItemData("线程池", R.mipmap.pineapple_pic,1),
         QAItemData(QA.blocking_queue, R.mipmap.pineapple_pic),
-        QAItemData(QA.thread_pool, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_pool_create, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_four_api, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_seven_params, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_work_principle, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_shut_down, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_pool_work_queue, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_pool_reject_policy, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_pool_recycling, R.mipmap.pineapple_pic),
 
 
         QAItemData("进程", R.mipmap.pineapple_pic,1),

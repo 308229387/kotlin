@@ -128,10 +128,47 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.aidl)
                     intent.putExtra("answer", QA.aidl_answer)
                 }
-                QA.thread_pool -> {
+
+
+                QA.thread_pool_create -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.thread_pool)
-                    intent.putExtra("answer", QA.thread_pool_answer)
+                    intent.putExtra("title", QA.thread_pool_create)
+                    intent.putExtra("answer", QA.thread_pool_create_answer)
+                }
+                QA.thread_work_principle -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.thread_work_principle)
+                    intent.putExtra("answer", QA.thread_work_principle_answer)
+                }
+                QA.thread_seven_params -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.thread_seven_params)
+                    intent.putExtra("answer", QA.thread_seven_params_answer)
+                }
+                QA.thread_four_api -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.thread_four_api)
+                    intent.putExtra("answer", QA.thread_four_api_answer)
+                }
+                QA.thread_shut_down -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.thread_shut_down)
+                    intent.putExtra("answer", QA.thread_shut_down_answer)
+                }
+                QA.thread_pool_work_queue -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.thread_pool_work_queue)
+                    intent.putExtra("answer", QA.thread_pool_work_queue_answer)
+                }
+                QA.thread_pool_reject_policy -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.thread_pool_reject_policy)
+                    intent.putExtra("answer", QA.thread_pool_reject_policy_answer)
+                }
+                QA.thread_pool_recycling -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.thread_pool_recycling)
+                    intent.putExtra("answer", QA.thread_pool_recycling_answer)
                 }
                 QA.leak_canary -> {
                     intent = Intent(context, QADetailActivity::class.java)
