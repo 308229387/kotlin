@@ -7,8 +7,10 @@ package com.example.kotlin.data
  */
 data class QAItemData(var title: String, var image: Int) {
     var tag = 0 //常规状态 1是处理状态
+    var lastTime = ""
 
-    constructor(title: String, image: Int, tag: Int) : this(title, image) {
+    constructor(title: String, image: Int, tag: Int,lastTime:String) : this(title, image) {
         this.tag = tag
+        this.lastTime = lastTime
     }
 }

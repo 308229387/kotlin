@@ -29,8 +29,6 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             listener.longClick()
             return@setOnLongClickListener true
         }
-
-
     }
 
 
@@ -41,6 +39,11 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             itemView.q_a_list_item_text.setTextColor(Color.GREEN)
         }else{
             itemView.q_a_list_item_text.setTextColor(Color.parseColor("#616161"))
+        }
+        if(data.lastTime!=null&&data.lastTime.isNotEmpty()){
+            itemView.remember_last_time.text = "last : "+data.lastTime
+        }else{
+            itemView.remember_last_time.text = "未学习"
         }
         this.currentData = data
         this.currentPosition = pos

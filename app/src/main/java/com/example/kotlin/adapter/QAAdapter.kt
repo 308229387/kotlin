@@ -14,6 +14,9 @@ import com.example.kotlin.utils.QAAdapterJumpUtil
 import com.example.kotlin.viewholder.HolderListener
 import com.example.kotlin.viewholder.QAViewHolder
 import com.orhanobut.hawk.Hawk
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class QAAdapter(private val context: Context, private val dataList: ArrayList<QAItemData>) :
     RecyclerView.Adapter<QAViewHolder>() {
@@ -46,7 +49,8 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                     Toast.makeText(context, "已在关注列表", Toast.LENGTH_SHORT).show()
                 }
 
-
+                val simpleDateFormat = SimpleDateFormat("yyyy年MM月dd日")
+                dataList[position].lastTime = simpleDateFormat.format(Date(System.currentTimeMillis()))
                 dataList[position].tag = 1 //标记为处理状态
                 notifyDataSetChanged()
                 Hawk.put(HawkConfig.QA, dataList)

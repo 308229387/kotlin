@@ -33,7 +33,7 @@
         android:orientation="horizontal"
         android:layout_below="@+id/q_a_list_item_text">
         <TextView
-            android:id="@+id/remember_time"
+            android:id="@+id/remember_last_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
