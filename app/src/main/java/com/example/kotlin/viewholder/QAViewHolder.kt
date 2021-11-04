@@ -35,10 +35,22 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun setData(data: QAItemData, pos: Int) {
         itemView.q_a_list_item_text.text = data?.title
         data?.image?.let { itemView.q_a_list_item_image.setBackgroundResource(it) }
-        if(data.tag == 1){
-            itemView.q_a_list_item_text.setTextColor(Color.GREEN)
-        }else{
-            itemView.q_a_list_item_text.setTextColor(Color.parseColor("#616161"))
+        when {
+            data.tag == 1 -> {
+                itemView.q_a_list_item_text.setTextColor(Color.parseColor("#FF0000"))
+            }
+            data.tag == 2 -> {
+                itemView.q_a_list_item_text.setTextColor(Color.parseColor("#FF00FF"))
+            }
+            data.tag == 3 -> {
+                itemView.q_a_list_item_text.setTextColor(Color.parseColor("#FFD700"))
+            }
+            data.tag == 4 -> {
+                itemView.q_a_list_item_text.setTextColor(Color.parseColor("#00FFFF"))
+            }
+            data.tag > 4 -> {
+                itemView.q_a_list_item_text.setTextColor(Color.parseColor("#00FF00"))
+            }
         }
         if(data.lastTime!=null&&data.lastTime.isNotEmpty()){
             itemView.remember_last_time.text = "last : "+data.lastTime

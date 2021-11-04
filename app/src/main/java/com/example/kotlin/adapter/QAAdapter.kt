@@ -12,6 +12,7 @@ import com.example.kotlin.utils.QAAdapterJumpUtil
 import com.example.kotlin.utils.ToolsUtil
 import com.example.kotlin.viewholder.HolderListener
 import com.example.kotlin.viewholder.QAViewHolder
+import com.example.kotlin.views.dialog.RememberDialog
 import com.orhanobut.hawk.Hawk
 import java.text.SimpleDateFormat
 import java.util.*
@@ -19,7 +20,7 @@ import kotlin.collections.ArrayList
 
 class QAAdapter(private val context: Context, private val dataList: ArrayList<QAItemData>) :
     RecyclerView.Adapter<QAViewHolder>() {
-
+    lateinit var dialog:RememberDialog
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QAViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.q_a_list_items, parent, false)
         return QAViewHolder(view)
@@ -35,47 +36,58 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
         holder.setData(itemData, position)
         holder.setOnListener(object : HolderListener {
             override fun delete() {
-                var specialList: ArrayList<QAItemData> = if (Hawk.contains(HawkConfig.SpecialQA)) {
-                    Hawk.get(HawkConfig.SpecialQA)
-                } else {
-                    ArrayList()
-                }
+                dialog = RememberDialog(context)
+                dialog.setListener(object :RememberDialog.RememberDialogCallBack{
+                    override fun result() {
+                        var specialList: ArrayList<QAItemData> = if (Hawk.contains(HawkConfig.SpecialQA)) {
+                            Hawk.get(HawkConfig.SpecialQA)
+                        } else {
+                            ArrayList()
+                        }
 
-                val simpleDateFormat = SimpleDateFormat("yyyy年MM月dd日")
-                dataList[position].lastTime = simpleDateFormat.format(Date(System.currentTimeMillis()))
-                dataList[position].tag++ //标记为处理状态
+                        val simpleDateFormat = SimpleDateFormat("yyyy年MM月dd日")
+                        dataList[position].lastTime = simpleDateFormat.format(Date(System.currentTimeMillis()))
+                        dataList[position].tag++ //标记为处理状态
 
-                when {
-                    dataList[position].tag == 1 -> {
-                        dataList[position].nextTime = ToolsUtil.beforeAfterDate(1).toString()
+                        when {
+                            dataList[position].tag == 1 -> {
+                                dataList[position].nextTime = ToolsUtil.beforeAfterDate(1).toString()
+                            }
+                            dataList[position].tag == 2 -> {
+                                dataList[position].nextTime = ToolsUtil.beforeAfterDate(2).toString()
+                            }
+                            dataList[position].tag == 3 -> {
+                                dataList[position].nextTime = ToolsUtil.beforeAfterDate(4).toString()
+                            }
+                            dataList[position].tag == 4 -> {
+                                dataList[position].nextTime = ToolsUtil.beforeAfterDate(7).toString()
+                            }
+                            dataList[position].tag > 4 -> {
+                                dataList[position].nextTime = ToolsUtil.beforeAfterDate((dataList[position].tag-4)*15).toString()
+                            }
+                        }
+
+                        if (!specialList.contains(dataList[position])) {
+                            specialList.add(dataList[position])
+                            Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
+                        } else {
+                            specialList[specialList.indexOf(dataList[position])] = dataList[position]
+                            Toast.makeText(context, "已更新", Toast.LENGTH_SHORT).show()
+                        }
+                        Hawk.put(HawkConfig.SpecialQA, specialList)
+
+
+                        notifyDataSetChanged()
+                        Hawk.put(HawkConfig.QA, dataList)
+                        dialog.dismiss()
                     }
-                    dataList[position].tag == 2 -> {
-                        dataList[position].nextTime = ToolsUtil.beforeAfterDate(2).toString()
-                    }
-                    dataList[position].tag == 3 -> {
-                        dataList[position].nextTime = ToolsUtil.beforeAfterDate(4).toString()
-                    }
-                    dataList[position].tag == 4 -> {
-                        dataList[position].nextTime = ToolsUtil.beforeAfterDate(7).toString()
-                    }
-                    dataList[position].tag > 4 -> {
-                        dataList[position].nextTime = ToolsUtil.beforeAfterDate((dataList[position].tag-4)*15).toString()
-                    }
-                }
 
-                if (!specialList.contains(dataList[position])) {
-                    specialList.add(dataList[position])
-                    Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
-                } else {
-                    specialList[specialList.indexOf(dataList[position])] = dataList[position]
-                    Toast.makeText(context, "已更新", Toast.LENGTH_SHORT).show()
-                }
-                Hawk.put(HawkConfig.SpecialQA, specialList)
+                    override fun cancel() {
+                       dialog.dismiss()
+                    }
 
+                }).show()
 
-
-                notifyDataSetChanged()
-                Hawk.put(HawkConfig.QA, dataList)
             }
 
             override fun jump() {
