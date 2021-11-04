@@ -109,9 +109,11 @@ object QAData {
         QAItemData(QA.volatile_principle, R.mipmap.pineapple_pic),
         QAItemData(QA.deadlock_about, R.mipmap.pineapple_pic),
         QAItemData(QA.sleep_wait, R.mipmap.pineapple_pic),
-        QAItemData(QA.synchronize_lock, R.mipmap.grape_pic),
         QAItemData(QA.lock_type_use, R.mipmap.cherry_pic),
-        QAItemData(QA.volatile_synchronize_use, R.mipmap.banana_pic),
+        QAItemData(QA.volatile_features, R.mipmap.banana_pic),
+        QAItemData(QA.synchronize_principle, R.mipmap.banana_pic),
+        QAItemData(QA.volatile_synchronize_different, R.mipmap.banana_pic),
+        QAItemData(QA.synchronize_range, R.mipmap.banana_pic),
 
 
         QAItemData("线程池", R.mipmap.pineapple_pic,1),

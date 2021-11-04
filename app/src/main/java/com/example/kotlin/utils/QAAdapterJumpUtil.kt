@@ -73,11 +73,6 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.jvm_gc_root)
                     intent.putExtra("answer", QA.jvm_gc_root_answer)
                 }
-                QA.volatile_synchronize_use -> {
-                    intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.volatile_synchronize_use)
-                    intent.putExtra("answer", QA.volatile_synchronize_use_answer)
-                }
                 QA.four_components -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.four_components)
@@ -199,11 +194,6 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.java_reference)
                     intent.putExtra("answer", QA.java_reference_answer)
-                }
-                QA.synchronize_lock -> {
-                    intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.synchronize_lock)
-                    intent.putExtra("answer", QA.synchronize_lock_answer)
                 }
                 QA.thread_local -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -478,6 +468,26 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.volatile_principle)
                     intent.putExtra("answer", QA.volatile_principle_answer)
+                }
+                QA.volatile_features -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.volatile_features)
+                    intent.putExtra("answer", QA.volatile_features_answer)
+                }
+                QA.synchronize_principle -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.synchronize_principle)
+                    intent.putExtra("answer", QA.synchronize_principle_answer)
+                }
+                QA.volatile_synchronize_different -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.volatile_synchronize_different)
+                    intent.putExtra("answer", QA.volatile_synchronize_different_answer)
+                }
+                QA.synchronize_range -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.synchronize_range)
+                    intent.putExtra("answer", QA.synchronize_range_answer)
                 }
                 QA.fragment_activity_communication -> {
                     intent = Intent(context, QADetailActivity::class.java)
