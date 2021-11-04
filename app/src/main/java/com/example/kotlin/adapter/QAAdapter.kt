@@ -30,6 +30,10 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
         return dataList.size
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
 
     override fun onBindViewHolder(holder: QAViewHolder, position: Int) {
         val itemData = dataList[position]
@@ -75,10 +79,10 @@ class QAAdapter(private val context: Context, private val dataList: ArrayList<QA
                             Toast.makeText(context, "已更新", Toast.LENGTH_SHORT).show()
                         }
                         Hawk.put(HawkConfig.SpecialQA, specialList)
-
+                        Hawk.put(HawkConfig.QA, dataList)
 
                         notifyDataSetChanged()
-                        Hawk.put(HawkConfig.QA, dataList)
+
                         dialog.dismiss()
                     }
 

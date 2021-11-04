@@ -40,13 +40,13 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 itemView.q_a_list_item_text.setTextColor(Color.parseColor("#FF0000"))
             }
             data.tag == 2 -> {
-                itemView.q_a_list_item_text.setTextColor(Color.parseColor("#FF00FF"))
+                itemView.q_a_list_item_text.setTextColor(Color.parseColor("#FFC1C1"))
             }
             data.tag == 3 -> {
                 itemView.q_a_list_item_text.setTextColor(Color.parseColor("#FFD700"))
             }
             data.tag == 4 -> {
-                itemView.q_a_list_item_text.setTextColor(Color.parseColor("#00FFFF"))
+                itemView.q_a_list_item_text.setTextColor(Color.parseColor("#006400"))
             }
             data.tag > 4 -> {
                 itemView.q_a_list_item_text.setTextColor(Color.parseColor("#00FF00"))
