@@ -26,6 +26,9 @@ object QAData {
         QAItemData(QA.four_components, R.mipmap.cherry_pic),
         QAItemData(QA.activity_life, R.mipmap.grape_pic),
         QAItemData(QA.activity_launchMode, R.mipmap.orange_pic),
+        QAItemData(QA.activity_task, R.mipmap.orange_pic),
+        QAItemData(QA.activity_launchMode_how, R.mipmap.orange_pic),
+        QAItemData(QA.activity_launchMode_question, R.mipmap.orange_pic),
         QAItemData(QA.android_configChanges, R.mipmap.mango_pic),
         QAItemData(QA.fragment_activity_communication, R.mipmap.pineapple_pic),
         QAItemData(QA.lazy_fragment_purpose, R.mipmap.grape_pic),
@@ -34,7 +37,11 @@ object QAData {
         QAItemData(QA.fragment_life, R.mipmap.banana_pic),
         QAItemData(QA.fragment_life_change, R.mipmap.banana_pic),
         QAItemData(QA.intent_service, R.mipmap.pineapple_pic),
-        QAItemData(QA.service_life_stop, R.mipmap.pear_pic),
+        QAItemData(QA.service_create, R.mipmap.pear_pic),
+        QAItemData(QA.service_two_create_diff, R.mipmap.pear_pic),
+        QAItemData(QA.service_life, R.mipmap.pear_pic),
+        QAItemData(QA.service_stop, R.mipmap.pear_pic),
+        QAItemData(QA.service_activity_info, R.mipmap.pear_pic),
         QAItemData(QA.content_provider, R.mipmap.pineapple_pic),
 
 
@@ -60,6 +67,9 @@ object QAData {
         QAItemData(QA.array_link, R.mipmap.pineapple_pic),
         QAItemData(QA.sum_link, R.mipmap.pineapple_pic),
         QAItemData(QA.hash_map, R.mipmap.pineapple_pic),
+        QAItemData(QA.how_hash, R.mipmap.pineapple_pic),
+        QAItemData(QA.change_big, R.mipmap.pineapple_pic),
+        QAItemData(QA.red_black_time, R.mipmap.pineapple_pic),
 
 
 
@@ -79,8 +89,13 @@ object QAData {
 
         QAItemData("JVM", R.mipmap.pineapple_pic,1),
         QAItemData(QA.class_load, R.mipmap.pineapple_pic),
+        QAItemData(QA.class_load_three, R.mipmap.pineapple_pic),
         QAItemData(QA.jvm_model, R.mipmap.watermelon_pic),
         QAItemData(QA.jvm_gc_root, R.mipmap.apple_pic),
+        QAItemData(QA.jvm_gc_work, R.mipmap.apple_pic),
+        QAItemData(QA.mark_rubbish, R.mipmap.apple_pic),
+        QAItemData(QA.clean_rubbish, R.mipmap.apple_pic),
+        QAItemData(QA.rubbish_robot, R.mipmap.apple_pic),
 
 
         QAItemData("view与显示", R.mipmap.pineapple_pic,1),
@@ -93,6 +108,9 @@ object QAData {
         QAItemData(QA.touch_event_x_different, R.mipmap.orange_pic),
         QAItemData(QA.touch_event, R.mipmap.orange_pic),
         QAItemData(QA.draw_view, R.mipmap.banana_pic),
+        QAItemData(QA.view_draw_process, R.mipmap.banana_pic),
+        QAItemData(QA.surfaceView_about, R.mipmap.banana_pic),
+        QAItemData(QA.surfaceView_use, R.mipmap.banana_pic),
 
 
         QAItemData("线程", R.mipmap.pineapple_pic,1),
@@ -146,16 +164,24 @@ object QAData {
         QAItemData(QA.net_work_level, R.mipmap.pineapple_pic),
         QAItemData(QA.http_https, R.mipmap.strawberry_pic),
         QAItemData(QA.http_error_code, R.mipmap.pineapple_pic),
+        QAItemData(QA.retrofit_about, R.mipmap.pineapple_pic),
+        QAItemData(QA.retrofit_principle, R.mipmap.pineapple_pic),
+        QAItemData(QA.dynamic_proxy_good, R.mipmap.pineapple_pic),
 
 
         QAItemData("第三方控件与框架", R.mipmap.pineapple_pic,1),
         QAItemData(QA.jet_pack, R.mipmap.pineapple_pic),
         QAItemData(QA.r_x_java, R.mipmap.pineapple_pic),
         QAItemData(QA.catch_exception, R.mipmap.pineapple_pic),
+        QAItemData(QA.list_diff, R.mipmap.pineapple_pic),
+        QAItemData(QA.butter_knife, R.mipmap.pineapple_pic),
+        QAItemData(QA.hot_repair, R.mipmap.pineapple_pic),
 
 
         QAItemData("开发模式", R.mipmap.pineapple_pic,1),
         QAItemData(QA.mvp, R.mipmap.grape_pic),
+        QAItemData(QA.mvc, R.mipmap.grape_pic),
+        QAItemData(QA.mvvm, R.mipmap.grape_pic),
 
 
         QAItemData("设计模式", R.mipmap.pineapple_pic,1),
@@ -166,6 +192,8 @@ object QAData {
         QAItemData("系统架构", R.mipmap.pineapple_pic,1),
         QAItemData(QA.assets_res, R.mipmap.pineapple_pic),
         QAItemData(QA.version_features, R.mipmap.pineapple_pic),
+        QAItemData(QA.framework_about, R.mipmap.pineapple_pic),
+        QAItemData(QA.android_base, R.mipmap.pineapple_pic),
 
 
 

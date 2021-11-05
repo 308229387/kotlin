@@ -14,8 +14,8 @@ import com.example.kotlin.data.QA
  */
 class QAAdapterJumpUtil {
     companion object {
-        var intent =Intent()
-        fun setIntent(context: Context, title:String) {
+        var intent = Intent()
+        fun setIntent(context: Context, title: String) {
             when (title) {
                 QA.performance_optimization -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -31,6 +31,21 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.draw_view)
                     intent.putExtra("answer", QA.draw_view_answer)
+                }
+                QA.view_draw_process -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.view_draw_process)
+                    intent.putExtra("answer", QA.view_draw_process_answer)
+                }
+                QA.surfaceView_about -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.surfaceView_about)
+                    intent.putExtra("answer", QA.surfaceView_about_answer)
+                }
+                QA.surfaceView_use -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.surfaceView_use)
+                    intent.putExtra("answer", QA.surfaceView_use_answer)
                 }
                 QA.lock_type_use -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -48,15 +63,50 @@ class QAAdapterJumpUtil {
                     intent.putExtra("answer", QA.android_configChanges_answer)
                 }
 
-                QA.service_life_stop -> {
+                QA.service_create -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.service_life_stop)
-                    intent.putExtra("answer", QA.service_life_stop_answer)
+                    intent.putExtra("title", QA.service_create)
+                    intent.putExtra("answer", QA.service_create_answer)
+                }
+                QA.service_two_create_diff -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.service_two_create_diff)
+                    intent.putExtra("answer", QA.service_two_create_diff_answer)
+                }
+                QA.service_life -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.service_life)
+                    intent.putExtra("answer", QA.service_life_answer)
+                }
+                QA.service_stop -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.service_stop)
+                    intent.putExtra("answer", QA.service_stop_answer)
+                }
+                QA.service_activity_info -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.service_activity_info)
+                    intent.putExtra("answer", QA.service_activity_info_answer)
                 }
                 QA.activity_launchMode -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.activity_launchMode)
                     intent.putExtra("answer", QA.activity_launchMode_answer)
+                }
+                QA.activity_task -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.activity_task)
+                    intent.putExtra("answer", QA.activity_task_answer)
+                }
+                QA.activity_launchMode_how -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.activity_launchMode_how)
+                    intent.putExtra("answer", QA.activity_launchMode_how_answer)
+                }
+                QA.activity_launchMode_question -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.activity_launchMode_question)
+                    intent.putExtra("answer", QA.activity_launchMode_question_answer)
                 }
                 QA.http_https -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -72,6 +122,26 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.jvm_gc_root)
                     intent.putExtra("answer", QA.jvm_gc_root_answer)
+                }
+                QA.jvm_gc_work -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.jvm_gc_work)
+                    intent.putExtra("answer", QA.jvm_gc_work_answer)
+                }
+                QA.mark_rubbish -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.mark_rubbish)
+                    intent.putExtra("answer", QA.mark_rubbish_answer)
+                }
+                QA.clean_rubbish -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.clean_rubbish)
+                    intent.putExtra("answer", QA.clean_rubbish_answer)
+                }
+                QA.rubbish_robot -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.rubbish_robot)
+                    intent.putExtra("answer", QA.rubbish_robot_answer)
                 }
                 QA.four_components -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -138,13 +208,26 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.hash_map)
                     intent.putExtra("answer", QA.hash_map_answer)
                 }
+                QA.how_hash -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.how_hash)
+                    intent.putExtra("answer", QA.how_hash_answer)
+                }
+                QA.change_big -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.change_big)
+                    intent.putExtra("answer", QA.change_big_answer)
+                }
+                QA.red_black_time -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.red_black_time)
+                    intent.putExtra("answer", QA.red_black_time_answer)
+                }
                 QA.aidl -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.aidl)
                     intent.putExtra("answer", QA.aidl_answer)
                 }
-
-
                 QA.thread_pool_create -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.thread_pool_create)
@@ -215,6 +298,16 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.version_features)
                     intent.putExtra("answer", QA.version_features_answer)
                 }
+                QA.framework_about -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.framework_about)
+                    intent.putExtra("answer", QA.framework_about_answer)
+                }
+                QA.android_base -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.android_base)
+                    intent.putExtra("answer", QA.android_base_answer)
+                }
                 QA.handler_thread -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.handler_thread)
@@ -254,6 +347,16 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.mvp)
                     intent.putExtra("answer", QA.mvp_answer)
+                }
+                QA.mvc -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.mvc)
+                    intent.putExtra("answer", QA.mvc_answer)
+                }
+                QA.mvvm -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.mvvm)
+                    intent.putExtra("answer", QA.mvvm_answer)
                 }
                 QA.intent_service -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -439,6 +542,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.class_load)
                     intent.putExtra("answer", QA.class_load_answer)
                 }
+                QA.class_load_three -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.class_load_three)
+                    intent.putExtra("answer", QA.class_load_three_answer)
+                }
                 QA.abstract_interface -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.abstract_interface)
@@ -509,6 +617,21 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.r_x_java)
                     intent.putExtra("answer", QA.r_x_java_answer)
                 }
+                QA.list_diff -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.list_diff)
+                    intent.putExtra("answer", QA.list_diff_answer)
+                }
+                QA.butter_knife -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.butter_knife)
+                    intent.putExtra("answer", QA.butter_knife_answer)
+                }
+                QA.butter_knife -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.hot_repair)
+                    intent.putExtra("answer", QA.hot_repair_answer)
+                }
                 QA.jet_pack -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.jet_pack)
@@ -554,10 +677,21 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.http_error_code)
                     intent.putExtra("answer", QA.http_error_code_answer)
                 }
-
-
-
-
+                QA.retrofit_about -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.retrofit_about)
+                    intent.putExtra("answer", QA.retrofit_about_answer)
+                }
+                QA.retrofit_principle -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.retrofit_principle)
+                    intent.putExtra("answer", QA.retrofit_principle_answer)
+                }
+                QA.dynamic_proxy_good -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.dynamic_proxy_good)
+                    intent.putExtra("answer", QA.dynamic_proxy_good_answer)
+                }
 
 
                 AlgorithmQA.reverse_list -> {
