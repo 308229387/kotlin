@@ -168,6 +168,16 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.solve_anr)
                     intent.putExtra("answer", QA.solve_anr_answer)
                 }
+                QA.watching_anr -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.watching_anr)
+                    intent.putExtra("answer", QA.watching_anr_answer)
+                }
+                QA.block_canary_principle -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.block_canary_principle)
+                    intent.putExtra("answer", QA.block_canary_principle_answer)
+                }
                 QA.touch_event -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.touch_event)
@@ -283,15 +293,35 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.thread_local)
                     intent.putExtra("answer", QA.thread_local_answer)
                 }
-                QA.thread_about -> {
+                QA.thread_create -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.thread_about)
-                    intent.putExtra("answer", QA.thread_about_answer)
+                    intent.putExtra("title", QA.thread_create)
+                    intent.putExtra("answer", QA.thread_create_answer)
+                }
+                QA.thread_stop -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.thread_stop)
+                    intent.putExtra("answer", QA.thread_stop_answer)
+                }
+                QA.thread_change -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.thread_change)
+                    intent.putExtra("answer", QA.thread_change_answer)
+                }
+                QA.thread_safe -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.thread_safe)
+                    intent.putExtra("answer", QA.thread_safe_answer)
                 }
                 QA.sleep_wait -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.sleep_wait)
                     intent.putExtra("answer", QA.sleep_wait_answer)
+                }
+                QA.sleep_0 -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.sleep_0)
+                    intent.putExtra("answer", QA.sleep_0_answer)
                 }
                 QA.version_features -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -607,6 +637,21 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.synchronize_range)
                     intent.putExtra("answer", QA.synchronize_range_answer)
                 }
+                QA.synchronized_lock_diff -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.synchronized_lock_diff)
+                    intent.putExtra("answer", QA.synchronized_lock_diff_answer)
+                }
+                QA.mor_lock -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.mor_lock)
+                    intent.putExtra("answer", QA.mor_lock_answer)
+                }
+                QA.twice_lock -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.twice_lock)
+                    intent.putExtra("answer", QA.twice_lock_answer)
+                }
                 QA.fragment_activity_communication -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.fragment_activity_communication)
@@ -691,6 +736,31 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.dynamic_proxy_good)
                     intent.putExtra("answer", QA.dynamic_proxy_good_answer)
+                }
+                QA.kotlin_good -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.kotlin_good)
+                    intent.putExtra("answer", QA.kotlin_good_answer)
+                }
+                QA.kotlin_coroutines -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.kotlin_coroutines)
+                    intent.putExtra("answer", QA.kotlin_coroutines_answer)
+                }
+                QA.coroutines_create -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.coroutines_create)
+                    intent.putExtra("answer", QA.coroutines_create_answer)
+                }
+                QA.flutter_about -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.flutter_about)
+                    intent.putExtra("answer", QA.flutter_about_answer)
+                }
+                QA.coroutines_stop -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.coroutines_stop)
+                    intent.putExtra("answer", QA.coroutines_stop_answer)
                 }
 
 

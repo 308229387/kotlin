@@ -78,6 +78,8 @@ object QAData {
         QAItemData(QA.clean_apk, R.mipmap.grape_pic),
         QAItemData(QA.leak_canary, R.mipmap.pineapple_pic),
         QAItemData(QA.solve_anr, R.mipmap.mango_pic),
+        QAItemData(QA.watching_anr, R.mipmap.mango_pic),
+        QAItemData(QA.block_canary_principle, R.mipmap.mango_pic),
         QAItemData(QA.memory_leak, R.mipmap.pear_pic),
         QAItemData(QA.performance_optimization, R.mipmap.strawberry_pic),
         QAItemData(QA.app_start_process, R.mipmap.pineapple_pic),
@@ -119,7 +121,10 @@ object QAData {
         QAItemData(QA.join_about, R.mipmap.pineapple_pic),
         QAItemData(QA.invalidate, R.mipmap.pineapple_pic),
         QAItemData(QA.handler_thread, R.mipmap.pineapple_pic),
-        QAItemData(QA.thread_about, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_create, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_stop, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_change, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_safe, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_local, R.mipmap.pineapple_pic),
 
 
@@ -127,11 +132,15 @@ object QAData {
         QAItemData(QA.volatile_principle, R.mipmap.pineapple_pic),
         QAItemData(QA.deadlock_about, R.mipmap.pineapple_pic),
         QAItemData(QA.sleep_wait, R.mipmap.pineapple_pic),
+        QAItemData(QA.sleep_0, R.mipmap.pineapple_pic),
         QAItemData(QA.lock_type_use, R.mipmap.cherry_pic),
         QAItemData(QA.volatile_features, R.mipmap.banana_pic),
         QAItemData(QA.synchronize_principle, R.mipmap.banana_pic),
         QAItemData(QA.volatile_synchronize_different, R.mipmap.banana_pic),
         QAItemData(QA.synchronize_range, R.mipmap.banana_pic),
+        QAItemData(QA.synchronized_lock_diff, R.mipmap.banana_pic),
+        QAItemData(QA.mor_lock, R.mipmap.banana_pic),
+        QAItemData(QA.twice_lock, R.mipmap.banana_pic),
 
 
         QAItemData("线程池", R.mipmap.pineapple_pic,1),
@@ -196,6 +205,14 @@ object QAData {
         QAItemData(QA.android_base, R.mipmap.pineapple_pic),
 
 
+        QAItemData("扩展", R.mipmap.pineapple_pic,1),
+        QAItemData(QA.kotlin_good, R.mipmap.pineapple_pic),
+        QAItemData(QA.kotlin_coroutines, R.mipmap.pineapple_pic),
+        QAItemData(QA.coroutines_create, R.mipmap.pineapple_pic),
+        QAItemData(QA.coroutines_stop, R.mipmap.pineapple_pic),
+        QAItemData(QA.flutter_about, R.mipmap.pineapple_pic),
 
-    )
+
+
+        )
 }
