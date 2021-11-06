@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.adapter.AlgorithmAdapter
 import com.example.kotlin.data.QAItemData
-import kotlinx.android.synthetic.main.list_items.view.*
+import kotlinx.android.synthetic.main.q_a_list_items.view.*
 
 /**
  * Author: sym
@@ -17,29 +17,55 @@ class AlgorithmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var currentPosition: Int = 0
     private lateinit var listener: AlgorithmAdapter.HolderListener
 
-    init {
-        itemView.setOnClickListener {
-            listener.jump()
-        }
-        itemView.list_item_image.setOnClickListener { listener.delete() }
-    }
-
-
     fun setData(data: QAItemData, pos: Int) {
-        /* val title =  itemView.findViewById<TextView>(R.id.tvTitle)
-         title.text = hobby?.title */
+        if (data.head != 0) {
+            itemView.card_layout.visibility = View.GONE
+            itemView.content_head.visibility = View.VISIBLE
+            itemView.content_head.text = data.title
+        } else {
+            itemView.card_layout.visibility = View.VISIBLE
+            itemView.content_head.visibility = View.GONE
+            itemView.q_a_list_item_text.text = data?.title
 
-        itemView.list_item_text.text = (pos+1).toString()+"、"+data.title
-        data.image?.let { itemView.list_item_image.setBackgroundResource(it) }
+            itemView.setOnClickListener {
+                listener.jump()
+            }
+            itemView.q_a_list_item_image.setOnClickListener { listener.delete() }
 
-        if(data.tag == 1){
-            itemView.list_item_text.setTextColor(Color.GREEN)
-        }else{
-            itemView.list_item_text.setTextColor(Color.parseColor("#616161"))
+            itemView.q_a_list_item_text.text = data.title
+            data.image?.let { itemView.q_a_list_item_image.setBackgroundResource(it) }
+            when {
+                data.tag == 1 -> {
+                    itemView.q_a_list_item_text.setTextColor(Color.parseColor("#FF0000"))
+                }
+                data.tag == 2 -> {
+                    itemView.q_a_list_item_text.setTextColor(Color.parseColor("#FFC1C1"))
+                }
+                data.tag == 3 -> {
+                    itemView.q_a_list_item_text.setTextColor(Color.parseColor("#FFD700"))
+                }
+                data.tag == 4 -> {
+                    itemView.q_a_list_item_text.setTextColor(Color.parseColor("#006400"))
+                }
+                data.tag > 4 -> {
+                    itemView.q_a_list_item_text.setTextColor(Color.parseColor("#00FF00"))
+                }
+            }
+
+            if (data.lastTime != null && data.lastTime.isNotEmpty()) {
+                itemView.remember_last_time.text = "last : " + data.lastTime
+            } else {
+                itemView.remember_last_time.text = "未学习"
+            }
+            if (data.nextTime != null && data.nextTime.isNotEmpty()) {
+                itemView.remember_next_time.text = "next : " + data.nextTime
+            } else {
+                itemView.remember_next_time.text = ""
+            }
+
+            this.currentData = data
+            this.currentPosition = pos
         }
-
-        this.currentData = data
-        this.currentPosition = pos
     }
 
     fun setOnListener(deleteListener: AlgorithmAdapter.HolderListener) {

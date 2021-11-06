@@ -9,20 +9,31 @@ import com.example.kotlin.R
 import com.example.kotlin.data.HawkConfig
 import com.example.kotlin.data.QAItemData
 import com.example.kotlin.utils.QAAdapterJumpUtil
+import com.example.kotlin.utils.ToolsUtil
 import com.example.kotlin.viewholder.AlgorithmViewHolder
+import com.example.kotlin.views.dialog.RememberDialog
 import com.orhanobut.hawk.Hawk
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AlgorithmAdapter(private val context: Context, private val dataList: ArrayList<QAItemData>) :
     RecyclerView.Adapter<AlgorithmViewHolder>() {
+    lateinit var dialog:RememberDialog
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlgorithmViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.list_items, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.q_a_list_items, parent, false)
         return AlgorithmViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return dataList.size
     }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
 
     interface HolderListener {
         fun delete()
@@ -34,25 +45,62 @@ class AlgorithmAdapter(private val context: Context, private val dataList: Array
         holder.setData(itemData, position)
         holder.setOnListener(object : HolderListener {
             override fun delete() {
-                var specialList: ArrayList<QAItemData> = if (Hawk.contains(HawkConfig.SpecialQA)) {
-                    Hawk.get(HawkConfig.SpecialQA)
-                } else {
-                    ArrayList()
-                }
+                dialog = RememberDialog(context)
+                dialog.setListener(object : RememberDialog.RememberDialogCallBack{
+                    override fun result() {
+                        var specialList: ArrayList<QAItemData> = if (Hawk.contains(HawkConfig.SpecialQA)) {
+                            Hawk.get(HawkConfig.SpecialQA)
+                        } else {
+                            ArrayList()
+                        }
 
-                if (!specialList.contains(dataList[position])) {
-                    specialList.add(dataList[position])
-                    Hawk.put(HawkConfig.SpecialQA, specialList)
-                    Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context, "已在关注列表", Toast.LENGTH_SHORT).show()
-                }
+                        val simpleDateFormat = SimpleDateFormat("yyyy年MM月dd日")
+                        dataList[position].lastTime = simpleDateFormat.format(Date(System.currentTimeMillis()))
+                        dataList[position].tag++ //标记为处理状态
+
+                        when {
+                            dataList[position].tag == 1 -> {
+                                dataList[position].nextTime = ToolsUtil.beforeAfterDate(1).toString()
+                            }
+                            dataList[position].tag == 2 -> {
+                                dataList[position].nextTime = ToolsUtil.beforeAfterDate(2).toString()
+                            }
+                            dataList[position].tag == 3 -> {
+                                dataList[position].nextTime = ToolsUtil.beforeAfterDate(4).toString()
+                            }
+                            dataList[position].tag == 4 -> {
+                                dataList[position].nextTime = ToolsUtil.beforeAfterDate(7).toString()
+                            }
+                            dataList[position].tag > 4 -> {
+                                dataList[position].nextTime = ToolsUtil.beforeAfterDate((dataList[position].tag-4)*15).toString()
+                            }
+                        }
+
+
+                        if (!specialList.contains(dataList[position])) {
+                            specialList.add(dataList[position])
+                            Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show()
+                        } else {
+                            specialList[specialList.indexOf(dataList[position])] = dataList[position]
+                            Toast.makeText(context, "已更新", Toast.LENGTH_SHORT).show()
+                        }
+                        Hawk.put(HawkConfig.SpecialQA, specialList)
+                        Hawk.put(HawkConfig.AlgorithmQA, dataList)
+
+                        notifyDataSetChanged()
+
+                        dialog.dismiss()
+                    }
+
+                    override fun cancel() {
+                        dialog.dismiss()
+                    }
+
+                }).show()
 
 
 
-                dataList[position].tag = 1 //标记为处理状态
-                notifyDataSetChanged()
-                Hawk.put(HawkConfig.AlgorithmQA, dataList)
+
             }
 
             override fun jump() {

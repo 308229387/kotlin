@@ -24,6 +24,10 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             itemView.content_head.visibility = View.VISIBLE
             itemView.content_head.text = data.title
         } else {
+            itemView.card_layout.visibility = View.VISIBLE
+            itemView.content_head.visibility = View.GONE
+            itemView.q_a_list_item_text.text = data?.title
+
             itemView.setOnClickListener {
                 listener.jump()
             }
@@ -33,11 +37,6 @@ class QAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 return@setOnLongClickListener true
             }
 
-
-
-            itemView.card_layout.visibility = View.VISIBLE
-            itemView.content_head.visibility = View.GONE
-            itemView.q_a_list_item_text.text = data?.title
             data?.image?.let { itemView.q_a_list_item_image.setBackgroundResource(it) }
             when {
                 data.tag == 1 -> {
