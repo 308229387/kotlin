@@ -293,6 +293,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.java_reference_queue)
                     intent.putExtra("answer", QA.java_reference_queue_answer)
                 }
+                QA.android_annotation -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.android_annotation)
+                    intent.putExtra("answer", QA.android_annotation_answer)
+                }
                 QA.thread_local -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.thread_local)
@@ -412,6 +417,11 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.equals_deng)
                     intent.putExtra("answer", QA.equals_deng_answer)
+                }
+                QA.equals_hash_code -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.equals_hash_code)
+                    intent.putExtra("answer", QA.equals_hash_code_answer)
                 }
                 QA.overloading_overriding -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -611,6 +621,21 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.content_provider)
                     intent.putExtra("answer", QA.content_provider_answer)
+                }
+                QA.content_resolver -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.content_resolver)
+                    intent.putExtra("answer", QA.content_resolver_answer)
+                }
+                QA.content_provider_uri -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.content_provider_uri)
+                    intent.putExtra("answer", QA.content_provider_uri_answer)
+                }
+                QA.content_provider_steps -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.content_provider_steps)
+                    intent.putExtra("answer", QA.content_provider_steps_answer)
                 }
                 QA.how_many_string -> {
                     intent = Intent(context, QADetailActivity::class.java)

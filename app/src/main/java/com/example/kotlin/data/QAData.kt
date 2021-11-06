@@ -16,11 +16,13 @@ object QAData {
         QAItemData(QA.string_string_buffer, R.mipmap.banana_pic),
         QAItemData(QA.final_finally_finalize, R.mipmap.pineapple_pic),
         QAItemData(QA.equals_deng, R.mipmap.grape_pic),
+        QAItemData(QA.equals_hash_code, R.mipmap.grape_pic),
         QAItemData(QA.overloading_overriding, R.mipmap.banana_pic),
         QAItemData(QA.java_three_point, R.mipmap.pineapple_pic),
         QAItemData(QA.generic_reflection, R.mipmap.pineapple_pic),
         QAItemData(QA.java_reference, R.mipmap.pineapple_pic),
         QAItemData(QA.java_reference_queue, R.mipmap.pineapple_pic),
+        QAItemData(QA.android_annotation, R.mipmap.pineapple_pic),
 
 
         QAItemData("四大组件", R.mipmap.pineapple_pic,1),
@@ -44,6 +46,9 @@ object QAData {
         QAItemData(QA.service_stop, R.mipmap.pear_pic),
         QAItemData(QA.service_activity_info, R.mipmap.pear_pic),
         QAItemData(QA.content_provider, R.mipmap.pineapple_pic),
+        QAItemData(QA.content_resolver, R.mipmap.pineapple_pic),
+        QAItemData(QA.content_provider_uri, R.mipmap.pineapple_pic),
+        QAItemData(QA.content_provider_steps, R.mipmap.pineapple_pic),
 
 
         QAItemData("Handler", R.mipmap.pineapple_pic,1),
