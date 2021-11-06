@@ -17,9 +17,10 @@ object QAData {
         QAItemData(QA.final_finally_finalize, R.mipmap.pineapple_pic),
         QAItemData(QA.equals_deng, R.mipmap.grape_pic),
         QAItemData(QA.overloading_overriding, R.mipmap.banana_pic),
-        QAItemData(QA.polymorphism_extends, R.mipmap.pineapple_pic),
+        QAItemData(QA.java_three_point, R.mipmap.pineapple_pic),
         QAItemData(QA.generic_reflection, R.mipmap.pineapple_pic),
         QAItemData(QA.java_reference, R.mipmap.pineapple_pic),
+        QAItemData(QA.java_reference_queue, R.mipmap.pineapple_pic),
 
 
         QAItemData("四大组件", R.mipmap.pineapple_pic,1),

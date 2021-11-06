@@ -288,6 +288,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.java_reference)
                     intent.putExtra("answer", QA.java_reference_answer)
                 }
+                QA.java_reference_queue -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.java_reference_queue)
+                    intent.putExtra("answer", QA.java_reference_queue_answer)
+                }
                 QA.thread_local -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.thread_local)
@@ -413,10 +418,10 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.overloading_overriding)
                     intent.putExtra("answer", QA.overloading_overriding_answer)
                 }
-                QA.polymorphism_extends -> {
+                QA.java_three_point -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.polymorphism_extends)
-                    intent.putExtra("answer", QA.polymorphism_extends_answer)
+                    intent.putExtra("title", QA.java_three_point)
+                    intent.putExtra("answer", QA.java_three_point_answer)
                 }
                 QA.generic_reflection -> {
                     intent = Intent(context, QADetailActivity::class.java)
