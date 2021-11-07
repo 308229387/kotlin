@@ -862,6 +862,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.reverse_print_stack)
                     intent.putExtra("answer", AlgorithmQA.reverse_print_stack_answer)
                 }
+                AlgorithmQA.two_stack_for_list -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.two_stack_for_list)
+                    intent.putExtra("answer", AlgorithmQA.two_stack_for_list_answer)
+                }
                 AlgorithmQA.create_list -> {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.create_list)
