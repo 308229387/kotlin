@@ -867,6 +867,16 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.two_stack_for_list)
                     intent.putExtra("answer", AlgorithmQA.two_stack_for_list_answer)
                 }
+                AlgorithmQA.contains_min -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.contains_min)
+                    intent.putExtra("answer", AlgorithmQA.contains_min_answer)
+                }
+                AlgorithmQA.hard_list -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.hard_list)
+                    intent.putExtra("answer", AlgorithmQA.hard_list_answer)
+                }
                 AlgorithmQA.create_list -> {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.create_list)

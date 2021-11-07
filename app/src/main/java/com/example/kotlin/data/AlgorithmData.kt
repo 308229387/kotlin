@@ -19,10 +19,12 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.cross_list_find_cross, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.remove_n_from_end, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.reverse_list, R.mipmap.strawberry_pic),
+        QAItemData(AlgorithmQA.hard_list, R.mipmap.strawberry_pic),
 
         QAItemData("队列和栈", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.reverse_print_stack, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.two_stack_for_list, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.contains_min, R.mipmap.banana_pic),
 
 
         QAItemData("二叉数", R.mipmap.pineapple_pic,1),
