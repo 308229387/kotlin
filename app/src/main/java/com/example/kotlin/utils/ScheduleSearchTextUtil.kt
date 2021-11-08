@@ -44,6 +44,7 @@ class ScheduleSearchTextUtil {
         timer.schedule(object : TimerTask() {
             override fun run() {
                 val message: Message = handler.obtainMessage()
+                message.isAsynchronous
                 message.arg1 = 200
                 handler.sendMessage(message)
                 i++

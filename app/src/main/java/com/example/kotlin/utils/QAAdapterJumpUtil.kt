@@ -499,8 +499,14 @@ class QAAdapterJumpUtil {
                     intent.putExtra("answer", QA.catch_exception_answer)
                 }
                 QA.ui_block -> {
+                    intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.ui_block)
                     intent.putExtra("answer", QA.ui_block_answer)
+                }
+                QA.how_solve_block -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.how_solve_block)
+                    intent.putExtra("answer", QA.how_solve_block_answer)
                 }
                 QA.not_ui_refresh -> {
                     intent = Intent(context, QADetailActivity::class.java)

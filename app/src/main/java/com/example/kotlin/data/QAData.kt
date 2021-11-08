@@ -81,6 +81,7 @@ object QAData {
 
         QAItemData("性能优化", R.mipmap.pineapple_pic,1),
         QAItemData(QA.ui_block, R.mipmap.banana_pic),
+        QAItemData(QA.how_solve_block, R.mipmap.banana_pic),
         QAItemData(QA.clean_apk, R.mipmap.grape_pic),
         QAItemData(QA.leak_canary, R.mipmap.pineapple_pic),
         QAItemData(QA.solve_anr, R.mipmap.mango_pic),
