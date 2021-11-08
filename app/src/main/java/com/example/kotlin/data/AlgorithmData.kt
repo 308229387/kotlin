@@ -26,6 +26,10 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.two_stack_for_list, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.contains_min, R.mipmap.banana_pic),
 
+        QAItemData("字符串", R.mipmap.pineapple_pic,1),
+        QAItemData(AlgorithmQA.replace_space, R.mipmap.banana_pic),
+
+
 
         QAItemData("二叉数", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.inorder_traversal, R.mipmap.banana_pic),
@@ -42,7 +46,6 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.remove_elements, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.reverse_print_recursive, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.reverse_print_stack, R.mipmap.banana_pic),
-        QAItemData(AlgorithmQA.replace_space, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.two_sum, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.first_show_char, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.string_add, R.mipmap.banana_pic),
