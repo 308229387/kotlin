@@ -89,6 +89,8 @@ object QAData {
         QAItemData(QA.block_canary_principle, R.mipmap.mango_pic),
         QAItemData(QA.memory_leak, R.mipmap.pear_pic),
         QAItemData(QA.performance_optimization, R.mipmap.strawberry_pic),
+        QAItemData(QA.cache_optimization, R.mipmap.strawberry_pic),
+        QAItemData(QA.cache_big, R.mipmap.strawberry_pic),
         QAItemData(QA.app_start_process, R.mipmap.pineapple_pic),
         QAItemData(QA.app_start_about_role, R.mipmap.pineapple_pic),
         QAItemData(QA.app_start_start_time, R.mipmap.pineapple_pic),

@@ -22,6 +22,16 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.performance_optimization)
                     intent.putExtra("answer", QA.performance_optimization_answer)
                 }
+                QA.cache_optimization -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.cache_optimization)
+                    intent.putExtra("answer", QA.cache_optimization_answer)
+                }
+                QA.cache_big -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.cache_big)
+                    intent.putExtra("answer", QA.cache_big_answer)
+                }
                 QA.tcp_shake_hands -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.tcp_shake_hands)
