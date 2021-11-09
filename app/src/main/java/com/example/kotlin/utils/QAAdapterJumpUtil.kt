@@ -173,15 +173,20 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.handler_child_create)
                     intent.putExtra("answer", QA.handler_child_create_answer)
                 }
-                QA.solve_anr -> {
+                QA.what_anr -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.solve_anr)
-                    intent.putExtra("answer", QA.solve_anr_answer)
+                    intent.putExtra("title", QA.what_anr)
+                    intent.putExtra("answer", QA.what_anr_answer)
                 }
                 QA.watching_anr -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.watching_anr)
                     intent.putExtra("answer", QA.watching_anr_answer)
+                }
+                QA.solve_anr -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.solve_anr)
+                    intent.putExtra("answer", QA.solve_anr_answer)
                 }
                 QA.block_canary_principle -> {
                     intent = Intent(context, QADetailActivity::class.java)
