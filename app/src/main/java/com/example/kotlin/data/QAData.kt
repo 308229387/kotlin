@@ -112,7 +112,6 @@ object QAData {
 
         QAItemData("view与显示", R.mipmap.pineapple_pic,1),
         QAItemData(QA.auto_adapter_screen, R.mipmap.pineapple_pic),
-        QAItemData(QA.animations, R.mipmap.pineapple_pic),
         QAItemData(QA.touch_event, R.mipmap.orange_pic),
         QAItemData(QA.touch_event_move, R.mipmap.orange_pic),
         QAItemData(QA.touch_event_target, R.mipmap.orange_pic),
@@ -122,6 +121,10 @@ object QAData {
         QAItemData(QA.view_draw_process, R.mipmap.banana_pic),
         QAItemData(QA.surfaceView_about, R.mipmap.banana_pic),
         QAItemData(QA.surfaceView_use, R.mipmap.banana_pic),
+
+        QAItemData("动画", R.mipmap.pineapple_pic,1),
+        QAItemData(QA.animations, R.mipmap.pineapple_pic),
+        QAItemData(QA.value_animations, R.mipmap.banana_pic),
 
 
         QAItemData("线程", R.mipmap.pineapple_pic,1),
