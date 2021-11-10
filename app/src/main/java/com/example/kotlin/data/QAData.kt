@@ -118,7 +118,6 @@ object QAData {
         QAItemData(QA.touch_event_target, R.mipmap.orange_pic),
         QAItemData(QA.touch_event_conflict, R.mipmap.orange_pic),
         QAItemData(QA.touch_event_x_different, R.mipmap.orange_pic),
-        QAItemData(QA.touch_event, R.mipmap.orange_pic),
         QAItemData(QA.draw_view, R.mipmap.banana_pic),
         QAItemData(QA.view_draw_process, R.mipmap.banana_pic),
         QAItemData(QA.surfaceView_about, R.mipmap.banana_pic),

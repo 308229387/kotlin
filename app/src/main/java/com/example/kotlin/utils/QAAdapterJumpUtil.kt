@@ -873,6 +873,31 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.replace_space)
                     intent.putExtra("answer", AlgorithmQA.replace_space_answer)
                 }
+                AlgorithmQA.left_rotation_string -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.left_rotation_string)
+                    intent.putExtra("answer", AlgorithmQA.left_rotation_string_answer)
+                }
+                AlgorithmQA.string_all_arrangement -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.string_all_arrangement)
+                    intent.putExtra("answer", AlgorithmQA.string_all_arrangement_answer)
+                }
+                AlgorithmQA.array_repeat_num -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.array_repeat_num)
+                    intent.putExtra("answer", AlgorithmQA.array_repeat_num_answer)
+                }
+                AlgorithmQA.arrangement_array_find_num -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.arrangement_array_find_num)
+                    intent.putExtra("answer", AlgorithmQA.arrangement_array_find_num_answer)
+                }
+                AlgorithmQA.array_missing_num -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.array_missing_num)
+                    intent.putExtra("answer", AlgorithmQA.array_missing_num_answer)
+                }
                 AlgorithmQA.reverse_print_recursive -> {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.reverse_print_recursive)
