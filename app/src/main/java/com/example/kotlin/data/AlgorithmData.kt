@@ -19,6 +19,7 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.cross_list_find_cross, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.remove_n_from_end, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.reverse_list, R.mipmap.strawberry_pic),
+        QAItemData(AlgorithmQA.reverse_list_iteration, R.mipmap.strawberry_pic),
         QAItemData(AlgorithmQA.hard_list, R.mipmap.strawberry_pic),
 
         QAItemData("队列和栈", R.mipmap.pineapple_pic,1),
@@ -30,11 +31,14 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.replace_space, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.left_rotation_string, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.string_all_arrangement, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.once_show_char, R.mipmap.banana_pic),
 
         QAItemData("数组", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.array_repeat_num, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.arrangement_array_find_num, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.array_missing_num, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.rotation_small, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.two_array_find, R.mipmap.banana_pic),
 
 
         QAItemData("二叉数", R.mipmap.pineapple_pic,1),

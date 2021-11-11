@@ -124,7 +124,15 @@ object QAData {
 
         QAItemData("动画", R.mipmap.pineapple_pic,1),
         QAItemData(QA.animations, R.mipmap.pineapple_pic),
-        QAItemData(QA.value_animations, R.mipmap.banana_pic),
+        QAItemData(QA.value_animations_about, R.mipmap.banana_pic),
+        QAItemData(QA.value_animator, R.mipmap.banana_pic),
+        QAItemData(QA.object_animator, R.mipmap.banana_pic),
+        QAItemData(QA.animator_animator_set, R.mipmap.banana_pic),
+        QAItemData(QA.property_values_holder, R.mipmap.banana_pic),
+        QAItemData(QA.type_evaluator_about, R.mipmap.banana_pic),
+        QAItemData(QA.interpolator_about, R.mipmap.banana_pic),
+        QAItemData(QA.animator_listener, R.mipmap.banana_pic),
+        QAItemData(QA.type_evaluator_interpolator_diff, R.mipmap.banana_pic),
 
 
         QAItemData("线程", R.mipmap.pineapple_pic,1),

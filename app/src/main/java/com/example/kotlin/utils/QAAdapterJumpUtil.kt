@@ -228,6 +228,51 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.animations)
                     intent.putExtra("answer", QA.animations_answer)
                 }
+                QA.value_animator -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.value_animator)
+                    intent.putExtra("answer", QA.value_animator_answer)
+                }
+                QA.object_animator -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.object_animator)
+                    intent.putExtra("answer", QA.object_animator_answer)
+                }
+                QA.animator_animator_set -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.animator_animator_set)
+                    intent.putExtra("answer", QA.animator_animator_set_answer)
+                }
+                QA.property_values_holder -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.property_values_holder)
+                    intent.putExtra("answer", QA.property_values_holder_answer)
+                }
+                QA.type_evaluator_about -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.type_evaluator_about)
+                    intent.putExtra("answer", QA.type_evaluator_about_answer)
+                }
+                QA.interpolator_about -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.interpolator_about)
+                    intent.putExtra("answer", QA.interpolator_about_answer)
+                }
+                QA.animator_listener -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.animator_listener)
+                    intent.putExtra("answer", QA.animator_listener_answer)
+                }
+                QA.type_evaluator_interpolator_diff -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.type_evaluator_interpolator_diff)
+                    intent.putExtra("answer", QA.type_evaluator_interpolator_diff_answer)
+                }
+                QA.value_animations_about -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.value_animations_about)
+                    intent.putExtra("answer", QA.value_animations_about_answer)
+                }
                 QA.hash_map -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.hash_map)
@@ -820,6 +865,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.reverse_list)
                     intent.putExtra("answer", AlgorithmQA.reverse_list_answer)
                 }
+                AlgorithmQA.reverse_list_iteration -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.reverse_list_iteration)
+                    intent.putExtra("answer", AlgorithmQA.reverse_list_iteration_answer)
+                }
                 AlgorithmQA.has_cycle -> {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.has_cycle)
@@ -873,6 +923,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.replace_space)
                     intent.putExtra("answer", AlgorithmQA.replace_space_answer)
                 }
+                AlgorithmQA.once_show_char -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.once_show_char)
+                    intent.putExtra("answer", AlgorithmQA.once_show_char_answer)
+                }
                 AlgorithmQA.left_rotation_string -> {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.left_rotation_string)
@@ -897,6 +952,16 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.array_missing_num)
                     intent.putExtra("answer", AlgorithmQA.array_missing_num_answer)
+                }
+                AlgorithmQA.two_array_find -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.two_array_find)
+                    intent.putExtra("answer", AlgorithmQA.two_array_find_answer)
+                }
+                AlgorithmQA.rotation_small -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.rotation_small)
+                    intent.putExtra("answer", AlgorithmQA.rotation_small_answer)
                 }
                 AlgorithmQA.reverse_print_recursive -> {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
