@@ -1068,6 +1068,16 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.recursive_level_order)
                     intent.putExtra("answer", AlgorithmQA.recursive_level_order_answer)
                 }
+                AlgorithmQA.println_tree_node -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.println_tree_node)
+                    intent.putExtra("answer", AlgorithmQA.println_tree_node_answer)
+                }
+                AlgorithmQA.println_tree_node_zhi -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.println_tree_node_zhi)
+                    intent.putExtra("answer", AlgorithmQA.println_tree_node_zhi_answer)
+                }
 
             }
             context.startActivity(intent)

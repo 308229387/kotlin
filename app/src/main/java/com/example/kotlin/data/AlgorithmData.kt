@@ -40,13 +40,17 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.rotation_small, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.two_array_find, R.mipmap.banana_pic),
 
-
         QAItemData("二叉数", R.mipmap.pineapple_pic,1),
+        QAItemData(AlgorithmQA.level_order, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.println_tree_node, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.println_tree_node_zhi, R.mipmap.banana_pic),
+
+
+        QAItemData("待梳理", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.inorder_traversal, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.recursive_inorder_traversal, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.post_order_traversal, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.recursive_post_order_traversal, R.mipmap.banana_pic),
-        QAItemData(AlgorithmQA.level_order, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.recursive_level_order, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.odd_even_list, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.is_palindrome, R.mipmap.banana_pic),
