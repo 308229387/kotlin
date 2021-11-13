@@ -41,9 +41,12 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.two_array_find, R.mipmap.banana_pic),
 
         QAItemData("二叉数", R.mipmap.pineapple_pic,1),
-        QAItemData(AlgorithmQA.level_order, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.println_tree_node, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.level_order, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.println_tree_node_zhi, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.tree_is_sub, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.tree_left_to_right, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.symmetry_tree, R.mipmap.banana_pic),
 
 
         QAItemData("待梳理", R.mipmap.pineapple_pic,1),

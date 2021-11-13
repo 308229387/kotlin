@@ -57,10 +57,10 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.surfaceView_use)
                     intent.putExtra("answer", QA.surfaceView_use_answer)
                 }
-                QA.lock_type_use -> {
+                QA.synchronized_use -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.lock_type_use)
-                    intent.putExtra("answer", QA.lock_type_use_answer)
+                    intent.putExtra("title", QA.synchronized_use)
+                    intent.putExtra("answer", QA.synchronized_use_answer)
                 }
                 QA.activity_life -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -738,15 +738,25 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.synchronized_lock_diff)
                     intent.putExtra("answer", QA.synchronized_lock_diff_answer)
                 }
-                QA.mor_lock -> {
+                QA.true_lock -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.mor_lock)
-                    intent.putExtra("answer", QA.mor_lock_answer)
+                    intent.putExtra("title", QA.true_lock)
+                    intent.putExtra("answer", QA.true_lock_answer)
+                }
+                QA.false_lock -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.false_lock)
+                    intent.putExtra("answer", QA.false_lock_answer)
                 }
                 QA.twice_lock -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.twice_lock)
                     intent.putExtra("answer", QA.twice_lock_answer)
+                }
+                QA.lock_use -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.lock_use)
+                    intent.putExtra("answer", QA.lock_use_answer)
                 }
                 QA.fragment_activity_communication -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -1077,6 +1087,21 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.println_tree_node_zhi)
                     intent.putExtra("answer", AlgorithmQA.println_tree_node_zhi_answer)
+                }
+                AlgorithmQA.symmetry_tree -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.symmetry_tree)
+                    intent.putExtra("answer", AlgorithmQA.symmetry_tree_answer)
+                }
+                AlgorithmQA.tree_left_to_right -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.tree_left_to_right)
+                    intent.putExtra("answer", AlgorithmQA.tree_left_to_right_answer)
+                }
+                AlgorithmQA.tree_is_sub -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.tree_is_sub)
+                    intent.putExtra("answer", AlgorithmQA.tree_is_sub_answer)
                 }
 
             }
