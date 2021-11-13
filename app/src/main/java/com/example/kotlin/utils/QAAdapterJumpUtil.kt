@@ -895,11 +895,6 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.k_th_from_end)
                     intent.putExtra("answer", AlgorithmQA.k_th_from_end_answer)
                 }
-                AlgorithmQA.jump_steps -> {
-                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
-                    intent.putExtra("question", AlgorithmQA.jump_steps)
-                    intent.putExtra("answer", AlgorithmQA.jump_steps_answer)
-                }
                 AlgorithmQA.delete_node -> {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.delete_node)
@@ -1102,6 +1097,21 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.tree_is_sub)
                     intent.putExtra("answer", AlgorithmQA.tree_is_sub_answer)
+                }
+                AlgorithmQA.fei_bo_na_qi -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.fei_bo_na_qi)
+                    intent.putExtra("answer", AlgorithmQA.fei_bo_na_qi_answer)
+                }
+                AlgorithmQA.qi_wa_jump_tai_jie -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.qi_wa_jump_tai_jie)
+                    intent.putExtra("answer", AlgorithmQA.qi_wa_jump_tai_jie_answer)
+                }
+                AlgorithmQA.stock_match_money -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.stock_match_money)
+                    intent.putExtra("answer", AlgorithmQA.stock_match_money_answer)
                 }
 
             }

@@ -48,6 +48,10 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.tree_left_to_right, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.symmetry_tree, R.mipmap.banana_pic),
 
+        QAItemData("动态规划", R.mipmap.pineapple_pic,1),
+        QAItemData(AlgorithmQA.fei_bo_na_qi, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.qi_wa_jump_tai_jie, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.stock_match_money, R.mipmap.banana_pic),
 
         QAItemData("待梳理", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.inorder_traversal, R.mipmap.banana_pic),
@@ -70,6 +74,5 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.merge_num_traverse, R.mipmap.strawberry_pic),
         QAItemData(AlgorithmQA.delete_node, R.mipmap.strawberry_pic),
         QAItemData(AlgorithmQA.merge_two_lists, R.mipmap.apple_pic),
-        QAItemData(AlgorithmQA.k_th_from_end, R.mipmap.apple_pic),
-        QAItemData(AlgorithmQA.jump_steps, R.mipmap.banana_pic))
+        QAItemData(AlgorithmQA.k_th_from_end, R.mipmap.apple_pic))
 }
