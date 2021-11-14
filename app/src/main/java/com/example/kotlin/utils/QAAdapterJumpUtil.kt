@@ -1123,9 +1123,16 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.continue_max_sum)
                     intent.putExtra("answer", AlgorithmQA.continue_max_sum_answer)
                 }
+                AlgorithmQA.gift_max_value -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.gift_max_value)
+                    intent.putExtra("answer", AlgorithmQA.gift_max_value_answer)
+                }
 
             }
             context.startActivity(intent)
+
+            
         }
     }
 }

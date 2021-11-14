@@ -40,7 +40,6 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.rotation_small, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.two_array_find, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.binary_search, R.mipmap.banana_pic),
-        QAItemData(AlgorithmQA.continue_max_sum, R.mipmap.banana_pic),
 
         QAItemData("二叉数", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.println_tree_node, R.mipmap.banana_pic),
@@ -54,6 +53,8 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.fei_bo_na_qi, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.qi_wa_jump_tai_jie, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.stock_match_money, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.continue_max_sum, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.gift_max_value, R.mipmap.banana_pic),
 
         QAItemData("待梳理", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.inorder_traversal, R.mipmap.banana_pic),
