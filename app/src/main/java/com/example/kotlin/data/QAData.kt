@@ -181,6 +181,7 @@ object QAData {
         QAItemData("进程", R.mipmap.pineapple_pic,1),
         QAItemData(QA.more_process_purpose, R.mipmap.pineapple_pic),
         QAItemData(QA.more_process_use, R.mipmap.pineapple_pic),
+        QAItemData(QA.many_process_communication, R.mipmap.pineapple_pic),
         QAItemData(QA.more_process_question, R.mipmap.pineapple_pic),
         QAItemData(QA.binder_info, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_application, R.mipmap.pineapple_pic),
@@ -195,6 +196,8 @@ object QAData {
         QAItemData(QA.net_work_level, R.mipmap.pineapple_pic),
         QAItemData(QA.http_https, R.mipmap.strawberry_pic),
         QAItemData(QA.http_error_code, R.mipmap.pineapple_pic),
+        QAItemData(QA.ok_http_process, R.mipmap.pineapple_pic),
+        QAItemData(QA.ok_http_principle, R.mipmap.pineapple_pic),
         QAItemData(QA.retrofit_about, R.mipmap.pineapple_pic),
         QAItemData(QA.retrofit_principle, R.mipmap.pineapple_pic),
         QAItemData(QA.dynamic_proxy_good, R.mipmap.pineapple_pic),
@@ -207,6 +210,8 @@ object QAData {
         QAItemData(QA.list_diff, R.mipmap.pineapple_pic),
         QAItemData(QA.butter_knife, R.mipmap.pineapple_pic),
         QAItemData(QA.hot_repair, R.mipmap.pineapple_pic),
+        QAItemData(QA.glide_good_principle, R.mipmap.pineapple_pic),
+        QAItemData(QA.glide_cache, R.mipmap.pineapple_pic),
 
 
         QAItemData("开发模式", R.mipmap.pineapple_pic,1),

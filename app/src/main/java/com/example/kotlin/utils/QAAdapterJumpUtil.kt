@@ -588,6 +588,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.more_process_use)
                     intent.putExtra("answer", QA.more_process_use_answer)
                 }
+                QA.many_process_communication -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.many_process_communication)
+                    intent.putExtra("answer", QA.many_process_communication_answer)
+                }
                 QA.more_process_question -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.more_process_question)
@@ -868,6 +873,26 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.coroutines_stop)
                     intent.putExtra("answer", QA.coroutines_stop_answer)
                 }
+                QA.ok_http_process -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.ok_http_process)
+                    intent.putExtra("answer", QA.ok_http_process_answer)
+                }
+                QA.ok_http_principle -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.ok_http_principle)
+                    intent.putExtra("answer", QA.ok_http_principle_answer)
+                }
+                QA.glide_good_principle -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.glide_good_principle)
+                    intent.putExtra("answer", QA.glide_good_principle_answer)
+                }
+                QA.glide_cache -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.glide_cache)
+                    intent.putExtra("answer", QA.glide_cache_answer)
+                }
 
 
                 AlgorithmQA.reverse_list -> {
@@ -1132,7 +1157,7 @@ class QAAdapterJumpUtil {
             }
             context.startActivity(intent)
 
-            
+
         }
     }
 }
