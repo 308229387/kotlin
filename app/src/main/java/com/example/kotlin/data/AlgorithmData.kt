@@ -39,6 +39,8 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.array_missing_num, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.rotation_small, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.two_array_find, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.binary_search, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.continue_max_sum, R.mipmap.banana_pic),
 
         QAItemData("二叉数", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.println_tree_node, R.mipmap.banana_pic),

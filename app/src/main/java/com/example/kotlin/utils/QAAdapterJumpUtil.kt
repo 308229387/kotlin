@@ -1113,6 +1113,16 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.stock_match_money)
                     intent.putExtra("answer", AlgorithmQA.stock_match_money_answer)
                 }
+                AlgorithmQA.binary_search -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.binary_search)
+                    intent.putExtra("answer", AlgorithmQA.binary_search_answer)
+                }
+                AlgorithmQA.continue_max_sum -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.continue_max_sum)
+                    intent.putExtra("answer", AlgorithmQA.continue_max_sum_answer)
+                }
 
             }
             context.startActivity(intent)
