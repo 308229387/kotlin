@@ -833,11 +833,6 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.http_error_code)
                     intent.putExtra("answer", QA.http_error_code_answer)
                 }
-                QA.retrofit_about -> {
-                    intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.retrofit_about)
-                    intent.putExtra("answer", QA.retrofit_about_answer)
-                }
                 QA.retrofit_principle -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.retrofit_principle)
@@ -1185,6 +1180,14 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.gift_max_value)
                     intent.putExtra("answer", AlgorithmQA.gift_max_value_answer)
+                }AlgorithmQA.num_to_string -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.num_to_string)
+                    intent.putExtra("answer", AlgorithmQA.num_to_string_answer)
+                }AlgorithmQA.long_no_repeat_string -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.long_no_repeat_string)
+                    intent.putExtra("answer", AlgorithmQA.long_no_repeat_string_answer)
                 }
 
             }

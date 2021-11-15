@@ -55,6 +55,8 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.stock_match_money, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.continue_max_sum, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.gift_max_value, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.num_to_string, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.long_no_repeat_string, R.mipmap.banana_pic),
 
         QAItemData("待梳理", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.inorder_traversal, R.mipmap.banana_pic),

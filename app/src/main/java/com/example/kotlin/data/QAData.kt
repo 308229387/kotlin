@@ -201,7 +201,6 @@ object QAData {
         QAItemData(QA.ok_http_usr_model, R.mipmap.pineapple_pic),
         QAItemData(QA.ok_http_interceptor, R.mipmap.pineapple_pic),
         QAItemData(QA.retrofit_use, R.mipmap.pineapple_pic),
-        QAItemData(QA.retrofit_about, R.mipmap.pineapple_pic),
         QAItemData(QA.retrofit_principle, R.mipmap.pineapple_pic),
         QAItemData(QA.retrofit_good, R.mipmap.pineapple_pic),
         QAItemData(QA.dynamic_proxy_good, R.mipmap.pineapple_pic),
