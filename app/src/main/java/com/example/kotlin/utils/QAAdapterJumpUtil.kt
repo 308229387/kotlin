@@ -893,6 +893,39 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.glide_cache)
                     intent.putExtra("answer", QA.glide_cache_answer)
                 }
+                QA.ok_http_usr_model -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.ok_http_usr_model)
+                    intent.putExtra("answer", QA.ok_http_usr_model_answer)
+                }
+                QA.ok_http_interceptor -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.ok_http_interceptor)
+                    intent.putExtra("answer", QA.ok_http_interceptor_answer)
+                }
+                QA.retrofit_use -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.retrofit_use)
+                    intent.putExtra("answer", QA.retrofit_use_answer)
+                }
+                QA.retrofit_good -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.retrofit_good)
+                    intent.putExtra("answer", QA.retrofit_good_answer)
+                }
+                QA.modify_jar_class -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.modify_jar_class)
+                    intent.putExtra("answer", QA.modify_jar_class_answer)
+                }
+                QA.rely_on_repeat -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.rely_on_repeat)
+                    intent.putExtra("answer", QA.rely_on_repeat_answer)
+                }
+
+
+                //分界点---------------------
 
 
                 AlgorithmQA.reverse_list -> {

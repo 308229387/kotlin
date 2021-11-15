@@ -198,8 +198,12 @@ object QAData {
         QAItemData(QA.http_error_code, R.mipmap.pineapple_pic),
         QAItemData(QA.ok_http_process, R.mipmap.pineapple_pic),
         QAItemData(QA.ok_http_principle, R.mipmap.pineapple_pic),
+        QAItemData(QA.ok_http_usr_model, R.mipmap.pineapple_pic),
+        QAItemData(QA.ok_http_interceptor, R.mipmap.pineapple_pic),
+        QAItemData(QA.retrofit_use, R.mipmap.pineapple_pic),
         QAItemData(QA.retrofit_about, R.mipmap.pineapple_pic),
         QAItemData(QA.retrofit_principle, R.mipmap.pineapple_pic),
+        QAItemData(QA.retrofit_good, R.mipmap.pineapple_pic),
         QAItemData(QA.dynamic_proxy_good, R.mipmap.pineapple_pic),
 
 
@@ -230,6 +234,8 @@ object QAData {
         QAItemData(QA.version_features, R.mipmap.pineapple_pic),
         QAItemData(QA.framework_about, R.mipmap.pineapple_pic),
         QAItemData(QA.android_base, R.mipmap.pineapple_pic),
+        QAItemData(QA.rely_on_repeat, R.mipmap.pineapple_pic),
+        QAItemData(QA.modify_jar_class, R.mipmap.pineapple_pic),
 
 
         QAItemData("扩展", R.mipmap.pineapple_pic,1),
