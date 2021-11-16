@@ -768,11 +768,6 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.fragment_activity_communication)
                     intent.putExtra("answer", QA.fragment_activity_communication_answer)
                 }
-                QA.r_x_java -> {
-                    intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.r_x_java)
-                    intent.putExtra("answer", QA.r_x_java_answer)
-                }
                 QA.list_diff -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.list_diff)
@@ -783,10 +778,20 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.butter_knife)
                     intent.putExtra("answer", QA.butter_knife_answer)
                 }
-                QA.butter_knife -> {
+                QA.hot_class_load -> {
                     intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.hot_repair)
-                    intent.putExtra("answer", QA.hot_repair_answer)
+                    intent.putExtra("title", QA.hot_class_load)
+                    intent.putExtra("answer", QA.hot_class_load_answer)
+                }
+                QA.hot_below_replace -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.hot_below_replace)
+                    intent.putExtra("answer", QA.hot_below_replace_answer)
+                }
+                QA.hot_instant_run -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.hot_instant_run)
+                    intent.putExtra("answer", QA.hot_instant_run_answer)
                 }
                 QA.jet_pack -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -918,7 +923,26 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.rely_on_repeat)
                     intent.putExtra("answer", QA.rely_on_repeat_answer)
                 }
-
+                QA.r_x_java_1 -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.r_x_java_1)
+                    intent.putExtra("answer", QA.r_x_java_1_answer)
+                }
+                QA.r_x_java_2 -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.r_x_java_2)
+                    intent.putExtra("answer", QA.r_x_java_2_answer)
+                }
+                QA.r_x_java_3 -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.r_x_java_3)
+                    intent.putExtra("answer", QA.r_x_java_3_answer)
+                }
+                QA.r_x_java_4 -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.r_x_java_4)
+                    intent.putExtra("answer", QA.r_x_java_4_answer)
+                }
 
                 //分界点---------------------
 
@@ -1180,11 +1204,13 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.gift_max_value)
                     intent.putExtra("answer", AlgorithmQA.gift_max_value_answer)
-                }AlgorithmQA.num_to_string -> {
+                }
+                AlgorithmQA.num_to_string -> {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.num_to_string)
                     intent.putExtra("answer", AlgorithmQA.num_to_string_answer)
-                }AlgorithmQA.long_no_repeat_string -> {
+                }
+                AlgorithmQA.long_no_repeat_string -> {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.long_no_repeat_string)
                     intent.putExtra("answer", AlgorithmQA.long_no_repeat_string_answer)

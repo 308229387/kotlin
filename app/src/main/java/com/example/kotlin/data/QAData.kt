@@ -208,13 +208,18 @@ object QAData {
 
         QAItemData("第三方控件与框架", R.mipmap.pineapple_pic,1),
         QAItemData(QA.jet_pack, R.mipmap.pineapple_pic),
-        QAItemData(QA.r_x_java, R.mipmap.pineapple_pic),
         QAItemData(QA.catch_exception, R.mipmap.pineapple_pic),
         QAItemData(QA.list_diff, R.mipmap.pineapple_pic),
         QAItemData(QA.butter_knife, R.mipmap.pineapple_pic),
-        QAItemData(QA.hot_repair, R.mipmap.pineapple_pic),
         QAItemData(QA.glide_good_principle, R.mipmap.pineapple_pic),
         QAItemData(QA.glide_cache, R.mipmap.pineapple_pic),
+        QAItemData(QA.hot_class_load, R.mipmap.pineapple_pic),
+        QAItemData(QA.hot_below_replace, R.mipmap.pineapple_pic),
+        QAItemData(QA.hot_instant_run, R.mipmap.pineapple_pic),
+        QAItemData(QA.r_x_java_1, R.mipmap.pineapple_pic),
+        QAItemData(QA.r_x_java_2, R.mipmap.pineapple_pic),
+        QAItemData(QA.r_x_java_3, R.mipmap.pineapple_pic),
+        QAItemData(QA.r_x_java_4, R.mipmap.pineapple_pic),
 
 
         QAItemData("开发模式", R.mipmap.pineapple_pic,1),
