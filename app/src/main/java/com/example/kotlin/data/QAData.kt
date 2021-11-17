@@ -10,6 +10,15 @@ import com.example.kotlin.R
 
 object QAData {
     val data = arrayListOf(
+        QAItemData("剩余任务", R.mipmap.pineapple_pic,1),
+        QAItemData(AlgorithmQA.task_1, R.mipmap.cherry_pic),
+        QAItemData(AlgorithmQA.task_2, R.mipmap.cherry_pic),
+        QAItemData(AlgorithmQA.task_3, R.mipmap.cherry_pic),
+        QAItemData(AlgorithmQA.task_4, R.mipmap.cherry_pic),
+        QAItemData(AlgorithmQA.task_5, R.mipmap.cherry_pic),
+        QAItemData(AlgorithmQA.task_6, R.mipmap.cherry_pic),
+
+
         QAItemData("java基础", R.mipmap.pineapple_pic,1),
         QAItemData(QA.how_many_string, R.mipmap.pineapple_pic),
         QAItemData(QA.abstract_interface, R.mipmap.pineapple_pic),

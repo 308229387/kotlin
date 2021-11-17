@@ -1215,6 +1215,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.long_no_repeat_string)
                     intent.putExtra("answer", AlgorithmQA.long_no_repeat_string_answer)
                 }
+                AlgorithmQA.task_1,AlgorithmQA.task_2,AlgorithmQA.task_3,AlgorithmQA.task_4,AlgorithmQA.task_5,AlgorithmQA.task_6 -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.interrupt_interrupted)
+                    intent.putExtra("answer", QA.interrupt_interrupted_answer)
+                }
 
             }
             context.startActivity(intent)
