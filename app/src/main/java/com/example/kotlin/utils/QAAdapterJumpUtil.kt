@@ -663,6 +663,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.class_load_three)
                     intent.putExtra("answer", QA.class_load_three_answer)
                 }
+                QA.android_class_load -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.android_class_load)
+                    intent.putExtra("answer", QA.android_class_load_answer)
+                }
                 QA.abstract_interface -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.abstract_interface)

@@ -23,6 +23,8 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.hard_list, R.mipmap.strawberry_pic),
         QAItemData(AlgorithmQA.delete_node, R.mipmap.strawberry_pic),
         QAItemData(AlgorithmQA.k_th_from_end, R.mipmap.apple_pic),
+        QAItemData(AlgorithmQA.merge_two_lists, R.mipmap.apple_pic),
+
 
         QAItemData("队列和栈", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.reverse_print_stack, R.mipmap.banana_pic),
@@ -81,6 +83,5 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.first_show_char, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.string_add, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.merge_num, R.mipmap.strawberry_pic),
-        QAItemData(AlgorithmQA.merge_num_traverse, R.mipmap.strawberry_pic),
-        QAItemData(AlgorithmQA.merge_two_lists, R.mipmap.apple_pic))
+        QAItemData(AlgorithmQA.merge_num_traverse, R.mipmap.strawberry_pic))
 }

@@ -111,6 +111,7 @@ object QAData {
         QAItemData("JVM", R.mipmap.pineapple_pic,1),
         QAItemData(QA.class_load, R.mipmap.pineapple_pic),
         QAItemData(QA.class_load_three, R.mipmap.pineapple_pic),
+        QAItemData(QA.android_class_load, R.mipmap.pineapple_pic),
         QAItemData(QA.jvm_model, R.mipmap.watermelon_pic),
         QAItemData(QA.jvm_gc_root, R.mipmap.apple_pic),
         QAItemData(QA.jvm_gc_work, R.mipmap.apple_pic),
