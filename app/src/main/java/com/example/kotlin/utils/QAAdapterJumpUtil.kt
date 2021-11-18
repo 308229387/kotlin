@@ -943,6 +943,37 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.r_x_java_4)
                     intent.putExtra("answer", QA.r_x_java_4_answer)
                 }
+                QA.async_task_use -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.async_task_use)
+                    intent.putExtra("answer", QA.async_task_use_answer)
+                }
+                QA.async_task_principle -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.async_task_principle)
+                    intent.putExtra("answer", QA.async_task_principle_answer)
+                }
+                QA.async_task_fun -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.async_task_fun)
+                    intent.putExtra("answer", QA.async_task_fun_answer)
+                }
+                QA.coroutines_cancel_join -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.coroutines_cancel_join)
+                    intent.putExtra("answer", QA.coroutines_cancel_join_answer)
+                }
+                QA.coroutines_async -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.coroutines_async)
+                    intent.putExtra("answer", QA.coroutines_async_answer)
+                }
+                QA.coroutines_pause_return -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.coroutines_pause_return)
+                    intent.putExtra("answer", QA.coroutines_pause_return_answer)
+                }
+
 
                 //分界点---------------------
 
@@ -1215,7 +1246,22 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.long_no_repeat_string)
                     intent.putExtra("answer", AlgorithmQA.long_no_repeat_string_answer)
                 }
-                AlgorithmQA.task_1,AlgorithmQA.task_2,AlgorithmQA.task_3,AlgorithmQA.task_4,AlgorithmQA.task_5,AlgorithmQA.task_6 -> {
+                AlgorithmQA.ji_ou_separate -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.ji_ou_separate)
+                    intent.putExtra("answer", AlgorithmQA.ji_ou_separate_answer)
+                }
+                AlgorithmQA.sum_is_s -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.sum_is_s)
+                    intent.putExtra("answer", AlgorithmQA.sum_is_s_answer)
+                }
+                AlgorithmQA.reverse_word -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.reverse_word)
+                    intent.putExtra("answer", AlgorithmQA.reverse_word_answer)
+                }
+                AlgorithmQA.task_1, AlgorithmQA.task_2, AlgorithmQA.task_3, AlgorithmQA.task_4, AlgorithmQA.task_5, AlgorithmQA.task_6 -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.interrupt_interrupted)
                     intent.putExtra("answer", QA.interrupt_interrupted_answer)

@@ -156,6 +156,9 @@ object QAData {
         QAItemData(QA.thread_change, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_safe, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_local, R.mipmap.pineapple_pic),
+        QAItemData(QA.async_task_use, R.mipmap.pineapple_pic),
+        QAItemData(QA.async_task_principle, R.mipmap.pineapple_pic),
+        QAItemData(QA.async_task_fun, R.mipmap.pineapple_pic),
 
 
         QAItemData("锁", R.mipmap.pineapple_pic,1),
@@ -255,10 +258,11 @@ object QAData {
         QAItemData(QA.kotlin_good, R.mipmap.pineapple_pic),
         QAItemData(QA.kotlin_coroutines, R.mipmap.pineapple_pic),
         QAItemData(QA.coroutines_create, R.mipmap.pineapple_pic),
+        QAItemData(QA.coroutines_async, R.mipmap.pineapple_pic),
+        QAItemData(QA.coroutines_cancel_join, R.mipmap.pineapple_pic),
+        QAItemData(QA.coroutines_pause_return, R.mipmap.pineapple_pic),
         QAItemData(QA.coroutines_stop, R.mipmap.pineapple_pic),
         QAItemData(QA.flutter_about, R.mipmap.pineapple_pic),
-
-
 
         )
 }

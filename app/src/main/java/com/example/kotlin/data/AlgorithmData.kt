@@ -34,6 +34,7 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.left_rotation_string, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.string_all_arrangement, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.once_show_char, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.reverse_word, R.mipmap.banana_pic),
 
         QAItemData("数组", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.array_repeat_num, R.mipmap.banana_pic),
@@ -42,6 +43,8 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.rotation_small, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.two_array_find, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.binary_search, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.ji_ou_separate, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.sum_is_s, R.mipmap.banana_pic),
 
         QAItemData("二叉数", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.println_tree_node, R.mipmap.banana_pic),
