@@ -47,6 +47,7 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.binary_search, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.ji_ou_separate, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.sum_is_s, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.n_println, R.mipmap.banana_pic),
 
         QAItemData("二叉数", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.println_tree_node, R.mipmap.banana_pic),
@@ -55,6 +56,7 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.tree_is_sub, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.tree_left_to_right, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.symmetry_tree, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.binary_number_deep, R.mipmap.banana_pic),
 
         QAItemData("动态规划", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.fei_bo_na_qi, R.mipmap.banana_pic),

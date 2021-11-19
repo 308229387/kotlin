@@ -1266,6 +1266,16 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.reverse_word)
                     intent.putExtra("answer", AlgorithmQA.reverse_word_answer)
                 }
+                AlgorithmQA.n_println -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.n_println)
+                    intent.putExtra("answer", AlgorithmQA.n_println_answer)
+                }
+                AlgorithmQA.binary_number_deep -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.binary_number_deep)
+                    intent.putExtra("answer", AlgorithmQA.binary_number_deep_answer)
+                }
                 AlgorithmQA.task_1, AlgorithmQA.task_2, AlgorithmQA.task_3, AlgorithmQA.task_4, AlgorithmQA.task_5, AlgorithmQA.task_6 -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.interrupt_interrupted)
