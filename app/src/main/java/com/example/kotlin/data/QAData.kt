@@ -233,6 +233,8 @@ object QAData {
         QAItemData(QA.r_x_java_2, R.mipmap.pineapple_pic),
         QAItemData(QA.r_x_java_3, R.mipmap.pineapple_pic),
         QAItemData(QA.r_x_java_4, R.mipmap.pineapple_pic),
+        QAItemData(QA.r_x_java_send, R.mipmap.pineapple_pic),
+        QAItemData(QA.r_x_use_code, R.mipmap.pineapple_pic),
 
 
         QAItemData("开发模式", R.mipmap.pineapple_pic,1),

@@ -963,6 +963,16 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.async_task_fun)
                     intent.putExtra("answer", QA.async_task_fun_answer)
                 }
+                QA.r_x_use_code -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.r_x_use_code)
+                    intent.putExtra("answer", QA.r_x_use_code_answer)
+                }
+                QA.r_x_java_send -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.r_x_java_send)
+                    intent.putExtra("answer", QA.r_x_java_send_answer)
+                }
                 QA.coroutines_cancel_join -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.coroutines_cancel_join)
