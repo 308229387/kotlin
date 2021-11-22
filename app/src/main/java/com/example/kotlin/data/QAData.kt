@@ -58,6 +58,9 @@ object QAData {
         QAItemData(QA.content_resolver, R.mipmap.pineapple_pic),
         QAItemData(QA.content_provider_uri, R.mipmap.pineapple_pic),
         QAItemData(QA.content_provider_steps, R.mipmap.pineapple_pic),
+        QAItemData(QA.have_no_broadcast_diff, R.mipmap.pineapple_pic),
+        QAItemData(QA.dynamic_broadcast_registered, R.mipmap.pineapple_pic),
+        QAItemData(QA.static_broadcast_registered, R.mipmap.pineapple_pic),
 
 
         QAItemData("Handler", R.mipmap.pineapple_pic,1),
@@ -100,13 +103,14 @@ object QAData {
         QAItemData(QA.memory_leak, R.mipmap.pear_pic),
         QAItemData(QA.performance_optimization, R.mipmap.strawberry_pic),
         QAItemData(QA.cache_optimization, R.mipmap.strawberry_pic),
+        QAItemData(QA.bitmap_optimize, R.mipmap.strawberry_pic),
         QAItemData(QA.cache_big, R.mipmap.strawberry_pic),
         QAItemData(QA.app_start_process, R.mipmap.pineapple_pic),
         QAItemData(QA.app_start_about_role, R.mipmap.pineapple_pic),
         QAItemData(QA.app_start_start_time, R.mipmap.pineapple_pic),
         QAItemData(QA.app_start_optimize, R.mipmap.pineapple_pic),
         QAItemData(QA.app_start_method_sequence, R.mipmap.pineapple_pic),
-
+        QAItemData(QA.program_alive, R.mipmap.pineapple_pic),
 
         QAItemData("JVM", R.mipmap.pineapple_pic,1),
         QAItemData(QA.class_load, R.mipmap.pineapple_pic),
@@ -133,7 +137,8 @@ object QAData {
         QAItemData(QA.surfaceView_use, R.mipmap.banana_pic),
 
         QAItemData("动画", R.mipmap.pineapple_pic,1),
-        QAItemData(QA.animations, R.mipmap.pineapple_pic),
+        QAItemData(QA.frame_animation, R.mipmap.pineapple_pic),
+        QAItemData(QA.tween_animation, R.mipmap.pineapple_pic),
         QAItemData(QA.value_animations_about, R.mipmap.banana_pic),
         QAItemData(QA.value_animator, R.mipmap.banana_pic),
         QAItemData(QA.object_animator, R.mipmap.banana_pic),

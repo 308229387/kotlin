@@ -25,7 +25,6 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.k_th_from_end, R.mipmap.apple_pic),
         QAItemData(AlgorithmQA.merge_two_lists, R.mipmap.apple_pic),
 
-
         QAItemData("队列和栈", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.reverse_print_stack, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.two_stack_for_list, R.mipmap.banana_pic),
@@ -37,6 +36,7 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.string_all_arrangement, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.once_show_char, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.reverse_word, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.singleton_three, R.mipmap.banana_pic),
 
         QAItemData("数组", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.array_repeat_num, R.mipmap.banana_pic),
@@ -48,6 +48,7 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.ji_ou_separate, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.sum_is_s, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.n_println, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.joker_shun_zi, R.mipmap.banana_pic),
 
         QAItemData("二叉数", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.println_tree_node, R.mipmap.banana_pic),
@@ -57,6 +58,9 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.tree_left_to_right, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.symmetry_tree, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.binary_number_deep, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.path_sum, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.binary_num_two_node, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.binary_num_k_big, R.mipmap.banana_pic),
 
         QAItemData("动态规划", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.fei_bo_na_qi, R.mipmap.banana_pic),
@@ -66,6 +70,10 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.gift_max_value, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.num_to_string, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.long_no_repeat_string, R.mipmap.banana_pic),
+
+        QAItemData("数学", R.mipmap.pineapple_pic,1),
+        QAItemData(AlgorithmQA.one_add_to_n, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.hamming_weight, R.mipmap.banana_pic),
 
         QAItemData("待梳理", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.inorder_traversal, R.mipmap.banana_pic),

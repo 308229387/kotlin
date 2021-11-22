@@ -223,11 +223,6 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.memory_leak)
                     intent.putExtra("answer", QA.memory_leak_answer)
                 }
-                QA.animations -> {
-                    intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.animations)
-                    intent.putExtra("answer", QA.animations_answer)
-                }
                 QA.value_animator -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.value_animator)
@@ -272,6 +267,16 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.value_animations_about)
                     intent.putExtra("answer", QA.value_animations_about_answer)
+                }
+                QA.frame_animation -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.frame_animation)
+                    intent.putExtra("answer", QA.frame_animation_answer)
+                }
+                QA.tween_animation -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.tween_animation)
+                    intent.putExtra("answer", QA.tween_animation_answer)
                 }
                 QA.hash_map -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -988,6 +993,31 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.coroutines_pause_return)
                     intent.putExtra("answer", QA.coroutines_pause_return_answer)
                 }
+                QA.have_no_broadcast_diff -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.have_no_broadcast_diff)
+                    intent.putExtra("answer", QA.chave_no_broadcast_diff_answer)
+                }
+                QA.dynamic_broadcast_registered -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.dynamic_broadcast_registered)
+                    intent.putExtra("answer", QA.dynamic_broadcast_registered_answer)
+                }
+                QA.static_broadcast_registered -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.static_broadcast_registered)
+                    intent.putExtra("answer", QA.static_broadcast_registered_answer)
+                }
+                QA.program_alive -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.program_alive)
+                    intent.putExtra("answer", QA.program_alive_answer)
+                }
+                QA.bitmap_optimize -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.bitmap_optimize)
+                    intent.putExtra("answer", QA.bitmap_optimize_answer)
+                }
 
 
                 //分界点---------------------
@@ -1286,6 +1316,41 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.binary_number_deep)
                     intent.putExtra("answer", AlgorithmQA.binary_number_deep_answer)
                 }
+                AlgorithmQA.path_sum -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.path_sum)
+                    intent.putExtra("answer", AlgorithmQA.path_sum_answer)
+                }
+                AlgorithmQA.binary_num_two_node -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.binary_num_two_node)
+                    intent.putExtra("answer", AlgorithmQA.binary_num_two_node_answer)
+                }
+                AlgorithmQA.binary_num_k_big -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.binary_num_k_big)
+                    intent.putExtra("answer", AlgorithmQA.binary_num_k_big_answer)
+                }
+                AlgorithmQA.joker_shun_zi -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.joker_shun_zi)
+                    intent.putExtra("answer", AlgorithmQA.joker_shun_zi_answer)
+                }
+                AlgorithmQA.singleton_three -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.singleton_three)
+                    intent.putExtra("answer", AlgorithmQA.singleton_three_answer)
+                }
+                AlgorithmQA.one_add_to_n -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.one_add_to_n)
+                    intent.putExtra("answer", AlgorithmQA.one_add_to_n_answer)
+                }
+                AlgorithmQA.hamming_weight -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.hamming_weight)
+                    intent.putExtra("answer", AlgorithmQA.hamming_weight_answer)
+                }
                 AlgorithmQA.task_1, AlgorithmQA.task_2, AlgorithmQA.task_3, AlgorithmQA.task_4, AlgorithmQA.task_5, AlgorithmQA.task_6 -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.interrupt_interrupted)
@@ -1294,8 +1359,6 @@ class QAAdapterJumpUtil {
 
             }
             context.startActivity(intent)
-
-
         }
     }
 }

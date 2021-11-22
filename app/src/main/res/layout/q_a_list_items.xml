@@ -27,7 +27,6 @@
         android:layout_marginLeft="5dp"
         android:padding="5dp"
         android:layout_margin="5dp"
-        android:visibility="gone"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:elevation="10dp"
@@ -38,6 +37,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/q_a_list_item_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:background="@mipmap/apple_pic" />
 
             <TextView
                 android:id="@+id/q_a_list_item_text"
@@ -47,6 +53,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_toLeftOf="@+id/q_a_list_item_image"
                 android:text="123123123"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -55,6 +62,7 @@
                 android:id="@+id/q_a_remember_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/q_a_list_item_image"
                 android:layout_below="@+id/q_a_list_item_text"
                 android:orientation="horizontal">
 
@@ -69,23 +77,13 @@
                     android:id="@+id/remember_next_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:text="num：1次" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:id="@+id/q_a_list_item_image"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:background="@mipmap/apple_pic" />
             </LinearLayout>
+
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
