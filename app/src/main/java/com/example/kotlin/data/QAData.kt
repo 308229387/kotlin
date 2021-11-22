@@ -135,6 +135,7 @@ object QAData {
         QAItemData(QA.view_draw_process, R.mipmap.banana_pic),
         QAItemData(QA.surfaceView_about, R.mipmap.banana_pic),
         QAItemData(QA.surfaceView_use, R.mipmap.banana_pic),
+        QAItemData(QA.long_bitmap_show, R.mipmap.banana_pic),
 
         QAItemData("动画", R.mipmap.pineapple_pic,1),
         QAItemData(QA.frame_animation, R.mipmap.pineapple_pic),

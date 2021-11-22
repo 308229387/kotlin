@@ -1018,6 +1018,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.bitmap_optimize)
                     intent.putExtra("answer", QA.bitmap_optimize_answer)
                 }
+                QA.long_bitmap_show -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.long_bitmap_show)
+                    intent.putExtra("answer", QA.long_bitmap_show_answer)
+                }
 
 
                 //分界点---------------------
@@ -1350,6 +1355,16 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.hamming_weight)
                     intent.putExtra("answer", AlgorithmQA.hamming_weight_answer)
+                }
+                AlgorithmQA.small_k_num -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.small_k_num)
+                    intent.putExtra("answer", AlgorithmQA.small_k_num_answer)
+                }
+                AlgorithmQA.quick_sort -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.quick_sort)
+                    intent.putExtra("answer", AlgorithmQA.quick_sort_answer)
                 }
                 AlgorithmQA.task_1, AlgorithmQA.task_2, AlgorithmQA.task_3, AlgorithmQA.task_4, AlgorithmQA.task_5, AlgorithmQA.task_6 -> {
                     intent = Intent(context, QADetailActivity::class.java)

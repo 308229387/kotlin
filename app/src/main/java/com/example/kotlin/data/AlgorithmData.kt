@@ -49,6 +49,8 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.sum_is_s, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.n_println, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.joker_shun_zi, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.small_k_num, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.quick_sort, R.mipmap.banana_pic),
 
         QAItemData("二叉数", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.println_tree_node, R.mipmap.banana_pic),
