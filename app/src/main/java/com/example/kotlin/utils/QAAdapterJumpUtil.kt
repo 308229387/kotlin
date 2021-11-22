@@ -996,7 +996,7 @@ class QAAdapterJumpUtil {
                 QA.have_no_broadcast_diff -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.have_no_broadcast_diff)
-                    intent.putExtra("answer", QA.chave_no_broadcast_diff_answer)
+                    intent.putExtra("answer", QA.have_no_broadcast_diff_answer)
                 }
                 QA.dynamic_broadcast_registered -> {
                     intent = Intent(context, QADetailActivity::class.java)
