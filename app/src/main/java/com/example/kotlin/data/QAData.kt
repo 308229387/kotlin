@@ -17,6 +17,7 @@ object QAData {
         QAItemData(AlgorithmQA.task_4, R.mipmap.cherry_pic),
         QAItemData(AlgorithmQA.task_5, R.mipmap.cherry_pic),
         QAItemData(AlgorithmQA.task_6, R.mipmap.cherry_pic),
+        QAItemData(AlgorithmQA.task_7, R.mipmap.banana_pic),
 
 
         QAItemData("java基础", R.mipmap.pineapple_pic,1),
@@ -149,6 +150,8 @@ object QAData {
         QAItemData(QA.interpolator_about, R.mipmap.banana_pic),
         QAItemData(QA.animator_listener, R.mipmap.banana_pic),
         QAItemData(QA.type_evaluator_interpolator_diff, R.mipmap.banana_pic),
+        QAItemData(QA.u3d_about, R.mipmap.banana_pic),
+        QAItemData(QA.bone_animation, R.mipmap.banana_pic),
 
 
         QAItemData("线程", R.mipmap.pineapple_pic,1),
@@ -175,6 +178,7 @@ object QAData {
         QAItemData(QA.sleep_0, R.mipmap.pineapple_pic),
         QAItemData(QA.volatile_features, R.mipmap.banana_pic),
         QAItemData(QA.synchronize_principle, R.mipmap.banana_pic),
+        QAItemData(QA.lock_principle, R.mipmap.banana_pic),
         QAItemData(QA.volatile_synchronize_different, R.mipmap.banana_pic),
         QAItemData(QA.synchronize_range, R.mipmap.banana_pic),
         QAItemData(QA.true_lock, R.mipmap.banana_pic),

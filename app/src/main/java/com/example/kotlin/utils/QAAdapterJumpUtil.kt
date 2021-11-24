@@ -738,6 +738,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.synchronize_principle)
                     intent.putExtra("answer", QA.synchronize_principle_answer)
                 }
+                QA.lock_principle -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.lock_principle)
+                    intent.putExtra("answer", QA.lock_principle_answer)
+                }
                 QA.volatile_synchronize_different -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.volatile_synchronize_different)
@@ -1018,10 +1023,25 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.bitmap_optimize)
                     intent.putExtra("answer", QA.bitmap_optimize_answer)
                 }
+                AlgorithmQA.task_7 -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.task_7)
+                    intent.putExtra("answer", AlgorithmQA.task_7_answer)
+                }
                 QA.long_bitmap_show -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.long_bitmap_show)
                     intent.putExtra("answer", QA.long_bitmap_show_answer)
+                }
+                QA.u3d_about -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.u3d_about)
+                    intent.putExtra("answer", QA.u3d_about_answer)
+                }
+                QA.bone_animation -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.bone_animation)
+                    intent.putExtra("answer", QA.bone_animation_answer)
                 }
 
 
@@ -1365,6 +1385,21 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.quick_sort)
                     intent.putExtra("answer", AlgorithmQA.quick_sort_answer)
+                }
+                AlgorithmQA.is_balance_tree -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.is_balance_tree)
+                    intent.putExtra("answer", AlgorithmQA.is_balance_tree_answer)
+                }
+                AlgorithmQA.nearly_ancestor -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.nearly_ancestor)
+                    intent.putExtra("answer", AlgorithmQA.nearly_ancestor_answer)
+                }
+                AlgorithmQA.search_nearly_ancestor -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.search_nearly_ancestor)
+                    intent.putExtra("answer", AlgorithmQA.search_nearly_ancestor_answer)
                 }
                 AlgorithmQA.task_1, AlgorithmQA.task_2, AlgorithmQA.task_3, AlgorithmQA.task_4, AlgorithmQA.task_5, AlgorithmQA.task_6 -> {
                     intent = Intent(context, QADetailActivity::class.java)

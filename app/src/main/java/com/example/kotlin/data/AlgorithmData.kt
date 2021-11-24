@@ -60,9 +60,12 @@ object AlgorithmData {
         QAItemData(AlgorithmQA.tree_left_to_right, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.symmetry_tree, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.binary_number_deep, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.is_balance_tree, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.path_sum, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.binary_num_two_node, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.binary_num_k_big, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.search_nearly_ancestor, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.nearly_ancestor, R.mipmap.banana_pic),
 
         QAItemData("动态规划", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.fei_bo_na_qi, R.mipmap.banana_pic),
