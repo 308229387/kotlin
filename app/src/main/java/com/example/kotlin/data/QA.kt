@@ -416,6 +416,16 @@ package com.example.kotlin.data
         const val bone_animation_answer = "首先你需要有一个模型，这些模型是由顶点组成的，3D模型的顶点就是每个Mesh网格的三角面顶点。\n" + "\n" + "然后，你需要搭建一套骨骼，这些骨骼是树形结构的，也就是有父子连接关系的。接下来，你需要把模型的顶点和骨骼做一个对应关系，比如第一根骨骼的权重是30%，第二根骨骼的权重是70%，那它们在做位移时就会关联权重系数。\n" + "\n" + "最后就是骨骼父子关系。每一个子级的骨骼，需要先获取到它的父级，通过矩阵来转换局部坐标系，算出子级相对父级的局部位移，再将坐标系转换到世界坐标系。得到最终在动画中这根子骨骼的实际坐标\n" + "\n" + "嵌套的父子关系越复杂，那么这个转换坐标系计算的过程就越复杂，消耗的cpu运算就越多。"
         const val lock_principle = "lock 原理"
         const val lock_principle_answer = "lock的存储结构：一个是表示（锁）状态的int变量、一个是双向链表的队列（用于存储等待中的线程）。\n" + "\n" + "线程A取得了锁，把 state原子性+1,这时候state被改为1，这时线程B请求锁，线程B无法获取锁，生成节点进入排队\n" + "\n" + "只有线程A把此锁全部释放了，状态值减到0了，其他线程才有机会获取锁。当A把锁完全释放后，会通知队列唤醒B线程节点，使B可以再次竞争锁。如果是公平锁，就是按照链表顺序唤醒，如果是非公平锁，就会有竞争。获取锁成功后，会将该线程的节点从队列中删除"
+        const val project_architecture = "项目架构"
+        const val project_architecture_answer = "我们的项目整体来看，还是采用的分层的架构思想，其目的是层次的解耦，提高项目的可维护性、可扩展性。\n" + "\n" + "最底层，也是支持业务流转的最核心数据，包括店铺的本地数据、用户的账密、提醒记录，后期可能还会有数据流的本地存储、持久化的使用\n" + "\n" + "在其上层，主要是业务的流转、指令的派发、还数据解析之类的行为操作\n" + "\n" + "那为他们来做支撑的，是通过组件化形式接入的第方工具库，像 Retrofit + RxJava ，还有Gson、Glide、Eventbus等等\n" + "\n" + "除此之外，还有需要用到的第三方服务，它主要是逻辑行为的延伸，比如支付、性能分析、推送。。。。\n" + "\n" + "最上层的，也就是业务功能了，是通过模块化来进行管理的，比如店铺相关的创建店铺、详情信息、地理位置，还有二手市场相关的电子、物品、用品等等，其他还有房屋租赁、生活服务等等。\n" + "\n" + "最后还有通用模块，会贯穿整个项目线，比如检测登陆、Utils、落地页、setting"
+        const val on_line_block = "线上卡顿分析"
+        const val on_line_block_answer = "通常有两种方法，可以监控卡顿\n" + "\n" + "一、线下方法，通过使用blockcanary来利用主线程消息列队处理机制，通过setMessageLogging能够得到分发一条消息所花的时间。\n" + "\n" + "监听到发生卡顿之后，dispatchMessage 早已调用结束，已经出栈，此时再去获取主线程堆栈，堆栈中是不包含卡顿的代码的。所以需要在后台开一个线程，定时获取主线程堆栈，将时间点作为key，堆栈信息作为value，保存到Map中，在发生卡顿的时候，取出卡顿时间段内的堆栈信息即可。\n" + "\n" + "带来的问题1、线程频繁获取主线程堆栈，对性能有一定影响，获取主线程堆栈，会暂停主线程的运行。\n" + "带来的问题2、存在字符串拼接，频繁调用，会创建大量对象，造成内存抖动。\n" + "\n" + "\n" + "二、微信Matrix\n" + "还有一种方案就是通过字节码插桩，这种是通过Gradle Plugin+ASM TASK，编译期在每个方法开始和结束位置分别插入一行代码，统计方法耗时，\n" + "\n" + "这种方案体积会略微增长、帧率也会略有下降，适用于灰度体验"
+        const val on_line_cache = "线上内存监控"
+        const val on_line_cache_answer = "线上监控内存泄漏的话，可以参考快手koom他们提供的一种方案，\n" + "KOOM 提出了 fork dump 的概念，能在 dump 分析内存泄漏的时候而不影响到主进程的应用运行，所以，非常适合使用在线上监控。\n" + "\n" + "首先，监控的触发时机不同，LeakCanary 和 Matrix 都是在 Activity.onDestroy 时触发泄漏检测，KOOM 是用阈值检测法来触发。是一个利用 HandlerThread 不停在轮训监控当前内存状态：\n" + "1、当前已使用内存是否达到最大阈值（变量可配），如果超过的话，则直接触发\n" + "2、还有种策略是如果内存占比持续增大，连续记录3次，也会触发\n" + "\n" + "第二，常规的dump是通过虚拟机提供的 API dumpHprofData实现的，这个过程会 “冻结” 整个应用进程。KOOM 使用 fork dump 操作，从当前主进程 fork 出一个子进程，由于 linux 的 copy-on-write 机制，子进程和父进程共享的是一块内存，那么我们就可以在子进程中进行 dump 堆栈，不影响主进程的运行。"
+        const val anr_watch_dog = "anr watch dog"
+        const val anr_watch_dog_answer = "开启一个线程，死循环，循环中睡眠5s\n" + "\n" + "往UI线程post 一个Runnable，将_tick 赋值为0，将 _reported 赋值为false\n" + "\n" + "线程睡眠5s之后检查_tick和_reported字段是否被修改\n" + "\n" + "如果_tick和_reported没有被修改，说明给主线程post的Runnable一直没有被执行，也就说明主线程卡顿至少5s**（只能说至少，这里存在5s内的误差）**。\n" + "\n" + "将线程堆栈信息输出"
+        const val hashtable_about = "hashtable原理"
+        const val hashtable_about_answer = "Hashtable 与 HashMap 类似，也是一个存储键值对的散列表，Hashtable 继承自 Dictionary 类，实现了 Map、Cloneable、Serializable 接口\n" + "\n" + "table是一个Entry[]数组类型，Entry代表了“拉链”的节点，每一个Entry代表了一个键值对，哈希表的\"key-value键值对\"都是存储在Entry数组中的。\n" + "\n" + "put方法的整个处理流程是：计算key的hash值，根据hash值获得key在table数组中的索引位置，然后迭代该key处的Entry链表（我们暂且理解为链表），若该链表中存在一个这个的key对象，那么就直接替换其value值即可，否则在将改key-value节点插入该index索引位置处。"
     }
 }
 

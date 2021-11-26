@@ -743,6 +743,31 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.lock_principle)
                     intent.putExtra("answer", QA.lock_principle_answer)
                 }
+                QA.project_architecture -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.project_architecture)
+                    intent.putExtra("answer", QA.project_architecture_answer)
+                }
+                QA.hashtable_about -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.hashtable_about)
+                    intent.putExtra("answer", QA.hashtable_about_answer)
+                }
+                QA.on_line_block -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.on_line_block)
+                    intent.putExtra("answer", QA.on_line_block_answer)
+                }
+                QA.on_line_cache -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.on_line_cache)
+                    intent.putExtra("answer", QA.on_line_cache_answer)
+                }
+                QA.anr_watch_dog -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.anr_watch_dog)
+                    intent.putExtra("answer", QA.anr_watch_dog_answer)
+                }
                 QA.volatile_synchronize_different -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.volatile_synchronize_different)

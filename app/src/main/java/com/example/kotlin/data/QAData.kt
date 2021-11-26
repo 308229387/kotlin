@@ -86,10 +86,10 @@ object QAData {
         QAItemData(QA.array_link, R.mipmap.pineapple_pic),
         QAItemData(QA.sum_link, R.mipmap.pineapple_pic),
         QAItemData(QA.hash_map, R.mipmap.pineapple_pic),
+        QAItemData(QA.hashtable_about, R.mipmap.pineapple_pic),
         QAItemData(QA.how_hash, R.mipmap.pineapple_pic),
         QAItemData(QA.change_big, R.mipmap.pineapple_pic),
         QAItemData(QA.red_black_time, R.mipmap.pineapple_pic),
-
 
 
         QAItemData("性能优化", R.mipmap.pineapple_pic,1),
@@ -112,6 +112,9 @@ object QAData {
         QAItemData(QA.app_start_optimize, R.mipmap.pineapple_pic),
         QAItemData(QA.app_start_method_sequence, R.mipmap.pineapple_pic),
         QAItemData(QA.program_alive, R.mipmap.pineapple_pic),
+        QAItemData(QA.on_line_block, R.mipmap.pineapple_pic),
+        QAItemData(QA.on_line_cache, R.mipmap.pineapple_pic),
+        QAItemData(QA.anr_watch_dog, R.mipmap.pineapple_pic),
 
         QAItemData("JVM", R.mipmap.pineapple_pic,1),
         QAItemData(QA.class_load, R.mipmap.pineapple_pic),
@@ -259,6 +262,7 @@ object QAData {
 
 
         QAItemData("系统架构", R.mipmap.pineapple_pic,1),
+        QAItemData(QA.project_architecture, R.mipmap.pineapple_pic),
         QAItemData(QA.assets_res, R.mipmap.pineapple_pic),
         QAItemData(QA.version_features, R.mipmap.pineapple_pic),
         QAItemData(QA.framework_about, R.mipmap.pineapple_pic),
