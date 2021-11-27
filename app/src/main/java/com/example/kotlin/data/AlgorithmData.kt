@@ -79,6 +79,7 @@ object AlgorithmData {
         QAItemData("数学", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.one_add_to_n, R.mipmap.banana_pic),
         QAItemData(AlgorithmQA.hamming_weight, R.mipmap.banana_pic),
+        QAItemData(AlgorithmQA.no_add_make_add, R.mipmap.banana_pic),
 
         QAItemData("待梳理", R.mipmap.pineapple_pic,1),
         QAItemData(AlgorithmQA.inorder_traversal, R.mipmap.banana_pic),

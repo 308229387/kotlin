@@ -1426,6 +1426,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("question", AlgorithmQA.search_nearly_ancestor)
                     intent.putExtra("answer", AlgorithmQA.search_nearly_ancestor_answer)
                 }
+                AlgorithmQA.no_add_make_add -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.no_add_make_add)
+                    intent.putExtra("answer", AlgorithmQA.no_add_make_add_answer)
+                }
                 AlgorithmQA.task_1, AlgorithmQA.task_2, AlgorithmQA.task_3, AlgorithmQA.task_4, AlgorithmQA.task_5, AlgorithmQA.task_6 -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.interrupt_interrupted)
