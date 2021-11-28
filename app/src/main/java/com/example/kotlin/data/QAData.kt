@@ -62,6 +62,7 @@ object QAData {
         QAItemData(QA.have_no_broadcast_diff, R.mipmap.pineapple_pic),
         QAItemData(QA.dynamic_broadcast_registered, R.mipmap.pineapple_pic),
         QAItemData(QA.static_broadcast_registered, R.mipmap.pineapple_pic),
+        QAItemData(QA.local_all_broadcast, R.mipmap.pineapple_pic),
 
 
         QAItemData("Handler", R.mipmap.pineapple_pic,1),
@@ -115,6 +116,8 @@ object QAData {
         QAItemData(QA.on_line_block, R.mipmap.pineapple_pic),
         QAItemData(QA.on_line_cache, R.mipmap.pineapple_pic),
         QAItemData(QA.anr_watch_dog, R.mipmap.pineapple_pic),
+        QAItemData(QA.web_view_process, R.mipmap.pineapple_pic),
+        QAItemData(QA.web_view_optimize, R.mipmap.pineapple_pic),
 
         QAItemData("JVM", R.mipmap.pineapple_pic,1),
         QAItemData(QA.class_load, R.mipmap.pineapple_pic),
@@ -140,6 +143,8 @@ object QAData {
         QAItemData(QA.surfaceView_about, R.mipmap.banana_pic),
         QAItemData(QA.surfaceView_use, R.mipmap.banana_pic),
         QAItemData(QA.long_bitmap_show, R.mipmap.banana_pic),
+        QAItemData(QA.activity_layout_build, R.mipmap.banana_pic),
+
 
         QAItemData("动画", R.mipmap.pineapple_pic,1),
         QAItemData(QA.frame_animation, R.mipmap.pineapple_pic),
@@ -202,6 +207,7 @@ object QAData {
         QAItemData(QA.thread_pool_recycling, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_pool_reject_policy, R.mipmap.pineapple_pic),
         QAItemData(QA.blocking_queue, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_pool_cup_io, R.mipmap.pineapple_pic),
 
 
         QAItemData("进程", R.mipmap.pineapple_pic,1),
@@ -230,6 +236,7 @@ object QAData {
         QAItemData(QA.retrofit_principle, R.mipmap.pineapple_pic),
         QAItemData(QA.retrofit_good, R.mipmap.pineapple_pic),
         QAItemData(QA.dynamic_proxy_good, R.mipmap.pineapple_pic),
+        QAItemData(QA.interceptor_usr_diff, R.mipmap.pineapple_pic),
 
 
         QAItemData("第三方控件与框架", R.mipmap.pineapple_pic,1),
@@ -260,15 +267,18 @@ object QAData {
         QAItemData(QA.design_patterns, R.mipmap.pineapple_pic),
 
 
-
         QAItemData("系统架构", R.mipmap.pineapple_pic,1),
         QAItemData(QA.project_architecture, R.mipmap.pineapple_pic),
+        QAItemData(QA.bao_xiao_mi, R.mipmap.pineapple_pic),
+        QAItemData(QA.live_level_plan, R.mipmap.pineapple_pic),
         QAItemData(QA.assets_res, R.mipmap.pineapple_pic),
         QAItemData(QA.version_features, R.mipmap.pineapple_pic),
         QAItemData(QA.framework_about, R.mipmap.pineapple_pic),
         QAItemData(QA.android_base, R.mipmap.pineapple_pic),
         QAItemData(QA.rely_on_repeat, R.mipmap.pineapple_pic),
         QAItemData(QA.modify_jar_class, R.mipmap.pineapple_pic),
+        QAItemData(QA.how_to_build_apk, R.mipmap.pineapple_pic),
+        QAItemData(QA.international_app, R.mipmap.pineapple_pic),
 
 
         QAItemData("扩展", R.mipmap.pineapple_pic,1),

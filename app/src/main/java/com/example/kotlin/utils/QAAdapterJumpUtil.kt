@@ -748,10 +748,20 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.project_architecture)
                     intent.putExtra("answer", QA.project_architecture_answer)
                 }
+                QA.bao_xiao_mi -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.bao_xiao_mi)
+                    intent.putExtra("answer", QA.bao_xiao_mi_answer)
+                }
                 QA.hashtable_about -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.hashtable_about)
                     intent.putExtra("answer", QA.hashtable_about_answer)
+                }
+                QA.live_level_plan -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.live_level_plan)
+                    intent.putExtra("answer", QA.live_level_plan_answer)
                 }
                 QA.on_line_block -> {
                     intent = Intent(context, QADetailActivity::class.java)
@@ -1067,6 +1077,51 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.bone_animation)
                     intent.putExtra("answer", QA.bone_animation_answer)
+                }
+                QA.web_view_process -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.web_view_process)
+                    intent.putExtra("answer", QA.web_view_process_answer)
+                }
+                QA.web_view_optimize -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.web_view_optimize)
+                    intent.putExtra("answer", QA.web_view_optimize_answer)
+                }
+                QA.international_app -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.international_app)
+                    intent.putExtra("answer", QA.international_app_answer)
+                }
+                QA.how_to_build_apk -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.how_to_build_apk)
+                    intent.putExtra("answer", QA.how_to_build_apk_answer)
+                }
+                QA.activity_layout_build -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.activity_layout_build)
+                    intent.putExtra("answer", QA.activity_layout_build_answer)
+                }
+                QA.activity_application_context -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.activity_application_context)
+                    intent.putExtra("answer", QA.activity_application_context_answer)
+                }
+                QA.local_all_broadcast -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.local_all_broadcast)
+                    intent.putExtra("answer", QA.local_all_broadcast_answer)
+                }
+                QA.thread_pool_cup_io -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.thread_pool_cup_io)
+                    intent.putExtra("answer", QA.thread_pool_cup_io_answer)
+                }
+                QA.interceptor_usr_diff -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.interceptor_usr_diff)
+                    intent.putExtra("answer", QA.interceptor_usr_diff_answer)
                 }
 
 
@@ -1430,6 +1485,11 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QAHorizontalDetailActivity::class.java)
                     intent.putExtra("question", AlgorithmQA.no_add_make_add)
                     intent.putExtra("answer", AlgorithmQA.no_add_make_add_answer)
+                }
+                AlgorithmQA.many_num -> {
+                    intent = Intent(context, QAHorizontalDetailActivity::class.java)
+                    intent.putExtra("question", AlgorithmQA.many_num)
+                    intent.putExtra("answer", AlgorithmQA.many_num_answer)
                 }
                 AlgorithmQA.task_1, AlgorithmQA.task_2, AlgorithmQA.task_3, AlgorithmQA.task_4, AlgorithmQA.task_5, AlgorithmQA.task_6 -> {
                     intent = Intent(context, QADetailActivity::class.java)

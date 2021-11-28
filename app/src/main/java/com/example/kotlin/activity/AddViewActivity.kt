@@ -118,4 +118,6 @@ class AddViewActivity : BaseActivity<ActivityAddViewBinding>() {
         childA.go_buy_btn.setOnClickListener { Toast.makeText(this@AddViewActivity, "go_buy_btn", Toast.LENGTH_SHORT).show() }
 
     }
+
+
 }
