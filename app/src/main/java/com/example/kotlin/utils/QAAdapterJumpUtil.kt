@@ -343,6 +343,26 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.thread_pool_recycling)
                     intent.putExtra("answer", QA.thread_pool_recycling_answer)
                 }
+                QA.get_view_high -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.get_view_high)
+                    intent.putExtra("answer", QA.get_view_high_answer)
+                }
+                QA.base_activity -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.base_activity)
+                    intent.putExtra("answer", QA.base_activity_answer)
+                }
+                QA.project_version -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.project_version)
+                    intent.putExtra("answer", QA.project_version_answer)
+                }
+                QA.always_exception -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.always_exception)
+                    intent.putExtra("answer", QA.always_exception_answer)
+                }
                 QA.leak_canary -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.leak_canary)
@@ -1117,6 +1137,36 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.thread_pool_cup_io)
                     intent.putExtra("answer", QA.thread_pool_cup_io_answer)
+                }
+                QA.kotlin_code -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.kotlin_code)
+                    intent.putExtra("answer", QA.kotlin_code_answer)
+                }
+                QA.component_jump -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.component_jump)
+                    intent.putExtra("answer", QA.component_jump_answer)
+                }
+                QA.live_data -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.live_data)
+                    intent.putExtra("answer", QA.live_data_answer)
+                }
+                QA.live_cycle -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.live_cycle)
+                    intent.putExtra("answer", QA.live_cycle_answer)
+                }
+                QA.recycler_view_repeat_use -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.recycler_view_repeat_use)
+                    intent.putExtra("answer", QA.recycler_view_repeat_use_answer)
+                }
+                QA.change_big_method -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.change_big_method)
+                    intent.putExtra("answer", QA.change_big_method_answer)
                 }
                 QA.interceptor_usr_diff -> {
                     intent = Intent(context, QADetailActivity::class.java)

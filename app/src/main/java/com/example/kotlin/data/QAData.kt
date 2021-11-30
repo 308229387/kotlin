@@ -33,6 +33,7 @@ object QAData {
         QAItemData(QA.java_reference, R.mipmap.pineapple_pic),
         QAItemData(QA.java_reference_queue, R.mipmap.pineapple_pic),
         QAItemData(QA.android_annotation, R.mipmap.pineapple_pic),
+        QAItemData(QA.always_exception, R.mipmap.pineapple_pic),
 
 
         QAItemData("四大组件", R.mipmap.pineapple_pic,1),
@@ -63,6 +64,7 @@ object QAData {
         QAItemData(QA.dynamic_broadcast_registered, R.mipmap.pineapple_pic),
         QAItemData(QA.static_broadcast_registered, R.mipmap.pineapple_pic),
         QAItemData(QA.local_all_broadcast, R.mipmap.pineapple_pic),
+        QAItemData(QA.base_activity, R.mipmap.pineapple_pic),
 
 
         QAItemData("Handler", R.mipmap.pineapple_pic,1),
@@ -144,6 +146,7 @@ object QAData {
         QAItemData(QA.surfaceView_use, R.mipmap.banana_pic),
         QAItemData(QA.long_bitmap_show, R.mipmap.banana_pic),
         QAItemData(QA.activity_layout_build, R.mipmap.banana_pic),
+        QAItemData(QA.get_view_high, R.mipmap.banana_pic),
 
 
         QAItemData("动画", R.mipmap.pineapple_pic,1),
@@ -243,6 +246,7 @@ object QAData {
         QAItemData(QA.jet_pack, R.mipmap.pineapple_pic),
         QAItemData(QA.catch_exception, R.mipmap.pineapple_pic),
         QAItemData(QA.list_diff, R.mipmap.pineapple_pic),
+        QAItemData(QA.recycler_view_repeat_use, R.mipmap.pineapple_pic),
         QAItemData(QA.butter_knife, R.mipmap.pineapple_pic),
         QAItemData(QA.glide_good_principle, R.mipmap.pineapple_pic),
         QAItemData(QA.glide_cache, R.mipmap.pineapple_pic),
@@ -279,6 +283,10 @@ object QAData {
         QAItemData(QA.modify_jar_class, R.mipmap.pineapple_pic),
         QAItemData(QA.how_to_build_apk, R.mipmap.pineapple_pic),
         QAItemData(QA.international_app, R.mipmap.pineapple_pic),
+        QAItemData(QA.project_version, R.mipmap.pineapple_pic),
+        QAItemData(QA.live_cycle, R.mipmap.pineapple_pic),
+        QAItemData(QA.live_data, R.mipmap.pineapple_pic),
+        QAItemData(QA.component_jump, R.mipmap.pineapple_pic),
 
 
         QAItemData("扩展", R.mipmap.pineapple_pic,1),
@@ -290,6 +298,8 @@ object QAData {
         QAItemData(QA.coroutines_pause_return, R.mipmap.pineapple_pic),
         QAItemData(QA.coroutines_stop, R.mipmap.pineapple_pic),
         QAItemData(QA.flutter_about, R.mipmap.pineapple_pic),
+        QAItemData(QA.kotlin_code, R.mipmap.pineapple_pic),
+        QAItemData(QA.change_big_method, R.mipmap.pineapple_pic),
 
         )
 }
