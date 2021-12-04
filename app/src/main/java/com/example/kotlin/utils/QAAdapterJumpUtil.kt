@@ -1173,6 +1173,51 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.interceptor_usr_diff)
                     intent.putExtra("answer", QA.interceptor_usr_diff_answer)
                 }
+                QA.aidl_support_data -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.aidl_support_data)
+                    intent.putExtra("answer", QA.aidl_support_data_answer)
+                }
+                QA.aidl_bad -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.aidl_bad)
+                    intent.putExtra("answer", QA.aidl_bad_answer)
+                }
+                QA.voice_record -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.voice_record)
+                    intent.putExtra("answer", QA.voice_record_answer)
+                }
+                QA.voice_play -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.voice_play)
+                    intent.putExtra("answer", QA.voice_play_answer)
+                }
+                QA.video_record -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.video_record)
+                    intent.putExtra("answer", QA.video_record_answer)
+                }
+                QA.video_play -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.video_play)
+                    intent.putExtra("answer", QA.video_play_answer)
+                }
+                QA.tcp_http_socket -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.tcp_http_socket)
+                    intent.putExtra("answer", QA.tcp_http_socket_answer)
+                }
+                QA.https_hijack -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.https_hijack)
+                    intent.putExtra("answer", QA.https_hijack_answer)
+                }
+                QA.frame_count -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.frame_count)
+                    intent.putExtra("answer", QA.frame_count_answer)
+                }
 
 
                 //分界点---------------------

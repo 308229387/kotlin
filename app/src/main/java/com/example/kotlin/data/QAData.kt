@@ -147,6 +147,7 @@ object QAData {
         QAItemData(QA.long_bitmap_show, R.mipmap.banana_pic),
         QAItemData(QA.activity_layout_build, R.mipmap.banana_pic),
         QAItemData(QA.get_view_high, R.mipmap.banana_pic),
+        QAItemData(QA.frame_count, R.mipmap.banana_pic),
 
 
         QAItemData("动画", R.mipmap.pineapple_pic,1),
@@ -221,9 +222,12 @@ object QAData {
         QAItemData(QA.binder_info, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_application, R.mipmap.pineapple_pic),
         QAItemData(QA.aidl, R.mipmap.pineapple_pic),
+        QAItemData(QA.aidl_support_data, R.mipmap.pineapple_pic),
+        QAItemData(QA.aidl_bad, R.mipmap.pineapple_pic),
 
 
         QAItemData("网络", R.mipmap.pineapple_pic,1),
+        QAItemData(QA.tcp_http_socket, R.mipmap.apple_pic),
         QAItemData(QA.tcp_shake_hands, R.mipmap.apple_pic),
         QAItemData(QA.tcp_udp_different, R.mipmap.pineapple_pic),
         QAItemData(QA.url_process, R.mipmap.pineapple_pic),
@@ -231,6 +235,7 @@ object QAData {
         QAItemData(QA.net_work_level, R.mipmap.pineapple_pic),
         QAItemData(QA.http_https, R.mipmap.strawberry_pic),
         QAItemData(QA.http_error_code, R.mipmap.pineapple_pic),
+        QAItemData(QA.https_hijack, R.mipmap.pineapple_pic),
         QAItemData(QA.ok_http_process, R.mipmap.pineapple_pic),
         QAItemData(QA.ok_http_principle, R.mipmap.pineapple_pic),
         QAItemData(QA.ok_http_usr_model, R.mipmap.pineapple_pic),
@@ -259,6 +264,14 @@ object QAData {
         QAItemData(QA.r_x_java_4, R.mipmap.pineapple_pic),
         QAItemData(QA.r_x_java_send, R.mipmap.pineapple_pic),
         QAItemData(QA.r_x_use_code, R.mipmap.pineapple_pic),
+
+
+        QAItemData("音视频", R.mipmap.pineapple_pic,1),
+        QAItemData(QA.voice_record, R.mipmap.grape_pic),
+        QAItemData(QA.voice_play, R.mipmap.grape_pic),
+        QAItemData(QA.video_record, R.mipmap.grape_pic),
+        QAItemData(QA.video_play, R.mipmap.grape_pic),
+
 
 
         QAItemData("开发模式", R.mipmap.pineapple_pic,1),
