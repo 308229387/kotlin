@@ -1217,6 +1217,10 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.frame_count)
                     intent.putExtra("answer", QA.frame_count_answer)
+                } QA.xie_cheng_yi_bu -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.xie_cheng_yi_bu)
+                    intent.putExtra("answer", QA.xie_cheng_yi_bu_answer)
                 }
 
 

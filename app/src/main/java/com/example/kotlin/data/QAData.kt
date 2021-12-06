@@ -310,6 +310,7 @@ object QAData {
         QAItemData(QA.coroutines_cancel_join, R.mipmap.pineapple_pic),
         QAItemData(QA.coroutines_pause_return, R.mipmap.pineapple_pic),
         QAItemData(QA.coroutines_stop, R.mipmap.pineapple_pic),
+        QAItemData(QA.xie_cheng_yi_bu, R.mipmap.pineapple_pic),
         QAItemData(QA.flutter_about, R.mipmap.pineapple_pic),
         QAItemData(QA.kotlin_code, R.mipmap.pineapple_pic),
         QAItemData(QA.change_big_method, R.mipmap.pineapple_pic),
