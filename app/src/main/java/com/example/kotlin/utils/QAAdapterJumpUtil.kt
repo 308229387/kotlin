@@ -15,6 +15,13 @@ import com.example.kotlin.data.QA
 class QAAdapterJumpUtil {
     companion object {
         var intent = Intent()
+
+        fun jumpQA(text:String,answer:String,context: Context){
+            intent = Intent(context, QADetailActivity::class.java)
+            intent.putExtra("title", text)
+            intent.putExtra("answer", answer)
+        }
+
         fun setIntent(context: Context, title: String) {
             when (title) {
                 QA.performance_optimization -> {
@@ -1217,11 +1224,35 @@ class QAAdapterJumpUtil {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.frame_count)
                     intent.putExtra("answer", QA.frame_count_answer)
-                } QA.xie_cheng_yi_bu -> {
+                }
+                QA.xie_cheng_yi_bu -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.xie_cheng_yi_bu)
                     intent.putExtra("answer", QA.xie_cheng_yi_bu_answer)
                 }
+                QA.http_version_diff -> jumpQA(QA.http_version_diff,QA.http_version_diff_answer,context)
+                QA.null_safe -> jumpQA(QA.null_safe,QA.null_safe_answer,context)
+                QA.how_build_sdk -> jumpQA(QA.how_build_sdk,QA.how_build_sdk_answer,context)
+                QA.zu_jian_hua_info -> jumpQA(QA.zu_jian_hua_info,QA.zu_jian_hua_info_answer,context)
+                QA.event_bus -> jumpQA(QA.event_bus,QA.event_bus_answer,context)
+                QA.lan_ya_net -> jumpQA(QA.lan_ya_net,QA.lan_ya_net_answer,context)
+                QA.thread_pool_no_state -> jumpQA(QA.thread_pool_no_state,QA.thread_pool_no_state_answer,context)
+                QA.binder_one_copy -> jumpQA(QA.binder_one_copy,QA.binder_one_copy_answer,context)
+                QA.recycler_view_item_refresh -> jumpQA(QA.recycler_view_item_refresh,QA.recycler_view_item_refresh_answer,context)
+                QA.base_model_value -> jumpQA(QA.base_model_value,QA.base_model_value_answer,context)
+                QA.intent_move_big -> jumpQA(QA.intent_move_big,QA.intent_move_big_answer,context)
+                QA.git_code -> jumpQA(QA.git_code,QA.git_code_answer,context)
+                QA.context_use -> jumpQA(QA.context_use,QA.context_use_answer,context)
+                QA.message_obtain -> jumpQA(QA.message_obtain,QA.message_obtain_answer,context)
+                QA.zhu_jie -> jumpQA(QA.zhu_jie,QA.zhu_jie_answer,context)
+                QA.use_zhu_jie -> jumpQA(QA.use_zhu_jie,QA.use_zhu_jie_answer,context)
+                QA.pager_adapter -> jumpQA(QA.pager_adapter,QA.pager_adapter_answer,context)
+                QA.thread_pool_use -> jumpQA(QA.thread_pool_use,QA.thread_pool_use_answer,context)
+                QA.big_file_down_load -> jumpQA(QA.big_file_down_load,QA.big_file_down_load_answer,context)
+                QA.m_map -> jumpQA(QA.m_map,QA.m_map_answer,context)
+                QA.data_class -> jumpQA(QA.data_class,QA.data_class_answer,context)
+                QA.kotlin_how_gou_zao -> jumpQA(QA.kotlin_how_gou_zao,QA.kotlin_how_gou_zao_answer,context)
+                QA.copy_diff -> jumpQA(QA.copy_diff,QA.copy_diff_answer,context)
 
 
                 //分界点---------------------

@@ -20,6 +20,33 @@ object QAData {
         QAItemData(AlgorithmQA.task_7, R.mipmap.banana_pic),
 
 
+        QAItemData("新题", R.mipmap.pineapple_pic,1),
+        QAItemData(QA.http_version_diff, R.mipmap.pineapple_pic),
+        QAItemData(QA.null_safe, R.mipmap.pineapple_pic),
+        QAItemData(QA.how_build_sdk, R.mipmap.pineapple_pic),
+        QAItemData(QA.zu_jian_hua_info, R.mipmap.pineapple_pic),
+        QAItemData(QA.event_bus, R.mipmap.pineapple_pic),
+        QAItemData(QA.lan_ya_net, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_pool_no_state, R.mipmap.pineapple_pic),
+        QAItemData(QA.binder_one_copy, R.mipmap.pineapple_pic),
+        QAItemData(QA.recycler_view_item_refresh, R.mipmap.pineapple_pic),
+        QAItemData(QA.base_model_value, R.mipmap.pineapple_pic),
+        QAItemData(QA.intent_move_big, R.mipmap.pineapple_pic),
+        QAItemData(QA.git_code, R.mipmap.pineapple_pic),
+        QAItemData(QA.context_use, R.mipmap.pineapple_pic),
+        QAItemData(QA.message_obtain, R.mipmap.pineapple_pic),
+        QAItemData(QA.zhu_jie, R.mipmap.pineapple_pic),
+        QAItemData(QA.use_zhu_jie, R.mipmap.pineapple_pic),
+        QAItemData(QA.pager_adapter, R.mipmap.pineapple_pic),
+        QAItemData(QA.thread_pool_use, R.mipmap.pineapple_pic),
+        QAItemData(QA.big_file_down_load, R.mipmap.pineapple_pic),
+        QAItemData(QA.m_map, R.mipmap.pineapple_pic),
+        QAItemData(QA.data_class, R.mipmap.pineapple_pic),
+        QAItemData(QA.copy_diff, R.mipmap.pineapple_pic),
+        QAItemData(QA.kotlin_how_gou_zao, R.mipmap.pineapple_pic),
+
+
+
         QAItemData("java基础", R.mipmap.pineapple_pic,1),
         QAItemData(QA.how_many_string, R.mipmap.pineapple_pic),
         QAItemData(QA.abstract_interface, R.mipmap.pineapple_pic),
