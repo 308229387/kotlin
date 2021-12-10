@@ -1215,21 +1215,10 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.tcp_http_socket)
                     intent.putExtra("answer", QA.tcp_http_socket_answer)
                 }
-                QA.https_hijack -> {
-                    intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.https_hijack)
-                    intent.putExtra("answer", QA.https_hijack_answer)
-                }
-                QA.frame_count -> {
-                    intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.frame_count)
-                    intent.putExtra("answer", QA.frame_count_answer)
-                }
-                QA.xie_cheng_yi_bu -> {
-                    intent = Intent(context, QADetailActivity::class.java)
-                    intent.putExtra("title", QA.xie_cheng_yi_bu)
-                    intent.putExtra("answer", QA.xie_cheng_yi_bu_answer)
-                }
+
+                QA.https_hijack -> jumpQA(QA.https_hijack,QA.https_hijack_answer,context)
+                QA.frame_count -> jumpQA(QA.frame_count,QA.frame_count_answer,context)
+                QA.xie_cheng_yi_bu -> jumpQA(QA.xie_cheng_yi_bu,QA.xie_cheng_yi_bu_answer,context)
                 QA.http_version_diff -> jumpQA(QA.http_version_diff,QA.http_version_diff_answer,context)
                 QA.null_safe -> jumpQA(QA.null_safe,QA.null_safe_answer,context)
                 QA.how_build_sdk -> jumpQA(QA.how_build_sdk,QA.how_build_sdk_answer,context)
@@ -1253,6 +1242,11 @@ class QAAdapterJumpUtil {
                 QA.data_class -> jumpQA(QA.data_class,QA.data_class_answer,context)
                 QA.kotlin_how_gou_zao -> jumpQA(QA.kotlin_how_gou_zao,QA.kotlin_how_gou_zao_answer,context)
                 QA.copy_diff -> jumpQA(QA.copy_diff,QA.copy_diff_answer,context)
+                QA.message_shun_xu -> jumpQA(QA.message_shun_xu,QA.message_shun_xu_answer,context)
+                QA.cas_ji_zhi -> jumpQA(QA.cas_ji_zhi,QA.cas_ji_zhi_answer,context)
+                QA.synchronized_lock -> jumpQA(QA.synchronized_lock,QA.synchronized_lock_answer,context)
+                QA.zhi_jie_cache -> jumpQA(QA.zhi_jie_cache,QA.zhi_jie_cache_answer,context)
+                QA.set_content_view -> jumpQA(QA.set_content_view,QA.set_content_view_answer,context)
 
 
                 //分界点---------------------

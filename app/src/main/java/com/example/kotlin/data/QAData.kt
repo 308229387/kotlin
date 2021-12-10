@@ -21,6 +21,12 @@ object QAData {
 
 
         QAItemData("新题", R.mipmap.pineapple_pic,1),
+        QAItemData(QA.message_shun_xu, R.mipmap.pineapple_pic),
+        QAItemData(QA.cas_ji_zhi, R.mipmap.pineapple_pic),
+        QAItemData(QA.synchronized_lock, R.mipmap.pineapple_pic),
+        QAItemData(QA.zhi_jie_cache, R.mipmap.pineapple_pic),
+        QAItemData(QA.set_content_view, R.mipmap.pineapple_pic),
+        QAItemData(QA.bao_xiao_mi, R.mipmap.pineapple_pic),
         QAItemData(QA.http_version_diff, R.mipmap.pineapple_pic),
         QAItemData(QA.null_safe, R.mipmap.pineapple_pic),
         QAItemData(QA.how_build_sdk, R.mipmap.pineapple_pic),
@@ -313,7 +319,6 @@ object QAData {
 
         QAItemData("系统架构", R.mipmap.pineapple_pic,1),
         QAItemData(QA.project_architecture, R.mipmap.pineapple_pic),
-        QAItemData(QA.bao_xiao_mi, R.mipmap.pineapple_pic),
         QAItemData(QA.live_level_plan, R.mipmap.pineapple_pic),
         QAItemData(QA.assets_res, R.mipmap.pineapple_pic),
         QAItemData(QA.version_features, R.mipmap.pineapple_pic),

@@ -31,7 +31,6 @@ class AddViewActivity : BaseActivity<ActivityAddViewBinding>() {
         val childB = layoutInflater.inflate(R.layout.child_view_b, null)
         //必须要有这个
         val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
-
         val animation = AnimationUtils.loadAnimation(this@AddViewActivity, R.anim.slow_show)
 
         viewBind.addAllViewABtn.setOnClickListener {
