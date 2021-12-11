@@ -1247,6 +1247,10 @@ class QAAdapterJumpUtil {
                 QA.synchronized_lock -> jumpQA(QA.synchronized_lock,QA.synchronized_lock_answer,context)
                 QA.zhi_jie_cache -> jumpQA(QA.zhi_jie_cache,QA.zhi_jie_cache_answer,context)
                 QA.set_content_view -> jumpQA(QA.set_content_view,QA.set_content_view_answer,context)
+                QA.set_content_view -> jumpQA(QA.a_router_interceptor,QA.set_content_view_answer,context)
+                QA.set_content_view -> jumpQA(QA.a_router_usr,QA.set_content_view_answer,context)
+                QA.set_content_view -> jumpQA(QA.a_router_process,QA.set_content_view_answer,context)
+                QA.set_content_view -> jumpQA(QA.zu_jian_resource_repeat,QA.set_content_view_answer,context)
 
 
                 //分界点---------------------

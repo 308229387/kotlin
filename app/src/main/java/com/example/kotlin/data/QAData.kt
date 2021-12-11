@@ -21,6 +21,10 @@ object QAData {
 
 
         QAItemData("新题", R.mipmap.pineapple_pic,1),
+        QAItemData(QA.a_router_interceptor, R.mipmap.pineapple_pic),
+        QAItemData(QA.a_router_usr, R.mipmap.pineapple_pic),
+        QAItemData(QA.a_router_process, R.mipmap.pineapple_pic),
+        QAItemData(QA.zu_jian_resource_repeat, R.mipmap.pineapple_pic),
         QAItemData(QA.message_shun_xu, R.mipmap.pineapple_pic),
         QAItemData(QA.cas_ji_zhi, R.mipmap.pineapple_pic),
         QAItemData(QA.synchronized_lock, R.mipmap.pineapple_pic),
