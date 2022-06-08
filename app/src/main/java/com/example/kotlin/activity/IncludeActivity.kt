@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.include_layout.*
 class IncludeActivity : AppCompatActivity() {
     private lateinit var vEmojiSwitcher: ImageSwitcher
     private var switcherTag: Boolean = false
-    val textSource = Html.fromHtml("修改TextView中部分文字的<font color='#ff0000'><big>大</big><small>小</small></font>和<font color='#00ff00'>颜色</font>，展示多彩效果！")
+    val textSource = Html.fromHtml("修改TextView中部分文字的<font color='#ff0000'><big>大</big><small>小</small></font>和<font color='#00ff00'>颜色</font>，展示多彩效果！"+"<strong><big><font color=#ff0000>新橙慧安-合成研判平台</font></big></strong>\n")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
