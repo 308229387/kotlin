@@ -295,6 +295,11 @@ class QAAdapterJumpUtil {
                     intent.putExtra("title", QA.how_hash)
                     intent.putExtra("answer", QA.how_hash_answer)
                 }
+                QA.how_hash_map_index -> {
+                    intent = Intent(context, QADetailActivity::class.java)
+                    intent.putExtra("title", QA.how_hash_map_index)
+                    intent.putExtra("answer", QA.how_hash_map_index_answer)
+                }
                 QA.change_big -> {
                     intent = Intent(context, QADetailActivity::class.java)
                     intent.putExtra("title", QA.change_big)

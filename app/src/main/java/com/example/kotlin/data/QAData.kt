@@ -19,12 +19,26 @@ object QAData {
         QAItemData(AlgorithmQA.task_6, R.mipmap.cherry_pic),
         QAItemData(AlgorithmQA.task_7, R.mipmap.banana_pic),
 
-
-        QAItemData("新题", R.mipmap.pineapple_pic,1),
+        QAItemData("组件化相关问题", R.mipmap.pineapple_pic,1),
+        QAItemData(QA.zu_jian_hua_info, R.mipmap.pineapple_pic),
         QAItemData(QA.a_router_interceptor, R.mipmap.pineapple_pic),
         QAItemData(QA.a_router_usr, R.mipmap.pineapple_pic),
         QAItemData(QA.a_router_process, R.mipmap.pineapple_pic),
         QAItemData(QA.zu_jian_resource_repeat, R.mipmap.pineapple_pic),
+
+        QAItemData("kotlin问题", R.mipmap.pineapple_pic,1),
+        QAItemData(QA.kotlin_good, R.mipmap.pineapple_pic),
+        QAItemData(QA.kotlin_coroutines, R.mipmap.pineapple_pic),
+        QAItemData(QA.coroutines_create, R.mipmap.pineapple_pic),
+        QAItemData(QA.coroutines_async, R.mipmap.pineapple_pic),
+        QAItemData(QA.coroutines_cancel_join, R.mipmap.pineapple_pic),
+        QAItemData(QA.coroutines_pause_return, R.mipmap.pineapple_pic),
+        QAItemData(QA.coroutines_stop, R.mipmap.pineapple_pic),
+        QAItemData(QA.xie_cheng_yi_bu, R.mipmap.pineapple_pic),
+        QAItemData(QA.kotlin_code, R.mipmap.pineapple_pic),
+        QAItemData(QA.change_big_method, R.mipmap.pineapple_pic),
+
+        QAItemData("新题", R.mipmap.pineapple_pic,1),
         QAItemData(QA.message_shun_xu, R.mipmap.pineapple_pic),
         QAItemData(QA.cas_ji_zhi, R.mipmap.pineapple_pic),
         QAItemData(QA.synchronized_lock, R.mipmap.pineapple_pic),
@@ -34,7 +48,6 @@ object QAData {
         QAItemData(QA.http_version_diff, R.mipmap.pineapple_pic),
         QAItemData(QA.null_safe, R.mipmap.pineapple_pic),
         QAItemData(QA.how_build_sdk, R.mipmap.pineapple_pic),
-        QAItemData(QA.zu_jian_hua_info, R.mipmap.pineapple_pic),
         QAItemData(QA.event_bus, R.mipmap.pineapple_pic),
         QAItemData(QA.lan_ya_net, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_pool_no_state, R.mipmap.pineapple_pic),
@@ -55,8 +68,6 @@ object QAData {
         QAItemData(QA.copy_diff, R.mipmap.pineapple_pic),
         QAItemData(QA.kotlin_how_gou_zao, R.mipmap.pineapple_pic),
 
-
-
         QAItemData("java基础", R.mipmap.pineapple_pic,1),
         QAItemData(QA.how_many_string, R.mipmap.pineapple_pic),
         QAItemData(QA.abstract_interface, R.mipmap.pineapple_pic),
@@ -71,7 +82,6 @@ object QAData {
         QAItemData(QA.java_reference_queue, R.mipmap.pineapple_pic),
         QAItemData(QA.android_annotation, R.mipmap.pineapple_pic),
         QAItemData(QA.always_exception, R.mipmap.pineapple_pic),
-
 
         QAItemData("四大组件", R.mipmap.pineapple_pic,1),
         QAItemData(QA.four_components, R.mipmap.cherry_pic),
@@ -103,7 +113,6 @@ object QAData {
         QAItemData(QA.local_all_broadcast, R.mipmap.pineapple_pic),
         QAItemData(QA.base_activity, R.mipmap.pineapple_pic),
 
-
         QAItemData("Handler", R.mipmap.pineapple_pic,1),
         QAItemData(QA.handler_four_components, R.mipmap.grape_pic),
         QAItemData(QA.handler_use, R.mipmap.grape_pic),
@@ -111,7 +120,6 @@ object QAData {
         QAItemData(QA.why_no_die, R.mipmap.grape_pic),
         QAItemData(QA.delay_message, R.mipmap.banana_pic),
         QAItemData(QA.handler_async, R.mipmap.pineapple_pic),
-
 
         QAItemData("数据类型与存储", R.mipmap.pineapple_pic,1),
         QAItemData(QA.concurrent_hash_map, R.mipmap.pineapple_pic),
@@ -128,9 +136,9 @@ object QAData {
         QAItemData(QA.hash_map, R.mipmap.pineapple_pic),
         QAItemData(QA.hashtable_about, R.mipmap.pineapple_pic),
         QAItemData(QA.how_hash, R.mipmap.pineapple_pic),
+        QAItemData(QA.how_hash_map_index, R.mipmap.pineapple_pic),
         QAItemData(QA.change_big, R.mipmap.pineapple_pic),
         QAItemData(QA.red_black_time, R.mipmap.pineapple_pic),
-
 
         QAItemData("性能优化", R.mipmap.pineapple_pic,1),
         QAItemData(QA.ui_block, R.mipmap.banana_pic),
@@ -169,7 +177,6 @@ object QAData {
         QAItemData(QA.clean_rubbish, R.mipmap.apple_pic),
         QAItemData(QA.rubbish_robot, R.mipmap.apple_pic),
 
-
         QAItemData("view与显示", R.mipmap.pineapple_pic,1),
         QAItemData(QA.auto_adapter_screen, R.mipmap.pineapple_pic),
         QAItemData(QA.touch_event, R.mipmap.orange_pic),
@@ -185,8 +192,7 @@ object QAData {
         QAItemData(QA.activity_layout_build, R.mipmap.banana_pic),
         QAItemData(QA.get_view_high, R.mipmap.banana_pic),
         QAItemData(QA.frame_count, R.mipmap.banana_pic),
-
-
+        
         QAItemData("动画", R.mipmap.pineapple_pic,1),
         QAItemData(QA.frame_animation, R.mipmap.pineapple_pic),
         QAItemData(QA.tween_animation, R.mipmap.pineapple_pic),
@@ -201,7 +207,6 @@ object QAData {
         QAItemData(QA.type_evaluator_interpolator_diff, R.mipmap.banana_pic),
         QAItemData(QA.u3d_about, R.mipmap.banana_pic),
         QAItemData(QA.bone_animation, R.mipmap.banana_pic),
-
 
         QAItemData("线程", R.mipmap.pineapple_pic,1),
         QAItemData(QA.not_ui_refresh, R.mipmap.grape_pic),
@@ -218,7 +223,6 @@ object QAData {
         QAItemData(QA.async_task_use, R.mipmap.pineapple_pic),
         QAItemData(QA.async_task_principle, R.mipmap.pineapple_pic),
         QAItemData(QA.async_task_fun, R.mipmap.pineapple_pic),
-
 
         QAItemData("锁", R.mipmap.pineapple_pic,1),
         QAItemData(QA.volatile_principle, R.mipmap.pineapple_pic),
@@ -237,7 +241,6 @@ object QAData {
         QAItemData(QA.synchronized_use, R.mipmap.cherry_pic),
         QAItemData(QA.synchronized_lock_diff, R.mipmap.banana_pic),
 
-
         QAItemData("线程池", R.mipmap.pineapple_pic,1),
         QAItemData(QA.thread_pool_create, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_four_api, R.mipmap.pineapple_pic),
@@ -249,7 +252,6 @@ object QAData {
         QAItemData(QA.thread_pool_reject_policy, R.mipmap.pineapple_pic),
         QAItemData(QA.blocking_queue, R.mipmap.pineapple_pic),
         QAItemData(QA.thread_pool_cup_io, R.mipmap.pineapple_pic),
-
 
         QAItemData("进程", R.mipmap.pineapple_pic,1),
         QAItemData(QA.more_process_purpose, R.mipmap.pineapple_pic),
@@ -283,7 +285,6 @@ object QAData {
         QAItemData(QA.dynamic_proxy_good, R.mipmap.pineapple_pic),
         QAItemData(QA.interceptor_usr_diff, R.mipmap.pineapple_pic),
 
-
         QAItemData("第三方控件与框架", R.mipmap.pineapple_pic,1),
         QAItemData(QA.jet_pack, R.mipmap.pineapple_pic),
         QAItemData(QA.catch_exception, R.mipmap.pineapple_pic),
@@ -302,24 +303,19 @@ object QAData {
         QAItemData(QA.r_x_java_send, R.mipmap.pineapple_pic),
         QAItemData(QA.r_x_use_code, R.mipmap.pineapple_pic),
 
-
         QAItemData("音视频", R.mipmap.pineapple_pic,1),
         QAItemData(QA.voice_record, R.mipmap.grape_pic),
         QAItemData(QA.voice_play, R.mipmap.grape_pic),
         QAItemData(QA.video_record, R.mipmap.grape_pic),
         QAItemData(QA.video_play, R.mipmap.grape_pic),
 
-
-
         QAItemData("开发模式", R.mipmap.pineapple_pic,1),
         QAItemData(QA.mvp, R.mipmap.grape_pic),
         QAItemData(QA.mvc, R.mipmap.grape_pic),
         QAItemData(QA.mvvm, R.mipmap.grape_pic),
 
-
         QAItemData("设计模式", R.mipmap.pineapple_pic,1),
         QAItemData(QA.design_patterns, R.mipmap.pineapple_pic),
-
 
         QAItemData("系统架构", R.mipmap.pineapple_pic,1),
         QAItemData(QA.project_architecture, R.mipmap.pineapple_pic),
@@ -339,17 +335,7 @@ object QAData {
 
 
         QAItemData("扩展", R.mipmap.pineapple_pic,1),
-        QAItemData(QA.kotlin_good, R.mipmap.pineapple_pic),
-        QAItemData(QA.kotlin_coroutines, R.mipmap.pineapple_pic),
-        QAItemData(QA.coroutines_create, R.mipmap.pineapple_pic),
-        QAItemData(QA.coroutines_async, R.mipmap.pineapple_pic),
-        QAItemData(QA.coroutines_cancel_join, R.mipmap.pineapple_pic),
-        QAItemData(QA.coroutines_pause_return, R.mipmap.pineapple_pic),
-        QAItemData(QA.coroutines_stop, R.mipmap.pineapple_pic),
-        QAItemData(QA.xie_cheng_yi_bu, R.mipmap.pineapple_pic),
         QAItemData(QA.flutter_about, R.mipmap.pineapple_pic),
-        QAItemData(QA.kotlin_code, R.mipmap.pineapple_pic),
-        QAItemData(QA.change_big_method, R.mipmap.pineapple_pic),
 
         )
 }
