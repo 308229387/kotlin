@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
+
+    <View
+        android:id="@+id/view_top"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ai_bg_selector"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#383838"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="欧阳峰峰" />
+
+        <TextView
+            android:id="@+id/tv_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:background="#63A1E6"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_name"
+            tools:text="WIFI" />
+
+        <TextView
+            android:id="@+id/tv_appear_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="出现地点"
+            android:textColor="#ABAEB3"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+        <TextView
+            android:id="@+id/tv_location_content"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:textColor="#ABAEB3"
+            android:lineHeight="10dp"
+            android:gravity="right"
+            android:lines="2"
+            android:ellipsize="end"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_appear_location"
+            tools:text="北京市海淀区上地信息路12asdfasdfasdfasdfasdf号" />
+
+        <TextView
+            android:id="@+id/tv_appear_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="出现时间"
+            android:textColor="#ABAEB3"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_appear_location" />
+
+        <TextView
+            android:id="@+id/tv_time_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ABAEB3"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_appear_time"
+            tools:text="2022-03-28  12:26:18" />
+
+        <TextView
+            android:id="@+id/tv_task_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="任务名称"
+            android:textColor="#ABAEB3"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_appear_time" />
+
+        <TextView
+            android:id="@+id/tv_task_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ABAEB3"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_task_name"
+            tools:text="这里是任务名称这里是任务名称" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@android:color/transparent" />
+
+</LinearLayout>

@@ -2,6 +2,7 @@ package com.example.kotlin
 
 import android.app.Application
 import android.content.Context
+import com.example.kotlin.utils.AppContextUtils
 import com.orhanobut.hawk.Hawk
 import com.orhanobut.hawk.HawkBuilder
 import com.orhanobut.hawk.LogLevel
@@ -9,7 +10,7 @@ import com.orhanobut.hawk.LogLevel
 class App : Application() {
 
 
-    companion object{
+    companion object {
         private var mContext: Context? = null
 
         fun getAppContext(): Context? {
@@ -24,8 +25,9 @@ class App : Application() {
             .setEncryptionMethod(HawkBuilder.EncryptionMethod.MEDIUM)
             .setStorage(HawkBuilder.newSqliteStorage(this))
             .setLogLevel(LogLevel.FULL)
-            .build()    }
-
+            .build()
+        AppContextUtils.initApp(this)
+    }
 
 
 }

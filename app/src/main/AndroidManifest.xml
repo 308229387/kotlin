@@ -63,7 +63,10 @@
         <activity android:name=".activity.RxJavaLeanActivity" />
         <activity android:name=".activity.TouchEventActivity" />
 
-
+        <activity
+            android:name=".activity.PersonWarningActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.QAHorizontalDetailActivity"
             android:screenOrientation="landscape" />
