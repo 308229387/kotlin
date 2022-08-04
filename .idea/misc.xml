@@ -13,11 +13,21 @@
         <entry key="app/src/main/res/drawable/comment_dialog_cursor.xml" value="0.12222222222222222" />
         <entry key="app/src/main/res/drawable/emotion_drawable_selector.xml" value="0.12222222222222222" />
         <entry key="app/src/main/res/drawable/emotion_radio_checked.xml" value="0.12222222222222222" />
+        <entry key="app/src/main/res/drawable/go_buy_back.xml" value="0.38358974358974357" />
         <entry key="app/src/main/res/drawable/toast_bg.xml" value="0.21388888888888888" />
+        <entry key="app/src/main/res/layout/activity_algorithm_detail.xml" value="0.17481884057971014" />
+        <entry key="app/src/main/res/layout/activity_algorithm_list.xml" value="0.17481884057971014" />
+        <entry key="app/src/main/res/layout/activity_assets.xml" value="0.17481884057971014" />
+        <entry key="app/src/main/res/layout/activity_comment_multi.xml" value="0.17481884057971014" />
+        <entry key="app/src/main/res/layout/activity_custom_viewpager.xml" value="0.17481884057971014" />
+        <entry key="app/src/main/res/layout/activity_fragment_layout.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/activity_include_layout.xml" value="0.3880208333333333" />
+        <entry key="app/src/main/res/layout/activity_j_d_search.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/activity_persion_warning.xml" value="0.18161094224924013" />
+        <entry key="app/src/main/res/layout/activity_pick_file.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/activity_q_a_list.xml" value="0.2791666666666667" />
         <entry key="app/src/main/res/layout/activity_round_image.xml" value="0.317481884057971" />
+        <entry key="app/src/main/res/layout/child_view_a.xml" value="0.897158826404075" />
         <entry key="app/src/main/res/layout/item_control_warning.xml" value="0.18161094224924013" />
         <entry key="app/src/main/res/layout/list_items.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/q_a_list_items.xml" value="0.3278985507246377" />

@@ -59,6 +59,8 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "RxJava学习" -> context.startActivity(Intent(context, RxJavaLeanActivity::class.java))
                     "权限管理" -> context.startActivity(Intent(context, PermissionActivity::class.java))
                     "触摸滑动事件" -> context.startActivity(Intent(context, TouchEventActivity::class.java))
+                    "上拉加载、下拉刷新" -> context.startActivity(Intent(context, PersonWarningActivity::class.java))
+                    "选择文件" -> context.startActivity(Intent(context, PickViewActivity::class.java))
                     "恢复问答" -> {
                         Toast.makeText(context, "已刷新", Toast.LENGTH_SHORT).show()
                         Hawk.put(HawkConfig.QA, QAData.data)
