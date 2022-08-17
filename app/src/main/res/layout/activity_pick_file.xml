@@ -6,14 +6,20 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
+    <TextView
+        android:id="@+id/local_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#2589fa"
-        android:textColor="#fff"
         android:layout_margin="10dp"
+        android:background="#2589fa"
         android:onClick="pick"
-        android:text="选择文件" />
+        android:text="选择文件"
+        android:textColor="#fff" />
 
 </RelativeLayout>

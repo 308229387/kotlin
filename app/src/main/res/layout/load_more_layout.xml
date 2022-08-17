@@ -67,7 +67,7 @@
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00ff00"
+            android:background="#F0F2F5"
             android:fadingEdge="none" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </RelativeLayout>

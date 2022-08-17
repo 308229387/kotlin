@@ -33,7 +33,7 @@ object HomeData {
         Data("权限管理", R.mipmap.strawberry_pic),
         Data("触摸滑动事件", R.mipmap.watermelon_pic),
         Data("上拉加载、下拉刷新", R.mipmap.apple_pic),
-        Data("选择文件", R.mipmap.banana_pic),
+        Data("选择文件、本地json读取", R.mipmap.banana_pic),
         Data("Cherry", R.mipmap.cherry_pic),
         Data("Grape", R.mipmap.grape_pic),
         Data("Mango", R.mipmap.mango_pic),

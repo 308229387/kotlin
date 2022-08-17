@@ -6,6 +6,7 @@ import com.example.kotlin.utils.AppContextUtils
 import com.orhanobut.hawk.Hawk
 import com.orhanobut.hawk.HawkBuilder
 import com.orhanobut.hawk.LogLevel
+import com.qsinong.qlog.QLog
 
 class App : Application() {
 
@@ -27,6 +28,8 @@ class App : Application() {
             .setLogLevel(LogLevel.FULL)
             .build()
         AppContextUtils.initApp(this)
+        QLog.init(this)
+
     }
 
 

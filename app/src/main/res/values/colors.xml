@@ -17,5 +17,6 @@
     <color name="tab_bottom_normal">#999999</color>
     <color name="tab_bottom_selected">#46c01b</color>
     <color name="colorPrimary">#008577</color>
+    <color name="top_bar_color">#2589FA</color>
 
 </resources>

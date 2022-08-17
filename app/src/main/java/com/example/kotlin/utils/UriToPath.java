@@ -213,7 +213,8 @@ public class UriToPath {
                 String displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 try {
                     InputStream is = contentResolver.openInputStream(uri);
-                    File cache = new File(context.getExternalCacheDir().getAbsolutePath(), Math.round((Math.random() + 1) * 1000) + displayName);
+//                    File cache = new File(context.getExternalCacheDir().getAbsolutePath(), Math.round((Math.random() + 1) * 1000) + displayName);
+                    File cache = new File(context.getExternalCacheDir().getAbsolutePath(),  displayName);
                     FileOutputStream fos = new FileOutputStream(cache);
                     FileUtils.copy(is, fos);
                     file = cache;

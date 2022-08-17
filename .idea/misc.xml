@@ -30,7 +30,10 @@
         <entry key="app/src/main/res/layout/child_view_a.xml" value="0.897158826404075" />
         <entry key="app/src/main/res/layout/item_control_warning.xml" value="0.18161094224924013" />
         <entry key="app/src/main/res/layout/list_items.xml" value="0.3880208333333333" />
+        <entry key="app/src/main/res/layout/load_more_layout.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/q_a_list_items.xml" value="0.3278985507246377" />
+        <entry key="app/src/main/res/layout/q_list_item.xml" value="0.25181159420289856" />
+        <entry key="app/src/main/res/layout/q_list_layout.xml" value="0.21979166666666666" />
         <entry key="app/src/main/res/layout/record_setting_permission.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/recycler_empty_view.xml" value="0.18161094224924013" />
         <entry key="app/src/main/res/layout/remember_dialog.xml" value="0.28125" />

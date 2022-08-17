@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kotlin.R;
+import com.example.kotlin.utils.AssetsUtils;
 import com.example.kotlin.utils.ToastUtil;
 import com.example.kotlin.utils.UriToPath;
 
@@ -17,6 +19,10 @@ public class PickViewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_file);
+
+        AssetsUtils assetsUtils = new AssetsUtils();
+        String treeData = assetsUtils.readAssetsText(this, "tree.json");
+        ((TextView)findViewById(R.id.local_data)).setText(treeData);
     }
 
     public void pick(View view){

@@ -29,4 +29,9 @@ public class PersonWarningAdapter extends BaseQuickAdapter<ControlItemBean, Base
         holder.setText(R.id.tv_task_content, bean.getTaskName());
         holder.setText(R.id.tv_source, bean.getDataTypeDesc());
     }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 }
