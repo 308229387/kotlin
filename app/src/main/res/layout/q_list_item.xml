@@ -33,10 +33,10 @@
 
         <TextView
             android:id="@+id/tv_record"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:paddingStart="3dp"
-            android:paddingEnd="3dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:gravity="center"
             android:text="记 录"
             android:background="#63A1E6"
@@ -57,7 +57,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
         <TextView
-            android:id="@+id/tv_location_content"
+            android:id="@+id/tv_last_time"
             android:layout_width="195dp"
             android:layout_height="wrap_content"
             android:textColor="#ABAEB3"
@@ -82,7 +82,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_appear_location" />
 
         <TextView
-            android:id="@+id/tv_task_content"
+            android:id="@+id/tv_next_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#ABAEB3"
