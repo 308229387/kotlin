@@ -18,6 +18,9 @@ public class PersonWarningAdapter extends BaseQuickAdapter<ControlItemBean, Base
 
     @Override
     protected void convert(@NonNull BaseViewHolder holder, ControlItemBean bean) {
+        /**
+         * 如果里面想放listener，然后对数据有操作，一定是在listener里直接new，不能放一个公共的，会有混乱使用的问题
+         * */
         if (getItemPosition(bean) == 0) {
             holder.getView(R.id.view_top).setVisibility(View.VISIBLE);
         } else {

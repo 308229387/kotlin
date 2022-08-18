@@ -43,7 +43,11 @@ public class QListActivity extends BaseActivity<QListLayoutBinding> implements O
         });
 
         AssetsUtils assetsUtils = new AssetsUtils();
-        String tmp = assetsUtils.readAssetsText(this, "component.json");
+        String name = "component.json";
+        if(getIntent().getStringExtra("intent") != null){
+            name = getIntent().getStringExtra("intent");
+        }
+        String tmp = assetsUtils.readAssetsText(this, name);
         NormalBean tmpData = new Gson().fromJson(tmp, NormalBean.class);
         data = tmpData.getData();
         total = data.size();

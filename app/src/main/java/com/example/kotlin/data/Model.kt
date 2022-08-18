@@ -8,6 +8,7 @@ object HomeData {
 
     val data = arrayListOf(
         Data("问答", R.mipmap.orange_pic),
+        Data("分类问答", R.mipmap.orange_pic),
         Data("待解决问答", R.mipmap.orange_pic),
         Data("算法", R.mipmap.strawberry_pic),
         Data("仿京东搜索", R.mipmap.watermelon_pic),
