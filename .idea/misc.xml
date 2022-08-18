@@ -28,6 +28,9 @@
         <entry key="app/src/main/res/layout/activity_q_a_list.xml" value="0.2791666666666667" />
         <entry key="app/src/main/res/layout/activity_round_image.xml" value="0.317481884057971" />
         <entry key="app/src/main/res/layout/child_view_a.xml" value="0.897158826404075" />
+        <entry key="app/src/main/res/layout/expand_chidren_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/expand_parent_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/expandable_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_control_warning.xml" value="0.18161094224924013" />
         <entry key="app/src/main/res/layout/list_items.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/load_more_layout.xml" value="0.3880208333333333" />

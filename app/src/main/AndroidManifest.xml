@@ -64,6 +64,7 @@
         <activity android:name=".activity.TouchEventActivity" />
         <activity android:name=".activity.PickViewActivity" />
         <activity android:name=".activity.QListActivity" />
+        <activity android:name=".activity.ExpandableListActivity" />
 
         <activity
             android:name=".activity.LoadMoreActivity"
