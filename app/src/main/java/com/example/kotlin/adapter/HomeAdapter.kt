@@ -34,6 +34,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
 
             override fun jump() {
                 when (dataList[position].title) {
+                    "全部问答" -> context.startActivity(Intent(context, MainListActivity::class.java))
                     "问答" -> context.startActivity(Intent(context, QAListActivity::class.java))
                     "分类问答" -> context.startActivity(Intent(context, QListActivity::class.java))
                     "待解决问答" -> context.startActivity(Intent(context, SpecialQAListActivity::class.java))

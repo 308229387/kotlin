@@ -1,6 +1,8 @@
 package com.example.kotlin.activity;
 
+import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 
@@ -10,19 +12,30 @@ import androidx.annotation.Nullable;
 import com.example.kotlin.adapter.ExpandableListviewAdapter;
 import com.example.kotlin.base.BaseActivity;
 import com.example.kotlin.databinding.ExpandableListBinding;
+import com.example.kotlin.databinding.MainListBinding;
 import com.example.kotlin.utils.ToastUtil;
 
-public class ExpandableListActivity extends BaseActivity<ExpandableListBinding> {
+import java.util.List;
+
+/**
+ * 子条目会有点击无效的情况，需要在子view布局文件中加一行代码      android:descendantFocusability="blocksDescendants"
+ * */
+public class ExpandableListActivity extends BaseActivity<MainListBinding> {
 
     //Model：定义的数据
     private String[] groups = {"开发部", "人力资源部", "销售部"};
 
     //注意，字符数组不要写成{{"A1,A2,A3,A4"}, {"B1,B2,B3,B4，B5"}, {"C1,C2,C3,C4"}}
-    private String[][] childs = {{"赵珊珊", "钱丹丹", "孙可可", "李冬冬"}, {"周大福", "吴端口", "郑非", "王疯狂"}, {"冯程程", "陈类", "楚哦", "魏王"}};
+    private String[][] childs = {{"赵珊珊", "钱丹丹", "孙可可", "李冬冬"}, {"周大福", "吴端口", "郑非", "王疯狂"}, {}};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("song_test", "+++");
+        List<ApplicationInfo> allApps = getPackageManager().getInstalledApplications(0);
+        for(ApplicationInfo ai : allApps) {
+            Log.d("song_test", ai.packageName);
+        }
         initView();
     }
 
@@ -68,7 +81,7 @@ public class ExpandableListActivity extends BaseActivity<ExpandableListBinding> 
 
     @NonNull
     @Override
-    public ExpandableListBinding createViewBinding() {
-        return ExpandableListBinding.inflate(getLayoutInflater());
+    public MainListBinding createViewBinding() {
+        return MainListBinding.inflate(getLayoutInflater());
     }
 }

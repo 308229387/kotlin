@@ -7,6 +7,7 @@ data class Data(var title: String, var image: Int)
 object HomeData {
 
     val data = arrayListOf(
+        Data("全部问答", R.mipmap.orange_pic),
         Data("问答", R.mipmap.orange_pic),
         Data("分类问答", R.mipmap.orange_pic),
         Data("待解决问答", R.mipmap.orange_pic),

@@ -1,0 +1,64 @@
+[{
+  "name": "组件化",
+  "data": [{
+    "title": "组件化通信原理，打包",
+    "content": "组件化使用的是ARouter 核心实现思路是，我们在代码里加入的@Route注解，会在编译时期通过apt生成一些存储path和activityClass映射关系的类文件，然后app进程启动的时候会拿到这些类文件，把保存这些映射关系的数据读到内存里(保存在map里)，然后在进行路由跳转的时候，通过build()方法传入要到达页面的路由地址，ARouter会通过它自己存储的路由表找到路由地址对应的Activity.class(activity.class = map.get(path))，然后new Intent()，当调用ARouter的withString()方法它的内部会调用intent.putExtra(String name, String value)，调用navigation()方法，它的内部会调用startActivity(intent)进行跳转，这样便可以实现两个相互没有依赖的module顺利的启动对方的Activity了。\n\n打包的时候，可以通过gradle中的plugin来切换它是application还是library"
+  }, {
+    "title": "ARouter拦截器的处理",
+    "content": "自定义拦截器需要实现IInterceptor接口，并且添加@Interceptor的注解，其中priority为拦截器的优先级，值越小，优先级越高；然后实现pocess()和init()方法。\n\n @Override\n    public void process(Postcard postcard, InterceptorCallback callback) {\n        Log.e(\"testService\", Test1Interceptor.class.getName() + \" has process.\");\n        //拦截跳转，进行一些处理\n        if (postcard.getPath().equals(\"/test/test1\")) {\n            Log.e(\"testService\", Test1Interceptor.class.getName() + \" 进行了拦截处理！\");\n        }\n        callback.onContinue(postcard);\n    }\n\n\nif (postcard.getExtra() == ConstantMap.LOGIN_EXTRA) {\n    boolean isLogin = postcard.getExtras().getBoolean(ConstantMap.IS_LOGIN);\n    if (!isLogin) {\n        ARouter.getInstance().build(RouterMap.INTER_MIDDLE_ACTIVITY).navigation();\n    } else {\n        postcard.withString(ConstantMap.IS_LOGIN_EXTRA, \"登录了!\");\n        callback.onContinue(postcard);\n    }\n}\n"
+  }, {
+    "title": "ARouter的使用",
+    "content": "path的规则：/group/child…至少两个“/”；和Activity的@Route注解值匹配，Route主要有两个属性，path和group，在RouteProcessor中处理这个注解，在注解处理的方法中会根据注解的类型创建上面使用过的RouteMeta\n\n// 标准路由\nARouter.getInstance().build(\"/home/main\").navigation();\n\n// 标准分组路由\nARouter.getInstance().build(\"/home/main\", \"ap\").navigation();\n\n// Uri跳转\nARouter.getInstance().build(uri).navigation();\n\n// startActivityForResult  在navigation后加入\nARouter.getInstance().build(\"/home/main\", \"ap\").navigation(this, 5);\n\n跳转activity的时候，但凡涉及activity的任务栈，必须使用navigation(context)并且context只能是activity。建议，如果当前可以获取activity，最好传了。\n\n// 使用方式同Activity，navigation()方法会返回要跳到的对象实例，跳转Fragment可以拿到Fragment实例操作。\nFragment fragment = (Fragment) ARouter.getInstance().build(\"/test/fragment\").navigation();\nfragmentList.add(fragment);\n\n\n直接传bundle\t\t.with(bundle)\n\n指定flag\t\t\t.withFlags();\n\n传对象\t\t\t.withObject(\"key\", new Obj(“”))\n\n转场动画\t\t\t.withTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom)\n\n还提供了int、long、short等基本变量和String、Object、Serializable、Parcelable和对应的数组、List\n"
+  }, {
+    "title": "组件化跳转流程及关键类",
+    "content": "1、获取ARouter实例\n2、构造路由信息的容器postcard\n3、如果需要拦截，就进行拦截器的处理，否则就调用_navigation方法。\n\n所有的Url/Intent跳转信息都使用Postcard邮戳进行信息封装。\n\n\nWarehouse\u2028存储跳转Path所对应的activity/fragment/url/provider，通过APT解析出来的映射关系存储在Warehouse中。\n\nLogisticsCenter\u2028负责解析注解并构造Postcard。以懒加载的方式从Warehouse中获取信息，包括class/url/extras/params等跳转信息。构造Postcard的信息储存对象为HashMap形式的RouteMeta。\n\n_ARouter\u2028负责根据Postcard进行页面跳转。Native采用startActivity形式。\n"
+  }, {
+    "title": "组件化资源冲突",
+    "content": "在app模块引用greet字符串就会出现资源冲突问题。就是给每个子模块给资源名添加前缀，然后在子模块的build.gradle文件的android块内添加resourcePrefix “资源名前缀”。AS会约束我们定义资源。\n\nresourcePrefix \"me_\""
+  }]
+}, {
+  "name": "java基础",
+  "data": [{
+    "title": "string在使用时会创建几个对象",
+    "content": "String str1 = \"abc\"; // 在常量池中，如果有不需要创建  1个\n\nString str2 = new String(\"abc\"); // 在堆上 str2 常量池中“abc” abc如果有不需要创建   1或2个\n\nString str = \"abc\" + \"def\"; //在编译时已经被合并成“abcdef”字符串，因此，只会创建1个对象。\n\nString str = \"abc\" + new String(\"def\"); //“abc”和“def”，堆中对象new String(\"def\")和“abcdef”。还会创建一个StringBuilder来进行字符串的拼接\u2028  字符串、new、builder"
+  }, {
+    "title": "抽像类与接口的差别",
+    "content": "抽象类是对整个类进行抽象，包括属性和方法，是一种模板设计。我们可以有选择地重写需要用到的方法。而接口是对行为的抽象，实现接口的一定要实现接口里定义的所有方法，里面不能有私有的方法或变量，是用于让别人使用的。还有就是一个具体类只能extends一个抽象类，可以implements多个接口。\n\n还有些就是定义上的区别，比如抽像类可以有构造器，但接口没有，访问修饰符抽像类可以有public protected  default等，但接口默认修饰符是public，不可以用其他修饰符。"
+  }, {
+    "title": "介绍下String，为什么要设计成不可变的？以及StringBuffer、StringBuilder",
+    "content": "String并不是基础类型，是final修饰的java类，之所以被设计成不可变主要是为了保证数据不被污据，方法区中的字符串池，当一个字符串已经被创建并且该字符串在池中，该字符串的引用会立即返回给变量，而不是重新创建一个字符串再将引用返回给变量。如果字符串不是不可变的，那么改变一个引用（如:string2）的字符串将会导致另一个引用（如:string1）出现脏数据。\n\nstring不是基本数据类型，那么一个string的内存位置是什么呢？一共有两种情况：\n　　1、string直接赋值：\n　　　　String s = \"haha\";\n　　　　s的引用存在栈内存中，引用指向的haha存在方法区的常量池中（先判断常量池中是否有一个haha，存在则直接指向）\n　　2、string对象new创建\n　　　　String s = new String(\"haha\");\n　　　　s的引用存在于栈内存中，引用指向的haha对象，存在堆内存中（每new一次，在堆中创建一个新的haha对象）\n\n和String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象\n\nStringBuffer是线程安全的，可以在多线程操作字符串\nStringBuilder是非线程安全的，性能会比StringBuffer好些"
+  }, {
+    "title": "Java 中的 final, finally 和 finalize?",
+    "content": "final：对基本类型而言，你不能改变其数值，对于引用，你不能将其指向一个新的引用，即用final关键字修饰方法，它表示该方法不能被覆盖重写，但是可以被重载，用final修饰的类是无法被继承的\nfinally：是异常处理中进行收场处理的代码块，比如配合lock使用，在finally里面关闭锁。关闭一个数据库连接，清理一些资源占用的问题。不管有没有异常被捕获，finally子句中的代码都会被执行。\nfinalize：finalize()是Object中的方法，当垃圾回收器将要回收对象所占内存之前被调用，定位bug"
+  }, {
+    "title": " == 和 equals() 有什么区别？",
+    "content": "1、对于==，比较的是值是否相等\n\n如果作用于基本数据类型的变量，则直接比较其存储的 值是否相等，\n\n如果作用于引用类型的变量，则比较的是所指向的对象的地址是否相等。\n\n\n2、equals()方法不能作用于基本数据类型的变量，在没有重写equals()的类中，调用equals()方法其实和使用==的效果一样，也是比较的是引用类型的变量所指向的对象的地址\n\n不过，Java提供的类中，有些类都重写了equals()方法，重写后的equals()方法一般都是比较两个对象的值，比如String类。"
+  }, {
+    "title": " hashCode()与equals()",
+    "content": "hashCode也是Object类的一个方法。返回一个离散的int型整数。在集合类操作中使用，为了提高查询速度。\n\n如果两个对象equals，Java运行时环境会认为他们的hashcode一定相等。\n\n如果两个对象不equals，他们的hashcode有可能相等。\n\n如果两个对象hashcode相等，他们不一定equals。\n\n如果两个对象hashcode不相等，他们一定不equals。"
+  }, {
+    "title": " 重载和重写的区别",
+    "content": "重载：方法签名相同，参数列表不同（与返回值无关）\n\n重写：同名同参同返回，前面的权限修饰符不能比父类的更封闭，抛出的异常不能更宽泛。重载：方法重载是一个类中定义了多个方法名相同,而他们的参数的数量不同或数量相同而类型和次序不同,则称为方法的重载(Overloading)。\n\n重写：是在子类存在方法与父类的方法的名字相同,而且参数的个数与类型一样,返回值也一样的方法,就称为重写(Overriding)。如果父类的方法有异常声明，那么子类重写这个方法时候，所要声明的异常不应该比父类的大。只能是小等，或者可以没有\n\n可否重写父类的静态方法\n\n静态方法，是在运行时，虚拟机已经认定此方法属于哪个类。 静态方法的调用不需要实例化， \"重写\"只能适用于实例方法.不能用于静态方法.对于静态方法,只能隐藏... "
+  }, {
+    "title": " java三大特性",
+    "content": "1、对于==，比较的是值是否相等\n\n如果作用于基本数据类型的变量，则直接比较其存储的 值是否相等，\n\n如果作用于引用类型的变量，则比较的是所指向的对象的地址是否相等。\n\n\n2、equals()方法不能作用于基本数据类型的变量，在没有重写equals()的类中，调用equals()方法其实和使用==的效果一样，也是比较的是引用类型的变量所指向的对象的地址\n\n不过，Java提供的类中，有些类都重写了equals()方法，重写后的equals()方法一般都是比较两个对象的值，比如String类。"
+  }, {
+    "title": " == 和 equals() 有什么区别？",
+    "content": "封装：将类的属性和方法细节隐藏起来，只对外提供访问和修改接口\n\n\n继承：一个类可以使用另一个类的部分属性与方法，比如子类继承父类后，除了private子 类不可见，其他属性与方法都可以使用\n\n\n多态：一种类形具有表现多种形态的能力，多态的作用就是消除类型之间的耦合关系，它的三个必要条件是继承、重写、父类引用指向子类对象。这样可以提高程序的扩展力，是一种面向抽象编程的思想。"
+  }, {
+    "title": " 介绍下 泛型、反射",
+    "content": "泛型：\n在集合中存储对象并在使用前进行类型转换是很不方便的，并且容易出错，为了防止这种情况，泛型产生。泛型提供了编译期的类型安全，确保我们只能把正确类型的对象放入集合中，避免了在运行时出现ClassCastException（类型转换异常）\n\n反射：就是动态加载一个指定的类，并获取该类中的所有的内容，比如有些第三方的JAR文件中的资源，我们没法直接调用，就可以用反射这种比较原始的方法来调用。\n\n1、获得Class对象，就是获取到指定的名称的字节码文件对象。\nClass c = Class.forName(className);\n\n2、实例化对象，获得类的属性、方法或构造函数。\n\u2028Field[] fields = c.getDeclaredFields();\u2028\u2028for (int i = 0; i < fields.length; i++) {\n\n// 打印属性的 修饰符 类型 名称\nSystem.out.println(Modifier.toString(fields[i].getModifiers()) + \" \" + fields[i].getGenericType() + \" \"+ fields[i].getName());}\n\n\n\n3、访问属性、调用方法、调用构造函数创建对象。"
+  }, {
+    "title": "java引用类型",
+    "content": "强引用：当我们使用new创建对象时，被创建的对象就是强引用，如Object object = new Object()，其中的object就是一个强引用了。如果一个对象具有强引用，JVM就不会去GC它，JVM宁可会报OOM来终止程序，也不回收该对象。\n\n软引用: 如果一个对象只具备软引用，如果内存空间足够，那么JVM就不会GC它，如果内存空间不足了，就会GC该对象。\n\n弱引用: 如果一个对象只具有弱引用，只要JVM的GC线程检测到了，就会立即回收。弱引用的生命周期要比软引用短很多。不过，如果垃圾回收器是一个优先级很低的线程，也不一定会很快就会释放掉软引用的内存。\n\n虚引用：如果一个对象只具有虚引用，那么它就和没有任何引用一样，随时会被JVM当作垃圾进行GC。\n\n\n软引用一般用于图片缓存，场景，图片编辑bitmap，用法类似于SoftReference<String> sr = new SoftReference<String>(new String(\"hello\")); System.out.println(sr.get());\nWeakReference<Car> weakCar = new WeakReference<Car>(car); if(weakCar.get()!=null)，虚引用可以解决一些内存泄漏的问题，如Handler之类的。"
+  }, {
+    "title": "ReferenceQueue的使用与作用",
+    "content": "ReferenceQueue queue = new ReferenceQueue();\n\nSoftReference ref = new SoftReference( aMyObject , queue );\n\n\n当软引用对象被GC之后，虽然这个SoftReference对象指向的对象已不存在,但这个SoftReference对象本身还占用内存，如果在创建SoftReference对象的时候，使用了一个ReferenceQueue对象作为参数提供给SoftReference的构造方法。ReferenceQueue的poll()方法来检查是否有它所关心的非强引用对象被回收。作用就是通知处理"
+  }, {
+    "title": "什么是注解",
+    "content": "注解就是一种类似注释的机制，用来将信息或元数据与程序元素(类、方法、成员变量等)进行关联，为程序加以说明。\n\n原理：注解本质是一个继承了 Annotation 的特殊接口，其具体实现类是 Java 运行时生成的动态代理类。而我们通过反射获取注解时，返回的是 Java 运行时生成的动态代理对象 Proxy1。通过代理对象调用自定义注解（接口）的方法，会最终调用 AnnotationInvocationHandler 的 invoke 方法。该方法会从 memberValues 这个 Map 中索引出对应的值。而 memberValues 的来源是 Java 常量池。\n\n系统内置标准注解：Override、Deprecated、SuppressWarnnings\n\n注释：元数据是指用来描述数据的数据，更通俗一点，就是描述代码间关系，或者代码与其他资源(例如数据库表)之间内在联系的数据。"
+  }, {
+    "title": "常见的运行时错误",
+    "content": "1、NullPointerException - 空指针引用异常\n\n2、ClassCastException - 类型强制转换异常。\n\n3、IndexOutOfBoundsException - 下标越界异常\n\n4、IllegalArgumentException - 传递非法参数异常。\n\n5、ArithmeticException - 算术运算异常\n6、ArrayStoreException - 向数组中存放与声明类型不兼容对象异常\n7、NegativeArraySizeException - 创建一个大小为负数的数组错误异常\n8、NumberFormatException - 数字格式异常\n9、SecurityException - 安全异常\n10、UnsupportedOperationException - 不支持的操作异常"
+  }]
+}]
