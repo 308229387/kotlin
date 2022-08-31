@@ -10,17 +10,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.kotlin.adapter.ExpandableListviewAdapter;
+import com.example.kotlin.adapter.MainListAdapter;
 import com.example.kotlin.base.BaseActivity;
+import com.example.kotlin.data.MainBean;
+import com.example.kotlin.data.NormalBean;
 import com.example.kotlin.databinding.ExpandableListBinding;
+import com.example.kotlin.utils.AssetsUtils;
 import com.example.kotlin.utils.ToastUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 子条目会有点击无效的情况，需要在子view布局文件中加一行代码      android:descendantFocusability="blocksDescendants"
  * */
 public class MainListActivity extends BaseActivity<ExpandableListBinding> {
-
+    ArrayList<MainBean> allData;
     //Model：定义的数据
     private String[] groups = {"开发部", "人力资源部", "销售部"};
 
@@ -30,16 +37,19 @@ public class MainListActivity extends BaseActivity<ExpandableListBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("song_test", "+++");
-        List<ApplicationInfo> allApps = getPackageManager().getInstalledApplications(0);
-        for(ApplicationInfo ai : allApps) {
-            Log.d("song_test", ai.packageName);
-        }
+        AssetsUtils assetsUtils = new AssetsUtils();
+        String name = "all_data.json";
+
+        String tmp = assetsUtils.readAssetsText(this, name);
+        Log.d("song_test",tmp);
+        allData = new Gson().fromJson(tmp, new TypeToken<ArrayList<MainBean>>() {}.getType());
+        Log.d("song_test",allData.get(0).getName());
+
         initView();
     }
 
     private void initView() {
-        ExpandableListviewAdapter adapter = new ExpandableListviewAdapter(this, groups, childs);
+        MainListAdapter adapter = new MainListAdapter(this,allData);
         viewBind.expandListId.setAdapter(adapter);
 
         //默认展开第一个数组
