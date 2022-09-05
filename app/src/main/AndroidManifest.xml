@@ -63,6 +63,7 @@
         <activity android:name=".activity.QAListActivity" />
         <activity android:name=".activity.QADetailActivity" />
         <activity android:name=".activity.RoundImageActivity" />
+        <activity android:name=".activity.GlideShowImageActivity" />
         <activity android:name=".activity.ScheduleTaskActivity" />
         <activity android:name=".activity.JDSearchActivity" />
         <activity android:name=".activity.SpecialQAListActivity" />

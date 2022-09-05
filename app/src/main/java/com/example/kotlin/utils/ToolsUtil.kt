@@ -7,6 +7,7 @@ import android.os.Build
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import com.example.kotlin.App
+import org.json.JSONArray
 import java.io.ByteArrayOutputStream
 import java.io.Closeable
 import java.io.IOException
@@ -133,6 +134,14 @@ object ToolsUtil {
         val l = java.lang.Long.valueOf(timeStamp)
         timeString = sdf.format(Date(l)) //单位秒
         return timeString
+    }
+
+    //把map数据转成json打印出来
+    fun MapToJson(map: Map<String, String>?): String? {
+        val maplist: MutableList<Map<String, String>?> = ArrayList()
+        maplist.add(map)
+        val obj = JSONArray(maplist)
+        return obj.toString()
     }
 }
 

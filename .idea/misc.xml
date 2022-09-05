@@ -31,6 +31,7 @@
         <entry key="app/src/main/res/layout/expand_chidren_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/expand_parent_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/expandable_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/glide_show_image.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/item_control_warning.xml" value="0.18161094224924013" />
         <entry key="app/src/main/res/layout/list_items.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/load_more_layout.xml" value="0.3880208333333333" />
