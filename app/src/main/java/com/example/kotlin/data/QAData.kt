@@ -337,5 +337,10 @@ object QAData {
         QAItemData("扩展", R.mipmap.pineapple_pic,1),
         QAItemData(QA.flutter_about, R.mipmap.pineapple_pic),
 
+
+
+
+        QAItemData(QA.live_cycle, R.mipmap.pineapple_pic),
+        QAItemData(QA.live_data, R.mipmap.pineapple_pic),
         )
 }
