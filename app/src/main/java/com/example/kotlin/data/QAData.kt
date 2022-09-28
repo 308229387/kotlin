@@ -44,7 +44,7 @@ object QAData {
         QAItemData(QA.synchronized_lock, R.mipmap.pineapple_pic),
         QAItemData(QA.zhi_jie_cache, R.mipmap.pineapple_pic),
         QAItemData(QA.set_content_view, R.mipmap.pineapple_pic),
-        QAItemData(QA.bao_xiao_mi, R.mipmap.pineapple_pic),
+        QAItemData(QA.bao_xiao_mi, R.mipmap.pineapple_pic),//到这了
         QAItemData(QA.http_version_diff, R.mipmap.pineapple_pic),
         QAItemData(QA.null_safe, R.mipmap.pineapple_pic),
         QAItemData(QA.how_build_sdk, R.mipmap.pineapple_pic),
@@ -336,11 +336,5 @@ object QAData {
 
         QAItemData("扩展", R.mipmap.pineapple_pic,1),
         QAItemData(QA.flutter_about, R.mipmap.pineapple_pic),
-
-
-
-
-        QAItemData(QA.live_cycle, R.mipmap.pineapple_pic),
-        QAItemData(QA.live_data, R.mipmap.pineapple_pic),
         )
 }

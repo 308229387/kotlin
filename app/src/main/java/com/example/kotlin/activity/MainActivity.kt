@@ -1,6 +1,7 @@
 package com.example.kotlin.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin.adapter.HomeAdapter
@@ -8,6 +9,7 @@ import com.example.kotlin.base.BaseActivity
 import com.example.kotlin.data.HomeData
 import com.example.kotlin.databinding.ActivityMainBinding
 import com.gyf.immersionbar.ImmersionBar
+import com.orhanobut.logger.Logger
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -26,6 +28,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     private fun setupRecyclerView() {
+
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         viewBind.recyclerView.layoutManager = layoutManager

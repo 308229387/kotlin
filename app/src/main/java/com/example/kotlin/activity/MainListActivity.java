@@ -14,9 +14,9 @@ import com.example.kotlin.base.BaseActivity;
 import com.example.kotlin.data.MainBean;
 import com.example.kotlin.databinding.ExpandableListBinding;
 import com.example.kotlin.utils.AssetsUtils;
-import com.example.kotlin.utils.ToastUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 
@@ -25,6 +25,7 @@ import java.util.ArrayList;
  */
 public class MainListActivity extends BaseActivity<ExpandableListBinding> {
     ArrayList<MainBean> allData;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +33,11 @@ public class MainListActivity extends BaseActivity<ExpandableListBinding> {
         String name = "all_data.json";
 
         String tmp = assetsUtils.readAssetsText(this, name);
-        Log.d("song_test", tmp);
+//        Log.d("song_test", tmp);
+        Logger.json(tmp);
         allData = new Gson().fromJson(tmp, new TypeToken<ArrayList<MainBean>>() {
         }.getType());
-        Log.d("song_test", allData.get(0).getName());
+//        Log.d("song_test", allData.get(0).getName());
 
         initView();
     }
@@ -58,7 +60,7 @@ public class MainListActivity extends BaseActivity<ExpandableListBinding> {
         viewBind.expandListId.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
-                toDetail(allData.get(groupPosition).getData().get(childPosition).getTitle(),allData.get(groupPosition).getData().get(childPosition).getContent());
+                toDetail(allData.get(groupPosition).getData().get(childPosition).getTitle(), allData.get(groupPosition).getData().get(childPosition).getContent());
                 return true;
             }
         });

@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
+
     <Button
+        android:id="@+id/bottom_text_pick_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -21,5 +23,20 @@
         android:onClick="pick"
         android:text="选择文件"
         android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/send_data_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_text_pick_view"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#2589fa"
+        android:onClick="toSerData"
+        android:text="发送序列化数据"
+        android:textColor="#fff" />
+
 
 </RelativeLayout>

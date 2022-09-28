@@ -75,6 +75,7 @@ dependencies {
     implementation 'com.github.tbruyelle:rxpermissions:0.12'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.9'
     implementation 'com.github.tohodog:QLog:1.4'
+    implementation 'com.orhanobut:logger:2.2.0'
 
     //上拉加载、下拉刷新
 

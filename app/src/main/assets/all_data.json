@@ -55,6 +55,10 @@
         "content": "注解就是一种类似注释的机制，用来将信息或元数据与程序元素(类、方法、成员变量等)进行关联，为程序加以说明。\n\n原理：注解本质是一个继承了 Annotation 的特殊接口，其具体实现类是 Java 运行时生成的动态代理类。而我们通过反射获取注解时，返回的是 Java 运行时生成的动态代理对象 Proxy1。通过代理对象调用自定义注解（接口）的方法，会最终调用 AnnotationInvocationHandler 的 invoke 方法。该方法会从 memberValues 这个 Map 中索引出对应的值。而 memberValues 的来源是 Java 常量池。\n\n系统内置标准注解：Override、Deprecated、SuppressWarnnings\n\n注释：元数据是指用来描述数据的数据，更通俗一点，就是描述代码间关系，或者代码与其他资源(例如数据库表)之间内在联系的数据。"
       },
       {
+        "title": "cas机制",
+        "content": "也是乐观锁的一种吧，先取当前值i，然后计算结果值j，再从主内存的值与初始值比较，如果相等，就把结果值赋值。这里还会涉及个ABA的问题，我在取值计算的过程中，有别的线程把内存的值改动了，然后又改回去了，但CAS却无法辨别。"
+      },
+      {
         "title": "常见的运行时错误",
         "content": "1、NullPointerException - 空指针引用异常\n\n2、ClassCastException - 类型强制转换异常。\n\n3、IndexOutOfBoundsException - 下标越界异常\n\n4、IllegalArgumentException - 传递非法参数异常。\n\n5、ArithmeticException - 算术运算异常\n6、ArrayStoreException - 向数组中存放与声明类型不兼容对象异常\n7、NegativeArraySizeException - 创建一个大小为负数的数组错误异常\n8、NumberFormatException - 数字格式异常\n9、SecurityException - 安全异常\n10、UnsupportedOperationException - 不支持的操作异常"
       }
@@ -123,6 +127,10 @@
       {
         "title": "activity横纵向切换，或页面发生改变时",
         "content": "程序在运行时，一些设备的配置可能会发生改变，如：横竖屏切换、键盘的可用性等这样的事情发生的时候，activity在没有配置android:configChanges属性时会重新启动\n生命周期：onSaveInstanceState-->onPause-->onStop-->onDestroy-->onCreate-->onStart-->onRestoreInstanceState-->onResume\n\n但如果给configChanges配置了orientation|keyboardHidden|screenSize这些属性后，再发生屏幕改变会调用onConfigurationChanged方法，我们可以通过Configuration里的orientation属性判断是横向还是纵向。\n\n onNewIntent 什么时候调用\n 如果此次启动不创建该Activity的新实例,则系统会调用原有实例的onNewIntent()方法来处理此intent"
+      },
+      {
+        "title": "setContentView过程",
+        "content": "待处理"
       },
       {
         "title": "fragment生命周期",
@@ -226,6 +234,10 @@
         "content": "Handler会先在sendMessageAtTime这个方法里去计算消息被处理的时间，也就是当前时间加上延迟时间\n\n然后再把消息在enqueueMessage这个方法当中，按时间msg.when的时间先后顺序插入到消息队列中去\n\nhandler每次插入message都会唤醒线程，通过next()方法，依次拿到队首消息，先判断屏障消息，如果不是的话\n\n再判断当前时间是否小于消息的执行时间，如果小于就是消息还没准备好发送，就会设置一个超时时间，给到nextPollTimeoutMillis，然后通过调用nativePollOnce本地方法进行阻塞\n\n等到时间后，再通过pipe管道写入数据来唤醒线程，判断时间到后，发送消息"
       },
       {
+        "title": "message分发的顺序",
+        "content": "先是message的callback，然后是handler的callback，最后再是handleMessage方法来接收"
+      },
+      {
         "title": "Handler同步屏障",
         "content": "屏障消息是用来挡住普通消息来保证异步消息优先处理的。在next()方法中，判断下队首消息的的target是否为空，如果为空的话，说明是同步屏障消息，那它就会寻找队列中的下一个异步消息优先处理。\n\nHandler有个构造方法，可以传入async标志为true，这样构造的Handler发送的消息就是异步消息，优先级高于普通消息，优先发送\n\n还可以通过message.setSynchronus();把本条消息设成异步消息。\n\n同步屏障是通过MessageQueue的postSyncBarrier方法插入到消息队列的。\n\n移除屏障可以通过MessageQueue的removeSyncBarrier方法：\n\n屏障消息和普通消息的区别在于屏障没有tartget，普通消息有target是因为它需要将消息分发给对应的handler，而屏障不需要被分发，"
       }
@@ -269,6 +281,10 @@
       {
         "title": "垃圾收集器介绍下",
         "content": "JVM1.5以上支持CMS垃圾收集器，最新JDK9之后默认使用的是G1收集器，\n\nCMS使用的是标记-清除算法，会有内存碎片，适用于老年代，它需要与Serial收集器和Parallel New收集器搭配使用。\n\n而G1采用适用于整个堆区，有两个优点：\n\n第一点：G1会压缩空闲内存使之足够紧凑，是通过用regions代替细粒度的空闲列表进行分配，减少内存碎片的产生。\n\n第二点：G1的STW更可控，G1在停顿时间上添加了预测机制，用户可以指定期望停顿时间。而CMS只能是尽量减少STW为目的，时间不可控\n\n\nSerial收集器串行收集器是最古老，最稳定以及效率高的收集器，可能会产生较长的停顿，只使用一个线程去回收。新生代、老年代使用串行回收；新生代复制算法、老年代标记-压缩\n\nParNew收集器其实就是Serial收集器的多线程版本。新生代并行，老年代串行；新生代复制算法、老年代标记-压缩"
+      },
+      {
+        "title": "直接内存",
+        "content": "直接内存是在java堆外的，直接向系统申请内存区间，通过DriectByteBuffer操作native内存。\n\n读写文件，需要和磁盘交互，需要由用户态切换到内核态，\n\n直接内存大小可以通过MaxDirectMemorySize设置，如果不指定，默认是和堆的最大值-Xmx参数一致。"
       }
     ]
   },
@@ -623,6 +639,286 @@
     ]
   },
   {
+    "name": "性能优化",
+    "data": [
+      {
+        "title": "卡顿的原因",
+        "content": "卡顿最根本原因是因为掉帧，我们手机正常情况下是每秒60帧，也就是16ms一帧。造成卡顿的原因有3点。\n\n一是遍历绘制 View 树计算屏幕数据的时间超过了 16.6ms，也就是过渡绘制；\n\n二是主线程一直在处理其他耗时的消息，导致遍历绘制 View 树的工作迟迟不能开始，从而超过了 16.6 ms 底层切换下一帧画面的时机。\n\n三是内存抖动，导致的jvm频繁GC，引起的STW。\n"
+      },
+      {
+        "title": "卡顿如何解决",
+        "content": "这要根据实际情况来做处理了\n\n如果是主线程阻塞的原因，可以用TraceView，它可以看出代码在运行时的一些具体信息，方法调用时长，次数，时间比率，了解代码运行过程的效率问题。\n\n如果是内存引起的卡顿，可以通过leakcanary，看看是不是有内存泄漏啊，或是通过Memory Profiler看看对于一些大图的加载处理，是不是需要优化的。\n\n过度绘制，就直接使用系统的过度绘制检测就可以了，如果是蓝绿一层两层的就可以，红色就需要再优化优化。\n"
+      },
+      {
+        "title": "APK体积优化",
+        "content": "在APP中图片就占据了很大的一部分体积，所以图片的优化是我们要关注的重点。\n首先是图片格式，可以把UI同学给的图都过一遍，把png都转换webp(androidstudio自带covert to webp)或是压缩一遍，在不失真的情况下尽量压缩，还有些是可以用.9的图，就用.9来拉伸，这些都是很有效的。\n\n再有就是移除无用资源，可以通过Remove Unused Resources来查找出无用资源，或是用lint也行\n\n在gradle中打开代码压缩(minifyEnabled)、开启混淆压缩\n\n一些SO，也可以酌情精简，比如我们市场上基本都是使用基于armeabi的CPU架构（ABI），像微信、头条，都只保留了一套armeabi的so，所以我们也可以做些精简\n\n再有就是移除国际语言gradle中    defaultConfig{resConfigs 'en’}\n\n通过第三方框架来做资源混淆压缩啊等等（通过微信的开源的AndResGuard，资源混淆的原理是通过修改APK包里的resource.arsc文件，修改文件中的字符串池中的字符串，将其修改为简单短小的字符串，以此来减少文件大小）\n"
+      },
+      {
+        "title": "LeakCanary原理",
+        "content": "Leakcanary在初始化时会返回一个refWatcher监听器，他会注册一个callback来监听Activity的onDestroy方法。activity在执行onDestroy后需要被回收，监听机制将Activity包装到WeakReference中，被WeakReference包装过的Activity对象如果被回收，该WeakReference引用会被放到ReferenceQueue中。如果过5秒没有回收，监听机制会手动触发次GC，如果还没有被回收，那就说明Activity可能已经泄露。 这个时候就可以抓取内存dump文件来分析展示了。\n\nfragment监测流程和Activity相似，只不过是通过为FragmentManager注册Fragment生命周期回调，从而全局监听Activity中所有的Fragment的生命周期。"
+      },
+      {
+        "title": "ANR是什么",
+        "content": "ANR就是ApplicationNotResponding，应用无响应：\n\n当操作在一段时间内系统无法处理时，会在系统层面会弹出ANR对话框\n\n产生ANR可能是因为5s内无响应用户输入事件、10s内未结束BroadcastReceiver、20s内未结束Service\n\n想要避免ANR就不要在主线程做耗时操作，而是通过开子线程，具体方法比如使用Thread或Runnable接口、还有像AsyncTask、IntentService、HandlerThread都可以"
+      },
+      {
+        "title": "如何监控ANR",
+        "content": "可以通过命令，把/data/anr/trace（吹西死）文件pull到当前目录下，无需root权限即可获取，Input dispatching timed out，不过需要root\n\n或是通过继承FileObserver，来监测data/anr目录下文件的变化，但这种方式兼容性比较差，需要root获取系统权限，开发测试阶段还是很好用的\n\n还有一种是，ANR-WatchDog是参考Android WatchDog机制，起个单独线程向主线程发送一个修改变量和状态的操作，自我休眠，休眠过后判断变量是否变更完成，如果未完成则告警。但也无法保证能捕捉所有ANR，比如我的休眠时间和系统时间正好错过，我还没记录你已经报错退出了 ，那就无法捕捉。\n\n线上可以把ANR-WatchDog的阈值改成1秒，当有五次说明有anr发生了，把堆栈信息打下来就可以了，或是直接取4秒的堆栈信息"
+      },
+      {
+        "title": "怎么解决ANR",
+        "content": "想要避免ANR就不要在主线程做耗时操作，可以通过开子线程来完成，具体方法比如使用Thread或Runnable接口、还有像AsyncTask、IntentService、HandlerThread都可以"
+      },
+      {
+        "title": "BlockCanary原理",
+        "content": "blockcanary利用了主线程的消息队列处理机制\n\n通过就是Looper里setMessageLogging自定义一个 Printer，来获取主线程dispatch这个message的开始和结束时间\n\n并判定该时间超过阈值(如2000毫秒)为主线程卡慢发生，并dump出各种信息，提供开发者分析性能瓶颈。"
+      },
+      {
+        "title": "内存泄漏原因及如何解决",
+        "content": "单例造成的内存泄漏：单例生命周期和应用的生命周期一样长，单例对象还持有该对象的引用，就会使得该对象不能被正常回收，替换上下文applicationcontext\n\nHandler造成的内存泄漏:Activity结束时，未处理的消息持有handler的引用，而handler又持有它所属的外部类也就是Activity的引用。将Handler声明为静态内部类。因为静态内部类不会持有外部类的引用，所以不会导致外部类实例出现内存泄露。在Handler中添加对外部Activity的弱引用。用完后记得清空队列removeCallbacksAndMessages\n\n非静态内部类造成的内存泄漏:非静态内部类默认会持有外部类的引用，如果里面再有个静态实例或延时任务，就会出现泄漏\n\n资源未关闭造成的内存泄漏：对于使用了BraodcastReceiver，ContentObserver，File，Cursor，Stream，Bitmap等资源，应该在Activity销毁时及时关闭或者注销，否则这些资源将不会被回收，从而造成内存泄漏\n\n集合容器中的内存泄露:在退出程序之前，将集合里的东西clear，然后置空，让相关对象不再被引用"
+      },
+      {
+        "title": "性能优化",
+        "content": "性能优化：Android的性能优化，主要是从以下几个方面进行优化的：\n \n一是稳定性，是否有内存溢出、崩溃的情况\n\n二是流畅性，有没有卡顿，冷启动时间长不长\n\n三是耗损是否严重，耗电、流量多不多啊\n\n四是安装包体积等，有没有冗余可优化空间 \n\n\n内存优化\n1.使用leakcanery先解决程序中内存占用较大的业务模块中的内存泄漏\n2.移除程序中多余的代码和引用，这里使用默认的lint检测再配合shrinkResources来删除无效资源\n3.优化图片，保证图片放置在合理的文件夹，根据View大小加载合适的图片大小，根据手机状态配置bitmap和回收策略\n4.优化对象创建，比如string，使用对象池等\n\nAndroid官方对象池的简单实现：SimplePool，也是用得最多的实现\n原理：使用了“懒加载”的思想。当SimplePool初始化时，不会生成N个T类型的对象存放在对象池中。而是当每次外部调用release()时，才把释放的T类型对象存放在对象池中。要先放入，才能取出来。   这样就避免了内存抖动。\n\nMemory Churn内存抖动，内存抖动是因为大量的对象被创建又在短时间内马上被释放。\n瞬间产生大量的对象会严重占用Young Generation的内存区域，当达到阀值，剩余空间不够的时候，也会触发GC。即使每次分配的对象占用了很少的内存，但是他们叠加在一起会增加Heap的压力，从而触发更多其他类型的GC。这个操作有可能会影响到帧率，并使得用户感知到性能问题。\n"
+      },
+      {
+        "title": "内存优化",
+        "content": "1、可以在Androidmanifest文件中application节点加入android:largeHeap=“true”来增加其dalvik虚拟机中堆的大小\n\n2、解决内存泄漏的问题，像静态引用啊、单例啊什么的\n\n3、如果需要自己处理bitmap，要做好优化措施，比如预加载判断大小再压缩、配置低色彩的质量参数RGB_5665（默认ARGB_8888），将图片放在合理的资源目录下，尽可能保持和屏幕密度一致，放小的里反而多耗内存，不用的及时recycle()\n\n4、 修改对象引用类型，增强GC收回的效率\n\n5、其他还有些细节，比如增加复用，减少不必要的全局变量，少用枚举啊等等"
+      },
+      {
+        "title": "bitmap优化",
+        "content": "目前主流的图像加载库（Glide、Fresco等）基本上都不在需要开发者去关心Bitmap内存占用问题。但如果需要自己去处理，需要从适配、压缩、配置、回收等几个方面去关注bitmap的使用\n\n1、使用inJustDecodeBounds预判断Bitmap的大小及使用inSampleSize进行压缩（BitmapFactory.Options）\ninJustDecodeBounds：当 inJustDecodeBounds 为 true 时，执行 decodexxx 方法时，BitmapFactory 只会解析图片的原始宽高信息，并不会真正的加载图片\n\n2、加载Bitmap时，选择低色彩的质量参数（Bitmap.Config），如RGB_5665，这样相比默认的ARGB_8888，占用内存缩小一半。适用于对色彩多样性要求比较低的场景。（BitmapFactory.Options）\n\n3、将图片放在合理的资源目录下，尽可能保持和屏幕密度一致，放小的里反而多耗内存\n\n4、Bitmap自带的inBitmap内存复用机制，需要内存复用的Bitmap不能调用recycle()回收内存， 不用的要及时手动调用recycle()回收Bitmap的内存\n\n注：正确捕获OOM异常catch 的是 OutOfMemoryError，catch Exception是捕获不到OOM异常的\n\n\n\n//返回压缩图片\n public static Bitmap resizeBitmap(Context context, int id, int maxW, int maxH, boolean hasAlpha, Bitmap reusable) {\n\n        Resources resources = context.getResources();\n\n        BitmapFactory.Options options = new BitmapFactory.Options();\n        // 设置为true后，再去解析，就只解析 out 参数\n        options.inJustDecodeBounds = true;\n\n        BitmapFactory.decodeResource(resources, id, options);\n\n        int w = options.outWidth;\n        int h = options.outHeight;\n\n\n        options.inSampleSize = calcuteInSampleSize(w, h, maxW, maxH);\n\n        if (!hasAlpha) {\n            options.inPreferredConfig = Bitmap.Config.RGB_565;\n        }\n\n        options.inJustDecodeBounds = false;\n\n        // 复用, inMutable 为true 表示易变\n        options.inMutable = true;\n        options.inBitmap = reusable;\n\n\n        return BitmapFactory.decodeResource(resources, id, options);\n\n    }\n\n"
+      },
+      {
+        "title": "扩大内存",
+        "content": "Android为每个进程分配内存时，采用弹性的分配方式，即刚开始并不会给应用分配很多的内存，而是给每一个进程分配一个“够用”的内存大小。\n\nActivityManager的getLargeMemoryClass()可以获得开启largeHeap最大的内存大小\n通过ActivityManager的MemoryInfo，可以获取到应用最大使用内存大小getLargeMemoryClass()\n\n\n1、创建一个新的进程，那么我们就可以把一些对象分配到新进程的heap上了，从而达到一个应用程序使用更多的内存的目的，建议把一些高消耗但不常用的模块放到独立的进程，不使用的进程可及时手动关闭；void killBackgroundProcesses(String packageName)\n\n2、可以在Androidmanifest文件中application节点加入android:largeHeap=“true”来增加其dalvik虚拟机中堆的大小。开子进程，分担内存"
+      },
+      {
+        "title": "APP启动过程",
+        "content": "注（AMS是system_server中的一个进程）\n\n1、Launcher响应用户点击，通知AMS，需要启动一个应用\n\n2、AMS会检查这个应用程序所需要的进程是否存在，不存在就会请求Zygote进程启动需要的应用程序进程\n\n3、Zygote进程接收到AMS请求并通过fock自身创建应用程序进程，并执行ActivityThread的main方法\n\n4、然后App进程，通过Binder IPC向AMS进程发起attachApplication请求；\n\n5、AMS进程在收到请求后，进行一系列准备工作后，再通过Binder IPC向App进程发送handleBindApplication,也就是初始化Application并调用onCreate方法请求，和scheduleLaunchActivity创建启动Activity请求。\n\n6、App进程的binder线程（ApplicationThread）在收到请求后，通过handler向主线程发送LAUNCH_ACTIVITY消息；\n\n7主线程在收到Message后，通过反射机制创建目标Activity，并回调Activity.onCreate()等方法。到此，App便正式启动，开始进入Activity生命周期，执行完onCreate/onStart/onResume方法，UI渲染结束后便可以看到App的主界面。"
+      },
+      {
+        "title": "App启动中涉及的模块及作用",
+        "content": "ActivityManagerService：（AMS）AMS是Android中最核心的服务之一，主要负责系统中四大组件的启动、切换、调度及应用进程的管理和调度等工作，其职责与操作系统中的进程管理和调度模块相类似，因此它在Android中非常重要，它本身也是一个Binder的实现类。\n\nActivityThread：应用的入口类，通过调用main方法，开启消息循环队列。ActivityThread所在的线程被称为主线程；\n\nApplicationThread：ApplicationThread提供Binder通讯接口，AMS则通过代理调用此App进程的本地方法\n\nApplication：通过反射的方式创建了一个Application对象，并且调用了Appliction的attach()方法，而attach方法又调用了attachBaseContext方法，现在应该明白为什么该方法在Application的onCreate之前调用了。\n"
+      },
+      {
+        "title": "计算启动时间",
+        "content": "本地调试的话，直接一个命令就可以了，adb shell am start -W com.example.kotlin/com.example.kotlin.activity.MainActivity，其中有个TotalTime表示新应用启动的耗时，包括新进程的启动和 Activity 的启动，本地用这个就可以了\n\n冷启动：\n在Application.attachBaseContext() 开始的位置记录就可以，因为在这之前 Context 还没有初始化， App 的具体业务逻辑还没开始执行。\n\n结束时间点：\n可以在 Activity.onWindowFocusChanged 记录应用启动的结束时间点，从onWindowFocusChanged被执行起，用户可以与应用进行交互了，真正的visible时间点。如果后面有焦点变化，也会调这个方法，需要区分好。\n\n热启动启动时间点：\n可以在 Activity.onRestart() 中记录起始时间点。\n\n统计线上应用的话，就需要打点了，起始时间点比较容易记录："
+      },
+      {
+        "title": "APP启动优化",
+        "content": "1、在application中配置一个theme，在style中定义广告页或默认图，让用户先看默认图。\n\n2、在Application和activity初始化的时候，把耗时操作放到子线程中进行，非必要的功能可以懒加载，还有布局层次也要减少"
+      },
+      {
+        "title": "启动过程中方法调用顺序",
+        "content": "-> Application 构造函数\n\n-> Application.attachBaseContext()\n\n-> Application.onCreate()\n\n-> Activity 构造函数\n\n-> Activity.setTheme()\n\n-> Activity.onCreate()\n\n-> Activity.onStart\n\n-> Activity.onResume\n\n-> Activity.onAttachedToWindow\n\n-> Activity.onWindowFocusChanged"
+      },
+      {
+        "title": "程序保活拉活方案",
+        "content": "1、创建个1像素activity保活或是创建个前台 Service 保活\n手机关闭屏幕时（注册个广播来监控关闭屏幕ACTION_SCREEN_ON / OFF\n），偷偷创建一个Activity，让应用成为前台进程；打开屏幕时，关闭该Activity。\n\n2、广播拉活\n在开机，网络切换、拍照发生特定系统事件时候，利用系统产生的广播唤醒app，系统会发出广播，通过在 AndroidManifest 中静态注册对应的广播监听器，即可在发生响应事件时拉活。但是从android 7.0开始，对广播进行了限制，而且在8.0更加严格\n\n3、通过守护进程拉活\n两个进程共同运行，如果有其中一个进程被杀，那么另一个进程就会将被杀的进程重新拉起，相互保护，在一定的意义上，维持进程的不断运行。这里还要用到 AIDL， 进行两个进程间的交互。\n\n当onServiceDisconnected方法被调用时，说明对方断开了连接，基本上是对方进程挂了，然后就将其启动起来就行了。如果系统杀死进程所花的时间比你拉活逻辑的时间要久，那你的拉活还是能成功的\n\n4、JobSchedule 机制拉活\nJobSchedule 允许在特定状态与特定时间间隔周期执行任务。我们可以利用它的这个特点来完成保活功能，效果就像开启一个定时器，与普通定时器不同的是其调度由系统来完成。\n\n5、还有根据不同品牌手机，进行账号拉活\n手机系统设置里会有Account帐户一项功能，任何第三方APP都可以通过此功能将我们自己的APP注册到这个Account帐户中，并且将数据在一定时间内同步到服务器中去。系统在将APP帐户同步时，自动将未启动的APP进程拉活，\n\n\n总结：没有一种方式是能够保证你的应用一直存活在内存中的，但是能延长时间也很不错了。\n系统会优先杀死占用内存多的应用，所以想让自己的应用活的更久，还可以从性能上去优化，让其尽可能少的占用内存。"
+      },
+      {
+        "title": "线上卡顿分析",
+        "content": "通常有两种方法，可以监控卡顿\n\n一、线下方法，通过使用blockcanary来利用主线程消息列队处理机制，通过setMessageLogging能够得到分发一条消息所花的时间。\n\n监听到发生卡顿之后，dispatchMessage 早已调用结束，已经出栈，此时再去获取主线程堆栈，堆栈中是不包含卡顿的代码的。所以需要在后台开一个线程，定时获取主线程堆栈，将时间点作为key，堆栈信息作为value，保存到Map中，在发生卡顿的时候，取出卡顿时间段内的堆栈信息即可。\n\n带来的问题1、线程频繁获取主线程堆栈，对性能有一定影响，获取主线程堆栈，会暂停主线程的运行。\n带来的问题2、存在字符串拼接，频繁调用，会创建大量对象，造成内存抖动。\n\n\n二、微信Matrix\n还有一种方案就是通过字节码插桩，这种是通过Gradle Plugin+ASM TASK，编译期在每个方法开始和结束位置分别插入一行代码，统计方法耗时，\n\n这种方案体积会略微增长、帧率也会略有下降，适用于灰度体验"
+      },
+      {
+        "title": "线上内存监控",
+        "content": "线上监控内存泄漏的话，可以参考快手koom他们提供的一种方案，\nKOOM 提出了 fork dump 的概念，能在 dump 分析内存泄漏的时候而不影响到主进程的应用运行，所以，非常适合使用在线上监控。\n\n首先，监控的触发时机不同，LeakCanary 和 Matrix 都是在 Activity.onDestroy 时触发泄漏检测，KOOM 是用阈值检测法来触发。是一个利用 HandlerThread 不停在轮训监控当前内存状态：\n1、当前已使用内存是否达到最大阈值（变量可配），如果超过的话，则直接触发\n2、还有种策略是如果内存占比持续增大，连续记录3次，也会触发\n\n第二，常规的dump是通过虚拟机提供的 API dumpHprofData实现的，这个过程会 “冻结” 整个应用进程。KOOM 使用 fork dump 操作，从当前主进程 fork 出一个子进程，由于 linux 的 copy-on-write 机制，子进程和父进程共享的是一块内存，那么我们就可以在子进程中进行 dump 堆栈，不影响主进程的运行。"
+      },
+      {
+        "title": "anr watch dog",
+        "content": "开启一个线程，死循环，循环中睡眠5s\n\n往UI线程post 一个Runnable，将_tick 赋值为0，将 _reported 赋值为false\n\n线程睡眠5s之后检查_tick和_reported字段是否被修改\n\n如果_tick和_reported没有被修改，说明给主线程post的Runnable一直没有被执行，也就说明主线程卡顿至少5s**（只能说至少，这里存在5s内的误差）**。\n\n将线程堆栈信息输出"
+      },
+      {
+        "title": "webview加载过程",
+        "content": "1）Webview初始化。\n\n2）到达新的页面，网络连接，从服务器下载html，css，js，页面白屏。\n\n3）页面基本框架出现，js请求页面数据，页面处于loading状态。\n\n4）出现所需的数据，完成整个页面的渲染，用户可交互。"
+      },
+      {
+        "title": "webview优化",
+        "content": "1、第一次加载Webview内核，这是一个重量级的操作，内核是以apk的形式存在我们可以在App生成一个全局webview，并且在启动时初始化，这样在后面使用时通过动态获取这个全局Webview，然后添加到rootview中\n\nWebView mWebView = new WebView(this); //可以放到application中去，用单例的方式去初始化。\n\n\n2、资源本地化，在webview的加载过程中，我们通过重写方法 shouldInterceptRequest 可以拦截到不同的请求，只需要把一些常用的资源如cs、js、还有图片文件使用本地的资源，这样减少了重复请求的时间，优化了webview的加载时间\n\nif (url.endsWith(\"icon.png\")) {\n           InputStream is = appRm.getInputStream(R.drawable.icon);\n           WebResourceResponse response = new WebResourceResponse(\"image/png\",\n             \"utf-8\", is);\n           return response;\n       } else if (url.endsWith(\"jquery.min.js\")) {\n           InputStream is = appRm.getInputStream(R.raw.jquery_min_js);\n           WebResourceResponse response = new WebResourceResponse(\"text/javascript\",\n             \"utf-8\", is);\n           return response;\n       }\n\nappRm为app资源管理器，读取drawable，assets，raw下的资源，都是android系统的一些很简单的函数调用。\n\n\n3、开启WebView的缓存功能可以减少对服务器资源的请求，一般使用默认缓存策略就可以了。如果缓存没过期就使用缓存\n\n//设置 缓存模式 \nwebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);  \n// 开启 DOM storage API 功能 \nwebView.getSettings().setDomStorageEnabled(true); \n\n\n4、WebView有一个setBlockNetworkImage(boolean)方法，该方法的作用是是否屏蔽图片的加载。可以利用这个方法来实现图片的延迟加载：在onPageStarted时屏蔽图片加载，在onPageFinished时开启图片加载。\n\n\n5、本地离线包的形式\nwebview 可以加载网络资源，那么也是可以加载本地的资源，在apk 启动的时候，我们可以把整个前端代码文件下载解压到本地的文件路径中，然后通过file：///...index.html 去打开本地的资源\n"
+      }
+    ]
+  },
+  {
+    "name": "view与显示",
+    "data": [
+      {
+        "title": "屏幕适配方案",
+        "content": "1、在布局文件中写view宽高可以多用 wrap_content,match_parent，让view自适应，用权重weight来替代固定值，距离单位用dp，字体单位用sp，\n\n2、自适配图片，也就是在res下的选择相应的dpi，没特殊需求的话推荐xxdpi，1080*1920，这样就可以满足向上向下兼容，节省空间\n\n3、如果有指定需求，可以创建指定的分辨率资源进行适配，手机会根据分辨率去找设定的资源，比如layout的布局，layout-800 * 480，  value-1080*1920\n\n了解 —> 还有一种是修改手机的设备密度 density，他是通过appDisplayMetrics.density动态设置，来使不同分辨率，来实现UI样式统一，不过这种方式只能一刀切的将整个项目进行适配，但适配范围是不可控的，一般不用。"
+      },
+      {
+        "title": "事件分发流程",
+        "content": "Android的UI界面由Activity、ViewGroup、View 及其派生类组成，1个点击事件发生后，如果我们没有对控件里面的方法进行重写或更改返回值，而直接用super调用父类的默认实现，该事件会先传到Activity、再传到ViewGroup、最终再传到 View，再从最底层开始往上传，那这个传递模型就类似于一个U型。\n\n其中共涉及3个方法，分发方法dispachTouchEvent、拦截onIntercepteorTouchEvent、处理onTouchEvent。其中分发和处理是三层都有的，拦截方法是ViewGrop独有的。\n\n分发方法不处理会给到下一层或下一个方法处理，而它返回true和false都和处理方法一样，直接消费或是给到上一级的处理方法。\n\n而拦截方法返回true会给到本层的onTouchEvent处理,false和默认方法都不拦截，会向下走。\n\n\nonclick事件中，有两个因素会影响点击，一是onTouch事件返回的结果result，还有就是是否有listener来响应，onTouch方法返回false才会执行onclick"
+      },
+      {
+        "title": "action_move、action_up、cancel",
+        "content": "ACTION_DOWN事件在哪个控件消费了（return true）， 不管他是传到底层返上来的，还是直接拦截在这一层消费的，那么ACTION_MOVE和ACTION_UP就会从上往下（通过dispatchTouchEvent）直接传到这一层，不会继续往下传，如果ACTION_DOWN事件是在dispatchTouchEvent消费，那么事件到此为止停止传递，如果ACTION_DOWN事件是在onTouchEvent消费的，那么会把ACTION_MOVE或ACTION_UP事件传给该控件的onTouchEvent处理并结束传递。\n\n在ViewGroup源码中使用了一个全局变量mFirstTouchTarget来记录是否有View处理了Down事件。mFirstTouchTarget默认为null，如果发现了View可以处理，那么就会把mFirstTouchTarget的值设置为对应的View。那么随之而来的Down和Up都会交给该View处理，（mFirstTouchTarget为单链表结构）\n\n\n如果某一个子View处理了Down事件，那么随之而来的Move和Up事件也会交给它处理。但是交给它处理之前，父View还是可以拦截事件的，如果拦截了事件，那么子View就会收到一个Cancel事件，并且不会收到后续的Move和Up事件。"
+      },
+      {
+        "title": "mFirstTouchTarget为什么是链表结构",
+        "content": "因为链表结构更适合添加touchTarget\n\n多指触控时。第一根按下的手指触发ACTION_DOWN事件,之后按下的手指触发ACTION_POINTER_DOWN事件。\n\n所以当有多指进行触控的时候，addTouchTarget方法可能会被调用多次，mFirstTouchTarget以链式结构存储对应的view。"
+      },
+      {
+        "title": "滑动冲突解决方案",
+        "content": "1、可以考虑从父布局的拦截方法onInterceptTouchEvent来处理，如果需要拦截返回true.\n\n2、如果不修复父布局，可以当前view.getParent().requestDisallowInterceptTouchEvent(true/false);如果传true表示父布局不做处理\""
+      },
+      {
+        "title": "getX、getRawX、getTranslationX区别",
+        "content": "getX()是表示触摸点距离自身view左边的距离。\n\ngetRawX()表示的是触摸点距离屏幕左边界的距离\n\nView.getWidth():表示的是当前控件的宽度\n\nView.getTranslationX()计算的是该View在X轴的偏移量。初始值为0，向左偏移值为负，向右偏移值为正。"
+      },
+      {
+        "title": "自定义View的流程",
+        "content": "介绍下实现一个自定义View的基本流程\n①.自定义View的属性 编写attr.xml文件 ②.在layout布局文件中引用，同时引用命名空间 ③.在View的构造方法中获得我们自定义的属性 ，在自定义控件中进行读取（构造方法拿到attr.xml文件值） ④.重写onMesure 、onDraw    如果有需要还可以重写onTouchEvent"
+      },
+      {
+        "title": "view的绘制流程",
+        "content": "view的绘制是从根视图 ViewRoot 的 performTraversals() 方法开始，从上到下遍历整个视图树，具体操作是分发给 ViewGroup 的，ViewGroup 通过遍历自身所有的子 View，并逐个调用子 View 的 measure、layout、draw 方法实现测量、定位、绘制操作。\n\n如果想自定义View的测量，需要重写onMeasure()方法，我们可以通过mesureSpec获取到view的尺寸，改写过后还需要调用setmeasuredimension方法来配置他的宽高。(布局文件是warp，但我们想改成固定值就可以用onMesure)\n\nlayout的作用就是为整个View树计算实际的位置，他和mesure一样，需要递归的去计算每一个子视图的位置。如果需要重写，可以调用onLayout方法，要传入标识，还有左上右下这4个相对于父view的距离参数。\n\ndraw作用就是绘制View 的背景、子View、还有前景跟滚动条等。还有一个onDraw空方法，自定义View的话需要重写，在里面绘制自己需要添加的内容"
+      },
+      {
+        "title": "介绍下SurfaceView",
+        "content": "SurfaceView在单独线程中进行绘图，有独立的绘图表面。适用于界面频繁更新、对帧率要求较高的情况。像相机预览、地图之类的都可以使用。\n\nSurfaceView可以控制刷新频率。\nSurfaceView底层利用双缓存机制，绘图时不会出现闪烁问题。双缓冲技术是游戏开发中的一个重要的技术，主要是为了解决 反复局部刷屏带来的闪烁，surfaceView是通过surfaceHolder.lockCanvas锁定画布，实现下一张图片的绘制，再通过另外的线程刷新界面，绘制图片。\nView是直接在ondraw里绘制图片，刷新界面。\n\nView适用主动更新，SurfaceView 适用被动更新"
+      },
+      {
+        "title": "SurfaceView的使用",
+        "content": "首先要继承SurfaceView，实现SurfaceHolder.Callback接口。\n\n重写方法：\nsurfaceChanged：surface大小或格式发生变化时触发，在surfaceCreated调用后该函数至少会被调用一次。\nsurfaceCreated：Surface创建时触发，一般在这个函数开启绘图线程（新的线程，不要再这个线程中绘制Surface）。\nsurfaceDestroyed：销毁时触发，一般不可见时就会销毁。\n\n利用getHolder()获取SurfaceHolder对象，调用SurfaceHolder.addCallback添加回调\n\nSurfaceHolder.lockCanvas 获取Canvas对象并锁定画布，调用Canvas绘图，SurfaceHolder.unlockCanvasAndPost 结束锁定画布，提交改变。"
+      },
+      {
+        "title": "长图的加载",
+        "content": "1、Glide+SubsamplingScaleImageView混合加载渲染\n\n2、要是自定义的话，需要用BitmapRegionDecoder来实现对图片的局部加载，重写onTouchEvent，在里面根据用户移动的手势，去更新显示区域的参数，每次更新区域参数后，调用invalidate，onDraw里面去regionDecoder.decodeRegion拿到bitmap，去draw\n\nBitmapRegionDecoder bitmapRegionDecoder =   BitmapRegionDecoder.newInstance(inputStream, false);\nBitmap bitmap = bitmapRegionDecoder.decodeRegion(new Rect(width / 2 - 100, height / 2 - 100, width / 2 + 100, height / 2 + 100), options);\nmImageView.setImageBitmap(bitmap);"
+      },
+      {
+        "title": "activity页面构成",
+        "content": "Activity 包含了一个管理窗口的继承至 Window 的 PhoneWindow 对象\n\n而在 PhoneWindow 中创建了一个继承至 FrameLayout 类的 DecorView 对象\n\u2028并且把包含了ActionBar、TitleBar和Content的布局文件通过 addView() 方法添加到了DecorView 中\n\n当开发者定义了layout.xml布局并调用了 setContentView() 方法时，就是将自定义的布局加载到了DecorView 中表示  content 的部分\n\n（setContentView() 部分具体过程同 【setContentView() 方法过程总结】）。"
+      },
+      {
+        "title": "回调中获取view的宽高",
+        "content": "View的宽高是在onLayout阶段才能最终确定的，Activity的声明周期与View的绘制流程并不是一一绑定的。通过post，队列中会包含一条询问是否完成布局的消息，而我们的任务通过View#post方法被添加到队列尾部\n\nmButton.post(new Runnable() {\n @Override\u2028  \n     public void run() {\u2028 \n        Log.e(TAG, \"宽度：\" + mButton.getWidth());\u2028\u2028 \n }"
+      },
+      {
+        "title": "如何统计帧率",
+        "content": "一、可以利用Choreographer的doFrame方法，我们屏幕的刷新，都会触发这个方法，可以在这个方法中，去做计数统计的逻辑\n\n\n1、实现Choreographer.FrameCallback接口，比如实现类是FrameSkipMonitor\n2、在doFrame中统计两帧绘制的时间，代码与注释如下：\n\n@Override\npublic void doFrame(long frameTimeNanos) {\nif (mLastFrameNanoTime != 0) {//mLastFrameNanoTime 上一次绘制的时间\nlong frameInterval = frameTimeNanos - mLastFrameNanoTime;//计算两帧的时间间隔\n\n\n二、还有一种方法，是通过设置中的GPU呈现模式分析，里面可以通过命令行，导出每一帧的耗时等信息text。"
+      }
+    ]
+  },
+  {
+    "name": "动画",
+    "data": [
+      {
+        "title": "帧式动画",
+        "content": "1、在res/drawable目录下定义一个XML文件，根节点为系统提供的animation-list，然后放入定义更好的图片；\nandroid:oneshot true：只播放一次，false：循环播放。\nandroid:duration=\"100\"：相隔两张图片播放时间间隔。单位/毫秒。\n\u20282、使用AnimationDrawable在代码中调用start()以及stop()开始或停止播放动画。（在layout中，用imageview显示，然后代码中调animationDrawable = (AnimationDrawable) imageView.getBackground()获取实例来控制动画）\n\n<ImageView\n        android:id=\"@+id/img_show\"\n        android:background=\"@drawable/start_show\" />\n\nimageView = findViewById(R.id.img_show);\nanimationDrawable = (AnimationDrawable) imageView.getBackground();\u2028animationDrawable.start();\nanimationDrawable.stop();\n\n缺点就是图片非常占内存，损耗大"
+      },
+      {
+        "title": "补间动画",
+        "content": "补间动画有4种类型，平移TranslateAnimation，旋转RotateAnimation，透明度AlphaAnimation，缩放ScaleAnimation。补间动画不会改变View的属性,只会改变显示效果.\n\n可以理解在每一次VSYN到来时 在View的draw方法里面 根据当前时间计算动画进度 计算出一个需要变换的Transformation矩阵 然后最终设置到canvas上去 调用canvas concat做矩阵变换.\n\n\nTranslateAnimation translateAnimation = new TranslateAnimation(0, 200, 0, 0);\ntranslateAnimation.setDuration(2000);\nview.startAnimation(translateAnimation);"
+      },
+      {
+        "title": "属性动画介绍",
+        "content": "ValueAnimator是整个属性动画机制当中最核心的一个类，我们只需要将初始值和结束值提供给ValueAnimator，并且告诉它动画所需运行的时长，那么ValueAnimator就会自动帮我们完成从初始值平滑地过渡到结束值。\n\n缺点：就是只能对数值计算。要是想对哪个控件操作，需要监听动画过程（通过 addUpdateListener 的监听方法），在监听中对控件操作。这样使用比较麻烦。\n\n而ObjectAnimator就在 ValueAnimator的基础上又做了一层封装,重写了ofInt() ofFloat() ofObject() ofArgb()等方法，可以直接传入view控件，并传入控件的set对应函数名称，拼装成对应的set函数就能实现动画效果，所以用ObjectAnimator来实现动画会更容易些。"
+      },
+      {
+        "title": "ValueAnimator",
+        "content": "主要的三种方法：\n \na) ValueAnimator.ofInt(int values)：估值器是整型估值器IntEaluator\n \nb) ValueAnimator.ofFloat(float values):估值器是浮点型估值器FloatEaluator\n \nc) ValueAnimator.ofObject(ObjectEvaluator, start, end):将初始值以对象的形式过渡到结束值，通过操作对象实现动画效果，需要实现Interpolator接口，自定义估值器  \n\n还有ofArgb()修改颜色的，ofPropertyValuesHolder()自定义封装动画\n\nValueAnimator anim = ValueAnimator.ofFloat(0f, 1f);\nanim.setDuration(300);\nanim.start();\n\n可以传入任意多个参数的比如说将一个值在5秒内从0过渡到5，再过渡到3，再过渡到10，就可以这样写：\n\nValueAnimator anim = ValueAnimator.ofFloat(0f, 5f, 3f, 10f);\n\n我们还可以调用setStartDelay()方法来设置动画延迟播放的时间，调用setRepeatCount()和setRepeatMode()方法来设置动画循环播放的次数以及循环播放的模式，循环模式包括RESTART和REVERSE两种，分别表示重新播放和倒序播放的意思。\n\n期间每次赋值都会调用invalidate()不断刷新视图，即调用onDraw()重新绘制视图；每次绘制视图便实现了动画效果。"
+      },
+      {
+        "title": "ObjectAnimator",
+        "content": "ObjectAnimator动画原理：根据属性值拼装成对应的set函数的名字，比如”alpha”的拼接方法就是将属性的第一个字母强制大写后，与set拼接，也就是setAlpha,然后通过反射找到对应控件的setAlpha(float alpha)函数，将当前数字值作为setAlpha(float alpha)的参数将其传入。属性值得首字母大小写都可以，最终都会被强转成大写。View中都已经实现了相关的alpha rotation translate scale相关的set方法。\n\nObjectAnimator的动画设置流程:ObjectAnimator需要指定操作的控件对象，在开始动画时，到控件类中去寻找设置属性所对应的set函数，然后把动画中间值做为参数传给这个set函数并执行它。 \n\nObjectAnimator只负责把当前运动动画的数值传给set函数。至于set函数里面怎么来做，是我们自己的事了。 \n\n如果我们想要将一个TextView在5秒中内从常规变换成全透明，再从全透明变换成常规\n\nObjectAnimator animator = ObjectAnimator.ofFloat(textview, \"alpha\", 1f, 0f, 1f);\nanimator.setDuration(5000);\nanimator.start();\n\n除此之外，还有alpha-透明度，rotation-旋转，translationX-偏移，scaleY-放大"
+      },
+      {
+        "title": "AnimatorSet",
+        "content": "AnimatorSet是Animator的子类，实现组合动画功能主要需要借助AnimatorSet这个类,\n\n \nAnimatorSet.play(Animator anim)   ：播放当前动画\n\nAnimatorSet.before(Animator anim) ：  将现有动画插入到传入的动画之前执行\n\nAnimatorSet.with(Animator anim)   ：将现有动画和传入的动画同时执行\n\nAnimatorSet.after(Animator anim)   ：将现有动画插入到传入的动画之后执行\n\nAnimatorSet.after(long delay)   ：将现有动画延迟x毫秒后执行\n\nAnimatorSet.playTogether(animA, animB)   ：AB动画共同执行\n\n\nrotate、fadeInOut、moveIn为ObjectAnimator动画对象使用方法如下:\n\nAnimatorSet animSet = new AnimatorSet();\nanimSet.play(rotate).with(fadeInOut).after(moveIn);\nanimSet.setDuration(5000);\nanimSet.start();"
+      },
+      {
+        "title": "PropertyValuesHolder",
+        "content": "PropertyValuesHolder的意义就是保存动画过程中所需要的属性和值，其实ofInt()和ofFloat()的内部实现就是通过封装PropertyValuesHolder实例来保存动画状态的。\n\n可以理解PropertyValuesHolder实例就是一个动画，与view当作参数，共同放进ObjectAnimator.(view,ofPropertyValuesHolder实例)来使用\n\n\nPropertyValuesHolder colorHolder = PropertyValuesHolder.ofInt(\"BackgroundColor\", 0xffffffff, 0xffff00ff, 0xffffff00, 0xffffffff);\nPropertyValuesHolder rotationHolder = PropertyValuesHolder.ofFloat(\"Rotation\", 60f, -60f, 40f, -40f, -20f, 20f, 10f, -10f, 0f);\n\nObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(mTextView, rotationHolder, colorHolder);\nanimator.setDuration(3000);\nanimator.setInterpolator(new AccelerateInterpolator());\nanimator.start();"
+      },
+      {
+        "title": "TypeEvaluator估值器",
+        "content": "TypeEvaluator就是告诉动画系统如何从初始值过度到结束值，比如坐标点的估值器，我们就是通过把初始和结束坐标点转成point对象，然后根据决定值fraction来计算当前动画的x和y的值，最后组装到一个新的Point对象当中并返回\n\n用法：自定义类，实现TypeEvaluator接口并重写了evaluate()方法，\n\n以下代码逻辑，先是将startValue和endValue强转成Point对象，然后同样根据fraction来计算当前动画的x和y的值，最后组装到一个新的Point对象当中并返回\nclass PointEvaluator{\n    public Object evaluate(float fraction, Object startValue, Object endValue) {\n        Point startPoint = (Point) startValue;\n        Point endPoint = (Point) endValue;\n        float x = startPoint.getX() + fraction * (endPoint.getX() - startPoint.getX());\n        float y = startPoint.getY() + fraction * (endPoint.getY() - startPoint.getY());\n        Point point = new Point(x, y);\n        return point;\n    }\n}\nValueAnimator.ofObject(new PointEvaluator(), point1, point2)\n"
+      },
+      {
+        "title": "Interpolator插值器",
+        "content": "可以通过setInterpolator()   来给动画添加插值器\n\nanim.setInterpolator(new BounceInterpolator());\n\n有线性、加速、减速、周期、弹跳、先加速后减速，其他还有几个是偏移越大，而且速度越快，记不太清了。\n\nLinear Interpolator / 线性插值器\nAccelerate Interpolator / 加速度插值器\nDecelerate Interpolator / 减速插值器\nAccelerate Decelerate Interpolator / 先加速后减速插值器\nBounce Interpolator / 弹跳插值器\nCycle Interpolator / 周期插值器"
+      },
+      {
+        "title": "属性动画监听种类",
+        "content": "addListener可以添加四种监听,有开始、重复、取消、结束\n\nanimator.addListener(new AnimatorListener() {\n          @Override\n          public void onAnimationStart(Animation animation) {\n              //动画开始时执行\n          }\n      \n           @Override\n          public void onAnimationRepeat(Animation animation) {\n              //动画重复时执行\n          }\n \n         @Override\n          public void onAnimationCancel()(Animation animation) {\n              //动画取消时执行\n          }\n    \n          @Override\n          public void onAnimationEnd(Animation animation) {\n              //动画结束时执行\n          }\n      });"
+      },
+      {
+        "title": "估值器与插值器的区别",
+        "content": "估值器TypeEvalutor，设置动画如何从初始值过渡到结束值的逻辑，以及明确决定值的具体变化数值是多少\n\n插值器Interpolator，辅助动画的运动规律，决定值的变化模式（匀速、加速等）"
+      }
+    ]
+  },
+  {
+    "name": "第三方控件与框架",
+    "data": [
+      {
+        "title": "介绍下JetPack",
+        "content": "Jetpack是Goolge推出的一套组件库，目的是让开发者能够使用标准的架构组件，而不用去纠结架构的方案设计，可以将更多的精力放在自己的业务代码上。 主要包括 4 个方面。\n\n架构（Architecture）常用的有：databinding、lifecycles、viewmodel\n\n界面（UI）常用的有：Animation动画、emoje表情、fragment、layout\n\n行为（behavior）有：AppCompat（依赖库）、mutidex（short类型的范围65535解决方案，DexPathList）\n\n基础（foundation）有：media多媒体、permission权限"
+      },
+      {
+        "title": "如何捕捉异常",
+        "content": "Exception分为两类：一种是CheckedException，一种是UncheckedException，如果是CheckedException，可以用try\\catch来捕捉，如果是运行时异常，可以自定义一个工具类，实现UncaughtExceptionHandler接口，然后在application中初始化，用这个工具来捕获unchecked异常。里面需要重写一个uncaughtException方法，在里面完成错误信息收集，发送错误报告等操作"
+      },
+      {
+        "title": "RecyclerView 与 ListView 的区别",
+        "content": "一. RecyclerView多了一些LayoutManager工作，但实现了布局效果多样化\n1、ListView 的布局比较单一，只有一个纵向效果。\n2、RecyclerView 可以在LayoutMananger中设置：线性布局（纵向，横向），表格布局，瀑布流布局\n\n二.一些常用功能的api不同，比如 Listview可以通过addHeaderView() 与 addFooterView()来添加头部item与底部item，但RecyclerView需要在Adapter中自己编写。还有Listview有onItemClickListener、onItemLongClickListener(),但RecyclerView需要通过addOnItemTouchListener或在item中实现。其他还有Listview没有局部刷新（notifyItemChanged），setTag()、getTag()等。\n\n三.ViewHolder的编写规范化，ListView是需要自己定义的，而RecyclerView是规范好的\n\n四.RecyclerView有嵌套滚动机制，但Listview没有：\n在事件分发机制中，Touch事件在进行分发的时候，由父View向子View传递，一旦子View消费这个事件的话，那么接下来的事件分发的时候，父View将不接受，由子View进行处理；但是与Android的事件分发机制不同，嵌套滚动机制（Nested Scrolling）可以弥补这个不足，能让子View与父View同时处理这个Touch事件，主要实现在于NestedScrollingChild与NestedScrollingParent这两个接口；而在RecyclerView中，实现的是NestedScrollingChild，所以能实现嵌套滚动机制；"
+      },
+      {
+        "title": "recyclerview复用机制",
+        "content": "每次创建ViewHolder的时候，会按照优先级依次查询缓存创建ViewHolder。每次讲ViewHolder缓存到Recycler缓存的时候，也会按照优先级依次缓存进去\n\n一级缓存：返回布局和内容都都有效的ViewHolder\n按照position或者id进行匹配\n\n二级缓存：返回View\n按照position和type进行匹配\n\n三级缓存：返回布局有效，内容无效的ViewHolder\n按照type进行匹配，每个type缓存值默认=5\n"
+      },
+      {
+        "title": "ButterKnife作用及原理",
+        "content": "编译代码时，butterKnife会扫描Java代码中所有的ButterKnife注解@Bind、@OnClick、@OnItemClicked这些类，然后ButterKnifeProcessor会帮你生成一个Java类，这个ViewBinder类中包含了所有对应的代码，比如@Bind注解对应findViewById(), @OnClick对应了view.setOnClickListener()等等 。我们会调用ButterKnife.bind(this)，动态注入所有的注解过的View属性和click方法\n\n有个Zelezny插件，可以针对布局所有子view一键声明，很好用，推荐使用\n\n@BindView(R.id.login_btn_login)\nButton btn_login;\n\n@OnClick({R.id.login_btn_login})   \npublic void onViewClicked(View view) {   //xml不需要去写\n        switch (view.getId()) {\n            case R.id.login_btn_login:\n    ……\n                break;\n            default:\n                break;\n        }\n    }\n"
+      },
+      {
+        "title": "Glide优点与原理",
+        "content": "glide最大的优势就是对bitmap的管理是跟随生命周期发生改变的。当Activity销毁的时候，之前加载的所有图片的内存都释放了。其它的框架基本都是用Lru算法，当Activity销毁的时候，是不会释放之前加载图片占用的所有内存。\n\n当我们用glide进行加载时，它创建一个无UI的Fragment，并绑定到通过glide.with(context)传进来的Activity上，这样Fragment就可以感知Activity的生命周期了。RequestManager是用来加载、管理图片请求的，它会通过传入的Lifecycle对象，监听到Fragment的生命周期，从而根据生命周期管理让Request做出相对应的处理了。"
+      },
+      {
+        "title": "Glide缓存",
+        "content": "内存缓存主要用于防止将重复的图读入内存中，硬盘缓存则用于防止从网络或者其他地方将重复下载和数据读取\n\n\n一、内存\n查找顺序：先从LruResourceCache中查找，找到了移除并添加到activeResources（弱引用 ）中，找不到再从activeResources（弱引用）中查找。\n\n引用逻辑acquired:acquired()方法让其+1，release()方法让其-1，经过acquired()方法使acquired>0在activeResources中存储，然后不再使用调用release()方法使acquired==0被activeResources移除并且put到LruResourceCache中\n\n\n二、磁盘\n优先读取优化后的图片，读取不到再读取原图\nDiskCacheStrategy.RESULT： 表示只缓存转换过后的图片（默认选项）。\n\n\n缓存key：决定缓存key的参数有十几个(包括url，宽，高，signature等等)\n\nandroid 4.4以前是Bitmap复用必须长宽相等才可以复用，而android 4.4及以后是Size>=所需就可以复用，只不过需要调用reconfigure来调整尺寸"
+      },
+      {
+        "title": "类加载方案",
+        "content": "虚拟机加载类的时候都需要ClassLoader,ClassLoader有一个子类BaseDexClassLoader，而BaseDexClassLoader下有一个\n \n数组——DexPathList，是用来存放dex文件，当BaseDexClassLoader通过调用findClass方法时，实际上就是遍历数组，\n \n找到相应的dex文件，找到，则直接将它return。而热修复的解决方法就是将新的dex添加到该集合中，并且是在旧的dex的前面，\n \n所以就会优先被取出来并且return返回。\n\nQQ空间超级补丁和Nuwa用的就是这种\n\n微信tinker是新旧apk做diff，得到path.dex再与手机原本的dex合并，生成新的class.dex，然后再反射将此dex放在第一个元素。bsdiff可以得到两个不同文件中的不同信息，旧文件+新文件=差分文件\nbspatch：旧文件+差分文件=新文件\n\n优点：补丁包较小，支持资源替换\n缺点：需要重启才能生效。"
+      },
+      {
+        "title": "底层替换方案",
+        "content": "底层替换方法，不会从新加载类，限制较多，不能增减原有类的方法和字段，是及时生效的\n\n原理是直接在native层，通过反射替换方法入口，或者整个方法体。\n\n阿里Andfix用的就是这种方案\n\n优点：立即生效，消耗低。\n缺点：仅支持方法的替换。"
+      },
+      {
+        "title": "instantRun方案",
+        "content": "原理是每个类都增加一个静态变量，在每个方法执行前，判断此变量是否发生变化，变化了执行新的类中方法\n\n像美团的Robust为每个class增加了个类型为ChangeQuickRedirect的静态成员，而在每个方法前都插入了使用changeQuickRedirect相关的逻辑，当 changeQuickRedirect不为null时，可能会执行到accessDispatch从而替换掉之前老的逻辑，达到fix的目的。替换的方式也是通过反射将changeQuickRedirect的值赋为补丁对象完成补丁加载操作。\n\n优点：兼容性高，开发透明；实时生效。\n缺点：会增大方法数，影响运行效率，不支持资源替换。\n\n了解 --> 当应用获取到加载补丁后，会创建DexClassLoader加载补丁，每个补丁有被修复的类信息及该类对应的补丁信息。通过被修复的类信息找到该类，反射将changeQuickRedirect的值赋为补丁对象完成补丁加载操作。"
+      },
+      {
+        "title": "RxJava的基础使用",
+        "content": "Rxjava的特点，由于其基于事件流的链式调用、逻辑非常简洁，非常适合于复杂异步的问题处理\n\n\n   创建被观察者，产生事件\n设置事件传递过程中的过滤，合并，变换等加工操作。\n订阅一个观察者对象，实现事件最终的处理。\n\nObservable.create(new ObservableOnSubscribe<Integer>() {\n\n    @Override\n    public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Throwable {\n        emitter.onNext(1);\n        emitter.onNext(2);\n        emitter.onNext(3);\n        emitter.onComplete();\n    }\n}).subscribe(new Observer<Integer>() {\n    @Override\n    public void onSubscribe(@NonNull Disposable d) {\n        Log.d(TAG, \"onSubscribe:\" + d.getClass().getName());\n    }\n\n    @Override\n    public void onNext(@NonNull Integer integer) {\n        Log.d(TAG, \"onNext: \" + integer);\n    }\n\n    @Override\n    public void onError(@NonNull Throwable e) {\n        Log.d(TAG, \"onError: \" + e.getMessage());\n    }\n\n    @Override\n    public void onComplete() {\n        Log.d(TAG, \"onComplete\");\n    }\n});\n"
+      },
+      {
+        "title": "RxJava线程切换",
+        "content": "线程切换\n\nRxJava 默认，事件的发出和消费都是在同一个线程的。\u2028\n在哪个线程调用 subscribe()，就在哪个线程生产事件；在哪个线程生产事件，就在哪个线程消费事件。如果需要切换线程，就需要用到 Scheduler （调度器）\n\nSchedulers.immediate(): 直接在当前线程运行，相当于不指定线程。默认 Scheduler。\nSchedulers.newThread(): 总是启用新线程，并在新线程执行操作。\nSchedulers.io(): I/O 操作（读写文件、读写数据库、网络信息交互等）所使用的 Scheduler\nSchedulers.computation(): 计算所使用的 Scheduler。\n另外， Android 还有一个专用的 AndroidSchedulers.mainThread()，\n\nObservable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {\n            @Override\n            public void subscribe(ObservableEmitter<String> e) throws Exception {\n               …\n            }\n        })\n                .subscribeOn(Schedulers.io())\n                .observeOn(AndroidSchedulers.mainThread());"
+      },
+      {
+        "title": "RxJava - map与flatmap区别",
+        "content": "map与flatmap区别\n\n结论：\n\nmap适用于一对一转换\nflatmap适用于一对多，多对多的场景\n\n区别：\n\n1、map是通过原始数据类型返回另外一种数据类型，而flatMap是通过原始数据类型返回另外一种被观察者。\n\n2、map被订阅时每传递一个事件执行一次onNext方法，flatmap多用于多对多，一对多，再被转化为多个时，一般利用from/just进行一一分发，被订阅时将所有数据传递完毕汇总到一个Observable然后一一执行onNext方法\n\n3、map只能一对一进行转换，flatmap既可以单一转换也可以一对多/多对多转换。flatMap并不保证数据有序。\n\n4、concatMap与flatMap使用基本一致，它可以保证数据有序\n\n相同点：\n\n1. 都是依赖FuncX(入参，返回值)进行转换（将一个类型依据程序逻辑转换成另一种类型，根据入参和返回值）\n2. 都能在转换后直接被subscribe\n"
+      },
+      {
+        "title": "RxJava相关问题",
+        "content": "1、Observer处理完onComplete后会还能onNext吗?\n\nonComplete是用来控制不能发送数据的，也就是不能onNext了，包括onError也是不能再发送onNext数据了，该方法中也是调用了dispose方法\n\n\n2、你还用过其他哪些操作符?\n\n关于其他的操作符比如merge、concat、zip都是合并，interval是周期执行，timer是延迟发送数据。\n\n\n3、Maybe、Single、Flowable、Completable几种观察者的区别，以及他们在什么场景用？\n\n从上面各个对应的observer接口来看，如果只想发一条数据，或者不发数据就用Maybe，如果想法多条数据或者不发数据就用Observable，如果只发一条数据或者失败就用Single，如果想用背压策略使用Flowable，如果不发数据就用Completable。\t\t\n\n\n4、RxJava的subscribeOn只有第一次生效?\n\n最开始调用的subscribeOn返回的observable会把后面执行的subscribeOn返回的observable给覆盖了，因此我们感官的是只有第一次的subscribeOn能生效。\n\n5、RxJava中背压是怎么回事？\n\n由于被观察者发送事件速度太快，而观察者来不及响应处理所有事件，从而导致事件丢失、OOM等异常。\n\n主要是通过Flowable类来实现的，Flowable其实就是被观察者（Observable）的一种新实现\n\n观察者通过Subscription.request获取事件, request决定了观察者能够接收多少个事件, 如设置了s.request(3)，这就说明观察者能够接收3个事件（多出的事件存放在缓存区）\n\nFlowable默认缓冲区的队列大小为128，即存储128个事件，超出会报错。\n"
+      },
+      {
+        "title": "发射器与Disposable",
+        "content": " ObservableEmitter:发射器可以分别发出next事件、complete事件和error事件。\n\n Disposable当调用它的dispose()方法时, 上游还会继续发送,但下游将不再接收事件.\n\n Observable.create(new ObservableOnSubscribe<Integer>() {\n        @Override\n        public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {\n            emitter.onNext(1);\n            emitter.onNext(2);\n            emitter.onNext(3);\n            emitter.onComplete();\n        }\n    }).subscribe(new Observer<Integer>() {   \n        @Override\n        public void onNext(Integer value) {\n            Log.d(TAG, \"\" + value);\n            new Disposable().dispose();\n        }\n}"
+      },
+      {
+        "title": "常用操作符",
+        "content": "创建操作符\n\ncreate:创建1个被观察者对象（Observable）\n\nJust:快速创建 被观察者对象（Observable） & 发送10个以下事件\nObservable.just(“1”, “2”, “3”)\n\nempty() :该方法创建的被观察者对象发送事件的特点：仅发送Complete事件\n\nerror():该方法创建的被观察者对象发送事件的特点：仅发送Error事件，直接通知异常\n\n\n延时操作符：\n\nDelay : 使得被观察者延迟一段时间再发送事件，delay(long delay,TimeUnit unit)\n\nTimer:timer操作符默认运行在一个新线程上，也可自定义线程调度器（第3个参数）：\ntimer(long, TimeUnit, Scheduler)\n\n\n过滤操作符：\n\ntake, takeFirst, takeLast，只发射指定项的数据\nObservable.just(\"Hello\", \"RxJava\", \"Nice to meet you\") .take(2)\n\nskip,发射数据时忽略前N项数据\n\n\n变换操作符\n\nMap:是通过原始数据类型返回另外一种数据类型,适用于一对一转换\n\nObservable.just(\"Hello\", \"RxJava\", \"Nice to meet you\")\n.map(new Func1<String, Integer>() { //泛型第一个类型是原数据类型，第二个类型是想要变换的数据类型\n    @Override\n    public Integer call(String s) {\n        return s.hashCode();        //将数据转换为了int（取得其hashCode值）\n    }\n})\n.subscribe(new Action1<Integer>() {\n    @Override\n    public void call(Integer o) {\n        System.out.println(\"onNext--> \" + o);\n    }\n}\n\n\u2028  \nflaMap: 通过原始数据类型返回另外一种被观察者,适用于一对多，多对多的场景\u2028\nObservable.just(\"Hello\", \"RxJava\", \"Nice to meet you\")\n.flatMap(new Func1<String, Observable<Integer>>() {\n    @Override\n    public Observable<Integer> call(String s) {\n        return Observable.just(s.hashCode());\n    }\n})\n.subscribe(new Action1<Integer>() {\n    @Override\n    public void call(Integer o) {\n        System.out.println(\"onNext--> \" + o);\n    }\n}\n\nconcatMap:与flatMap的区别是，新合并生成的事件序列顺序是有序的\n\n其他还有retry遇到错误重试、repeat重复、marge合并之类的。\n"
+      }
+    ]
+  },
+  {
     "name": "组件化",
     "data": [
       {
@@ -648,6 +944,31 @@
       {
         "title": "组件化通信及跳转原理",
         "content": "ARouter 是在代码里加入的@Route注解，会在编译时期通过apt生成一些存储path和Class映射关系的类文件，然后app进程启动的时候，把保存这些映射关系的数据读到内存里(保存在map里)，\n\n在进行路由跳转的时候，通过build()方法传入要到达页面的路由地址，ARouter会通过它自己存储的路由表找到路由地址对应的Activity.class(activity.class = map.get(path))来进行跳转。\n\n传参的话，可以调用ARouter的withString()、withInt()、withBoolean()\n方法它的内部会调用intent.putExtra(String name, String value)，调用navigation()方法，它的内部会调用startActivity(intent)进行跳转，这样便可以实现两个相互没有依赖的module顺利的启动对方的Activity了。\n\n并通过javapoet动态生成路由表"
+      }
+    ]
+  },
+  {
+    "name": "开发模式",
+    "data": [
+      {
+        "title": "介绍下MVC及优缺点",
+        "content": "MVC特点是设计简单，适用于更新频率不太高，改动不大的项目，但因为它的view和model是可见的，外加它的Controller也就是Activity角色比较模糊，当业务越来越复杂时，就会变的十分臃肿了，不容易维护。\n\n优点：对model进行了隔离\n缺点：activity会变得臃肿\n\nController <— —> View <— —> Model\n\nController —> Model\n\nView层：一般由XML布局文件充当。\nModel层：一些数据处理的工作，比如网络数据请求、数据库操作等。\nController层：通常由Activity、Fragment充当，并在其中进行界面、数据相关的业务处理。"
+      },
+      {
+        "title": "介绍下MVP",
+        "content": "model 数据以及数据相关的逻辑操作\nview是由xml与Activity来承担的\nPresenter 用来承担业务逻辑与操作view与model的\n\n引用了presenter，interface是用来管理presenter能控制view的哪些功能\n\n在activity中，负责创建presenter，接口有activity来实现，由presenter来调用。presenter构造函数把view（Activity）做为参数传入，接口单独创建。activity实现接口，并负责响应些事件，交给presenter。在presenter中，创建model，并通过view与model的一些方法，来对两边进行更新与通信。\n\n优点：基于MVC做了进一步的解耦合\n缺点：接口部分开发与维护比较繁琐\n\n\nView <— —> Presenter <— —> Model\n"
+      },
+      {
+        "title": "介绍下MVVM及优缺点",
+        "content": "待解决"
+      },
+      {
+        "title": "LifeCycle",
+        "content": "使用Lifecycle在Activity里面就一句lifecycle.addObserver(mPresenter),就可以达到管理生命周期，Lifecycle观察者的角色。Activity需要继承AppCompatActivity；是通过在上层的SupportActivity，通过attached一个无界面ReportFragment，来感知生命周期的变化 的。当Activity调用生命周期OnPause时，会触发ReportFragment的OnPause，这时调用dispatch(Lifecycle.Event event)来进行向下分发。\n\ninterface IPresenter : LifecycleObserver{}\n\nclass CustomPresenter :IPresenter{\n    override fun onCreate(owner: LifecycleOwner) {\n        Log.d(\"BasePresenter\",\"onCreate()\")\n    }\n\n    override fun onDestroy(owner: LifecycleOwner) {\n        Log.d(\"BasePresenter\",\"onDestroy()\")\n    }\n}\n\n mPresenter = CustomPresenter(this)\n getLifecycle().addObserver(mPresenter)\n\n这里需要注意的两点：\n1，这里的Activity需要继承AppCompatActivity；\n2，这里的demo使用的java 7 写IPresenter接口的时候需要实现LifecycleObserver通过注解的方式来接收生命周期的变化，而在java8里面只需要去实现DefaultLifecycleObserver，然后重写里面的生命周期方法即可。"
+      },
+      {
+        "title": "LiveData",
+        "content": "LiveData 是一个可感知生命周期的可观察类 (Observable)。 通过订阅LiveData中当前Name数据变化，当数据发生变化时，onCreat中的观察者就会收到数据改变的回调。其优点包括：\n\n1、生命周期感知性：LiveData 与 Android 生命周期结合运行的效果良好。它仅会当 UI 被显示时才把数据往前端传递。\n2、与 Room 无缝整合：LiveData 可被设为 Room 的回调类。\n3、可与 ViewModel 和 Data Binding 混合使用，建立反应式 UI 。\n4、提供基本数据转换方法，例如 switchMap 和 MediatorLiveData。\n\n使用方法：\n\nActivity在onCreate()方法中通过LiveData.observe()方法添加观察者，当数据变化时会通过回调方法通知观察者，在lambda表达式中更新当前姓名和打印姓名列表。\n \npublic class NameViewModel extends ViewModel{\n    // 创建一个String类型的LiveData\n    private MutableLiveData<String> mCurrentName;\n\n    public MutableLiveData<String> getCurrentName() {\n        if (mCurrentName == null) {\n            mCurrentName = new MutableLiveData<>();\n        }\n        return mCurrentName;\n    }\n}\n\n\n// 订阅LiveData中当前Name数据变化，以lambda形式定义Observer\n  mNameViewModel.getCurrentName().observe(this, new Observer<String>() {\n            @Override\n            public void onChanged(String name) {\n                mTvName.setText(name);\n                Log.d(TAG, \"currentName: \" + name);\n            }\n        });\n\n// 当数据发生变化时，onCreat中的观察者就会收到数据改变的回调\nonClick(){\n    mNameViewModel.getCurrentName().setValue(\"Jane\");\n}"
       }
     ]
   },
