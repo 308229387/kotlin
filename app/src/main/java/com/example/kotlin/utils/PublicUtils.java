@@ -17,6 +17,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class PublicUtils {
+    private static long lastClickTime = 0;
 
     /**
      * 压缩文件和文件夹
@@ -66,17 +67,25 @@ public class PublicUtils {
             //文件夹
             String fileList[] = file.list();
             //没有子文件和压缩
-            if (fileList.length <= 0) {
-                ZipEntry zipEntry = new ZipEntry(fileString + File.separator);
-                zipOutputSteam.putNextEntry(zipEntry);
-                zipOutputSteam.closeEntry();
+            if (null != fileList) {
+                if (fileList.length <= 0) {
+                    ZipEntry zipEntry = new ZipEntry(fileString + File.separator);
+                    zipOutputSteam.putNextEntry(zipEntry);
+                    zipOutputSteam.closeEntry();
+                }
+                //子文件和递归
+                for (int i = 0; i < fileList.length; i++) {
+                    ZipFiles(folderString + fileString + "/", fileList[i], zipOutputSteam);
+                }
+            } else {
+                //TODO:要捕捉异常，如果是空，就是没有文件
+                NullPointerException e = new NullPointerException();
+                throw new NullPointerException();
             }
-            //子文件和递归
-            for (int i = 0; i < fileList.length; i++) {
-                ZipFiles(folderString + fileString + "/", fileList[i], zipOutputSteam);
-            }
+
         }
     }
+
 
 
     public static String MapToJson(Map<String, String> map) {
@@ -92,5 +101,40 @@ public class PublicUtils {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
+
+    /**
+     * 是否是持续点击？
+     *
+     * @return true：不是持续点击； false：持续点击；
+     */
+    public static boolean isCanClick() {
+        long currentTime = System.currentTimeMillis();
+        boolean isClick;
+        if (currentTime - lastClickTime > 500) {
+            isClick = true;
+        } else {
+            isClick = false;
+        }
+        lastClickTime = currentTime;
+        return isClick;
+    }
+
+    /**
+     * 是否是快速点击？
+     *
+     * @return true：间隔超过1S； false：1S内快速点击；
+     */
+    public static boolean isCanQuickClick() {
+        long currentTime = System.currentTimeMillis();
+        boolean isClick;
+        if (currentTime - lastClickTime > 1000) {
+            isClick = true;
+            lastClickTime = currentTime;
+        } else {
+            isClick = false;
+        }
+        return isClick;
+    }
+
 
 }

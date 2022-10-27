@@ -39,6 +39,8 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "分类问答" -> context.startActivity(Intent(context, QListActivity::class.java))
                     "待解决问答" -> context.startActivity(Intent(context, SpecialQAListActivity::class.java))
                     "算法" -> context.startActivity(Intent(context, AlgorithmListActivity::class.java))
+                    "通用功能" -> context.startActivity(Intent(context, CommonActivity::class.java))
+                    "json数组转对象" -> context.startActivity(Intent(context, CommonActivity::class.java))
                     "仿京东搜索" -> context.startActivity(Intent(context, JDSearchActivity::class.java))
                     "聊天交互框" -> context.startActivity(Intent(context, CommentTestActivity::class.java))
                     "include实现、html文字" -> context.startActivity(Intent(context, IncludeActivity::class.java))

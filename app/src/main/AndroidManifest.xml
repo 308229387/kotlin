@@ -73,6 +73,7 @@
         <activity android:name=".activity.QListActivity" />
         <activity android:name=".activity.ExpandableListActivity" />
         <activity android:name=".activity.MainListActivity" />
+        <activity android:name=".activity.CommonActivity" />
 
         <activity
             android:name=".activity.LoadMoreActivity"
