@@ -2,7 +2,6 @@ package com.example.kotlin.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 
@@ -25,6 +24,7 @@ import java.util.ArrayList;
  */
 public class MainListActivity extends BaseActivity<ExpandableListBinding> {
     ArrayList<MainBean> allData;
+    boolean allOpenTag = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +43,30 @@ public class MainListActivity extends BaseActivity<ExpandableListBinding> {
     }
 
     private void initView() {
+        viewBind.navigationBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        viewBind.personDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (allOpenTag) {
+                    for (int i = 0; i < allData.size(); i++) {
+                        viewBind.expandListId.expandGroup(i);
+                    }
+                    allOpenTag = false;
+                } else {
+                    for (int i = 0; i < allData.size(); i++) {
+                        viewBind.expandListId.collapseGroup(i);
+                    }
+                    allOpenTag = true;
+                }
+            }
+        });
+
         MainListAdapter adapter = new MainListAdapter(this, allData);
         viewBind.expandListId.setAdapter(adapter);
 

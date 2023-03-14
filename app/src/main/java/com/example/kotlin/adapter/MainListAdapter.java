@@ -1,18 +1,21 @@
 package com.example.kotlin.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.core.content.ContextCompat;
 
 import com.example.kotlin.R;
 import com.example.kotlin.activity.MainListActivity;
 import com.example.kotlin.data.MainBean;
+import com.example.kotlin.data.QABean;
+import com.example.kotlin.utils.ToastUtil;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
 
@@ -66,6 +69,7 @@ public class MainListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
+
     @Override
 /**
  *
@@ -91,9 +95,9 @@ public class MainListAdapter extends BaseExpandableListAdapter {
         //如果是展开状态，
         if (isExpanded) {
 //            groupViewHolder.parent_image.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.person_down_arrow));
-            groupViewHolder.parent_image.setImageDrawable(context.getDrawable(R.mipmap.person_down_arrow));
-        } else {
             groupViewHolder.parent_image.setImageDrawable(context.getDrawable(R.mipmap.person_up_arrow));
+        } else {
+            groupViewHolder.parent_image.setImageDrawable(context.getDrawable(R.mipmap.person_down_arrow));
 //            groupViewHolder.parent_image.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.person_up_arrow));
         }
         return convertView;
@@ -105,13 +109,59 @@ public class MainListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expand_chidren_item, parent, false);
             childViewHolder = new ChildViewHolder();
+            childViewHolder.parent_view = (LinearLayout) convertView;
             childViewHolder.chidren_item = (TextView) convertView.findViewById(R.id.chidren_item);
+            childViewHolder.learn_icon = (ImageView) convertView.findViewById(R.id.learn_icon);
             convertView.setTag(childViewHolder);
 
         } else {
             childViewHolder = (ChildViewHolder) convertView.getTag();
         }
         childViewHolder.chidren_item.setText(data.get(groupPosition).getData().get(childPosition).getTitle());
+        if (Hawk.contains(data.get(groupPosition).getData().get(childPosition).getTitle())) {
+            QABean tmp = Hawk.get(data.get(groupPosition).getData().get(childPosition).getTitle());
+            switch (tmp.getCount()) {
+                case 0:
+                    childViewHolder.parent_view.setBackgroundColor(Color.parseColor("#63A1E6"));
+                    break;
+                case 1:
+                    childViewHolder.parent_view.setBackgroundColor(Color.parseColor("#FF0000"));
+                    break;
+                case 2:
+                    childViewHolder.parent_view.setBackgroundColor(Color.parseColor("#FFD700"));
+
+                    break;
+                case 3:
+                    childViewHolder.parent_view.setBackgroundColor(Color.parseColor("#006400"));
+
+                    break;
+                default:
+                    childViewHolder.parent_view.setBackgroundColor(Color.parseColor("#00FF00"));
+                    break;
+            }
+        } else {
+            childViewHolder.parent_view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
+        childViewHolder.learn_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.showTextViewPrompt(childPosition + "");
+                QABean tmp = Hawk.get(data.get(groupPosition).getData().get(childPosition).getTitle(), new QABean());
+                int tag = 0;
+                if (tmp.getCount() == 0) {
+                    tag = 1;
+                } else if (tmp.getCount() == 1) {
+                    tag = 2;
+                } else if (tmp.getCount() == 2) {
+                    tag = 3;
+                } else if (tmp.getCount() > 2) {
+                    tag = 4;
+                }
+                tmp.setCount(tmp.getCount() + 1);
+                Hawk.put(data.get(groupPosition).getData().get(childPosition).getTitle(), tmp);
+                notifyDataSetChanged();
+            }
+        });
         return convertView;
     }
 
@@ -128,6 +178,7 @@ public class MainListAdapter extends BaseExpandableListAdapter {
 
     static class ChildViewHolder {
         TextView chidren_item;
-
+        ImageView learn_icon;
+        LinearLayout parent_view;
     }
 }

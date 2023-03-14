@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginEnd="16dp"
-                android:text="人员详情"
+                android:text="展开关闭"
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
         </FrameLayout>
