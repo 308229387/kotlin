@@ -7,12 +7,20 @@
         "content": "String str1 = \"abc\"; // 在常量池中，如果有不需要创建  1个\n\nString str2 = new String(\"abc\"); // 在堆上 str2 常量池中“abc” abc如果有不需要创建   1或2个\n\nString str = \"abc\" + \"def\"; //在编译时已经被合并成“abcdef”字符串，因此，只会创建1个对象。\n\nString str = \"abc\" + new String(\"def\"); //“abc”和“def”，堆中对象new String(\"def\")和“abcdef”。还会创建一个StringBuilder来进行字符串的拼接\u2028  字符串、new、builder"
       },
       {
+        "title": "int和integer的区别",
+        "content": "Integer是int提供的封装类，而int是java的基本数据类型，Integer的默认值是null，而int的默认值是0，声明Integer的变量需要实例化，而int不需要，Integer是对象，是一个引用指向这个对象，而int是基本数据类型，直接存储数据。"
+      },
+      {
         "title": "抽像类与接口的差别",
         "content": "抽象类是对整个类进行抽象，包括属性和方法，是一种模板设计。我们可以有选择地重写需要用到的方法。而接口是对行为的抽象，实现接口的一定要实现接口里定义的所有方法，里面不能有私有的方法或变量，是用于让别人使用的。还有就是一个具体类只能extends一个抽象类，可以implements多个接口。\n\n还有些就是定义上的区别，比如抽像类可以有构造器，但接口没有，访问修饰符抽像类可以有public protected  default等，但接口默认修饰符是public，不可以用其他修饰符。"
       },
       {
+        "title": "什么是内部类？内部类的作用是什么？",
+        "content": "内部类是定义在另一个类里面的类，与之相对应，包含内部类的类被称为外部类，\n\n内部类的作用有：\n（1）内部类提供了更好的封装，可以把内部类隐藏在外部类之内，不允许同一包中的其他类访问，\n（2）内部类的方法可以直接访问外部类的所有数据，包括私有的数据，\n（3）内部类的种类：成员内部类、静态内部类、方法内部类、匿名内部类\n\n\n作用：\n\n1、 内部类方法可以访问该类定义所在的作用域中的数据，包括私有数据。\n2、内部类可以对同一个包中的其他类隐藏起来。\n3、 当想要定义一个回调函数且不想编写大量代码时，使用匿名内部类比较便捷。\n\n分类：成员内部类，局部内部类，匿名内部类，静态内部类\n\n成员内部类：存在于某个类的内部，与全局属性或者方法同级的内部类就是成员内部类。\n特点：\n1、成员内部类可以无条件访问外部类的所有成员属性和成员方法（包括静态成员和私有成员）\n2、成员内部类和外部类的属性和方法名同名时，外部类的属性和方法会隐藏；但可以通过外部类.this.成员变量的方式访问外部类的属性和方法。\n3、 外部类必须通过成员内部类的对象来访问内部类的属性和方法。\n4、 成员内部类对象会隐式的引用一个外部类对象。（可以解释第一点）\n5、 成员内部类可以有public\\private\\protected以及默认访问权限。\n\npublic class Person{\n    public void run(){}\n    public class DoWork implements Work{}\n}\n\n局部内部类：和成员内部类的区别，局部内部类在方法里面\n特点：\n1、 不能有private、public、protected和static等修饰符，与局部变量类似。\u20282、只能在定义局部内部类的方法或者作用域中实例化；\u20283、 局部内部类的对象不能使用该内部类所在方法或者作用域的非final局部变量（为什么？）；\n\npublic class Person{\n    public void run(){\n         class DoWork implements Work{}\n    }\n}\n\n匿名内部类：\u2028 1、唯一一种没有构造器的类；匿名内部类在编译时，编译器会自动起名xxx$1.class;\n2、 匿名内部类不能存在任何静态的变量、方法等；\n3、 匿名内部类是局部内部类的特例；\n4、大部分匿名内部类用于接口返回；\n\npublic class Person{\n    public DoWork doSomething(){\n        return new DoWork(){\n            public void do(){}\n        };\n    }\n}\n\n\n静态内部类：在成员内部类的基础上加上一个static关键字就是静态内部类\u2028特点：\n1、不需要依赖外部类。\n2、不能使用外部类的非静态属性和方法。\n\npublic class Person{\n    public void run(){}\n    public static class DoWork implements Work{}\n}\n"
+      },
+      {
         "title": "介绍下String，为什么要设计成不可变的？以及StringBuffer、StringBuilder",
-        "content": "String并不是基础类型，是final修饰的java类，之所以被设计成不可变主要是为了保证数据不被污据，方法区中的字符串池，当一个字符串已经被创建并且该字符串在池中，该字符串的引用会立即返回给变量，而不是重新创建一个字符串再将引用返回给变量。如果字符串不是不可变的，那么改变一个引用（如:string2）的字符串将会导致另一个引用（如:string1）出现脏数据。\n\nstring不是基本数据类型，那么一个string的内存位置是什么呢？一共有两种情况：\n　　1、string直接赋值：\n　　　　String s = \"haha\";\n　　　　s的引用存在栈内存中，引用指向的haha存在方法区的常量池中（先判断常量池中是否有一个haha，存在则直接指向）\n　　2、string对象new创建\n　　　　String s = new String(\"haha\");\n　　　　s的引用存在于栈内存中，引用指向的haha对象，存在堆内存中（每new一次，在堆中创建一个新的haha对象）\n\n和String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象\n\nStringBuffer是线程安全的，可以在多线程操作字符串\nStringBuilder是非线程安全的，性能会比StringBuffer好些"
+        "content": "String并不是基础类型，是final修饰的java类，String类在源代码中实际上是通过char[ ]数组来保存字符串的。之所以被设计成不可变主要是为了保证数据不被污据，方法区中的字符串池，当一个字符串已经被创建并且该字符串在池中，该字符串的引用会立即返回给变量，而不是重新创建一个字符串再将引用返回给变量。如果字符串不是不可变的，那么改变一个引用（如:string2）的字符串将会导致另一个引用（如:string1）出现脏数据。\n\nstring不是基本数据类型，那么一个string的内存位置是什么呢？一共有两种情况：\n　　1、string直接赋值：\n　　　　String s = \"haha\";\n　　　　s的引用存在栈内存中，引用指向的haha存在方法区的常量池中（先判断常量池中是否有一个haha，存在则直接指向）\n　　2、string对象new创建\n　　　　String s = new String(\"haha\");\n　　　　s的引用存在于栈内存中，引用指向的haha对象，存在堆内存中（每new一次，在堆中创建一个新的haha对象）\n\n和String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象\n\nStringBuffer是线程安全的，可以在多线程操作字符串\nStringBuilder是非线程安全的，性能会比StringBuffer好些。\n\n\n他们的主要区别在于运行速度和线程安全两个方面，运行速度：StringBuilder>StringBuffer>String"
       },
       {
         "title": "Java 中的 final, finally 和 finalize?",
@@ -29,6 +37,10 @@
       {
         "title": " 重载和重写的区别",
         "content": "重载：方法签名相同，参数列表不同（与返回值无关）\n\n重写：同名同参同返回，前面的权限修饰符不能比父类的更封闭，抛出的异常不能更宽泛。重载：方法重载是一个类中定义了多个方法名相同,而他们的参数的数量不同或数量相同而类型和次序不同,则称为方法的重载(Overloading)。\n\n重写：是在子类存在方法与父类的方法的名字相同,而且参数的个数与类型一样,返回值也一样的方法,就称为重写(Overriding)。如果父类的方法有异常声明，那么子类重写这个方法时候，所要声明的异常不应该比父类的大。只能是小等，或者可以没有\n\n可否重写父类的静态方法\n\n静态方法，是在运行时，虚拟机已经认定此方法属于哪个类。 静态方法的调用不需要实例化， \"重写\"只能适用于实例方法.不能用于静态方法.对于静态方法,只能隐藏... "
+      },
+      {
+        "title": " 静态属性和静态方法是否可以被继承？是否可以被重写？",
+        "content": "可以继承，但不可以被重写，而是被隐藏，如果子类里面定义了静态方法或属性，那么这时候父类的静态方法或属性称之为隐藏。 "
       },
       {
         "title": " java三大特性",
@@ -500,8 +512,16 @@
     "name": "数据类型与存储",
     "data": [
       {
+        "title": "Java中List、Set和Map的区别是什么",
+        "content": "List 是一个有序集合，可以保存重复的元素。List 中的每个元素都有一个唯一的索引，可以通过索引来访问和修改元素。常见的 List 实现类有 ArrayList、LinkedList 和 Vector。\n\nSet 是一个不允许重复元素的无序集合。Set 的实现类有 HashSet、TreeSet 和 LinkedHashSet。\n\nMap 是一个键值对映射的集合。每个键只能对应一个值，但是不同的键可以对应相同的值。Map 的实现类有 HashMap、TreeMap 和 LinkedHashMap。"
+      },
+      {
         "title": "HashMap原理",
-        "content": "HashMap 底层是 hash 数组和单向链表实现，数组中的每个元素都是链表的表头，由 Node 内部类完成存储，Node类实现了 Map.Entry<K,V>接口。\n\n当存储对象时，将 K/V 键值传给 put() 方法：首先会计算出Key的hash值，如果 K 的 hash 值在 HashMap 中不存在，则执行插入，若存在，则发生碰撞\n\n如果 K 的 hash 值在 HashMap 中存在，且它们两者 equals 返回 true，则更新键值对，如果 K 的 hash 值在 HashMap 中存在，且它们两者 equals 返回 false，则插入链表的尾部（尾插法）或者红黑树中（树的添加方式）"
+        "content": "HashMap 底层是 hash 数组和单向链表实现，数组中的每个元素都是链表的表头，由 Node 内部类完成存储，Node类实现了 Map.Entry<K,V>接口。\\n\\n当存储对象时，将 K/V 键值传给 put() 方法：\n\n1、首先会计算出Key的hash值，key.hashCode()>>>16，用高16位和低16位进行异或运算（二进制按位比较，如果相同则为 0，不同则为 1）。\n\n2、然后根据hash值计算出数组下标（跟数组长度进行与运算），将元素放入数组中，如果没有出现哈希冲突，则直接放入数组，如果出现哈希冲突，则以链表的方式放在链表最后（jdk1.7使用头插法，也就是放在链表最前面，jdk1.8使用了尾插法，放在了链表最后面）。\n\n3、如果链表的长度超过8，并且数组长度大于64，就把链表转成红黑树，如果链表长度低于6，就把红黑树转回链表；\n\n4、如果数组中键值对的总量超过了阈值（负载因子0.75），会进行动态扩容。\n"
+      },
+      {
+        "title": "hash冲突的4种解决方案",
+        "content": "1、对于相同的哈希值，使用链表进行连接。（HashMap使用此法，处理冲突简单，无堆积现象，删除结点的操作易于实现，查询时效率较低）\n\n2、提供多个哈希函数，如果第一个哈希函数计算出来的key的哈希值冲突了，则使用第二个哈希函数计算key的哈希值。（优点：不易产生聚集。缺点：增加了计算时间）\n\n3、建立公共溢出区，将哈希表分为基本表和溢出表两部分，凡是和基本表发生冲突的元素，一律填入溢出表。\n\n4、开放定址法， 当关键字key的哈希地址p =H（key）出现冲突时，以p为基础，产生另一个哈希地址p1，若p1仍然冲突，再以p为基础，产生另一个哈希地址p2，…，直到找出一个不冲突的哈希地址pi ，将相应元素存入其中。"
       },
       {
         "title": "ConcurrentHashMap 原理",

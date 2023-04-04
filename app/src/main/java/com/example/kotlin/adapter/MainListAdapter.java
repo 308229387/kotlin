@@ -14,7 +14,7 @@ import com.example.kotlin.R;
 import com.example.kotlin.activity.MainListActivity;
 import com.example.kotlin.data.MainBean;
 import com.example.kotlin.data.QABean;
-import com.example.kotlin.utils.ToastUtil;
+import com.example.kotlin.views.dialog.RememberDialog;
 import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
@@ -145,21 +145,24 @@ public class MainListAdapter extends BaseExpandableListAdapter {
         childViewHolder.learn_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showTextViewPrompt(childPosition + "");
-                QABean tmp = Hawk.get(data.get(groupPosition).getData().get(childPosition).getTitle(), new QABean());
-                int tag = 0;
-                if (tmp.getCount() == 0) {
-                    tag = 1;
-                } else if (tmp.getCount() == 1) {
-                    tag = 2;
-                } else if (tmp.getCount() == 2) {
-                    tag = 3;
-                } else if (tmp.getCount() > 2) {
-                    tag = 4;
-                }
-                tmp.setCount(tmp.getCount() + 1);
-                Hawk.put(data.get(groupPosition).getData().get(childPosition).getTitle(), tmp);
-                notifyDataSetChanged();
+
+                RememberDialog dialog = new RememberDialog(context);
+                dialog.setListener(new RememberDialog.RememberDialogCallBack() {
+                    @Override
+                    public void result() {
+                        QABean tmp = Hawk.get(data.get(groupPosition).getData().get(childPosition).getTitle(), new QABean());
+                        tmp.setCount(tmp.getCount() + 1);
+                        Hawk.put(data.get(groupPosition).getData().get(childPosition).getTitle(), tmp);
+                        notifyDataSetChanged();
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    public void cancel() {
+                        dialog.dismiss();
+                    }
+                }).show();
+
             }
         });
         return convertView;

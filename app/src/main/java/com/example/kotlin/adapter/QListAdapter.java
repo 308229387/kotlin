@@ -94,11 +94,9 @@ public class QListAdapter extends BaseQuickAdapter<NormalBean.DataInFo, BaseView
                     break;
                 case 2:
                     recordText.setBackgroundColor(Color.parseColor("#FFD700"));
-
                     break;
                 case 3:
                     recordText.setBackgroundColor(Color.parseColor("#006400"));
-
                     break;
                 default:
                     recordText.setBackgroundColor(Color.parseColor("#00FF00"));

@@ -14,15 +14,22 @@
         <entry key="app/src/main/res/drawable/emotion_drawable_selector.xml" value="0.12222222222222222" />
         <entry key="app/src/main/res/drawable/emotion_radio_checked.xml" value="0.12222222222222222" />
         <entry key="app/src/main/res/drawable/go_buy_back.xml" value="0.38358974358974357" />
+        <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.16944444444444445" />
+        <entry key="app/src/main/res/drawable/switch_track_off.xml" value="0.16944444444444445" />
+        <entry key="app/src/main/res/drawable/switch_track_on.xml" value="0.16944444444444445" />
+        <entry key="app/src/main/res/drawable/switch_track_selector.xml" value="0.16944444444444445" />
         <entry key="app/src/main/res/drawable/toast_bg.xml" value="0.21388888888888888" />
+        <entry key="app/src/main/res/layout/activity_add_view.xml" value="0.1887031408308004" />
         <entry key="app/src/main/res/layout/activity_algorithm_detail.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/activity_algorithm_list.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/activity_assets.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/activity_comment_multi.xml" value="0.17481884057971014" />
+        <entry key="app/src/main/res/layout/activity_common.xml" value="0.1887031408308004" />
         <entry key="app/src/main/res/layout/activity_custom_viewpager.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/activity_fragment_layout.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/activity_include_layout.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/activity_j_d_search.xml" value="0.3734375" />
+        <entry key="app/src/main/res/layout/activity_md5.xml" value="0.20652173913043478" />
         <entry key="app/src/main/res/layout/activity_persion_warning.xml" value="0.18161094224924013" />
         <entry key="app/src/main/res/layout/activity_pick_file.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/activity_q_a_list.xml" value="0.2791666666666667" />
@@ -36,6 +43,7 @@
         <entry key="app/src/main/res/layout/list_items.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/load_more_layout.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/main_list.xml" value="0.2203125" />
+        <entry key="app/src/main/res/layout/one_add_fragment_layout.xml" value="0.15579710144927536" />
         <entry key="app/src/main/res/layout/q_a_list_items.xml" value="0.3278985507246377" />
         <entry key="app/src/main/res/layout/q_list_item.xml" value="0.25181159420289856" />
         <entry key="app/src/main/res/layout/q_list_layout.xml" value="0.21979166666666666" />
