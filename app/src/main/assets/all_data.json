@@ -541,11 +541,19 @@
       },
       {
         "title": "HashMap与HashTable的区别",
-        "content": "最大的不同是hashtable是线程安全的，里面方法是synchronized，而HashMap是非线程安全的。所以HashMap性能更好些。也正是因为HashTable性能弱些，所以它用的是头插法，否则还要遍历到链表的尾部插入。\n\nHashtable中，key和value都不允许出现null值。HashMap中key和value都可以为null\n\n另外他们初始容量不一样，HashTable是11，但HashMap是16，而且HashTable没有红黑数支持，HashMap它数组到64，链表长度到8就会转成红黑数，还有扩容，HashTable是2倍+1，而HashMap是变为2位。\n\n再有就是哈希值的计算不同，HashTable直接使用对象的hashCode。而HashMap重新计算hash值(高16位异或低16位)，并且HashMap 支持key 为null 就是在这里的"
+        "content": "1、最大的不同是hashtable是线程安全的，里面方法是synchronized，而HashMap是非线程安全的。所以HashMap性能更好些。\n\n2、key和value是否允许为null值：Hashtable中，key和value都不允许出现null值。HashMap中key和value都可以为null\n\n3、起始容量不同，HashTable是11，但HashMap是16\n\n4、HashMap有红黑数支持，它数组到64，链表长度到8就会转成红黑数。HashTable没有"
+      },
+      {
+        "title": "HashMap和HashSet的区别",
+        "content": "最主要的是用法不同,，HashMap通过put()方法存放key-value键值对，而HashSet，使用add（）方法将元素放入到set中\n\nHashMap：其实现了Map接口，HashMap存储键值对，使用put( )方法将元素放入到Map中，HashMap使用键对象来计算hashcode值，HashMap比较快，因为是使用唯一的键来获取对象。\n\nHashSet：实现了Set接口，hashSet仅仅存储对象，使用add（）方法将元素放入到set中，hashset使用成员对象来计算hashcode值，对于两个对象来说，hashcode可能相同，所以equal方法用来判断对象的相等性，如果两个对象不同的话，那么返回false，hashSet较hashMap来说较慢。\n\nHashSet<String> HS1 = new HashSet<String>();\n\nHS1.add(\"first”);//增加\n\nHS1.remove(\"first”);//删除\n\nHS1.contains(\"first”)；//判断是否存在\n\nHS1.clear()；//全部删除"
       },
       {
         "title": "ArrayList和LinkedList的区别，以及应用场景",
         "content": "Array是基于索引(index)的数据结构，它使用索引在数组中搜索和读取数据是很快的。Array获取数据的时间复杂度是O(1),但是要删除数据却是开销很大的，因为这需要重排数组中后面的所有数据。最差情况是ON\n\nlinkedList是基于双链表的，他的特点就是插入和删除非常快，只需要改变相邻节点的指针就可以了，但他如果用来查询就很慢了，最差情况是ON，因为他需要一个一个去找。\n\n除此之外像ArrayList是数组结构，所以他的起始容量是10，当数组需要增长时，就会新增一个为原来1.5倍容量的新数组，然后把原数组的数据原封不动的复制到新数组中，再把新数组赋值给原来的数组对象就完成了。所以会有空间浪费的情况\n\n一般情况下，LinkedList的占用空间更大，因为每个节点要维护指向前后地址的两个节点，但也不是绝对，如果刚好数据量超过ArrayList默认的临时值时，ArrayList占用的空间也是不小的，因为扩容的原因会浪费将近原来数组一半的容量\n"
+      },
+      {
+        "title": "ArrayMap和HashMap的区别",
+        "content": "主要区别3点，查询速度、存储方式、扩容和收缩\n\n1、查询速度不同：ArrayMap相比传统的HashMap速度更慢，因为其查找方法是二分法，并且当删除或添加数据时，会对空间重新调整，可以说ArrayMap是牺牲了时间来换空间。\n\n2、存储方式不同：HashMap内部有一个HashMapEntry<K,V>[ ]对象，而ArrayMap是一个<key,value>映射的数据结构，内部使用两个数组进行数据存储，一个数组记录key的hash值，另一个数组记录value值。\n\n3、添加数据时扩容的处理不一样：HashMap进行了new操作，重新创建对象，开销很大，而ArrayMap用的是copy数据，效率相对高很多。ArrayMap提供了数组收缩的功能，在clear或remove之后，会重新收缩数组，释放空间。\n\n"
       },
       {
         "title": "数组和链表的区别",
