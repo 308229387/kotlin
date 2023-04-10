@@ -353,6 +353,10 @@
         "content": "在 Thread 类里有一个枚举类型 State，定义了线程的几种状态，分别有：\n\nNew: new 一个实例出来，线程就进入了初始状态。\n\nRunnable: 就绪状态，像调用start() 、sleep（）结束、他线程 join() 结束都会进入runnable。线程调度程序从可运行池中选择一个线程作为当前线程时线程所处的状态\n\nBlocked： 没有获取到锁被阻塞的状态\n\nWAITING： 处于这种状态的线程不会被分配 CPU 执行时间，它们要等待被显式地唤醒，否则会处于无限期等待的状态。\n\nTIMED_WAITING： 处于这种状态的线程不会被分配 CPU 执行时间，在达到一定时间后它们会自动唤醒。\n\nTERMINATED： 当线程的 run() 方法完成时，或者主线程的 main() 方法完成时，我们就认为它终止了。这个线程对象也许是活的，但是，它已经不是一个单独执行的线程。线程一旦终止了，就不能复生。"
       },
       {
+        "title": "如何控制某个方法允许并发访问线程的个数",
+        "content": "在Java中常使用Semaphore（信号量）来进行并发编程，Semaphore控制的是线程并发的数量\n\n1、实例化一个Semaphore对象，如Semaphore semaphore = newSemaphore(5,true) ,其创建了对象semaphore，并初始化了5个信号量，即最多允许5个线程并发访问\n\n2、在执行的任务中，调用semaphore的acquire（）方法请求一个信号量，这时信号量个数就减1，（一旦没有可使用的信号量，再次请求就会阻塞），来执行任务\n\n3、执行完任务，调用semaphore的release（）方法释放一个信号量此时信号量的个数就会加1 。\n\n    public static void main(String[] args) {\n        Semaphore semaphore = new Semaphore(3);\n\n        for (int i = 0; i < 5; i++) {\n            new Thread(() -> {\n                try {\n                    semaphore.acquire();\n                } catch (InterruptedException e) {\n                    e.printStackTrace();\n                }\n\n                try {\n                    System.out.println(Thread.currentThread().getName() + \" start...\");\n                    TimeUnit.SECONDS.sleep(1);\n                    System.out.println(Thread.currentThread().getName() + \" end...\");\n                } catch (InterruptedException e) {\n                    e.printStackTrace();\n                } finally {\n                    semaphore.release();\n                }\n            }).start();\n        }\n    }\n"
+      },
+      {
         "title": "如何让线程按顺序执行",
         "content": "可以用线程类的join()方法，join()方法的作用，是等待这个线程结束；在A线程中调用了B线程的join()方法时，表示只有当B线程执行完毕时，A线程才能继续执行。如果A线程中掉用B线程的join(10)，则表示A线程会等待B线程执行10毫秒，10毫秒过后，A、B线程并行执行。join(0)的意思不是A线程等待B线程0秒，而是A线程等待B线程无限时间，直到B线程执行完毕.\n\nnewSingleThreadExecutor()方法创建的线程池是一个基于FIFO先进先出的队列，也就是说，当我们依次将thread1，thread2，thread3加入队列中时，实际在就绪状态的只有thread1这个线程，thread2，thread3则会被添加到队列中等待，当thread1执行完毕后，则会按进入队列的先后顺序执行队列中的其他线程。"
       },
@@ -366,7 +370,7 @@
       },
       {
         "title": "线程创建方式",
-        "content": "创建线程主要有种方式，最后都是start();\n\n一、继承Thread类，覆写run方法。\n\nclass ThreadA extends Thread{\n        @Override\n        public void run() {\n           …..\n        }}}\n\nThreadA t = new Thread;  \nt.start();  \n\n\n二、实现Runnable接口，重写run方法\n\nclass runnable implements Runnable {\n         @Override\n         public void run() {\n  …..\n         }}\n\nMyRunnable runnable = new MyRunnable();\nnew Thread(runnable).start();\n\n\n\n3、还有一种是实现 Callable 接口， Callable接口是Runnable接口的增强版本，需要利用TaskFutrue来创建有返回线程\nclass CallableThread implements Callable<String> {\u2028 @Override\u2028 public String call() throws Exception {\u2028  ….\u2028 }}\n\nCallableThread ct1 = new CallableThread();\nFutureTask<String> task1 = new FutureTask<String>(ct1);\nThread thread1 = new Thread(task1);  //创建第一个线程\u2028thread1.start(); //启动第一个线程\u2028System.out.println(\"task1 get value: \"+task1.get())\u2028"
+        "content": "创建线程主要有种方式，最后都是start();\n\n一、继承Thread类，覆写run方法。\n\nclass ThreadA extends Thread{\n        @Override\n        public void run() {\n           …..\n        }}}\n\nThreadA t = new Thread;  \nt.start();  \n\n\n二、实现Runnable接口，重写run方法\n\nclass runnable implements Runnable {\n         @Override\n         public void run() {\n  …..\n         }}\n\nMyRunnable runnable = new MyRunnable();\nnew Thread(runnable).start();\n\n\n\n3、还有一种是实现 Callable 接口，使用Callable和Future创建线程， Callable接口是Runnable接口的增强版本，需要利用TaskFutrue来创建有返回线程\nclass CallableThread implements Callable<String> {\u2028 @Override\u2028 public String call() throws Exception {\u2028  ….\u2028 }}\n\nCallableThread ct1 = new CallableThread();\nFutureTask<String> task1 = new FutureTask<String>(ct1);\nThread thread1 = new Thread(task1);  //创建第一个线程\u2028thread1.start(); //启动第一个线程\u2028System.out.println(\"task1 get value: \"+task1.get())\u2028"
       },
       {
         "title": "终止线程",
@@ -452,15 +456,23 @@
     "data": [
       {
         "title": "volatile原理",
-        "content": "一、volatile可见性的实现就是借助了CPU的lock指令，通过在写volatile的机器指令前加上lock前缀，使写volatile具有以下两个原则：\n\n1、写volatile时处理器会将缓存写回到主内存。\n\n2、一个处理器的缓存写回到内存会导致其他处理器的缓存失效。\n\n\n二、正常new对象顺序1.分配对象内存空间 2.初始化对象 3.赋值给引用   JVM在执行过程中为了保证效率等因素可能会进行重排序，如顺序变为132。\n\n禁止指令重排序是通过加内存屏障来实现的。JMM为volatile加内存屏障有以下4种情况：写volatile与后面的写操作重排序、写volatile与后面的读操作重排序，读volatile与后面的读操作重排序、防止读volatile与后面的写操作重排序。\n\n在每个volatile写操作的前面插入一个StoreStore屏障，防止写volatile与后面的写操作重排序。\n\n在每个volatile写操作的后面插入一个StoreLoad屏障，防止写volatile与后面的读操作重排序。\n\n在每个volatile读操作的后面插入一个LoadLoad屏障，防止读volatile与后面的读操作重排序。\n\n在每个volatile读操作的后面插入一个LoadStore屏障，防止读volatile与后面的写操作重排序。"
+        "content": "一、volatile可见性的实现就是借助了CPU的lock指令，通过在写volatile的机器指令前加上lock前缀，使写volatile具有以下两个原则：\n\n1、写volatile时处理器会将缓存写回到主内存。\n\n2、一个处理器的缓存写回到内存会导致其他处理器的缓存失效。\n\n\n二、正常new对象顺序1.分配对象内存空间 2.初始化对象 3.赋值给引用   JVM在执行过程中为了保证效率等因素可能会进行重排序，如顺序变为132。\n\n禁止指令重排序是通过加内存屏障来实现的。JMM为volatile加内存屏障有以下4种情况：写volatile与后面的写操作重排序、写volatile与后面的读操作重排序，读volatile与后面的读操作重排序、防止读volatile与后面的写操作重排序。\n\n在每个volatile写操作的前面插入一个StoreStore屏障，防止写volatile与后面的写操作重排序。\n\n在每个volatile写操作的后面插入一个StoreLoad屏障，防止写volatile与后面的读操作重排序。\n\n在每个volatile读操作的后面插入一个LoadLoad屏障，防止读volatile与后面的读操作重排序。\n\n在每个volatile读操作的后面插入一个LoadStore屏障，防止读volatile与后面的写操作重排序。\n\n\n原子性理解：原子是世界上最小的物质单位，具有不可分割性，比如a=0，这个操作是不可分割的，那么我们就会说这个操作是原子操作，再如a++，这个操作实际上是a=a+1，是可以分割的，所以他不是一个原子操作，非原子操作都会存在线程安全的问题，需要使用synchronized同步技术来使其变成一个原子操作，一个操作是原子操作，那么我么称它具有原子性。"
       },
       {
         "title": "什么是死锁？死锁的四个条件，如何避免死锁",
         "content": "死锁：是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象。一旦出现死锁，整个程序既不会发生任何异常，也不会给出任何提示，只是所有线程都处于阻塞状态，无法继续。\n\n\n四个条件\n1、互斥条件：一个资源每次只能被一个进程使用，即在一段时间内某资源仅为一个进程所占有。此时若有其他进程请求该资源，则请求进程只能等待。\n\n2、请求与保持条件：进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源已被其他进程占有，此时请求进程被阻塞，但对自己已获得的资源保持不放。\n\n3、不可剥夺条件:进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走，即只能由获得该资源的进程自己来释放（只能是主动释放)。\n\n4、循环等待条件:若干进程间形成首尾相接循环等待资源的关系\n\n\n如何避免\n\n1、合理分配资源，做好解耦工作，避免线程交叉竞争\n\n2、锁的范围尽可能的要小，能用同步代码块就别用方法锁和类锁\n\n3、避免多次上锁，注意加锁顺序\n\n4、使用锁时，可以多考虑些可操作的锁，比如可中断锁，以及在上锁前判断下上锁状态等。\n"
       },
       {
-        "title": "sleep、wait、notify、notifyAll区别",
-        "content": "sleep、wait最大的不同是在等待时wait会释放锁，而sleep一直持有锁。Wait通常被用于线程间交互，sleep通常被用于暂停执行。\n\n1. sleep是Thread类的静态方法,wait是Object类中定义的方法\n2. Thread.sleep不会导致锁行为的改变，如果当前线程是拥有锁的，那么Thread.sleep不会让线程释放锁,而wait 会释放当前线程锁\n3. Thread.sleep需要设定休眠时间.Object.wait也可以设定wait时间,或者通过线程执行notify/notifyAll进行唤醒\n\nnotify与notifyAll\n\n1. notify唤醒一个线程,如果有多线程在wait,可能是随机一个\n\n2. notifyAll唤醒所有在等待的线程,\n\n3. 使用中尽量使用notifyAll,因为notify容易导致线程死锁(nofity只唤醒一个,其他等待的线程没有唤醒)"
+        "title": "sleep、wait区别",
+        "content": "\n1.最大的不同是在等待时wait会释放锁，而sleep一直持有锁。\n\n2. sleep是Thread类的静态方法，通常被用于暂停执行。wait是Object类中定义的方法，一般用于线程间交互\n\n3. Thread.sleep需要设定休眠时间.Object.wait也可以设定wait时间,或者通过线程执行notify/notifyAll进行唤醒\n\nObject obj = new Object();\nThread threadA = new Thread(() -> {\u2028\tsynchronized (obj) {\u2028\t\t//获取到了锁，这区间，别的线程无法获取\n\t\tthreadA.sleep(5);\n\n\t\tobj.wait();\n\t\t//此时，就可以别的线程就可以获取obj的锁了\n\t}\n}\n\n\n"
+      },
+      {
+        "title": "notify、notifyAll区别",
+        "content": "notify与notifyAll\n\n1. notify唤醒一个线程,如果有多线程在wait,可能是随机一个\n\n2. notifyAll唤醒所有在等待的线程,\n\n3. 使用中尽量使用notifyAll,因为notify容易导致线程死锁(nofity只唤醒一个,其他等待的线程没有唤醒)\"\n\n//使用一次notify只能唤醒一个线程；\n//使用一次notifyAll可唤醒所有的线程\nobject.notify();               \nobject.notifyAll();"
+      },
+      {
+        "title": "对Java中wait/notify关键字的理解",
+        "content": "wait()、notify()、notifyAll()都不属于Thread类，而是属于Object基础类，也就是每个对象都有wait( )、notify（）、notifyAll( )的功能，因为每个对象都有锁，锁是每个对象的基础。\n\nwait（）:会把持有该对象线程的对象控制权交出去，然后处于等待状态。\n\nnotify（）:会通知某个正在等待这个对象的控制权的线程可以运行。\n\nnotifyAll( )：会通知所有等待这个对象的控制权的线程继续运行，如果有多个正在等待该对象控制权时，具体唤醒哪个线程，就由操作系统进行调度。"
       },
       {
         "title": "sleep(0)的作用",
@@ -477,6 +489,10 @@
       {
         "title": "lock 原理",
         "content": "lock的存储结构：一个是表示（锁）状态的int变量、一个是双向链表的队列（用于存储等待中的线程）。\n\n线程A取得了锁，把 state原子性+1,这时候state被改为1，这时线程B请求锁，线程B无法获取锁，生成节点进入排队\n\n只有线程A把此锁全部释放了，状态值减到0了，其他线程才有机会获取锁。当A把锁完全释放后，会通知队列唤醒B线程节点，使B可以再次竞争锁。如果是公平锁，就是按照链表顺序唤醒，如果是非公平锁，就会有竞争。获取锁成功后，会将该线程的节点从队列中删除"
+      },
+      {
+        "title": "读写锁ReentrantReadWriteLock",
+        "content": "①ReentrantLock有try Lock方法，如果锁被其他线程持有，返回false，可以避免形成死锁\nif (lock.tryLock(1, TimeUnit.SECONDS))\n\n②创建时可自定义是否是公平锁，也就是可抢占的，ReentrantLock默认是非公平锁, 可以指定为公平锁new ReentrantLock(true)。\n在线程获取锁失败，进入阻塞队列时，先进入的会在锁被释放后先获得锁。这样的获取方式就是公平的。一般不设置ReentrantLock为公平的, 会降低并发度\nSynchronized底层的Monitor锁就是不公平的, 和谁先进入阻塞队列是没有关系的。\n\n③ReentrantReadWriteLock,用于读多写少，且不需要互斥的场景大大提高性能；\n\n读写锁有以下三个重要的特性：\n（1）公平选择性：支持非公平（默认）和公平的锁获取方式，吞吐量还是非公平优于公平。\n（2）重进入：读锁和写锁都支持线程重进入。\n（3）锁降级：遵循获取写锁、获取读锁再释放写锁的次序，写锁能够降级成为读锁。\n\n\njava提供的关键字synchronized或者实现了Lock接口的ReentrantLock。它们都是独占式获取锁，也就是在同一时刻只有一个线程能够获取锁。而在一些业务场景中，大部分只是读数据，写数据很少，而如果在这种业务场景下，依然使用独占锁的话，很显然这将是出现性能瓶颈的地方。针对这种读多写少的情况，java还提供了另外一个实现Lock接口的ReentrantReadWriteLock(读写锁)。\n\nReadWriteLock接口只有两个核心方法\nLock readLock();    Lock writeLock();\n\n\nReadWriteLock readWriteLock = new ReentrantReadWriteLock()\nreadWriteLock.writeLock().lockInterruptibly();\nreadWriteLock.writeLock().unlock();"
       },
       {
         "title": "volatile与synchronized区别",
