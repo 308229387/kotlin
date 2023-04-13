@@ -9,6 +9,9 @@
       {
         "title": "int和integer的区别",
         "content": "Integer是int提供的封装类，而int是java的基本数据类型，Integer的默认值是null，而int的默认值是0，声明Integer的变量需要实例化，而int不需要，Integer是对象，是一个引用指向这个对象，而int是基本数据类型，直接存储数据。"
+      },{
+        "title": "基础类型多少字节，取值范围多少",
+        "content": "计算机的基本单位：bit .　　一个bit代表一个0或1\n\n　　byte：1byte = 8bit // 1个字节是8个bit -2^7 ~ 2^7-1，即-128 ~ 127\n\n　　short：2byte(字节)  -2^15 ~ 2^15-1，即-32768 ~ 32767。\n\n　　int：4byte    -2^31 ~ 2^31-1，即-2147483648 ~ 2147483647\n\n　　long：8byte    -2^63 ~ 2^63-1\n\n　　float：4byte   末尾加F。（也可以不加F）\n\n　　double：8byte\n\n　　boolean：1byte\n\n　　char：2byte"
       },
       {
         "title": "抽像类与接口的差别",
@@ -71,6 +74,10 @@
         "content": "也是乐观锁的一种吧，先取当前值i，然后计算结果值j，再从主内存的值与初始值比较，如果相等，就把结果值赋值。这里还会涉及个ABA的问题，我在取值计算的过程中，有别的线程把内存的值改动了，然后又改回去了，但CAS却无法辨别。"
       },
       {
+        "title": "深拷贝与浅拷贝",
+        "content": "浅拷贝：如果属性是基本类型，拷贝的就是基本类型的值,如果属性是引用类型，拷贝的就是内存地址值，是共用一个对象的。\n\n深拷贝：引用和对象一起拷贝时即是深拷贝,因为内存地址要动态创建了而不是共同一份了，所以深拷贝比浅拷贝的速度慢而且开销大"
+      },
+      {
         "title": "常见的运行时错误",
         "content": "1、NullPointerException - 空指针引用异常\n\n2、ClassCastException - 类型强制转换异常。\n\n3、IndexOutOfBoundsException - 下标越界异常\n\n4、IllegalArgumentException - 传递非法参数异常。\n\n5、ArithmeticException - 算术运算异常\n6、ArrayStoreException - 向数组中存放与声明类型不兼容对象异常\n7、NegativeArraySizeException - 创建一个大小为负数的数组错误异常\n8、NumberFormatException - 数字格式异常\n9、SecurityException - 安全异常\n10、UnsupportedOperationException - 不支持的操作异常"
       }
@@ -79,6 +86,14 @@
   {
     "name": "系统架构",
     "data": [
+      {
+        "title": "Android Context",
+        "content": "ContextImpl：其实最核心的类就是ContextImpl类（在我们用IDE查看Context继承关系的时候，我们是不能直接看到ContextImpl这个类的，它有2700，而我们搜的只有个99行的精简类），它继承Context抽象类，实现了Context类中的抽象方法，它为Activity和其他应用程序组件提供基本上下文对象，应用中使用 Context时候的方法就是它实现的。\n\nContextWrapper：ContextWrapper继承Context抽象类，作为Context类的包装类，其内部维护了一个Context类型的成员变量mBase，mBase最终会指向一个ContextImpl对象，ContextWrapper的方法其内部依赖mBase，ContextWrapper是Context类的修饰类(装饰器模式)，真正的实现类是 ContextImpl，ContextWrapper 里面的方法调用也是调用 ContextImpl 里面的方法。\n\nContextThemeWrapper： ContextThemeWrapper继承ContextWrapper，因此也拥有一个Context类型的成员变量mBase，mBase最终会指向一个ContextImpl对象，它的一个直接子类就是 Activity，所以Activity也就拥有了Context提供的所有功能。\n\nContext类型：最常用的Activity，Service，Application都是Context的子类，Context本身是一个抽象类，它有一个实现类ContextImpl。和一个包装类ContextWrapper。\nContextWrapper的子类有常用的Application,Service，以及一个和主题相关的ContextThemeWrapper。ContextThemeWrapper的子类有Activity。\n\n\n\n1.Application：继承ContextWrapper，因此也拥有一个Context类型的成员变量mBase，mBase最终会指向一个ContextImpl对象，ContextImpl是Context的具体实现类，所以Application也就拥有了Context提供的所有功能。\n\n2.Service：继承ContextWrapper，因此也拥有一个Context类型的成员变量mBase，mBase最终会指向一个ContextImpl对象，ContextImpl是Context的具体实现类，所以Service也就拥有了Context提供的所有功能。\n\n3.Activity：继承ContextThemeWrapper，ContextThemeWrapper继承ContextWrapper，因此也拥有一个Context类型的成员变量mBase，mBase最终会指向一个ContextImpl对象，ContextImpl是Context的具体实现类，所以Activity也就拥有了Context提供的所有功能。"
+      },
+      {
+        "title": "Context 作用域",
+        "content": "作用域：application   activity   sevice   (recommend推荐）\n\nshowDialog              n   y   n\nstartActivity             nr  y   nr\nLayoutInflation        nr  y   nr\nSrtart a service       y   y   y\nSend a broadcast   y   y   y\nRegist brodcast reciver  y   y   y\nLoad resouce          y   y   y\n\n 只有 Activity 显示界面，正因为如此，Activity 继承的是 ContextThemeWrapper 提供一些关于主题，界面显示的能力，间接继承了 ContextWrapper ；凡是跟 UI 有关的，都应该用 Activity 作为 Context 来处理，否则要么会报错，要么 UI 会使用系统默认的主题。\n"
+      },
       {
         "title": "B端项目架构",
         "content": "我们的项目整体来看，还是采用的分层的架构思想，其目的是层次的解耦，提高项目的可维护性、可扩展性。\n\n最底层，也是支持业务流转的最核心数据，包括店铺的本地数据、用户的账密、提醒记录，后期可能还会有数据流的本地存储、持久化的使用\n\n在其上层，主要是业务的流转、指令的派发、还数据解析之类的行为操作\n\n那为他们来做支撑的，是通过组件化形式接入的第方工具库，像 Retrofit + RxJava ，还有Gson、Glide、Eventbus等等\n\n除此之外，还有需要用到的第三方服务，它主要是逻辑行为的延伸，比如支付、性能分析、推送。。。。\n\n最上层的，也就是业务功能了，是通过模块化来进行管理的，比如店铺相关的创建店铺、详情信息、地理位置，还有二手市场相关的电子、物品、用品等等，其他还有房屋租赁、生活服务等等。\n\n最后还有通用模块，会贯穿整个项目线，比如检测登陆、Utils、落地页、setting"
@@ -141,8 +156,8 @@
         "content": "程序在运行时，一些设备的配置可能会发生改变，如：横竖屏切换、键盘的可用性等这样的事情发生的时候，activity在没有配置android:configChanges属性时会重新启动\n生命周期：onSaveInstanceState-->onPause-->onStop-->onDestroy-->onCreate-->onStart-->onRestoreInstanceState-->onResume\n\n但如果给configChanges配置了orientation|keyboardHidden|screenSize这些属性后，再发生屏幕改变会调用onConfigurationChanged方法，我们可以通过Configuration里的orientation属性判断是横向还是纵向。\n\n onNewIntent 什么时候调用\n 如果此次启动不创建该Activity的新实例,则系统会调用原有实例的onNewIntent()方法来处理此intent"
       },
       {
-        "title": "setContentView过程",
-        "content": "待处理"
+        "title": "activity页面创建的步骤，setContentView()流程",
+        "content": "在Activity创建时调用attach方法，attach方法中会调用PolicyManager.makeNewWindow()，创建一个PhoneWindow，继承自window类（每一个Activity都有且仅有一个Window对象），\n\n然后在phoneWindow中，构建mDecor对象，也就是DecorView，这是整个窗口的顶层视图，它主要包含了Title和Content 两个view区域，Title区域就是我们的标题栏，Content View区域就是显示我们xml布局内容中的区域。\n\n通过setContentView(R.layout.xxx)方法把布局填充起来。"
       },
       {
         "title": "fragment生命周期",
@@ -312,6 +327,10 @@
         "content": "实现：只需要添加 android:process 的属性即可，属性名可以自定义，相同的属性名的进程在同一个里面运行。\n\n1 . 如果android:process的值以冒号开头，“:”的含义是要在当前进程名前面加上包名，那么该进程就是私有进程，其他应用的组件不可以和它跑在同一个进程中。\n\n2 . android:process=“xxx.xxx.xxxx.xxx” 完整的命名方式，或点开头的，属于全局进程，其它应用通过ShareUID方式可以和它跑在同一个进程中。\n\nShareUserId的作用，数据共享、调用其他程序资源。在manifest里可以配置android:sharedUserId=\"com.mythou.share\""
       },
       {
+        "title": "并发和并行的区别及理解",
+        "content": "并发（concurrency）：把任务在不同的时间点交给处理器进行处理。在同一时间点，任务并不会同时运行。\n\n并行（parallelism）：把每一个任务分配给每一个处理器独立完成。在同一时间点，任务一定是同时运行。\n\n并发不是并行。并行是让不同的代码片段同时在不同的物理处理器上执行。并行的关键是同时做很多事情，而并发是指同时管理很多事情，这些事情可能只做了一半就被暂停去做别的事情了。\n\n在单核的机器上，“多进程”并不是真正多个进程同时执行，而是通过CPU时间分片，操作系统快速在进程间切换而模拟出来的多进程，我们通常将这种情况称为并发，也就是多个进程的运行行为是“一并发生”的，但不是同时执行的，因为CPU核数的限制（CPU和通用寄存器只有有一套），严格来说，同一时刻只能存在一个进程的上下文。\n\n但在多核CPU上，能真正实现多个进程并行执行，这种情况叫做并行，因为多个进程是真正“一并执行的”(具体多少个进程可以并行执行取决于CPU的核数)，所以可知，并发是一个比并行更加宽泛的概念，在单核情况下，并发只是并发，而在多核情况下，并发就变为并行了"
+      },
+      {
         "title": "多进程的通信",
         "content": "名称 优点 缺点 使用场景   \n\nBundle 简单易用 只能传输Bundle支持的数据类型 四大组件的进程间通信\n\nAIDL 功能强大，支持一对多的并发通信，支持实时通信 使用较复杂，需要处理好线程同步 一对多通信且有RPC需求\n\nMessenger 功能一般，支持一对多的穿行通信，支持实时通信 不能很好处理并发现象，不支持RPC，只能传输Bundle支持的数据类型 低并发的一对多即时通信，无RPC需求\n\nContentProvider 数据访问方面功能强大，支持一对多并发数据共享 受约束的AIDL，主要提供数据源的CRDU操作 一对多的进程间的数据共享\n\n文件共享 简单易用 不适合高并发场景，无法做到进程间的及时通信 没有并发的情形，交换简单的数据\n\nSocket 功能强大，可通过网络传输字节流，支持一对多的并发实时通信 繁琐，不支持直接的RPC 网络数据交换\n\n\nRPC：Remote Procedure Call (远程过程调用) \nIPC：Inter-Process Communication (进程间通信)\nAIDL：Android Interface Definition Languag(Android接口定义语言)   "
       },
@@ -322,6 +341,10 @@
       {
         "title": "介绍下Binder机制",
         "content": "因为Linux 内核与用户空间是隔离的，所以为了支持用户程序之间通讯，Android系统通过添加一个内核模块运行在内核空间，也就是LKM，用户程序就可以通过这个模块来作为桥梁，完成通信。\n\nBinder 通信采用 C/S 架构，包含 Client、 Server、 ServiceManager 以及 Binder 驱动，其中 ServiceManager 用于管理系统中的各种服务\n\n首先需要服务端向 ServiceManager 注册服务，注册的过程就是向 Binder 驱动的全局链表中插入服务端的信息，并缓存到 ServiceManager 中去，这样就有了服务端。\n\n有了服务端，客户端就可以通过 ServiceManager 拿到服务端的信息，并通过Binder驱动与服务端进程通信；"
+      },
+      {
+        "title": "介绍下mmp",
+        "content": "mmap是一种内存映射文件的方法，它将一个文件映射到进程的地址空间中，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。   android匿名共享内存与binder机制都有用到。\n\n1、用户进程调用内存映射函数库mmap，当前进程在虚拟地址空间中，寻找一段空闲的满足要求的虚拟地址。\n\n2、此时内核收到相关请求后会调用内核的mmap函数，注意，不同于用户空间库函数。内核mmap函数通过虚拟文件系统定位到文件磁盘物理地址，既实现了文件地址和虚拟地址区域的映射关系。 此时，这片虚拟地址并没有任何数据关联到主存中。\n\n注意，前两个阶段仅在于创建虚拟区间并完成地址映射，但是并没有将任何文件数据的拷贝至主存。真正的文件读取是当进程发起读或写操作时。\n\n3、进程的读或写操作访问虚拟地址空间这一段映射地址，现这一段地址并不在物理页面上。因为目前只建立了地址映射，真正的硬盘数据还没有拷贝到内存中，因此引发缺页中断。\n\n4、由于引发了缺页中断，内核则调用nopage函数把所缺的页从磁盘装入到主存中。\n\n5、之后用户进程即可对这片主存进行读或者写的操作，如果写操作改变了其内容，一定时间后系统会自动回写脏页面到对应磁盘地址，也即完成了写入到文件的过程。\n\n"
       },
       {
         "title": "进程和线程的区别",
@@ -344,6 +367,18 @@
   {
     "name": "线程",
     "data": [
+      {
+        "title": "同步与异步的区别",
+        "content": "同步就是当A请求一个资源的时候，这个资源正在被B使用，那么A就必须要等待，等到B使用完了A才能请求到。\n\n异步就是当A请求一个资源的时候，这个资源正在被B使用，A不需要等也可以请求到\n\n特点：所以从安全的角度出发，同步是安全的保险的，异步是不安全的，容易导致死锁，一个线程死掉就会导致整个进程崩溃，但是呢没有同步机制的话性能是会有提升的"
+      },
+      {
+        "title": "Java中任务调度",
+        "content": "那就单核处理器来讲（目前android手机大部分是八核的），如果有多个任务并发，处理器一个任务执行一小段时间后强制暂停去执行下一个任务，每个任务轮流执行，任务执行的一段时间叫做时间片，任务正在执行的状态叫做运行状态，任务执行一段时间后强制暂停去执行下一个任务，被暂停的任务就处于就绪状态，等待下一个属于他的时间片的到来，这样每个任务都可以得到执行，由于CPU的执行效率非常高，时间片非常短，在各个任务之间快速的切换，给人的感觉是多个任务在“同时执行”，这也即我们所说的并发"
+      },
+      {
+        "title": "讲一下线程间通信",
+        "content": "线程是CPU调度的最小单位（进程是CPU分配资源的最小单位），在Android中主线程是不能够做耗时的操作的，子线程是不能更新UI的\n\n而线程间的通信方式有很多，比如handler、广播、接口回掉等，在Android中主要使用handler，handler通过调用sendMessage方法，将保存好的消息发送到MessageQueue中，而Looper对象不断地调用loop方法，从MessageQueue中取出message，交给handler处理，从而完成线程间通信。"
+      },
       {
         "title": "为什么非 UI 线程不能更新 UI",
         "content": "因为一旦多线程抢着更新UI，那么界面将会乱套更新了，所以在Android中规定必须在主线程更新UI。\n\n他的原理是在根视图ViewRootImpl源码中的requestLayout方法中有个checkThread()方法，他在那做了个检测，如果非UI线程调用会报错。（ViewRootImpl对象是在onResume方法回调之后才创建）\n\nSurfaceView是一个特例。\nSurfaceView是存在于独立UI线程的，它拥有surface(表面)的canvas，在绘制时，可以通过加锁和解锁来绘制，所以当界面如果更新操作时间较长，而且数据量较大的话，一般采用SurfaceView方式更新屏幕，而少用View"
@@ -580,6 +615,10 @@
         "content": "HashMap的初始容量16，默认的负载因子大小为0.75，也就是说，当一个map填满了75%的bucket时候，将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，并将原来的对象放入新的bucket数组中。这个过程叫作rehashing，因为它调用hash方法找到新的bucket位置。\n\nArrayList初始是10，每次扩容是原来得1.5倍。数组进行扩容时，会将老数据中得元素重新拷贝一份道新的数组中，负载因子1\n\n\n初始容量 负载因子 扩容增量\nArrayList 10 1 0.5倍\nVector 10 1 1倍\nHashSet 16 0.75 1 倍\nHashMap 16 0.75 1 倍"
       },
       {
+        "title": "android 存储方式，及优缺点",
+        "content": "1 使用SharedPreferences存储数据\n\n特点：openFileInput()和openFileOutput()读取设备上的文件。\n\n优点：适用于存储大量的数据，可以存储图片、视频、文本等数据。\n\n缺点：如果采用内部存储的方式，存储过量的数据可能会导致内存的不足；如果采用外部sdcard存储的方式，删除或者卸载应用，相关的数据需要手动进行删除，比较麻烦。\n\n默认位置：/data/data/<包>/files/.。\n\n——————————\n\n2 文件存储数据\n\n特点：以XML格式将数据存储到设备。\n\n优点：简单、方便、轻量级、易理解。\n\n缺点：适用于存储少量的数据，并且数据的格式只能是基本的数据类型（int、float、long、boolean）、字符串类型（string），无法进行条件查询等操作。\n\nSharedPreferences是一个轻量级的存储类，特别适合用于保存软件配置参数，其背后是用xml文件存放数据，文件存放在/data/data//shared_prefs目录下。\n\n——————————\n\n3 SQLite数据库存储数据\n\n特点：运算速度快，占用资源少，还支持基本SQL语法。\n\n优点：适合存储结构化数据、轻量级、安全性、隔离性、独立性。\n\n缺点：并发的读写性能不好。\n\n——————————\n\n4 使用ContentProvider存储数据\n\n特点：ContentProvider主要用于不同应用程序之间共享数据，ContentProvider更好的提供了数据共享接口的统一性，使不同应用共享数据更规范和安全。\n\n优点：能够实现所有应用程序共享的一种数据存储方式，可以存储音频，视频，图片和通讯录等。\n\n缺点：不能单独使用，必须与其他存储方式结合使用。\n\n——————————\n\n5 网络存储数据\n\n特点：通过网络上提供的存储空间来上传(存储)或下载(获取)我们存储在网络空间中的数据信息\n\n优点：无需考虑内存的影响。\n\n缺点：受网络的状态的影响、需要耗费流量等成本。\n"
+      },
+      {
         "title": "介绍下SP",
         "content": "SP作为Android存储数据方式之一，它是轻量级存储，只支持java基本数据类型，且在进程内可以进行数据共享。 \n\n之所以说SharedPreference是一种轻量级的存储方式，是因为它在创建的时候会一次性把整个文件全部加载进内存，如果SharedPreference文件比较大，会导致阻塞线程、产生大量临时对象引起GC、key和value会占用大量内存，非常消耗资源\n\n commit会立即并同步保存数据。\n\napply则异步保存数据，从而提高了性能。如果你不关心它的返回类型，则apply优先于commit"
       },
@@ -600,8 +639,8 @@
         "content": "所谓的序列化指的是把对象转换成字节流的过程，可以保存到文件中，也可以用来网络传输数据。\n反序列化既是相反的过程，可以从我们的文件中把字节流读出来，转换为对象供我们使用。\n\n序列化有两个方法，一是实现Serializable接口（是JavaSE本身就支持的），一是实现Parcelable接口（是Android特有功能，效率比实现Serializable接口高效，可用于Intent数据传递，也可以用于进程间通信（IPC））。实现Serializable接口非常简单，声明一下就可以了，但在序列化的时候会产生大量的临时变量，内部会执行大量的i/o操作，效率很低。而实现Parcelable接口稍微复杂一些，但效率更高，不过有个插件，Parcelable Code Generator，一键生成，也挺好用的。另外在内存中读写，但对象不能保存到磁盘中，因为Parcelable在对数据做持久化上不是太好，或是在外界有变化的情况下不能很好的保证数据的持续性，或是多版本版本兼容问题\n\nParcelable用法\n\n1）implements Parcelable\n2）实现接口中的两个方法，一个是描述内容的，返回0就行。还有个是重写writeToParcel方法，将你的对象序列化为一个Parcel对象，把属性都写入Parcel对象中\n4）实例化静态内部对象CREATOR实现接口Parcelable.Creator，实例化CREATOR时要实现其中的两个方法，其中createFromParcel的功能就是从Parcel中读取我们的对象（另一个是供外部类反序列化本类数组使用）\n\n\n调用方法\n\n存：bundle.putParcelable(\"book\", book);intent.putExtras(bundle);\n\n取：Bundle bundle = intent.getExtras();Book book = bundle.getParcelable(\"book\");"
       },
       {
-        "title": "红黑数",
-        "content": "待解"
+        "title": "红黑树",
+        "content": "红黑树是一种特殊的二叉搜索树\n\n1.每个节点都是黑色或者红色的。\n\n2.根节点是黑色的\n\n3.每个叶子节点或者空节点(NIL)都是黑色的\n\n4.如果一个节点是红色的，那么他的孩子节点一定是黑色\n\n5.从一个节点到任意一个子孙节点的所有路径下的包含相同数目的黑色节点"
       }
     ]
   },
@@ -723,7 +762,7 @@
       },
       {
         "title": "性能优化",
-        "content": "性能优化：Android的性能优化，主要是从以下几个方面进行优化的：\n \n一是稳定性，是否有内存溢出、崩溃的情况\n\n二是流畅性，有没有卡顿，冷启动时间长不长\n\n三是耗损是否严重，耗电、流量多不多啊\n\n四是安装包体积等，有没有冗余可优化空间 \n\n\n内存优化\n1.使用leakcanery先解决程序中内存占用较大的业务模块中的内存泄漏\n2.移除程序中多余的代码和引用，这里使用默认的lint检测再配合shrinkResources来删除无效资源\n3.优化图片，保证图片放置在合理的文件夹，根据View大小加载合适的图片大小，根据手机状态配置bitmap和回收策略\n4.优化对象创建，比如string，使用对象池等\n\nAndroid官方对象池的简单实现：SimplePool，也是用得最多的实现\n原理：使用了“懒加载”的思想。当SimplePool初始化时，不会生成N个T类型的对象存放在对象池中。而是当每次外部调用release()时，才把释放的T类型对象存放在对象池中。要先放入，才能取出来。   这样就避免了内存抖动。\n\nMemory Churn内存抖动，内存抖动是因为大量的对象被创建又在短时间内马上被释放。\n瞬间产生大量的对象会严重占用Young Generation的内存区域，当达到阀值，剩余空间不够的时候，也会触发GC。即使每次分配的对象占用了很少的内存，但是他们叠加在一起会增加Heap的压力，从而触发更多其他类型的GC。这个操作有可能会影响到帧率，并使得用户感知到性能问题。\n"
+        "content": "性能优化：Android的性能优化，主要是从以下几个方面进行优化的：\n \n一是稳定性，是否有内存溢出、崩溃的情况\n\n二是流畅性，有没有卡顿，冷启动时间长不长\n\n三是安装包体积等，有没有冗余可优化空间 \n\n\n内存优化\n1.使用leakcanery先解决程序中内存占用较大的业务模块中的内存泄漏\n2.移除程序中多余的代码和引用，这里使用默认的lint检测再配合shrinkResources来删除无效资源\n3.优化图片，保证图片放置在合理的文件夹，根据View大小加载合适的图片大小，根据手机状态配置bitmap和回收策略\n4.优化对象创建，比如string，使用对象池等\n\nAndroid官方对象池的简单实现：SimplePool，也是用得最多的实现\n原理：使用了“懒加载”的思想。当SimplePool初始化时，不会生成N个T类型的对象存放在对象池中。而是当每次外部调用release()时，才把释放的T类型对象存放在对象池中。要先放入，才能取出来。   这样就避免了内存抖动。\n\nMemory Churn内存抖动，内存抖动是因为大量的对象被创建又在短时间内马上被释放。\n瞬间产生大量的对象会严重占用Young Generation的内存区域，当达到阀值，剩余空间不够的时候，也会触发GC。即使每次分配的对象占用了很少的内存，但是他们叠加在一起会增加Heap的压力，从而触发更多其他类型的GC。这个操作有可能会影响到帧率，并使得用户感知到性能问题。\n"
       },
       {
         "title": "内存优化",
