@@ -80,6 +80,14 @@
       {
         "title": "常见的运行时错误",
         "content": "1、NullPointerException - 空指针引用异常\n\n2、ClassCastException - 类型强制转换异常。\n\n3、IndexOutOfBoundsException - 下标越界异常\n\n4、IllegalArgumentException - 传递非法参数异常。\n\n5、ArithmeticException - 算术运算异常\n6、ArrayStoreException - 向数组中存放与声明类型不兼容对象异常\n7、NegativeArraySizeException - 创建一个大小为负数的数组错误异常\n8、NumberFormatException - 数字格式异常\n9、SecurityException - 安全异常\n10、UnsupportedOperationException - 不支持的操作异常"
+      },
+      {
+        "title": "注解",
+        "content": "注解就是源代码的元数据。 注释：是对源代码作介绍、评议或说明的文字。\n\n\n注解一般有两种方式处理方式：\n\n第一：运行时获取并使用注解信息，此方式属于反射范畴，有性能损失，例如Retrofit2等。\n\n第二：编译时获取注解信息，并据此产生java代码文件，无性能损失，例如ButterKnife, Dagger2等。"
+      },
+      {
+        "title": "元注解的分类",
+        "content": "元注解是由Java提供的一套用来注解其他注解的基础注解，其实就是Java编译器在对注解做处理的时候需要知道该注解的时效性、作用范围等一些信息，于是提供了一套用来对注解做限定的工具——元注解。\n\n@Target：指定注解的作用范围\n参数如ElementType.TYPE：类、接口\nElementType.METHOD：方法声明\nElementType.LOCAL_VARIABLE：局部变量声明\n……\n\n@Retention：指定注解的作用时机\n1、RetentionPolicy.SOURCE：指定注解只在源码阶段有用，编译器编译之后将会丢弃，这类型的注解一般用来做代码限制或者提示等\n2、RetentionPolicy.CLASS：指定注解将由编译器记录在类文件中，但在运行时虚拟机不会保留，如果不指定@Retention，此为@Retention默认的参数\n3、RetentionPolicy.RUNTIME：指定注解会被编译器记录在类文件中，并在运行时虚拟机会保留，因此它们可以在程序运行时存在，并通过反射获取使用。\n\n@Inherited：被该注解修饰的注解，作用在某个类上，该类的此注解可以被子类继承\n\n@Documented：不常用，给Javadoc配置的，这里略过"
       }
     ]
   },
@@ -343,6 +351,14 @@
         "content": "因为Linux 内核与用户空间是隔离的，所以为了支持用户程序之间通讯，Android系统通过添加一个内核模块运行在内核空间，也就是LKM，用户程序就可以通过这个模块来作为桥梁，完成通信。\n\nBinder 通信采用 C/S 架构，包含 Client、 Server、 ServiceManager 以及 Binder 驱动，其中 ServiceManager 用于管理系统中的各种服务\n\n首先需要服务端向 ServiceManager 注册服务，注册的过程就是向 Binder 驱动的全局链表中插入服务端的信息，并缓存到 ServiceManager 中去，这样就有了服务端。\n\n有了服务端，客户端就可以通过 ServiceManager 拿到服务端的信息，并通过Binder驱动与服务端进程通信；"
       },
       {
+        "title": "intent传输大小限制",
+        "content": "Intent携带信息的大小其实是受Binder限制，不到1M\n\n我们在intent中携带的数据也要从APP进程传输到AMS进程，再由AMS进程传输到目标Activity所在进程。\n\n我们可以在Manifest.xml中设置android:process属性来为Activity, Service等指定单独的进程，所以Activity的startActivity方法是原生支持跨进程通信的。"
+      },
+      {
+        "title": "binder一次拷贝，如何实现共享？",
+        "content": "inder Driver 如何在内核空间中做到一次拷贝的，主要是利用的内存映射\n\n内核空间可以进行数据交互，所有进程共用 一个内核空间。\n\n内存映射将用户空间的一块内存区域映射到内核空间。映射关系建立后，内核空间对这段区域的修改也能直接反 应到用户空间\n\n所以进程A向进程B传递数据时，首先先从A进程的用户空间传递到内核空间，这是一次拷贝。然后因为内核空间是共用的，再加上进程B的一块空间和内核空间存在映射关系，所以就可以直接使用了。所以整体就拷贝了一次"
+      },
+      {
         "title": "介绍下mmp",
         "content": "mmap是一种内存映射文件的方法，它将一个文件映射到进程的地址空间中，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。   android匿名共享内存与binder机制都有用到。\n\n1、用户进程调用内存映射函数库mmap，当前进程在虚拟地址空间中，寻找一段空闲的满足要求的虚拟地址。\n\n2、此时内核收到相关请求后会调用内核的mmap函数，注意，不同于用户空间库函数。内核mmap函数通过虚拟文件系统定位到文件磁盘物理地址，既实现了文件地址和虚拟地址区域的映射关系。 此时，这片虚拟地址并没有任何数据关联到主存中。\n\n注意，前两个阶段仅在于创建虚拟区间并完成地址映射，但是并没有将任何文件数据的拷贝至主存。真正的文件读取是当进程发起读或写操作时。\n\n3、进程的读或写操作访问虚拟地址空间这一段映射地址，现这一段地址并不在物理页面上。因为目前只建立了地址映射，真正的硬盘数据还没有拷贝到内存中，因此引发缺页中断。\n\n4、由于引发了缺页中断，内核则调用nopage函数把所缺的页从磁盘装入到主存中。\n\n5、之后用户进程即可对这片主存进行读或者写的操作，如果写操作改变了其内容，一定时间后系统会自动回写脏页面到对应磁盘地址，也即完成了写入到文件的过程。\n\n"
       },
@@ -447,6 +463,10 @@
       {
         "title": "线程池创建方法",
         "content": "创建线程池的方式一般有两种：\n\n1、通过Executors工厂方法创建\n\n2、 通过ThreadPoolExecutor构造函数创建。\n\nnewThreadPoolExecutor(intcorePoolSize, intmaximumPoolSize, longkeepAliveTime,TimeUnitunit,BlockingQueue<Runnable>workQueue)自定义创建"
+      },
+      {
+        "title": "线程池的使用",
+        "content": "submit(task) 对task里的异常无法抛出，只是停止执行任务，无法报任何异常\nexecute(task) 对task里的异常会抛出，可以明确得知任务执行失败\n\n// 创建一个可重用固定线程数的线程池\nExecutorService pool = Executors.newFixedThreadPool(5);\n\n// 创建线程\nThread t1 = new TestThread(\"111\");\nThread t2 = new TestThread(\"222\");\nThread t3 = new TestThread(\"333\");\nThread t4 = new TestThread(\"444\");\nThread t5 = new TestThread(\"555\");\n\n// 将线程放入池中进行执行\u2028pool.execute(t1);\npool.execute(t2);\npool.execute(t3);\npool.execute(t4);\npool.execute(t5);\u2028\n// 关闭线程池\u2028pool.shutdown();\u2028\n输出结果：\npool-1-thread-1正在执行。。。111\npool-1-thread-3正在执行。。。333\npool-1-thread-2正在执行。。。222\npool-1-thread-4正在执行。。。444\npool-1-thread-5正在执行。。。555\n\n改变ExecutorService pool = Executors.newFixedThreadPool(2)，输出结果是：\npool-1-thread-1正在执行。。。111\npool-1-thread-2正在执行。。。222\npool-1-thread-2正在执行。。。333\npool-1-thread-1正在执行。。。444\npool-1-thread-2正在执行。。。555 \n结论是只有两个线程在执行，newFixedThreadPool的参数指定了可以运行的线程的最大数目，超过这个数目的线程加进去以后，不会立即运行，而是被放入任务队列中等待执行。其次，加入线程池的线程属于托管状态，线程的运行不受加入顺序的影响。\n\n// 创建一个单任务线程池\u2028ExecutorService pool = Executors.newSingleThreadExecutor();\u2028……//同样的创建5个线程，同样的放入池中执行\n\n输出结果：\npool-1-thread-1正在执行。。。111\npool-1-thread-1正在执行。。。222\npool-1-thread-1正在执行。。。333\npool-1-thread-1正在执行。。。444\npool-1-thread-1正在执行。。。555\n可以看出，每次调用execute方法，其实最后都是调用了thread-1的run方法。"
       },
       {
         "title": "Executors API提供的4种线程池",
