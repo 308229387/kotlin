@@ -21,18 +21,4 @@ public class HasCycle {
             }
         }
     }
-
-    public boolean hasCycle1(ListNode head){
-        ListNode slow = head,fast = slow;
-        while (true) {
-            if(fast == null||fast.next == null){
-                return false;
-            }
-            fast = fast.next.next;
-            slow = slow.next;
-            if(fast == slow){
-                return true;
-            }
-        }
-    }
 }

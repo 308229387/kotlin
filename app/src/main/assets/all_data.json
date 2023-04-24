@@ -58,6 +58,10 @@
         "content": "泛型：\n在集合中存储对象并在使用前进行类型转换是很不方便的，并且容易出错，为了防止这种情况，泛型产生。泛型提供了编译期的类型安全，确保我们只能把正确类型的对象放入集合中，避免了在运行时出现ClassCastException（类型转换异常）\n\n反射：就是动态加载一个指定的类，并获取该类中的所有的内容，比如有些第三方的JAR文件中的资源，我们没法直接调用，就可以用反射这种比较原始的方法来调用。\n\n1、获得Class对象，就是获取到指定的名称的字节码文件对象。\nClass c = Class.forName(className);\n\n2、实例化对象，获得类的属性、方法或构造函数。\n\u2028Field[] fields = c.getDeclaredFields();\u2028\u2028for (int i = 0; i < fields.length; i++) {\n\n// 打印属性的 修饰符 类型 名称\nSystem.out.println(Modifier.toString(fields[i].getModifiers()) + \" \" + fields[i].getGenericType() + \" \"+ fields[i].getName());}\n\n\n\n3、访问属性、调用方法、调用构造函数创建对象。"
       },
       {
+        "title": "讲一下反射的使用及场景",
+        "content": "反射是一种动态机制，运用反射可以在运行时加载、使用编译期间无法使用的类或类中方法等\n\n常用于为获取private变量和方法，不供外部使用、或Andorid中动态代理模式 ，Android插件化（Hook）这些场景都会用到反射\n\n\n（1）获取所有公共方法，包括父类的方法\nMethod[] methods = c.getMethods();\n\n（2）获取本类的所有方法，直接调用getMethods()，只调用\"公有方法\"\nMethod[] methods = c.getDeclaredMethods();\n\n（3）获取指定的成员方法\n\n// 获取字节码文件对象\nClass c = Class.forName(\"cn.itcast_01.Person\");\n \n// 创建对象\nConstructor con = c.getConstructor();\nObject obj = con.newInstance();\n        \n//第一种：无参数无返回值\nMethod m1 = c.getMethod(\"show\", null);  //show是方法名称，后边是方法参数，null表示无参方法\nm1.invoke(obj, null);\n \n//第二种：带string类型参数无返回值\nMethod m2 = c.getMethod(\"function\", String.class); \nm2.invoke(obj, \"岳飞\"); //invoke表示对方法进行调用\n \n//第三种：带多个参数有返回值 \nMethod m3 = c.getMethod(\"reutrnValue\", String.class,int.class);\nObject ooo = m3.invoke(obj, \"张飞\",26);\nSystem.out.println(ooo);\n \n//第四种：私有方法的调用\nMethod m4 = c.getDeclaredMethod(\"hello\", null);\nm4.setAccessible(true); //设置访问权限，这一点很重要\nm4.invoke(obj, null);\n\n一定要setAccessible(true)，不然会报错java.lang.IllegalAccessException错误 * true表示：禁止java语言使用时安全检查，暴力访问"
+      },
+      {
         "title": "java引用类型",
         "content": "强引用：当我们使用new创建对象时，被创建的对象就是强引用，如Object object = new Object()，其中的object就是一个强引用了。如果一个对象具有强引用，JVM就不会去GC它，JVM宁可会报OOM来终止程序，也不回收该对象。\n\n软引用: 如果一个对象只具备软引用，如果内存空间足够，那么JVM就不会GC它，如果内存空间不足了，就会GC该对象。\n\n弱引用: 如果一个对象只具有弱引用，只要JVM的GC线程检测到了，就会立即回收。弱引用的生命周期要比软引用短很多。不过，如果垃圾回收器是一个优先级很低的线程，也不一定会很快就会释放掉软引用的内存。\n\n虚引用：如果一个对象只具有虚引用，那么它就和没有任何引用一样，随时会被JVM当作垃圾进行GC。\n\n\n软引用一般用于图片缓存，场景，图片编辑bitmap，用法类似于SoftReference<String> sr = new SoftReference<String>(new String(\"hello\")); System.out.println(sr.get());\nWeakReference<Car> weakCar = new WeakReference<Car>(car); if(weakCar.get()!=null)，虚引用可以解决一些内存泄漏的问题，如Handler之类的。"
       },
@@ -955,6 +959,10 @@
   {
     "name": "第三方控件与框架",
     "data": [
+      {
+        "title": "EventBus的原理",
+        "content": "EventBus会在对象register时，会通过注解，遍历对象的方法，将带有@Subscribe标签并且合法的方法加入到typesBySubscriber。\ntypesBySubscriber是HashMap形式，key是注册的对象本身，由于一个注册的对象中可能有多个监听事件，所以value是用list保存的Event。 \n\n后注册的对象中sticky方法能够收到之前的stickyEvent方法的原因是EventBus中维护了stickyEvent的hashMap表，在subsribe注册的时候就遍历其中有没有注册监听stickyEvent如果有就会执行一次回调。\n\n\nEventBus中一个Map结构： Map<Object, List<Class<?>>>  typesBySubscriber;\n\n\n\nEventBus2.x使用的是运行时注解，它采用了反射的方式对整个注册的类的所有方法进行扫描来完成注册，因而会对性能有一定影响。\n\nEventBus3.x使用的是编译时注解，Java文件会编译成.class文件，再对class文件进行打包等一系列处理。然后用生成Java类来保存所有订阅者的订阅信息。这样就创建出了对文件或类的索引关系，并将其编入到apk中。"
+      },
       {
         "title": "介绍下JetPack",
         "content": "Jetpack是Goolge推出的一套组件库，目的是让开发者能够使用标准的架构组件，而不用去纠结架构的方案设计，可以将更多的精力放在自己的业务代码上。 主要包括 4 个方面。\n\n架构（Architecture）常用的有：databinding、lifecycles、viewmodel\n\n界面（UI）常用的有：Animation动画、emoje表情、fragment、layout\n\n行为（behavior）有：AppCompat（依赖库）、mutidex（short类型的范围65535解决方案，DexPathList）\n\n基础（foundation）有：media多媒体、permission权限"

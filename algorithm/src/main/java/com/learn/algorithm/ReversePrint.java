@@ -21,4 +21,19 @@ public class ReversePrint {
         }
         return res;
     }
+
+    public int[] reversePrint1(ListNode head){
+        Stack<ListNode> stack = new Stack();
+        while(head!=null){
+            stack.push(head);
+            head = head.next;
+        }
+        int k = stack.size();
+        int[] res = new int[k];
+        for(int i = 0;i<k;i++){
+            res[i] = stack.pop().val;
+        }
+        return res;
+    }
+
 }

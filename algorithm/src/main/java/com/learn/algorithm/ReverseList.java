@@ -14,4 +14,15 @@ public class ReverseList {
         return cur;   //返回首节点cur
     }
 
+    public ListNode reverseList1(ListNode head){
+        if(head == null||head.next == null){
+            return head;
+        }
+        ListNode cur = reverseList1(head.next);
+        head.next.next = head;
+        head.next = null;
+        return cur;
+    }
+
 }
+
