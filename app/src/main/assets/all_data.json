@@ -485,6 +485,10 @@
         "content": "线程池任务提交过程,核心流程其实就是走的ThreadPoolExcutor类中的execute(runnable)方法：\n\na. 首先判断核心线程池中的线程是否已经满了，如果没满，则创建一个核心线程执行任务，否则进入下一步\n\nb. 判断工作队列是否已满，没有满则加入工作队列，否则执行下一步\n\nc. 判断线程数是否达到了最大值，如果不是，则创建非核心线程执行任务，否则执行饱和策略，默认抛出异常  \n\n\n线程池如何实现线程的复用？有任务的时候就被派去执行任务，没有任务就处于阻塞状态, 被挂起了"
       },
       {
+        "title": "线程池中如何实现线程的复用",
+        "content": "复用原理很简单, 就是生产者消费模式\n\n向线程池提交任务之后, 如果当前执行中的线程数是否小于核心线程数(corePoolSize), 则执行addWorker()方法, 直接执行任务; \n\n否则, 将任务添加到任务队列(workQueue)中.首次执行任务时, 会创建一个封装了任务和线程信息的Worker对象, 启动并执行worker.\n\nworker线程启动后, 会执行runWorker()方法，会根据条件worker.task != null 优先执行提交的任务;\n\n后续执行时, 会根据(task = getTask()), 从任务队列(workQueue)中取出task, 并继续执行."
+      },
+      {
         "title": "如何关闭线程池",
         "content": "1. shutdown() 不接收新任务,会处理已添加任务\n\n2. shutdownNow() 不接受新任务,不处理已添加任务,中断正在处理的任务"
       },
@@ -678,6 +682,9 @@
       {
         "title": "Http与Https的区别",
         "content": "主要有3点不同\n1、安全性：HTTPS不是明文传输的，会通过SSL数据加密、TLS验证身份，以及数据完整性保护（收方或非法者不能伪造、篡改报文，运营商加广告）而HTTP是明文传输无状态的（比较独立，服务器与客户端都不会记录信息），所以安全性要高于HTTP\n2、HTTPS需要申请CA证书，而HTTP不需要\n3、用的端口也不一样，HTTP是80，HTTPS是443"
+      },{
+        "title": "抓包原理与https防止劫持",
+        "content": "第一步， charles向服务器发送请求进行握手， 获取到服务器的CA证书， 用根证书公钥进行解密， 验证服务器数据签名，获取到服务器CA证书公钥。\n\n第二步， charles伪造自己的CA证书， 冒充服务器证书传递给客户端浏览器，客户端做跟charles一样的事。\n\ncharles向服务器冒充是客户端，向客户端又谎称自己是服务器。\n\n解决防劫持，可以下载服务器端公钥证书，然后将公钥证书编译到Android应用中一般在assets文件夹保存，由应用在交互过程中去验证证书的合法性。如果还想使用charls，可以让Charles的CA证书也成为我们证书信任链中的一个"
       },
       {
         "title": "Https传输流程",
@@ -976,8 +983,9 @@
         "content": "一. RecyclerView多了一些LayoutManager工作，但实现了布局效果多样化\n1、ListView 的布局比较单一，只有一个纵向效果。\n2、RecyclerView 可以在LayoutMananger中设置：线性布局（纵向，横向），表格布局，瀑布流布局\n\n二.一些常用功能的api不同，比如 Listview可以通过addHeaderView() 与 addFooterView()来添加头部item与底部item，但RecyclerView需要在Adapter中自己编写。还有Listview有onItemClickListener、onItemLongClickListener(),但RecyclerView需要通过addOnItemTouchListener或在item中实现。其他还有Listview没有局部刷新（notifyItemChanged），setTag()、getTag()等。\n\n三.ViewHolder的编写规范化，ListView是需要自己定义的，而RecyclerView是规范好的\n\n四.RecyclerView有嵌套滚动机制，但Listview没有：\n在事件分发机制中，Touch事件在进行分发的时候，由父View向子View传递，一旦子View消费这个事件的话，那么接下来的事件分发的时候，父View将不接受，由子View进行处理；但是与Android的事件分发机制不同，嵌套滚动机制（Nested Scrolling）可以弥补这个不足，能让子View与父View同时处理这个Touch事件，主要实现在于NestedScrollingChild与NestedScrollingParent这两个接口；而在RecyclerView中，实现的是NestedScrollingChild，所以能实现嵌套滚动机制；"
       },
       {
-        "title": "recyclerview复用机制",
-        "content": "每次创建ViewHolder的时候，会按照优先级依次查询缓存创建ViewHolder。每次讲ViewHolder缓存到Recycler缓存的时候，也会按照优先级依次缓存进去\n\n一级缓存：返回布局和内容都都有效的ViewHolder\n按照position或者id进行匹配\n\n二级缓存：返回View\n按照position和type进行匹配\n\n三级缓存：返回布局有效，内容无效的ViewHolder\n按照type进行匹配，每个type缓存值默认=5\n"
+        "title": "RecyclerView的缓存机制",
+        "content": "从流程来说有四个\n屏幕内（一级） -> 屏幕外（二级） -> 用户自定义（三级） -> 缓存pool池（四级）\n\n\n屏幕内缓存：\n1.在屏幕中显示的ViewHolder，这些ViewHolder会缓存在mAttachedScrap、mChangedScrap中。 \n主要用于缓存出现在屏幕内的item，当我们通过notifyItemRemoved()，notifyItemChanged()通知item发生变化的时候，通过mAttachedScrap缓存没有发生变化的ViewHolder，其他的则由mChangedScrap缓存，添加itemView的时候快速从里面取出，完成局部刷新\n\n屏幕外缓存：\n1.当列表滑动出了屏幕时，ViewHolder会被缓存在 mCachedViews。 \n2.mCachedViews大小由mViewCacheMax决定，默认DEFAULT_CACHE_SIZE为2，可通过Recyclerview.setItemViewCacheSize()动态设置。 \n3.mCachedViews中的ViewHolder没有进行清理，ViewHolder相关的position，flag等标志都一并被缓存了，从mCachedViews中取出的ViewHolder不需要再进行绑定操作而可以直接使用。 \n\n自定义缓存ViewCacheExtension ： \n1.开发者可自定义的一层缓存，是虚拟类ViewCacheExtension的一个实例，开发者可实现方法getViewForPositionAndType(Recycler recycler, int position, int type)来实现自己的缓存。\n\n缓存池：\n1.RecycledViewPool类是用来缓存ViewHolder，如果多个RecyclerView之间用setRecycledViewPool(RecycledViewPool)设置同一个RecycledViewPool，他们就可以共享ViewHolder。\n2.pool的大小默认为5。 \n3.不同viewType的viewHolder存在不同的list中。 \n4.从pool池中拿出来的viewholder是剥了层皮的（清除所有的position，flag等），需要重新绑定一次数据。",
+        "image": "recyclerview_cache"
       },
       {
         "title": "ButterKnife作用及原理",

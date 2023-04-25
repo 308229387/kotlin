@@ -1,13 +1,12 @@
 package com.example.kotlin.activity
 
 import android.os.Bundle
-import android.text.Html
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.kotlin.R
-import kotlinx.android.synthetic.main.activity_q_a_image_text_detail.*
-import kotlinx.android.synthetic.main.q_a_detail_layout.answer_text
-import kotlinx.android.synthetic.main.q_a_detail_layout.question_text
+import com.example.kotlin.utils.ToastUtil
+import kotlinx.android.synthetic.main.q_a_detail_layout.*
 
 /**
  * Author: sym
@@ -22,6 +21,13 @@ class QADetailActivity : AppCompatActivity() {
         if (intent != null) {
             question_text.text = intent.getStringExtra("title")
             answer_text.text = intent.getStringExtra("answer")
+            if (null != intent.getStringExtra("image")) {
+                val resId: Int = this.resources.getIdentifier(intent.getStringExtra("image"), "drawable", this.packageName)
+                Glide.with(this).load(resId).into(answer_image)
+                answer_image.setOnClickListener(View.OnClickListener {
+                    ToastUtil.showTextViewPrompt("test")
+                })
+            }
         }
     }
 

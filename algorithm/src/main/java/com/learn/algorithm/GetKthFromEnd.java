@@ -17,4 +17,16 @@ public class GetKthFromEnd {
         }
         return latter;
     }
+
+    public ListNode getKthFromEnd1(ListNode head,int k){
+        ListNode latter = head,former = head;
+        for (int i = 0;i<k;i++){
+            former = former.next;
+        }
+        while(former == null){
+            former = former.next;
+            latter = latter.next;
+        }
+        return latter;
+    }
 }
