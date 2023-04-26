@@ -53,7 +53,8 @@ android {
         main {
             res.srcDirs(
                     'src/main/res',
-                    'src/main/res_algorithm'
+                    'src/main/res_algorithm',
+                    'src/main/res_q_a_image'
             )
         }
     }

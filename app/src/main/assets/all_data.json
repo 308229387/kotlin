@@ -1078,8 +1078,20 @@
         "content": "model 数据以及数据相关的逻辑操作\nview是由xml与Activity来承担的\nPresenter 用来承担业务逻辑与操作view与model的\n\n引用了presenter，interface是用来管理presenter能控制view的哪些功能\n\n在activity中，负责创建presenter，接口有activity来实现，由presenter来调用。presenter构造函数把view（Activity）做为参数传入，接口单独创建。activity实现接口，并负责响应些事件，交给presenter。在presenter中，创建model，并通过view与model的一些方法，来对两边进行更新与通信。\n\n优点：基于MVC做了进一步的解耦合\n缺点：接口部分开发与维护比较繁琐\n\n\nView <— —> Presenter <— —> Model\n"
       },
       {
-        "title": "介绍下MVVM及优缺点",
-        "content": "待解决"
+        "title": "介绍下MVVM",
+        "content": "MVVM分为Model，View，ViewModel 三个部分\n\nModel:数据层，包含数据实体和对数据实体的操作,和MVP的model没有区别。\n\nView: 界面层，对应于Activity，XML，负责数据显示以及用户交互。相比MVP的view，这里面的 view视图数据一般是在xml中使用DataBinding进来双向绑定数据的。    \n\nViewModel：关联层，作为中间桥梁 去通知model数据层处理数据业务，并将结果回调给 UI 层处 理 UI 逻辑。ViewModel中只有activity持有vm引用，vm是不持有view的引用的，所以vm的构造方 法中不能传入视图相关的对象。所以重点在于怎么通知view，可以通过观察者回调的方式。但是现 在一般是结合Jetpack来进行view的更新的。",
+        "image": "mvvm_image"
+      },
+      {
+        "title": "开发模式对比",
+        "content": "在Android开发初期，基本都会使用MVC模式，但随着业务的增加，Activity会变得很臃肿，业务代码与界面显示全部耦合在一起，扩展性差，维护起来很不方便，于是MVP模式就应运而生了。\n\nMVP模式实现了V和M的解耦，分层清晰，把业务处理搬到P层，通过接口实现V层和P层之间通信。MVP模式也存在一些问题，随着项目的增大，接口类会越来越多，而且每一个小的改动，都需要通过接口来通信，有时候一个简单的功能，都需要写好几个接口，会造成接口爆炸。这时候MVVM模式就出现了。\n\nMVVM模式同样也是解耦，将业务代码放到VM层，V层与VM层通过双向绑定来相互通知变化，不再需要那么多的接口来通信了。双向绑定，指的是将数据与界面绑定起来，当数据发生变化时会体现在界面上，反过来界面内容变化也会同步更新到数据上。"
+      },
+      {
+        "title": "DataBinding使用",
+        "content": "DataBinding使用\n1、配置gradle来开启DataBinding      buildFeatures {dataBinding true}\n\n2、将布局转换为DataBinding布局   在xml布局中，点击小黄灯，选择Convert to data binding layout    此时会自动帮我们包裹一层<layout>标签，这样就转换完成了\n\n3、创建一个数据类User来模拟网络请求返回的数据类，所有字段都定义为ObservableField类型，并把实际类型通过泛型传入。如果想要实现双向绑定，必须要使用ObservableField，这样才能收到数据变化的回调\n\n4、在xml的data标签中，引入数据类\n\n5、双向绑定    在Activity中我就可以直接使用DataBinding为我们生成的类ActivityDataBindingBinding - mBinding setContentView绑定布局文件，再绑定数据mBinding.user = mUser完成双向绑定。\n\n\nvar mBinding: ActivityDataBindingBinding\n\nmBinding = DataBindingUtil.setContentView(this, R.layout.activity_data_binding)\n\nmBinding.user = mUser"
+      },{
+        "title": "DataBinding的原理",
+        "content": "在我们把书布局转化为DataBinding布局时，DataBinding为根布局外再包裹了一层<layout>标签。每个控件都加了一个tag，通过这些tag就可以读出布局。\n\nDataBinding会通过APT注解处理器来生成DataBinderMapperImpl，再根据我们的xml文件名activity_data_binding，创建出对应的binding实现类ActivityDataBindingBinding，供我们去调用\n\n我们再通过DataBindingUtil.setContentView方法，和数据的set配置，完成双向绑定"
       },
       {
         "title": "LifeCycle",
