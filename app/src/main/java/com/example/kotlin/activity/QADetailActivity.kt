@@ -21,13 +21,16 @@ class QADetailActivity : AppCompatActivity() {
         if (intent != null) {
             question_text.text = intent.getStringExtra("title")
             answer_text.text = intent.getStringExtra("answer")
+
             if (null != intent.getStringExtra("image")) {
+                answer_image.visibility = View.VISIBLE
                 val resId: Int = this.resources.getIdentifier(intent.getStringExtra("image"), "drawable", this.packageName)
                 Glide.with(this).load(resId).into(answer_image)
                 answer_image.setOnClickListener(View.OnClickListener {
                     ToastUtil.showTextViewPrompt("test")
                 })
             }
+
         }
     }
 

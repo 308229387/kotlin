@@ -9,7 +9,8 @@
       {
         "title": "int和integer的区别",
         "content": "Integer是int提供的封装类，而int是java的基本数据类型，Integer的默认值是null，而int的默认值是0，声明Integer的变量需要实例化，而int不需要，Integer是对象，是一个引用指向这个对象，而int是基本数据类型，直接存储数据。"
-      },{
+      },
+      {
         "title": "基础类型多少字节，取值范围多少",
         "content": "计算机的基本单位：bit .　　一个bit代表一个0或1\n\n　　byte：1byte = 8bit // 1个字节是8个bit -2^7 ~ 2^7-1，即-128 ~ 127\n\n　　short：2byte(字节)  -2^15 ~ 2^15-1，即-32768 ~ 32767。\n\n　　int：4byte    -2^31 ~ 2^31-1，即-2147483648 ~ 2147483647\n\n　　long：8byte    -2^63 ~ 2^63-1\n\n　　float：4byte   末尾加F。（也可以不加F）\n\n　　double：8byte\n\n　　boolean：1byte\n\n　　char：2byte"
       },
@@ -682,7 +683,8 @@
       {
         "title": "Http与Https的区别",
         "content": "主要有3点不同\n1、安全性：HTTPS不是明文传输的，会通过SSL数据加密、TLS验证身份，以及数据完整性保护（收方或非法者不能伪造、篡改报文，运营商加广告）而HTTP是明文传输无状态的（比较独立，服务器与客户端都不会记录信息），所以安全性要高于HTTP\n2、HTTPS需要申请CA证书，而HTTP不需要\n3、用的端口也不一样，HTTP是80，HTTPS是443"
-      },{
+      },
+      {
         "title": "抓包原理与https防止劫持",
         "content": "第一步， charles向服务器发送请求进行握手， 获取到服务器的CA证书， 用根证书公钥进行解密， 验证服务器数据签名，获取到服务器CA证书公钥。\n\n第二步， charles伪造自己的CA证书， 冒充服务器证书传递给客户端浏览器，客户端做跟charles一样的事。\n\ncharles向服务器冒充是客户端，向客户端又谎称自己是服务器。\n\n解决防劫持，可以下载服务器端公钥证书，然后将公钥证书编译到Android应用中一般在assets文件夹保存，由应用在交互过程中去验证证书的合法性。如果还想使用charls，可以让Charles的CA证书也成为我们证书信任链中的一个"
       },
@@ -1071,31 +1073,36 @@
     "data": [
       {
         "title": "介绍下MVC及优缺点",
-        "content": "MVC特点是设计简单，适用于更新频率不太高，改动不大的项目，但因为它的view和model是可见的，外加它的Controller也就是Activity角色比较模糊，当业务越来越复杂时，就会变的十分臃肿了，不容易维护。\n\n优点：对model进行了隔离\n缺点：activity会变得臃肿\n\nController <— —> View <— —> Model\n\nController —> Model\n\nView层：一般由XML布局文件充当。\nModel层：一些数据处理的工作，比如网络数据请求、数据库操作等。\nController层：通常由Activity、Fragment充当，并在其中进行界面、数据相关的业务处理。"
+        "content": "MVC特点是设计简单，适用于更新频率不太高，改动不大的项目，但因为它的view和model是可见的，外加它的Controller也就是Activity角色比较模糊，当业务越来越复杂时，就会变的十分臃肿了，不容易维护。\n\n优点：对model进行了隔离\n缺点：activity会变得臃肿\n\n\nView层：一般由XML布局文件充当。\nModel层：一些数据处理的工作，比如网络数据请求、数据库操作等。\nController层：通常由Activity、Fragment充当，并在其中进行界面、数据相关的业务处理。",
+        "image": "mvc_image"
       },
       {
         "title": "介绍下MVP",
-        "content": "model 数据以及数据相关的逻辑操作\nview是由xml与Activity来承担的\nPresenter 用来承担业务逻辑与操作view与model的\n\n引用了presenter，interface是用来管理presenter能控制view的哪些功能\n\n在activity中，负责创建presenter，接口有activity来实现，由presenter来调用。presenter构造函数把view（Activity）做为参数传入，接口单独创建。activity实现接口，并负责响应些事件，交给presenter。在presenter中，创建model，并通过view与model的一些方法，来对两边进行更新与通信。\n\n优点：基于MVC做了进一步的解耦合\n缺点：接口部分开发与维护比较繁琐\n\n\nView <— —> Presenter <— —> Model\n"
+        "content": "model 数据以及数据相关的逻辑操作\nview是由xml与Activity来承担的\nPresenter 用来承担业务逻辑与操作view与model的\n\n引用了presenter，interface是用来管理presenter能控制view的哪些功能\n\n在activity中，负责创建presenter，接口有activity来实现，由presenter来调用。presenter构造函数把view（Activity）做为参数传入，接口单独创建。activity实现接口，并负责响应些事件，交给presenter。在presenter中，创建model，并通过view与model的一些方法，来对两边进行更新与通信。\n\n优点：基于MVC做了进一步的解耦合\n缺点：接口部分开发与维护比较繁琐\n",
+        "image": "mvp_image"
       },
       {
-        "title": "介绍下MVVM",
-        "content": "MVVM分为Model，View，ViewModel 三个部分\n\nModel:数据层，包含数据实体和对数据实体的操作,和MVP的model没有区别。\n\nView: 界面层，对应于Activity，XML，负责数据显示以及用户交互。相比MVP的view，这里面的 view视图数据一般是在xml中使用DataBinding进来双向绑定数据的。    \n\nViewModel：关联层，作为中间桥梁 去通知model数据层处理数据业务，并将结果回调给 UI 层处 理 UI 逻辑。ViewModel中只有activity持有vm引用，vm是不持有view的引用的，所以vm的构造方 法中不能传入视图相关的对象。所以重点在于怎么通知view，可以通过观察者回调的方式。但是现 在一般是结合Jetpack来进行view的更新的。",
+        "title": "介绍下MVVM及优缺点",
+        "content": "MVVM分为Model，View，ViewModel 三个部分\n\nModel:数据层，包含数据实体和对数据实体的操作,和MVP的model没有区别。\n\nView: 界面层，对应于Activity，XML，负责数据显示以及用户交互。相比MVP的view，这里面的 view视图数据一般是在xml中使用DataBinding进来双向绑定数据的。    \n\nViewModel：关联层，作为中间桥梁 去通知model数据层处理数据业务，并将结果回调给 UI 层处 理 UI 逻辑。ViewModel中只有activity持有vm引用，vm是不持有view的引用的，所以vm的构造方 法中不能传入视图相关的对象。所以重点在于怎么通知view，可以通过观察者回调的方式。但是现 在一般是结合Jetpack来进行view的更新的。\n\n\n\n优点：1、数据源和视图实现了双向绑定，很好的做到了数据的一致性\n\n           2、相比于mvp各层的耦合度更低，一个viewmodel层可以给多个view层共用。\n\n\n\n缺点：1、因为使用了dataBinding，增加了大量的内存开销，增加了程序的编译时间，项目越大内存开销越大。\n\n           2、数据绑定使得 Bug 很难被调试。你看到界面异常了，有可能是你 View 的代码有 Bug，也可能是 Model 的代码有问   ",
         "image": "mvvm_image"
       },
       {
         "title": "开发模式对比",
-        "content": "在Android开发初期，基本都会使用MVC模式，但随着业务的增加，Activity会变得很臃肿，业务代码与界面显示全部耦合在一起，扩展性差，维护起来很不方便，于是MVP模式就应运而生了。\n\nMVP模式实现了V和M的解耦，分层清晰，把业务处理搬到P层，通过接口实现V层和P层之间通信。MVP模式也存在一些问题，随着项目的增大，接口类会越来越多，而且每一个小的改动，都需要通过接口来通信，有时候一个简单的功能，都需要写好几个接口，会造成接口爆炸。这时候MVVM模式就出现了。\n\nMVVM模式同样也是解耦，将业务代码放到VM层，V层与VM层通过双向绑定来相互通知变化，不再需要那么多的接口来通信了。双向绑定，指的是将数据与界面绑定起来，当数据发生变化时会体现在界面上，反过来界面内容变化也会同步更新到数据上。"
+        "content": "在Android开发初期，基本都会使用MVC模式，但随着业务的增加，Activity会变得很臃肿，业务代码与界面显示全部耦合在一起，扩展性差，维护起来很不方便，于是MVP模式就应运而生了。\n\nMVP模式实现了V和M的解耦，分层清晰，把业务处理搬到P层，通过接口实现V层和P层之间通信。MVP模式也存在一些问题，随着项目的增大，接口类会越来越多，而且每一个小的改动，都需要通过接口来通信，有时候一个简单的功能，都需要写好几个接口，会造成接口爆炸。这时候MVVM模式就出现了。\n\nMVVM模式同样也是解耦，将业务代码放到VM层，V层与VM层通过双向绑定来相互通知变化，不再需要那么多的接口来通信了。双向绑定，指的是将数据与界面绑定起来，当数据发生变化时会体现在界面上，反过来界面内容变化也会同步更新到数据上。",
+        "image": "dif_dev_model"
       },
       {
         "title": "DataBinding使用",
         "content": "DataBinding使用\n1、配置gradle来开启DataBinding      buildFeatures {dataBinding true}\n\n2、将布局转换为DataBinding布局   在xml布局中，点击小黄灯，选择Convert to data binding layout    此时会自动帮我们包裹一层<layout>标签，这样就转换完成了\n\n3、创建一个数据类User来模拟网络请求返回的数据类，所有字段都定义为ObservableField类型，并把实际类型通过泛型传入。如果想要实现双向绑定，必须要使用ObservableField，这样才能收到数据变化的回调\n\n4、在xml的data标签中，引入数据类\n\n5、双向绑定    在Activity中我就可以直接使用DataBinding为我们生成的类ActivityDataBindingBinding - mBinding setContentView绑定布局文件，再绑定数据mBinding.user = mUser完成双向绑定。\n\n\nvar mBinding: ActivityDataBindingBinding\n\nmBinding = DataBindingUtil.setContentView(this, R.layout.activity_data_binding)\n\nmBinding.user = mUser"
-      },{
+      },
+      {
         "title": "DataBinding的原理",
         "content": "在我们把书布局转化为DataBinding布局时，DataBinding为根布局外再包裹了一层<layout>标签。每个控件都加了一个tag，通过这些tag就可以读出布局。\n\nDataBinding会通过APT注解处理器来生成DataBinderMapperImpl，再根据我们的xml文件名activity_data_binding，创建出对应的binding实现类ActivityDataBindingBinding，供我们去调用\n\n我们再通过DataBindingUtil.setContentView方法，和数据的set配置，完成双向绑定"
       },
       {
         "title": "LifeCycle",
-        "content": "使用Lifecycle在Activity里面就一句lifecycle.addObserver(mPresenter),就可以达到管理生命周期，Lifecycle观察者的角色。Activity需要继承AppCompatActivity；是通过在上层的SupportActivity，通过attached一个无界面ReportFragment，来感知生命周期的变化 的。当Activity调用生命周期OnPause时，会触发ReportFragment的OnPause，这时调用dispatch(Lifecycle.Event event)来进行向下分发。\n\ninterface IPresenter : LifecycleObserver{}\n\nclass CustomPresenter :IPresenter{\n    override fun onCreate(owner: LifecycleOwner) {\n        Log.d(\"BasePresenter\",\"onCreate()\")\n    }\n\n    override fun onDestroy(owner: LifecycleOwner) {\n        Log.d(\"BasePresenter\",\"onDestroy()\")\n    }\n}\n\n mPresenter = CustomPresenter(this)\n getLifecycle().addObserver(mPresenter)\n\n这里需要注意的两点：\n1，这里的Activity需要继承AppCompatActivity；\n2，这里的demo使用的java 7 写IPresenter接口的时候需要实现LifecycleObserver通过注解的方式来接收生命周期的变化，而在java8里面只需要去实现DefaultLifecycleObserver，然后重写里面的生命周期方法即可。"
+        "content": "原理：\nAppComponentActivity和FragmentActivity都是继承了ComponentActivity。ComponentActivity实现了LifecycleOwner接口。\n在ComponentActivity的onCreate生命周期回调中会添加一个无界面的Fragment，所以我们就是借助Fragment来实现生命周期的观察的，这种实现原理机制并不少见，例如Glide、RxPremission都是用的这种方式实现\n\n\n场景：\n我们在生命周期的回调方法中做了很多事情，一旦代码多了后，是很难维护的。为了方便管理 ，可以统一使用LifeCycle。不用再自己创建的各种生命周期观察者监控管理类\n1、控制视频缓冲的开始与停止：启动App的时候可以更快的开始缓冲视频，App销毁时停止缓冲。\n2、开始和停止网络连接：应用位于前台时可能需要实时传输数据，并在应用进入后台时自动暂停。\n3、控制页面动画的启动与停止：动画在页面可见时进行播放，不可见时停止。\n\n\n使用：\n1、引入依赖库\n2、自定义一个类实现LifecycleObserver，在类中监听生命周期回调\n3、在Activity或者fragment中注册。getLifecycle().addObserver(getJsBridge());",
+        "image": "life_cycle_image"
       },
       {
         "title": "LiveData",

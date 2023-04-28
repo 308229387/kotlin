@@ -1,7 +1,8 @@
 package com.learn.algorithm;
 
 /**
- * 时间复杂度：O(n)其中n是链表的长度。需要遍历链表一次。空间复杂度：O(1)反转指针而已
+ * 时间复杂度：O(n)其中n是链表的长度。需要遍历链表一次。
+ * 空间复杂度：O(1)反转指针而已
  */
 public class ReverseList {
     public ListNode reverseList(ListNode head) {
