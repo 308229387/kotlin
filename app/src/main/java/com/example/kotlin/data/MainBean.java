@@ -25,17 +25,10 @@ public class MainBean implements Serializable {
     }
 
     public static class DataDTO implements Serializable {
+
         private String title;
         private String content;
-        private String image;
-
-        public String getImage() {
-            return image;
-        }
-
-        public void setImage(String image) {
-            this.image = image;
-        }
+        private List<String> image;
 
         public String getTitle() {
             return title;
@@ -52,5 +45,15 @@ public class MainBean implements Serializable {
         public void setContent(String content) {
             this.content = content;
         }
+
+        public List<String> getImage() {
+            return image;
+        }
+
+        public void setImage(List<String> image) {
+            this.image = image;
+        }
+
+
     }
 }

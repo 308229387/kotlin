@@ -987,7 +987,7 @@
       {
         "title": "RecyclerView的缓存机制",
         "content": "从流程来说有四个\n屏幕内（一级） -> 屏幕外（二级） -> 用户自定义（三级） -> 缓存pool池（四级）\n\n\n屏幕内缓存：\n1.在屏幕中显示的ViewHolder，这些ViewHolder会缓存在mAttachedScrap、mChangedScrap中。 \n主要用于缓存出现在屏幕内的item，当我们通过notifyItemRemoved()，notifyItemChanged()通知item发生变化的时候，通过mAttachedScrap缓存没有发生变化的ViewHolder，其他的则由mChangedScrap缓存，添加itemView的时候快速从里面取出，完成局部刷新\n\n屏幕外缓存：\n1.当列表滑动出了屏幕时，ViewHolder会被缓存在 mCachedViews。 \n2.mCachedViews大小由mViewCacheMax决定，默认DEFAULT_CACHE_SIZE为2，可通过Recyclerview.setItemViewCacheSize()动态设置。 \n3.mCachedViews中的ViewHolder没有进行清理，ViewHolder相关的position，flag等标志都一并被缓存了，从mCachedViews中取出的ViewHolder不需要再进行绑定操作而可以直接使用。 \n\n自定义缓存ViewCacheExtension ： \n1.开发者可自定义的一层缓存，是虚拟类ViewCacheExtension的一个实例，开发者可实现方法getViewForPositionAndType(Recycler recycler, int position, int type)来实现自己的缓存。\n\n缓存池：\n1.RecycledViewPool类是用来缓存ViewHolder，如果多个RecyclerView之间用setRecycledViewPool(RecycledViewPool)设置同一个RecycledViewPool，他们就可以共享ViewHolder。\n2.pool的大小默认为5。 \n3.不同viewType的viewHolder存在不同的list中。 \n4.从pool池中拿出来的viewholder是剥了层皮的（清除所有的position，flag等），需要重新绑定一次数据。",
-        "image": "recyclerview_cache"
+        "image": ["image:recyclerview_cache"]
       },
       {
         "title": "ButterKnife作用及原理",
@@ -1074,22 +1074,22 @@
       {
         "title": "介绍下MVC及优缺点",
         "content": "MVC特点是设计简单，适用于更新频率不太高，改动不大的项目，但因为它的view和model是可见的，外加它的Controller也就是Activity角色比较模糊，当业务越来越复杂时，就会变的十分臃肿了，不容易维护。\n\n优点：对model进行了隔离\n缺点：activity会变得臃肿\n\n\nView层：一般由XML布局文件充当。\nModel层：一些数据处理的工作，比如网络数据请求、数据库操作等。\nController层：通常由Activity、Fragment充当，并在其中进行界面、数据相关的业务处理。",
-        "image": "mvc_image"
+        "image": ["image:mvc_image"]
       },
       {
         "title": "介绍下MVP",
         "content": "model 数据以及数据相关的逻辑操作\nview是由xml与Activity来承担的\nPresenter 用来承担业务逻辑与操作view与model的\n\n引用了presenter，interface是用来管理presenter能控制view的哪些功能\n\n在activity中，负责创建presenter，接口有activity来实现，由presenter来调用。presenter构造函数把view（Activity）做为参数传入，接口单独创建。activity实现接口，并负责响应些事件，交给presenter。在presenter中，创建model，并通过view与model的一些方法，来对两边进行更新与通信。\n\n优点：基于MVC做了进一步的解耦合\n缺点：接口部分开发与维护比较繁琐\n",
-        "image": "mvp_image"
+        "image": ["image:mvp_image"]
       },
       {
         "title": "介绍下MVVM及优缺点",
         "content": "MVVM分为Model，View，ViewModel 三个部分\n\nModel:数据层，包含数据实体和对数据实体的操作,和MVP的model没有区别。\n\nView: 界面层，对应于Activity，XML，负责数据显示以及用户交互。相比MVP的view，这里面的 view视图数据一般是在xml中使用DataBinding进来双向绑定数据的。    \n\nViewModel：关联层，作为中间桥梁 去通知model数据层处理数据业务，并将结果回调给 UI 层处 理 UI 逻辑。ViewModel中只有activity持有vm引用，vm是不持有view的引用的，所以vm的构造方 法中不能传入视图相关的对象。所以重点在于怎么通知view，可以通过观察者回调的方式。但是现 在一般是结合Jetpack来进行view的更新的。\n\n\n\n优点：1、数据源和视图实现了双向绑定，很好的做到了数据的一致性\n\n           2、相比于mvp各层的耦合度更低，一个viewmodel层可以给多个view层共用。\n\n\n\n缺点：1、因为使用了dataBinding，增加了大量的内存开销，增加了程序的编译时间，项目越大内存开销越大。\n\n           2、数据绑定使得 Bug 很难被调试。你看到界面异常了，有可能是你 View 的代码有 Bug，也可能是 Model 的代码有问   ",
-        "image": "mvvm_image"
+        "image": ["image:mvvm_image"]
       },
       {
         "title": "开发模式对比",
         "content": "在Android开发初期，基本都会使用MVC模式，但随着业务的增加，Activity会变得很臃肿，业务代码与界面显示全部耦合在一起，扩展性差，维护起来很不方便，于是MVP模式就应运而生了。\n\nMVP模式实现了V和M的解耦，分层清晰，把业务处理搬到P层，通过接口实现V层和P层之间通信。MVP模式也存在一些问题，随着项目的增大，接口类会越来越多，而且每一个小的改动，都需要通过接口来通信，有时候一个简单的功能，都需要写好几个接口，会造成接口爆炸。这时候MVVM模式就出现了。\n\nMVVM模式同样也是解耦，将业务代码放到VM层，V层与VM层通过双向绑定来相互通知变化，不再需要那么多的接口来通信了。双向绑定，指的是将数据与界面绑定起来，当数据发生变化时会体现在界面上，反过来界面内容变化也会同步更新到数据上。",
-        "image": "dif_dev_model"
+        "image": ["image:dif_dev_model"]
       },
       {
         "title": "DataBinding使用",
@@ -1102,7 +1102,7 @@
       {
         "title": "LifeCycle",
         "content": "原理：\nAppComponentActivity和FragmentActivity都是继承了ComponentActivity。ComponentActivity实现了LifecycleOwner接口。\n在ComponentActivity的onCreate生命周期回调中会添加一个无界面的Fragment，所以我们就是借助Fragment来实现生命周期的观察的，这种实现原理机制并不少见，例如Glide、RxPremission都是用的这种方式实现\n\n\n场景：\n我们在生命周期的回调方法中做了很多事情，一旦代码多了后，是很难维护的。为了方便管理 ，可以统一使用LifeCycle。不用再自己创建的各种生命周期观察者监控管理类\n1、控制视频缓冲的开始与停止：启动App的时候可以更快的开始缓冲视频，App销毁时停止缓冲。\n2、开始和停止网络连接：应用位于前台时可能需要实时传输数据，并在应用进入后台时自动暂停。\n3、控制页面动画的启动与停止：动画在页面可见时进行播放，不可见时停止。\n\n\n使用：\n1、引入依赖库\n2、自定义一个类实现LifecycleObserver，在类中监听生命周期回调\n3、在Activity或者fragment中注册。getLifecycle().addObserver(getJsBridge());",
-        "image": "life_cycle_image"
+        "image": ["image:life_cycle_image"]
       },
       {
         "title": "LiveData",

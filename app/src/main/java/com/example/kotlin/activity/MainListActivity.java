@@ -84,7 +84,7 @@ public class MainListActivity extends BaseActivity<ExpandableListBinding> {
         viewBind.expandListId.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
-                toDetail(allData.get(groupPosition).getData().get(childPosition).getTitle(), allData.get(groupPosition).getData().get(childPosition).getContent(), allData.get(groupPosition).getData().get(childPosition).getImage());
+                toDetail(allData.get(groupPosition).getData().get(childPosition).getTitle(), allData.get(groupPosition).getData().get(childPosition).getContent(),  (ArrayList<String>)allData.get(groupPosition).getData().get(childPosition).getImage());
                 return true;
             }
         });
@@ -105,12 +105,11 @@ public class MainListActivity extends BaseActivity<ExpandableListBinding> {
         });
     }
 
-    private void toDetail(String title, String content, String image) {
+    private void toDetail(String title, String content, ArrayList<String> image) {
         Intent intent = new Intent(MainListActivity.this, QADetailActivity.class);
         intent.putExtra("title", title);
         intent.putExtra("answer", content);
-        intent.putExtra("image", image);
-        startActivity(intent);
+        intent.putStringArrayListExtra("imageList", image);        startActivity(intent);
     }
 
     @NonNull

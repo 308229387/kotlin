@@ -33,6 +33,7 @@ public class TouchEventActivity extends AppCompatActivity {
         setContentView(R.layout.touch_event_activity);
         touchLayout = (TextView) findViewById(R.id.touch_layout);
         dialog = new RecordSettingDialog(this);
+
         touchLayout.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
