@@ -2,12 +2,14 @@ package com.example.kotlin.activity
 
 import android.Manifest
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin.R
 import com.example.kotlin.databinding.ActivityPermissionBinding
-import com.example.kotlin.dualsim.PermissionUtils
+import com.example.kotlin.utils.PermissionManager
 import com.example.kotlin.utils.SimplePermissionUtil
+import com.example.kotlin.utils.ToastUtil
 import com.example.kotlin.utils.permissionutil.PermissionListener
 import com.example.kotlin.utils.permissionutil.PermissionUtil
 import com.example.kotlin.views.dialog.RecordSettingDialog
@@ -27,6 +29,16 @@ class PermissionActivity : AppCompatActivity() {
         binding = ActivityPermissionBinding.inflate(layoutInflater)
         setContentView(binding.root)
         dialog = RecordSettingDialog(this)
+
+        binding.newPermisstionBtn.setOnClickListener(View.OnClickListener {
+            var ma =  PermissionManager(this)
+           if(ma.checkPermission("android.permission.RECORD_AUDIO")) {
+               ToastUtil.showTextViewPrompt("有录音权限")
+           }else{
+               ma.requestPermission("android.permission.RECORD_AUDIO",100)
+           }
+
+        })
 
         val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         binding.autoPhoneBtn.setOnClickListener {

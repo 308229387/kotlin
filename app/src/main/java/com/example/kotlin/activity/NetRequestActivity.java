@@ -10,11 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.kotlin.R;
 import com.example.kotlin.net.GetResultBean;
 import com.example.kotlin.net.JsonParamsBean;
+import com.example.kotlin.net.NetRequestContract;
+import com.example.kotlin.net.NetRequestPresenter;
 import com.example.kotlin.net.PostResultBean;
-import com.example.kotlin.net.ProductListContract;
-import com.example.kotlin.net.ProductListPresenter;
-
-import java.util.List;
 
 
 /**
@@ -22,12 +20,12 @@ import java.util.List;
  * Date: 2021/9/28 10:44 AM
  * Describe:
  */
-public class NetRequestActivity extends AppCompatActivity implements ProductListContract.View{
+public class NetRequestActivity extends AppCompatActivity implements NetRequestContract.View {
     private TextView resultLayout;
     private TextView getButton;
     private TextView postButton;
 
-    private ProductListContract.Presenter mPresenter;
+    private NetRequestContract.Presenter mPresenter;
 
 
     @SuppressLint("MissingInflatedId")
@@ -38,7 +36,7 @@ public class NetRequestActivity extends AppCompatActivity implements ProductList
         resultLayout = (TextView) findViewById(R.id.result_layout);
         getButton = (TextView) findViewById(R.id.get_layout);
         postButton = (TextView) findViewById(R.id.post_layout);
-        mPresenter = new ProductListPresenter(this);
+        mPresenter = new NetRequestPresenter(this);
         getButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,12 +48,12 @@ public class NetRequestActivity extends AppCompatActivity implements ProductList
             @Override
             public void onClick(View v) {
                 JsonParamsBean<String> params = new JsonParamsBean<>("a", "b");
+
                 mPresenter.postRequest(params);
             }
         });
 
     }
-
 
 
     @Override

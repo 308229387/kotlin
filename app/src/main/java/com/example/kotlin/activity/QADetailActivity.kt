@@ -1,5 +1,6 @@
 package com.example.kotlin.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -24,10 +25,14 @@ class QADetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.q_a_detail_layout)
-        if (intent != null) {
-            question_text.text = intent.getStringExtra("title")
-            answer_text.text = intent.getStringExtra("answer")
+        question_text.text = intent.getStringExtra("title")
 
+        if (intent != null) {
+            if(null == intent.getStringExtra("answer")|| (intent.getStringExtra("answer"))!!.isEmpty()){
+                answer_text.visibility = View.GONE
+            }else{
+                answer_text.text = intent.getStringExtra("answer")
+            }
 
             if (null != intent.getStringArrayListExtra("imageList")) {
                 image_parent.visibility = View.VISIBLE
@@ -53,7 +58,19 @@ class QADetailActivity : AppCompatActivity() {
                             lp.rightMargin = 80
                             val imageView = ImageView(this)
                             imageView.layoutParams = lp
-                            Glide.with(this).load(ToolUtils.getImages(ToolUtils.replaceImage(tmp))).into(imageView)
+
+                            var tmp1: String = ToolUtils.replaceImage(tmp)
+                            var id: Int = ToolUtils.getImages(tmp1)
+                            Glide.with(this).load(id).into(imageView)
+
+                            imageView.setOnClickListener(View.OnClickListener {
+                                var intent =
+                                    Intent(QADetailActivity@ this, BigImageActivity::class.java)
+                                intent.putExtra("image", id)
+
+                                startActivity(intent)
+                            })
+
                             image_parent.addView(imageView)
                         }
                     }

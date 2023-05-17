@@ -104,8 +104,19 @@
         "content": "ContextImpl：其实最核心的类就是ContextImpl类（在我们用IDE查看Context继承关系的时候，我们是不能直接看到ContextImpl这个类的，它有2700，而我们搜的只有个99行的精简类），它继承Context抽象类，实现了Context类中的抽象方法，它为Activity和其他应用程序组件提供基本上下文对象，应用中使用 Context时候的方法就是它实现的。\n\nContextWrapper：ContextWrapper继承Context抽象类，作为Context类的包装类，其内部维护了一个Context类型的成员变量mBase，mBase最终会指向一个ContextImpl对象，ContextWrapper的方法其内部依赖mBase，ContextWrapper是Context类的修饰类(装饰器模式)，真正的实现类是 ContextImpl，ContextWrapper 里面的方法调用也是调用 ContextImpl 里面的方法。\n\nContextThemeWrapper： ContextThemeWrapper继承ContextWrapper，因此也拥有一个Context类型的成员变量mBase，mBase最终会指向一个ContextImpl对象，它的一个直接子类就是 Activity，所以Activity也就拥有了Context提供的所有功能。\n\nContext类型：最常用的Activity，Service，Application都是Context的子类，Context本身是一个抽象类，它有一个实现类ContextImpl。和一个包装类ContextWrapper。\nContextWrapper的子类有常用的Application,Service，以及一个和主题相关的ContextThemeWrapper。ContextThemeWrapper的子类有Activity。\n\n\n\n1.Application：继承ContextWrapper，因此也拥有一个Context类型的成员变量mBase，mBase最终会指向一个ContextImpl对象，ContextImpl是Context的具体实现类，所以Application也就拥有了Context提供的所有功能。\n\n2.Service：继承ContextWrapper，因此也拥有一个Context类型的成员变量mBase，mBase最终会指向一个ContextImpl对象，ContextImpl是Context的具体实现类，所以Service也就拥有了Context提供的所有功能。\n\n3.Activity：继承ContextThemeWrapper，ContextThemeWrapper继承ContextWrapper，因此也拥有一个Context类型的成员变量mBase，mBase最终会指向一个ContextImpl对象，ContextImpl是Context的具体实现类，所以Activity也就拥有了Context提供的所有功能。"
       },
       {
+        "title": "什么是AndroidManifest.xml文件？文件中都包含哪些信息？",
+        "content": "`AndroidManifest.xml` 文件是 Android 应用程序中的一个重要文件，它位于应用程序的根目录下，用于描述应用程序的基本信息和特性，包括但不限于：\n\n- 应用程序的包名\n- 应用程序的图标\n- 应用程序的名称\n- 应用程序的权限\n- 应用程序的组件（Activity、Service、BroadcastReceiver、Content Provider）等\n\n`AndroidManifest.xml` 文件中的信息可以让 Android 系统了解应用程序的基本信息和特性，并且在安装应用程序时进行验证。应用程序必须在 `AndroidManifest.xml` 文件中声明其所需的权限，否则系统将无法为应用程序提供相应的权限。\n\n此外，`AndroidManifest.xml` 文件还可以声明应用程序的组件，使得 Android 系统可以在必要时启动这些组件。例如，当用户点击应用程序图标时，系统会启动应用程序的主 Activity。"
+      },
+      {
+        "title": "什么是Gradle？Gradle的作用是什么？Gradle包含哪些信息？",
+        "content": "Gradle 是一种基于 Groovy 的构建工具，用于自动化构建、测试和部署软件项目。它支持多种编程语言，包括 Java、C++、Python 等。Gradle 使用基于 Groovy 的领域特定语言（DSL）来定义构建脚本，使得构建过程更加简单和灵活。\n\nGradle 的主要作用是管理项目依赖、编译源代码、运行测试和打包发布等。它可以自动下载所需的依赖库，并将它们添加到项目的构建路径中，从而简化了项目的配置和管理。同时，Gradle 还支持多种构建方式，包括增量构建、并行构建和 hybird 构建等，可以大大提高构建效率。\n\nGradle 构建脚本包含以下信息：\n\n- 项目配置信息，例如项目名称、版本号、作者等\n- 依赖配置信息，例如所需的库文件、版本号等\n- 任务配置信息，例如编译任务、测试任务、打包任务等\n- 插件配置信息，例如 Java 插件、Android 插件等"
+      },
+      {
         "title": "Context 作用域",
-        "content": "作用域：application   activity   sevice   (recommend推荐）\n\nshowDialog              n   y   n\nstartActivity             nr  y   nr\nLayoutInflation        nr  y   nr\nSrtart a service       y   y   y\nSend a broadcast   y   y   y\nRegist brodcast reciver  y   y   y\nLoad resouce          y   y   y\n\n 只有 Activity 显示界面，正因为如此，Activity 继承的是 ContextThemeWrapper 提供一些关于主题，界面显示的能力，间接继承了 ContextWrapper ；凡是跟 UI 有关的，都应该用 Activity 作为 Context 来处理，否则要么会报错，要么 UI 会使用系统默认的主题。\n"
+        "image": [
+          "image:content_use",
+          "text:Context 是一个非常重要的类，它代表了应用程序的上下文环境，提供了许多系统资源和服务的访问，有着不同的作用域和生命周期。\n\n1. 应用程序级别的 Context\n\n应用程序级别的 Context 通常由 Application 类提供，它代表了整个应用程序的上下文环境，可以访问应用程序的全局资源和服务，例如应用程序的包名、资源、数据库等。应用程序级别的 Context 的生命周期与应用程序的生命周期相同。\n\n2. Activity 级别的 Context\n\nActivity 级别的 Context 通常由 Activity 类提供，它代表了当前 Activity 的上下文环境，可以访问当前 Activity 相关的资源和服务，例如布局、主题、Intent 等。Activity 级别的 Context 的生命周期与对应的 Activity 的生命周期相同。\n\n3. Service 级别的 Context\n\nService 级别的 Context 通常由 Service 类提供，它代表了当前 Service 的上下文环境，可以访问当前 Service 相关的资源和服务，例如通知、音频、网络等。Service 级别的 Context 的生命周期与对应的 Service 的生命周期相同。\n\n4. BroadcastReceiver 级别的 Context\n\nBroadcastReceiver 级别的 Context 通常由 onReceive() 方法提供，它代表了当前 BroadcastReceiver 的上下文环境，可以访问当前 BroadcastReceiver 相关的资源和服务，例如系统广播、通知等。BroadcastReceiver 级别的 Context 的生命周期很短，只在 onReceive() 方法执行期间有效。\n\n通过正确使用不同作用域的 Context，可以避免内存泄漏和资源浪费等问题，并提高应用程序的性能和稳定性。"
+        ]
       },
       {
         "title": "B端项目架构",
@@ -247,6 +258,14 @@
       {
         "title": "BaseActivity作用",
         "content": "主要就是作一些样式的统一，仿IOS侧滑finish页面实现、沉浸式状态栏、还有横竖屏切换之类的，然后还可以用一个list来管理Activity，最后退出的时候统一销毁。\n\n0、用途的就是存一个栈，最后退出的时候统一销毁。\n1、屏幕横竖屏切换，AndroidManifest中将不用再写android:screenOrientation=\"portrait\"\n2、ButterKnife绑定页面\n3、沉浸式实现\n4、携带数据的页面跳转\n5、应用被强杀检测\n6、标题栏统一实现\n7、仿IOS侧滑finish页面实现\n8、Loading页面统一实现（可替换成骨架图）\n9、点击Edittext弹出软键盘，点击空白区域让软键盘消失\n10、结合MVP模式下的BaseActivity"
+      },
+      {
+        "title": "什么是隐式Intent和显式Intent？",
+        "content": "在 Android 应用程序中，Intent 用于在不同的组件之间传递信息，例如 Activity、Service、BroadcastReceiver 等。Intent 可以分为隐式 Intent 和显式 Intent 两种类型。\n\n显式 Intent 是指明确指定了目标组件的 Intent，它通常用于启动应用程序内部的其他组件。例如，启动另一个 Activity 组件时，可以使用显式 Intent 来指定要启动的 Activity 组件的类名。\n\n隐式 Intent 是没有明确指定目标组件的 Intent，它通常用于启动应用程序外部的组件或者系统内置的组件。例如，启动系统相机应用程序时，可以使用隐式 Intent 来请求系统打开相机应用程序，并返回拍摄的照片。\n\n隐式 Intent 通常包含一些必要的信息，例如 Action、Category、Data 等，这些信息可以帮助系统确定要启动哪个组件。当使用隐式 Intent 时，系统会自动搜索匹配指定条件的组件，并启动其中最匹配的一个。"
+      },
+      {
+        "title": "Intent Filter介绍",
+        "content": "Intent Filter（意图过滤器）用于指定应用程序可以响应哪些 Intent。Intent Filter 可以让应用程序接收来自其他应用程序或系统的 Intent，从而实现不同应用程序之间的交互。还可以通过Intent Filter打开特定类型的文件、处理特定类型的 URL、处理系统事件等。\n\nIntent Filter 通常定义在 AndroidManifest.xml 文件中，并指定一个或多个 action、category 或 data 属性。其中，action 属性指定 Intent 的操作，category 属性指定 Intent 的类别，data 属性指定 Intent 的数据类型和 URI。\n\n例如，以下是一个简单的 Intent Filter 示例：\n\n```\n<intent-filter>\n    <action android:name=\"android.intent.action.VIEW\" />\n    <category android:name=\"android.intent.category.DEFAULT\" />\n    <data android:scheme=\"http\" />\n</intent-filter>\n```\n\n上述 Intent Filter 指定了应用程序可以响应 VIEW 操作，并且数据类型是 HTTP URI 的 Intent。当系统收到一个 VIEW 操作并且数据类型是 HTTP URI 的 Intent 时，就会启动该应用程序并调用其相应的组件（例如 Activity、Service、BroadcastReceiver 等）。"
       }
     ]
   },
@@ -523,8 +542,12 @@
         "content": "一、volatile可见性的实现就是借助了CPU的lock指令，通过在写volatile的机器指令前加上lock前缀，使写volatile具有以下两个原则：\n\n1、写volatile时处理器会将缓存写回到主内存。\n\n2、一个处理器的缓存写回到内存会导致其他处理器的缓存失效。\n\n\n二、正常new对象顺序1.分配对象内存空间 2.初始化对象 3.赋值给引用   JVM在执行过程中为了保证效率等因素可能会进行重排序，如顺序变为132。\n\n禁止指令重排序是通过加内存屏障来实现的。JMM为volatile加内存屏障有以下4种情况：写volatile与后面的写操作重排序、写volatile与后面的读操作重排序，读volatile与后面的读操作重排序、防止读volatile与后面的写操作重排序。\n\n在每个volatile写操作的前面插入一个StoreStore屏障，防止写volatile与后面的写操作重排序。\n\n在每个volatile写操作的后面插入一个StoreLoad屏障，防止写volatile与后面的读操作重排序。\n\n在每个volatile读操作的后面插入一个LoadLoad屏障，防止读volatile与后面的读操作重排序。\n\n在每个volatile读操作的后面插入一个LoadStore屏障，防止读volatile与后面的写操作重排序。\n\n\n原子性理解：原子是世界上最小的物质单位，具有不可分割性，比如a=0，这个操作是不可分割的，那么我们就会说这个操作是原子操作，再如a++，这个操作实际上是a=a+1，是可以分割的，所以他不是一个原子操作，非原子操作都会存在线程安全的问题，需要使用synchronized同步技术来使其变成一个原子操作，一个操作是原子操作，那么我么称它具有原子性。"
       },
       {
+        "title": "锁",
+        "content": "锁是一种同步机制，用于控制对共享资源的访问。当多个线程需要访问同一个共享资源时，如果没有对该资源进行锁定，就会出现数据竞争和不确定性的问题。锁可以保证同一时刻只有一个线程可以访问共享资源，从而避免数据竞争和不确定性的问题。"
+      },
+      {
         "title": "什么是死锁？死锁的四个条件，如何避免死锁",
-        "content": "死锁：是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象。一旦出现死锁，整个程序既不会发生任何异常，也不会给出任何提示，只是所有线程都处于阻塞状态，无法继续。\n\n\n四个条件\n1、互斥条件：一个资源每次只能被一个进程使用，即在一段时间内某资源仅为一个进程所占有。此时若有其他进程请求该资源，则请求进程只能等待。\n\n2、请求与保持条件：进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源已被其他进程占有，此时请求进程被阻塞，但对自己已获得的资源保持不放。\n\n3、不可剥夺条件:进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走，即只能由获得该资源的进程自己来释放（只能是主动释放)。\n\n4、循环等待条件:若干进程间形成首尾相接循环等待资源的关系\n\n\n如何避免\n\n1、合理分配资源，做好解耦工作，避免线程交叉竞争\n\n2、锁的范围尽可能的要小，能用同步代码块就别用方法锁和类锁\n\n3、避免多次上锁，注意加锁顺序\n\n4、使用锁时，可以多考虑些可操作的锁，比如可中断锁，以及在上锁前判断下上锁状态等。\n"
+        "content": "死锁：当两个或多个线程都持有某些锁并且都在等待对方释放锁时，就会出现死锁。这会导致线程被永久阻塞，从而导致程序无法继续执行。\n\n\n四个条件\n1、互斥条件：一个资源每次只能被一个进程使用，即在一段时间内某资源仅为一个进程所占有。此时若有其他进程请求该资源，则请求进程只能等待。\n\n2、请求与保持条件：进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源已被其他进程占有，此时请求进程被阻塞，但对自己已获得的资源保持不放。\n\n3、不可剥夺条件:进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走，即只能由获得该资源的进程自己来释放（只能是主动释放)。\n\n4、循环等待条件:若干进程间形成首尾相接循环等待资源的关系\n\n\n如何避免\n\n1、合理分配资源，做好解耦工作，避免线程交叉竞争\n\n2、锁的范围尽可能的要小，能用同步代码块就别用方法锁和类锁\n\n3、避免多次上锁，注意加锁顺序\n\n4、使用锁时，可以多考虑些可操作的锁，比如可中断锁，以及在上锁前判断下上锁状态等。\n"
       },
       {
         "title": "sleep、wait区别",
@@ -693,6 +716,10 @@
         "content": "HTTPS流程\n\n1、客户端向服务端发送通信请求，明确好需要确信的信息，像ssl协议的版本、支持的加密算法，压缩方法等。\n\n2、服务端收到请求，会确认客户端传来的信息，如果协议版本不对，会关闭加密通信。同时服务端还会向客户端传送自己的公钥证书\n\n3、客户端收到证书后，首先会进行验证合法性，是否过期、发行机构、域名是否匹配等。验证通过之后，就会生成一个随机的对称密钥（session key），再使用证书中的公钥进行加密，然后传递给服务器端\n\n4、服务器收到使用公钥加密的内容，使用私钥解密后，拿到客户端值过来的随机值，然后把内容通过该值进行对称加密，传给客户端。\n\n5、客户端再用之前生成的随机值来解密，拿到内容\n\n整体过程就是先确认信息，然后是非对称加密传输对称加密的密钥，再拿对称密钥加密解密。\n"
       },
       {
+        "title": "什么是Socket？Socket的作用是什么？",
+        "content": "Socket 是计算机网络中的一个概念，它是一种用于网络通信的编程接口，提供了一种标准的、可编程的方式来实现不同主机之间的数据传输，使得不同主机之间的数据传输变得更加简单和高效。\n\nSocket 的作用是在不同主机之间建立网络连接并进行数据传输。通过 Socket 编程接口，程序可以创建一个 Socket 对象，然后使用该对象来建立连接、发送数据和接收数据等操作。Socket 可以实现多种类型的网络通信，包括 TCP/IP、UDP 和 HTTP 等。\n\n在网络编程中，Socket 通常用于实现客户端和服务器之间的通信。客户端可以使用 Socket 对象连接到服务器上的某个端口，并向服务器发送请求。服务器可以使用 Socket 对象监听指定的端口，并接受来自客户端的请求，并返回响应。\n"
+      },
+      {
         "title": "tcp、http、socket的区别",
         "content": "tcp协议属于传输层协议。建立一个TCP连接需要三次握手，断开一个TCP连接需要四次挥手。\n\nhttp协议，简称超文本传输协议(Hypertext Transfer Protocol)，http协议在tcp协议上面，属于应用层协议。\n\nsocket套接字，socket是在应用层和传输层之间的一个抽象层，它把TCP/IP层复杂的操作抽象为几个简单的接口供应用层调用已实现进程在网络中通信。常用的方法socket（）  bind()"
       },
@@ -706,7 +733,7 @@
       },
       {
         "title": "输入一个网址的全过程",
-        "content": "输入网址后，首先会从浏览器、系统、路由器当中查看是否有缓存，如果有从缓存当中显示页面，没有的话再进行DNS域名解析，把域名转换成IP，然后TCP连接，进行请求，请求成功后再把数据进行解析，页面渲染。"
+        "content": "输入网址后，首先会从浏览器、系统、路由器当中查看是否有缓存，如果有从缓存当中显示页面，没有的话再进行DNS域名解析，把域名转换成IP，然后TCP连接，进行请求，服务器接收到请求后，根据请求中的网址信息查找相应的资源，并将资源返回给浏览器。浏览器接收到服务器返回的资源后，对其进行解析和渲染，并将结果显示在屏幕上。"
       },
       {
         "title": "http错误码",
@@ -775,7 +802,7 @@
       },
       {
         "title": "ANR是什么",
-        "content": "ANR就是ApplicationNotResponding，应用无响应：\n\n当操作在一段时间内系统无法处理时，会在系统层面会弹出ANR对话框\n\n产生ANR可能是因为5s内无响应用户输入事件、10s内未结束BroadcastReceiver、20s内未结束Service\n\n想要避免ANR就不要在主线程做耗时操作，而是通过开子线程，具体方法比如使用Thread或Runnable接口、还有像AsyncTask、IntentService、HandlerThread都可以"
+        "content": "ANR就是ApplicationNotResponding，应用无响应：\n\n当操作在一段时间内系统无法处理时，会在系统层面会弹出ANR对话框\n\n产生ANR可能是因为5s内无响应用户输入事件、10s内未结束BroadcastReceiver和ContentProvider类型ANR、20s内未结束Service\n\n想要避免ANR就不要在主线程做耗时操作，而是通过开子线程，具体方法比如使用Thread或Runnable接口、还有像AsyncTask、IntentService、HandlerThread都可以"
       },
       {
         "title": "如何监控ANR",
@@ -791,11 +818,11 @@
       },
       {
         "title": "内存泄漏原因及如何解决",
-        "content": "单例造成的内存泄漏：单例生命周期和应用的生命周期一样长，单例对象还持有该对象的引用，就会使得该对象不能被正常回收，替换上下文applicationcontext\n\nHandler造成的内存泄漏:Activity结束时，未处理的消息持有handler的引用，而handler又持有它所属的外部类也就是Activity的引用。将Handler声明为静态内部类。因为静态内部类不会持有外部类的引用，所以不会导致外部类实例出现内存泄露。在Handler中添加对外部Activity的弱引用。用完后记得清空队列removeCallbacksAndMessages\n\n非静态内部类造成的内存泄漏:非静态内部类默认会持有外部类的引用，如果里面再有个静态实例或延时任务，就会出现泄漏\n\n资源未关闭造成的内存泄漏：对于使用了BraodcastReceiver，ContentObserver，File，Cursor，Stream，Bitmap等资源，应该在Activity销毁时及时关闭或者注销，否则这些资源将不会被回收，从而造成内存泄漏\n\n集合容器中的内存泄露:在退出程序之前，将集合里的东西clear，然后置空，让相关对象不再被引用"
+        "content": "内存泄漏指的是程序中分配的内存空间没有被及时释放，导致系统中的可用内存越来越少，最终导致系统崩溃或者出现其他异常情况。\n\n内存泄漏的原因可能包括以下几个方面：\n\n1. 对象被无意中保留：例如静态集合对象、单例对象等长期保存在内存中，导致其中的对象无法被及时回收。\n\n2. 对象未被正确释放：例如未关闭数据库连接、未关闭文件流等，导致其中的资源无法被及时释放。\n\n3. 循环引用：例如两个对象互相引用，导致它们都无法被及时回收。\n\n为避免内存泄漏，可以采取以下几个措施：\n\n1. 及时释放对象：在不再需要对象时，及时将其置为 null 或者调用相应的释放方法。\n\n2. 使用弱引用：通过使用 WeakReference 等弱引用方式，使得对象在没有强引用指向时能够被及时回收。\n\n3. 避免循环引用：避免出现两个对象互相引用的情况。\n\n4. 使用工具检测：例如使用 Android Studio 中的 Memory Profiler 工具等，检测应用中是否存在内存泄漏问题。\n\n5. 优化代码逻辑：对于一些长期保存在内存中的对象，可以考虑使用缓存机制等方式，避免无限制地保存在内存中。"
       },
       {
         "title": "性能优化",
-        "content": "性能优化：Android的性能优化，主要是从以下几个方面进行优化的：\n \n一是稳定性，是否有内存溢出、崩溃的情况\n\n二是流畅性，有没有卡顿，冷启动时间长不长\n\n三是安装包体积等，有没有冗余可优化空间 \n\n\n内存优化\n1.使用leakcanery先解决程序中内存占用较大的业务模块中的内存泄漏\n2.移除程序中多余的代码和引用，这里使用默认的lint检测再配合shrinkResources来删除无效资源\n3.优化图片，保证图片放置在合理的文件夹，根据View大小加载合适的图片大小，根据手机状态配置bitmap和回收策略\n4.优化对象创建，比如string，使用对象池等\n\nAndroid官方对象池的简单实现：SimplePool，也是用得最多的实现\n原理：使用了“懒加载”的思想。当SimplePool初始化时，不会生成N个T类型的对象存放在对象池中。而是当每次外部调用release()时，才把释放的T类型对象存放在对象池中。要先放入，才能取出来。   这样就避免了内存抖动。\n\nMemory Churn内存抖动，内存抖动是因为大量的对象被创建又在短时间内马上被释放。\n瞬间产生大量的对象会严重占用Young Generation的内存区域，当达到阀值，剩余空间不够的时候，也会触发GC。即使每次分配的对象占用了很少的内存，但是他们叠加在一起会增加Heap的压力，从而触发更多其他类型的GC。这个操作有可能会影响到帧率，并使得用户感知到性能问题。\n"
+        "content": "Android 性能优化可以从以下几个方面入手：\n\n1. 布局优化：合理使用布局、避免嵌套过深、使用 ConstraintLayout 等优化布局结构。\n\n2. 绘制优化：避免过度绘制、使用 ViewStub 和 Merge 等减少布局层级、使用 RecyclerView 等优化列表性能。\n\n3. 内存优化：避免内存泄漏、使用 Bitmap 时注意回收、避免不必要的对象创建和销毁等。\n\n4. 网络优化：避免在 UI 线程中进行网络请求、使用缓存机制减少请求次数、使用图片压缩等减小网络传输数据量。\n\n5. 数据库优化：使用合适的数据库引擎、避免频繁的数据库操作、使用事务等优化数据库性能。\n\n6. 多线程优化：使用线程池等减少线程创建和销毁开销、避免死锁和竞争条件等。\n\n7. APK 优化：使用 ProGuard 混淆和压缩代码、去除无用资源和代码、使用 Android App Bundle 等减小 APK 大小。\n\n总之，Android 性能优化需要从多个方面入手，对不同的问题采取相应的优化措施，才能达到提高应用性能的效果。"
       },
       {
         "title": "内存优化",
@@ -884,7 +911,7 @@
       },
       {
         "title": "自定义View的流程",
-        "content": "介绍下实现一个自定义View的基本流程\n①.自定义View的属性 编写attr.xml文件 ②.在layout布局文件中引用，同时引用命名空间 ③.在View的构造方法中获得我们自定义的属性 ，在自定义控件中进行读取（构造方法拿到attr.xml文件值） ④.重写onMesure 、onDraw    如果有需要还可以重写onTouchEvent"
+        "content": "介绍下实现一个自定义View的基本流程\n①.继承View或其子类：首先需要创建一个类，并继承View或其子类，例如TextView、ImageView等。继承View或其子类后，可以重写相应的方法，实现自定义的绘制和交互逻辑。②自定义View的属性 编写attr.xml文件 ③.在layout布局文件中引用，同时引用命名空间 .在View的构造方法中获得我们自定义的属性 ，在自定义控件中进行读取（构造方法拿到attr.xml文件值） ④.重写onMesure 、onDraw    如果有需要还可以重写onTouchEvent"
       },
       {
         "title": "view的绘制流程",
@@ -900,7 +927,7 @@
       },
       {
         "title": "长图的加载",
-        "content": "1、Glide+SubsamplingScaleImageView混合加载渲染\n\n2、要是自定义的话，需要用BitmapRegionDecoder来实现对图片的局部加载，重写onTouchEvent，在里面根据用户移动的手势，去更新显示区域的参数，每次更新区域参数后，调用invalidate，onDraw里面去regionDecoder.decodeRegion拿到bitmap，去draw\n\nBitmapRegionDecoder bitmapRegionDecoder =   BitmapRegionDecoder.newInstance(inputStream, false);\nBitmap bitmap = bitmapRegionDecoder.decodeRegion(new Rect(width / 2 - 100, height / 2 - 100, width / 2 + 100, height / 2 + 100), options);\nmImageView.setImageBitmap(bitmap);"
+        "content": "在Android中，如果要加载很大的图片，可以考虑使用以下几种方法：\n\n1. 使用BitmapRegionDecoder：BitmapRegionDecoder是Android提供的一个用于解码局部区域的图片的类。使用BitmapRegionDecoder可以解码图片的局部区域，从而避免一次性加载整张图片导致内存溢出的问题。\n\n2. 使用inSampleSize缩放图片：在加载图片时，可以通过设置inSampleSize参数来对图片进行缩放。设置inSampleSize可以减小图片的分辨率，从而降低内存占用。\n\n3. 使用LruCache缓存图片：在加载图片时，可以使用LruCache来缓存图片。LruCache是Android提供的一个用于缓存对象的类，可以根据缓存对象的使用频率和时间来自动清理缓存对象，从而避免内存溢出的问题。\n\n4. 使用分段加载：在加载图片时，可以将图片分成多个部分进行加载，并在需要显示的时候再将它们合并成完整的图片。这种方法可以避免一次性加载整张图片导致内存溢出的问题。\n\n需要注意的是，无论使用哪种方法，都需要根据具体情况进行相应的处理。如果要加载很大的图片，建议使用以上方法中的一种或多种组合来减小内存占用并提高性能。"
       },
       {
         "title": "activity页面构成",
@@ -987,7 +1014,9 @@
       {
         "title": "RecyclerView的缓存机制",
         "content": "从流程来说有四个\n屏幕内（一级） -> 屏幕外（二级） -> 用户自定义（三级） -> 缓存pool池（四级）\n\n\n屏幕内缓存：\n1.在屏幕中显示的ViewHolder，这些ViewHolder会缓存在mAttachedScrap、mChangedScrap中。 \n主要用于缓存出现在屏幕内的item，当我们通过notifyItemRemoved()，notifyItemChanged()通知item发生变化的时候，通过mAttachedScrap缓存没有发生变化的ViewHolder，其他的则由mChangedScrap缓存，添加itemView的时候快速从里面取出，完成局部刷新\n\n屏幕外缓存：\n1.当列表滑动出了屏幕时，ViewHolder会被缓存在 mCachedViews。 \n2.mCachedViews大小由mViewCacheMax决定，默认DEFAULT_CACHE_SIZE为2，可通过Recyclerview.setItemViewCacheSize()动态设置。 \n3.mCachedViews中的ViewHolder没有进行清理，ViewHolder相关的position，flag等标志都一并被缓存了，从mCachedViews中取出的ViewHolder不需要再进行绑定操作而可以直接使用。 \n\n自定义缓存ViewCacheExtension ： \n1.开发者可自定义的一层缓存，是虚拟类ViewCacheExtension的一个实例，开发者可实现方法getViewForPositionAndType(Recycler recycler, int position, int type)来实现自己的缓存。\n\n缓存池：\n1.RecycledViewPool类是用来缓存ViewHolder，如果多个RecyclerView之间用setRecycledViewPool(RecycledViewPool)设置同一个RecycledViewPool，他们就可以共享ViewHolder。\n2.pool的大小默认为5。 \n3.不同viewType的viewHolder存在不同的list中。 \n4.从pool池中拿出来的viewholder是剥了层皮的（清除所有的position，flag等），需要重新绑定一次数据。",
-        "image": ["image:recyclerview_cache"]
+        "image": [
+          "image:recyclerview_cache"
+        ]
       },
       {
         "title": "ButterKnife作用及原理",
@@ -1074,22 +1103,30 @@
       {
         "title": "介绍下MVC及优缺点",
         "content": "MVC特点是设计简单，适用于更新频率不太高，改动不大的项目，但因为它的view和model是可见的，外加它的Controller也就是Activity角色比较模糊，当业务越来越复杂时，就会变的十分臃肿了，不容易维护。\n\n优点：对model进行了隔离\n缺点：activity会变得臃肿\n\n\nView层：一般由XML布局文件充当。\nModel层：一些数据处理的工作，比如网络数据请求、数据库操作等。\nController层：通常由Activity、Fragment充当，并在其中进行界面、数据相关的业务处理。",
-        "image": ["image:mvc_image"]
+        "image": [
+          "image:mvc_image"
+        ]
       },
       {
         "title": "介绍下MVP",
         "content": "model 数据以及数据相关的逻辑操作\nview是由xml与Activity来承担的\nPresenter 用来承担业务逻辑与操作view与model的\n\n引用了presenter，interface是用来管理presenter能控制view的哪些功能\n\n在activity中，负责创建presenter，接口有activity来实现，由presenter来调用。presenter构造函数把view（Activity）做为参数传入，接口单独创建。activity实现接口，并负责响应些事件，交给presenter。在presenter中，创建model，并通过view与model的一些方法，来对两边进行更新与通信。\n\n优点：基于MVC做了进一步的解耦合\n缺点：接口部分开发与维护比较繁琐\n",
-        "image": ["image:mvp_image"]
+        "image": [
+          "image:mvp_image"
+        ]
       },
       {
         "title": "介绍下MVVM及优缺点",
         "content": "MVVM分为Model，View，ViewModel 三个部分\n\nModel:数据层，包含数据实体和对数据实体的操作,和MVP的model没有区别。\n\nView: 界面层，对应于Activity，XML，负责数据显示以及用户交互。相比MVP的view，这里面的 view视图数据一般是在xml中使用DataBinding进来双向绑定数据的。    \n\nViewModel：关联层，作为中间桥梁 去通知model数据层处理数据业务，并将结果回调给 UI 层处 理 UI 逻辑。ViewModel中只有activity持有vm引用，vm是不持有view的引用的，所以vm的构造方 法中不能传入视图相关的对象。所以重点在于怎么通知view，可以通过观察者回调的方式。但是现 在一般是结合Jetpack来进行view的更新的。\n\n\n\n优点：1、数据源和视图实现了双向绑定，很好的做到了数据的一致性\n\n           2、相比于mvp各层的耦合度更低，一个viewmodel层可以给多个view层共用。\n\n\n\n缺点：1、因为使用了dataBinding，增加了大量的内存开销，增加了程序的编译时间，项目越大内存开销越大。\n\n           2、数据绑定使得 Bug 很难被调试。你看到界面异常了，有可能是你 View 的代码有 Bug，也可能是 Model 的代码有问   ",
-        "image": ["image:mvvm_image"]
+        "image": [
+          "image:mvvm_image"
+        ]
       },
       {
         "title": "开发模式对比",
         "content": "在Android开发初期，基本都会使用MVC模式，但随着业务的增加，Activity会变得很臃肿，业务代码与界面显示全部耦合在一起，扩展性差，维护起来很不方便，于是MVP模式就应运而生了。\n\nMVP模式实现了V和M的解耦，分层清晰，把业务处理搬到P层，通过接口实现V层和P层之间通信。MVP模式也存在一些问题，随着项目的增大，接口类会越来越多，而且每一个小的改动，都需要通过接口来通信，有时候一个简单的功能，都需要写好几个接口，会造成接口爆炸。这时候MVVM模式就出现了。\n\nMVVM模式同样也是解耦，将业务代码放到VM层，V层与VM层通过双向绑定来相互通知变化，不再需要那么多的接口来通信了。双向绑定，指的是将数据与界面绑定起来，当数据发生变化时会体现在界面上，反过来界面内容变化也会同步更新到数据上。",
-        "image": ["image:dif_dev_model"]
+        "image": [
+          "image:dif_dev_model"
+        ]
       },
       {
         "title": "DataBinding使用",
@@ -1102,7 +1139,9 @@
       {
         "title": "LifeCycle",
         "content": "原理：\nAppComponentActivity和FragmentActivity都是继承了ComponentActivity。ComponentActivity实现了LifecycleOwner接口。\n在ComponentActivity的onCreate生命周期回调中会添加一个无界面的Fragment，所以我们就是借助Fragment来实现生命周期的观察的，这种实现原理机制并不少见，例如Glide、RxPremission都是用的这种方式实现\n\n\n场景：\n我们在生命周期的回调方法中做了很多事情，一旦代码多了后，是很难维护的。为了方便管理 ，可以统一使用LifeCycle。不用再自己创建的各种生命周期观察者监控管理类\n1、控制视频缓冲的开始与停止：启动App的时候可以更快的开始缓冲视频，App销毁时停止缓冲。\n2、开始和停止网络连接：应用位于前台时可能需要实时传输数据，并在应用进入后台时自动暂停。\n3、控制页面动画的启动与停止：动画在页面可见时进行播放，不可见时停止。\n\n\n使用：\n1、引入依赖库\n2、自定义一个类实现LifecycleObserver，在类中监听生命周期回调\n3、在Activity或者fragment中注册。getLifecycle().addObserver(getJsBridge());",
-        "image": ["image:life_cycle_image"]
+        "image": [
+          "image:life_cycle_image"
+        ]
       },
       {
         "title": "LiveData",
@@ -1114,8 +1153,8 @@
     "name": "kotlin相关",
     "data": [
       {
-        "title": "Kotlin优点",
-        "content": "Kotlin相比较Java优点还是比较明显的，它完全兼容JAVA，AS就提供了JAVA项目转Kotlin的功能。首先它是空指针安全的，对于非空引用类型，Kotlin在编译时就会进行检测，如果值是null，会编译失败。如果想要允许为null，我们需要在变量的类型后面加上一个?号，表明它是可空类型。\n\n再有就是扩展函数，我们可以不通过继承、不修改源码等方式，给对象类增加属性和方法，比如一个TextView，我们只是用扩展属性调用的方式就可以给它进行加粗操作。最后还有像智能转换，支持lamda等比较快捷的特性\n\n还有协程，省去了传统 Thread 多线程并发机制中的性能损耗，还可以顺序调用异步代码，避免回调地狱。\n\n还有就是数据类 Data Class，它们可以自动生成样板，像equals，hashCode，toString，getter / setter等可以直接使用等。\n\n"
+        "title": "Kotlin相比Java的优点",
+        "content": "1. 简洁：Kotlin可以使用更少的代码实现相同的功能，这使得代码更易于阅读和维护。\n\n2. 安全：Kotlin在类型检查方面更为严格，可以避免一些Java程序中的空指针异常和类型转换异常等问题。\n\n3. 互操作性：Kotlin可以与Java代码无缝地互操作，这意味着您可以在现有的Java项目中逐步采用Kotlin，而无需重写整个项目。\n\n4. 函数式编程：Kotlin支持函数式编程范式，这使得代码更加模块化、可重用和易于测试。\n\n5. 扩展函数：Kotlin的扩展函数功能可以让您在不修改现有类的情况下为其添加新的方法，这使得代码更加灵活和可扩展。\n\nKotlin相比Java的缺点：\n\n1. 学习成本：Kotlin相对于Java来说是一门新的语言，需要一定的学习成本。\n\n2. 依赖问题：由于Kotlin是一个相对较新的语言，因此它的生态系统相对较小，可能存在某些库或工具不支持Kotlin。\n\n3. 运行时性能：虽然Kotlin编译后的字节码与Java非常相似，但是在某些情况下，Kotlin代码可能会比Java代码运行缓慢。\n\n总体而言，Kotlin是一门非常优秀的语言，它可以使得开发者更加高效地编写代码，并且具有更高的安全性和可维护性。"
       },
       {
         "title": "介绍下Kotlin Coroutines(协程)",

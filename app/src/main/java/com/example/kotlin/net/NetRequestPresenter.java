@@ -14,15 +14,15 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  * 2022/5/21
  * Describe ：
  */
-public class ProductListPresenter implements ProductListContract.Presenter {
+public class NetRequestPresenter implements NetRequestContract.Presenter {
 
-    private ProductListContract.View mView;
-    private final ProductListContract.Model model;
+    private NetRequestContract.View mView;
+    private final NetRequestContract.Model model;
     private final CompositeDisposable mDisposable;
-    public ProductListPresenter(ProductListContract.View mView) {
+    public NetRequestPresenter(NetRequestContract.View mView) {
         this.mView = mView;
         mDisposable = new CompositeDisposable();
-        model = RetrofitClient.getInstance().getRetrofit().create(ProductListContract.Model.class);
+        model = RetrofitClient.getInstance().getRetrofit().create(NetRequestContract.Model.class);
     }
 
     @Override

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <attr name="view_divider_bg" format="color|reference" />
     <attr name="summary_text" format="color" />
@@ -57,5 +57,12 @@
 
     </style>
 
+    <style name="Theme.NoAnything" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">
+            shortEdges <!-- default, shortEdges, never -->
+        </item>
+    </style>
 
 </resources>
