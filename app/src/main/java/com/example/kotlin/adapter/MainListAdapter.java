@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.kotlin.R;
+import com.example.kotlin.activity.MainActivity;
 import com.example.kotlin.activity.MainListActivity;
 import com.example.kotlin.data.MainBean;
 import com.example.kotlin.data.QABean;
@@ -117,12 +118,13 @@ public class MainListAdapter extends BaseExpandableListAdapter {
         } else {
             childViewHolder = (ChildViewHolder) convertView.getTag();
         }
-        childViewHolder.chidren_item.setText(data.get(groupPosition).getData().get(childPosition).getTitle());
-        if (Hawk.contains(data.get(groupPosition).getData().get(childPosition).getTitle())) {
-            QABean tmp = Hawk.get(data.get(groupPosition).getData().get(childPosition).getTitle());
+        String title = data.get(groupPosition).getData().get(childPosition).getRichText().get(0).replace("title:","");
+        childViewHolder.chidren_item.setText(title);
+        if (Hawk.contains(title)) {
+            QABean tmp = Hawk.get(title);
             switch (tmp.getCount()) {
                 case 0:
-                    childViewHolder.parent_view.setBackgroundColor(Color.parseColor("#63A1E6"));
+                    childViewHolder.parent_view.setBackgroundColor(Color.parseColor("#ffffff"));
                     break;
                 case 1:
                     childViewHolder.parent_view.setBackgroundColor(Color.parseColor("#FF0000"));
@@ -142,6 +144,34 @@ public class MainListAdapter extends BaseExpandableListAdapter {
         } else {
             childViewHolder.parent_view.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
+        childViewHolder.learn_icon.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+
+                RememberDialog dialog = new RememberDialog(context, "清除此条状态");
+                dialog.setListener(new RememberDialog.RememberDialogCallBack() {
+                    @Override
+                    public void result() {
+                        if (Hawk.contains(data.get(groupPosition).getData().get(childPosition).getRichText().get(0).replace("title:",""))) {
+                            QABean tmp = Hawk.get(data.get(groupPosition).getData().get(childPosition).getRichText().get(0).replace("title:",""));
+                            tmp.setCount(0);
+                            Hawk.put(data.get(groupPosition).getData().get(childPosition).getRichText().get(0).replace("title:",""), tmp);
+                            notifyDataSetChanged();
+                        }
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    public void cancel() {
+                        dialog.dismiss();
+                    }
+                }).show();
+
+
+                return false;
+            }
+        });
         childViewHolder.learn_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,9 +180,9 @@ public class MainListAdapter extends BaseExpandableListAdapter {
                 dialog.setListener(new RememberDialog.RememberDialogCallBack() {
                     @Override
                     public void result() {
-                        QABean tmp = Hawk.get(data.get(groupPosition).getData().get(childPosition).getTitle(), new QABean());
+                        QABean tmp = Hawk.get(data.get(groupPosition).getData().get(childPosition).getRichText().get(0).replace("title:",""), new QABean());
                         tmp.setCount(tmp.getCount() + 1);
-                        Hawk.put(data.get(groupPosition).getData().get(childPosition).getTitle(), tmp);
+                        Hawk.put(data.get(groupPosition).getData().get(childPosition).getRichText().get(0).replace("title:",""), tmp);
                         notifyDataSetChanged();
                         dialog.dismiss();
                     }

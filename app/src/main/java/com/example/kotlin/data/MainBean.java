@@ -25,35 +25,14 @@ public class MainBean implements Serializable {
     }
 
     public static class DataDTO implements Serializable {
+        private List<String> richText;
 
-        private String title;
-        private String content;
-        private List<String> image;
-
-        public String getTitle() {
-            return title;
+        public List<String> getRichText() {
+            return richText;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
+        public void setImage(List<String> rich) {
+            this.richText = rich;
         }
-
-        public String getContent() {
-            return content;
-        }
-
-        public void setContent(String content) {
-            this.content = content;
-        }
-
-        public List<String> getImage() {
-            return image;
-        }
-
-        public void setImage(List<String> image) {
-            this.image = image;
-        }
-
-
     }
 }
