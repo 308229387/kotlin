@@ -1,7 +1,7 @@
 package com.example.kotlin.net;
 
 
-import java.util.List;
+import com.example.kotlin.activity.NetRequestActivity;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -53,7 +53,7 @@ public class NetRequestPresenter implements NetRequestContract.Presenter {
     }
 
     @Override
-    public void postRequest(JsonParamsBean params) {
+    public void postRequest(JsonParamsBean<NetRequestActivity.Data> params) {
         model.postRequest(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

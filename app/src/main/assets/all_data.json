@@ -1173,8 +1173,11 @@
         "content": "cancel代码取消协程的执行，join意思是阻塞等待协程结束。也就是说cancel执行后会马上返回，执行后续的代码，但是这个时候协程不一定结束。再调用join方法，这里表示阻塞等待协程结束。确保协程结束之后才执行后续的代码。我们也可以调用job.cancelAndJoin()\n\n协程的取消操作是协作完成的，也就是协程必须协作才能取消。假如协程正在执行任务，如果没有检查协程是否是处于取消状态的话，则无法取消协程的执行。\n\nsuspend fun main() {\n    //构建作用区域\n    coroutineScope {\n        var job = launch {\n            var time = System.currentTimeMillis()\n            var i = 0\n            while (i < 5) {\n                if (System.currentTimeMillis() >= time) {\n                    println(\"这是第 \/${++i} 次\")\n                    time += 500\n                }\n            }\n        }\n        //非阻塞等待1300毫秒\n        delay(1300)\n        println(\"我已等待结束....\")\n        job.cancel()\n        job.join()\n        // job.cancelAndJoin()\n    }\n}\n\n这是第 1 次\n这是第 2 次\n这是第 3 次\n我已等待结束....\n这是第 4 次\n这是第 5 次\n"
       },
       {
-        "title": "协程体、挂起函数",
-        "content": "当程序执行到requestDataAsync内部时, 通过async启动了另外一个新的子协程去拉取数据, 启动这个新的子协程后, 当前的父协程就挂起了, 此时requestDataAsync还没有返回.\n\n\n子协程一直在后台跑, 过了一段时间, 子协程把数据拉回来之后, 会恢复它的父协程, 父协程继续执行, requestDataAsync就把数据返回了.\n\nfun main(...) {\n    launch(Unconfined) {  // 请重点关注协程里是如何获取异步数据的\n        val data = requestDataAsync()  // 异步回来的数据, 像同步一样return了\n        println(\"data is \/$it\")\n    }\n\n    Thead.sleep(10000L) // 请不要关注这个sleep\n}\n\nsuspend fun requestDataAsync() { // 请注意方法前多了一个suspend关键字\n    return async(CommonPool) { // 先不要管这个async方法, 后面解释\n        // do something need lots of times.\n        // ...\n        data  // return data, lambda里的return要省略\n    }.await()\n}"
+        "title": "协程的定义与使用",
+        "content": "协程（Coroutines）是一种轻量级的并发编程工具，用于简化异步编程和并发任务的处理。它们提供了一种顺序编写异步代码的方式，使代码看起来像是同步执行的，而实际上是在异步执行。\n\n协程可以在函数或代码块内部使用 suspend 修饰符来定义挂起函数，这些函数可以在遇到耗时操作时主动挂起当前协程，而不会阻塞线程。挂起函数可以被其他协程调用，或者在协程内部使用 async 和 await 的方式来处理并发任务和获取结果。",
+        "image": [
+          "image:xie_cheng"
+        ]
       },
       {
         "title": "如何停止任务中的协程",

@@ -1,6 +1,7 @@
 package com.learn.algorithm;
 
 /**
+ * 问题描述：请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
  * 核心思想：创建个StringBuilder，然后把目标String转换成字节数组charArray，然后通过for循环，
  * 遍历每个字节，如果是空格，就把目标值放入StringBuilder中，否则就把字节放入builder。最后再返回Stringbuilder.toString()
  *

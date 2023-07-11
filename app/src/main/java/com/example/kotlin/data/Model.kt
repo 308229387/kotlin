@@ -13,6 +13,7 @@ object HomeData {
         Data("待解决问答", R.mipmap.orange_pic),
         Data("算法", R.mipmap.strawberry_pic),
         Data("通用功能", R.mipmap.strawberry_pic),
+        Data("kotlin使用", R.mipmap.strawberry_pic),
         Data("json数组转对象", R.mipmap.grape_pic),
         Data("网络请求", R.mipmap.watermelon_pic),
         Data("仿京东搜索", R.mipmap.watermelon_pic),

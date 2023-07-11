@@ -30,7 +30,7 @@ public class Constants {
 //            url = Constants.COMPANY_TEST_BASE_URL;
 //        }
 
-        url = "http://172.16.100.125:8080/";
+        url = "http://paas.gab.ydxxw/ga/test-pursuit-evasion-appserver/";
         return url;
     }
 

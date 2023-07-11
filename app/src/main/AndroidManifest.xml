@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.kotlin">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <queries>
         <package android:name="com.neworange.trackescaped" />
     </queries>
@@ -63,6 +71,7 @@
         <activity android:name=".activity.ListViewActivity" />
         <activity android:name=".activity.AddViewActivity" />
         <activity android:name=".activity.QAListActivity" />
+        <activity android:name=".activity.KotlinActivity" />
         <activity android:name=".activity.QADetailActivity" />
         <activity android:name=".activity.NetRequestActivity" />
         <activity android:name=".activity.RoundImageActivity" />

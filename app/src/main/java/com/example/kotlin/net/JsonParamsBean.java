@@ -6,17 +6,47 @@ package com.example.kotlin.net;
  * Describe ：上传参数bean
  */
 public class JsonParamsBean<T> {
+
+    public JsonParamsBean(String url,String type,String method, T data) {
+        this.method = method;
+        this.type = type;
+        this.url = url;
+        this.data = data;
+    }
     private String method = "post";
     private String type ="json";
     private String url;
     private T data;
 
-    public JsonParamsBean(String url, T data) {
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
         this.url = url;
-        this.data = data;
     }
 
     public T getData() {
         return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

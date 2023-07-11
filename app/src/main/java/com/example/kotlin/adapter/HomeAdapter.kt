@@ -68,6 +68,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "上拉加载、下拉刷新" -> context.startActivity(Intent(context, LoadMoreActivity::class.java))
                     "选择文件、本地json读取" -> context.startActivity(Intent(context, PickViewActivity::class.java))
                     "折叠列表" -> context.startActivity(Intent(context, ExpandableListActivity::class.java))
+                    "kotlin使用" -> context.startActivity(Intent(context, KotlinActivity::class.java))
                     "恢复问答" -> {
                         Toast.makeText(context, "已刷新", Toast.LENGTH_SHORT).show()
                         Hawk.put(HawkConfig.QA, QAData.data)

@@ -13,6 +13,7 @@ import com.example.kotlin.net.JsonParamsBean;
 import com.example.kotlin.net.NetRequestContract;
 import com.example.kotlin.net.NetRequestPresenter;
 import com.example.kotlin.net.PostResultBean;
+import com.google.gson.Gson;
 
 
 /**
@@ -21,6 +22,7 @@ import com.example.kotlin.net.PostResultBean;
  * Describe:
  */
 public class NetRequestActivity extends AppCompatActivity implements NetRequestContract.View {
+   public String params11 = "{\"data\":{\"jh\":\"110105197912260011\",\"orgId\":\"010000000000\",\"sfzh\":\"110105197912260011\",\"userId\":\"1b02931a-4c7f-4aad-9336-b4a7be269bbf\",\"xm\":\"毛崟\"},\"method\":\"post\",\"type\":\"json\",\"url\":\"user\\/app\\/login\"}";
     private TextView resultLayout;
     private TextView getButton;
     private TextView postButton;
@@ -47,7 +49,8 @@ public class NetRequestActivity extends AppCompatActivity implements NetRequestC
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JsonParamsBean<String> params = new JsonParamsBean<>("a", "b");
+                JsonParamsBean<Data> params = new JsonParamsBean<>("user/app/login","json","post",new Data());
+
 
                 mPresenter.postRequest(params);
             }
@@ -69,5 +72,14 @@ public class NetRequestActivity extends AppCompatActivity implements NetRequestC
     @Override
     public void updatePostUI(PostResultBean bean) {
         resultLayout.setText(bean.getJyaq());
+    }
+
+
+    public class Data{
+        public String jh = "110105197912260011";
+        public String orgId = "010000000000";
+        public String sfzh = "130402196810231590";
+        public String userId = "1b02931a-4c7f-4aad-9336-b4a7be269bbf";
+        public String xm = "毛崟";
     }
 }
