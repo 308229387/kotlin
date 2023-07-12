@@ -1674,14 +1674,18 @@
       },
       {
         "richText": [
-          "title: async与launch 创建的区别",
-          "text: launch - 创建协程\nasync - 创建带返回值的协程，返回的是 Deferred 类\n\n在概念上，async 就类似于 launch。它启动了⼀个单独的协程，这是⼀个轻量级的线程并与其它所有的 协程⼀起并发的⼯作。不同之处在于 launch 返回⼀个 Job 并且不附带任何结果值，⽽ async 返回 ⼀个 Deferred⼀个轻量级的⾮阻塞 future，这代表了⼀个将会在稍后提供结果的 promise。你可 以使⽤ .await() 在⼀个延期的值上得到它的最终结果\n（runBlocking单元测试用）"
+          "title: 在 Kotlin 中，处理空值的方式",
+          "text: 1、可空类型：可空类型的字符串，可以存储字符串或空值\n\nval nullableString: String? = null\n\n2、安全调用运算符：使用安全调用运算符 ?. 来获取可空字符串的长度。如果 nullableString 为 null，则 length 的值将为 null\n\nval length: Int? = nullableString?.length\n\n3、非空断言运算符：使用非空断言运算符 !! 来告诉编译器 nullableString 不为 null，并将其强制转换为非空类型。如果 nullableString 为 null，会抛出空指针异常\n\nval length: Int = nullableString!!.length\n\n4、安全类型转换：在类型转换时，Kotlin 提供了安全类型转换操作符（\"as?\"）。它可以将一个对象转换为指定类型，如果转换失败，则结果为 null，而不是抛出异常。\n\nval castedString: String? = nullableString as? String\n\n5、lvis 运算符:使用 Elvis 运算符 ?: 来提供一个默认值。如果 nullableString 为 null，则将使用提供的默认值 \"Default Value\"。\n\nval nonNullString: String = nullableString ?: \"Default Value\""
         ]
       },
       {
         "richText": [
-          "title: async 的使用",
-          "text: 用于开启一个新的子协程，与 launch 函数一样可以设置启动模式，不同的是它的返回值为 Deferred，Deferred是Job的子类，但是通过Deferred.await()可以得到一个返回值，简单理解的话，这就是一个带返回值的 launch 函数\n\n\n\n//串行执行\nlaunch(UI) {                             \n    prograssBar.isVisible = true\n \n    val token = async { getToken() }\n    val profile = async { loadProfile(token.await()) }.await()\n    nameText.text = profile.name\n    \n    prograssBar.isVisible = false\n                                                \n}\n\n//并行执行\nlaunch(UI) {                                            \n    prograssBar.isVisible = true\n \n    val profile = async { loadProfile() }\n    val articles = async { loadArticles() }\n    show(profile.await(), articles.await())\n    prograssBar.isVisible = false\n                                              \n}"
+          "title: async与launch 创建的区别",
+          "text:在Kotlin协程中，`async`和`launch`是两种常用的协程构建器，它们之间有以下区别：\n\n1. 返回值类型：`async`函数返回一个`Deferred`对象，它代表一个异步计算的结果。可以使用`await`函数来获取`Deferred`的最终结果。而`launch`函数没有返回值，它启动一个协程但不返回任何结果。\n\n2. 并发性：`async`函数可以使用`await`函数来等待多个异步任务的完成，并发执行它们。而`launch`函数启动的协程是并发执行的，但没有内置的机制来等待其他协程的完成。\n\n3. 协程间的通信：`async`函数可以通过`await`函数来等待其他协程的结果，从而实现协程间的通信。而`launch`函数不能直接获取其他协程的结果。\n\n4. 异常处理：`async`函数会将异常封装在`Deferred`对象中，可以使用`try-catch`块来捕获异常。而`launch`函数不会捕获任何异常，需要通过`CoroutineExceptionHandler`来处理协程中的异常。\n\n综上所述，`async`适用于需要获取异步计算结果或协程间通信的场景，而`launch`适用于启动并发执行的协程，不需要关心其结果或与其他协程进行通信。",
+          "image:xc_yb",
+          "text:打印结果：\nStart\nDo something else\nData received: Data from async task\nEnd\n\n这表明异步任务在后台执行，而不会阻塞主线程的执行。",
+          "image:xc_yb1",
+          "text:打印结果：\nStart\nAfter launching coroutine\nCoroutine started\nEnd\nCoroutine finished\n\n这表明协程是在后台并发执行的，而不会阻塞主线程的执行。注意，协程的执行顺序可能与启动顺序不完全一致，因为它们是并发执行的。"
         ]
       },
       {
@@ -1700,13 +1704,17 @@
       {
         "richText": [
           "title: 如何停止任务中的协程",
-          "text: 1.使用isActive使计算代码可以取消\n var job = launch {\n      while (isActive) {\n                if (System.currentTimeMillis() >= time) {\n                    println(\"这是第 \/${++i} 次\")\n                    time += 500\n                ]}\n            ]}\n\n\n2.使用yield()使计算代码可以取消\n var job = launch {\n while (i<5) {\n                yield()\n                if (System.currentTimeMillis() >= time) {\n                    println(\"这是第 \/${++i} 次\")\n                    time += 500\n                ]}\n            ]}\n\n\n3.使用 finally 关闭资源\nvar job = launch {\n            try {\n                repeat(1000){\n                    println(\"这是一次打印\")\n                    delay(500)\n                ]}\n            ]}\n            finally {\n                println(\"finally\")\n            ]}\n        ]}\n\n\n4.可以使用withTimeoutOrNull\ncoroutineScope {\n        withTimeoutOrNull(2000) {\n            launch {\n                repeat(1000) {\n                    println(\"这是一次打印\")\n                    delay(500)\n                ]}\n            ]}\n\n        ]}\n    }\n"
+          "text: 在Kotlin协程中，可以使用cancel函数来停止正在运行的协程，并通过检查isActive属性来判断协程是否仍处于活动状态",
+          "image:xc_cancel",
+          "text:打印结果：\nStart\nAfter launching coroutine\nCoroutine started\nCoroutine is still active\nCoroutine is still active\nCoroutine is cancelled\nEnd\n\n在主线程中，我们使用job.cancel()来取消协程。当协程被取消时，它将立即停止执行，并且在协程中的return@launch语句处退出。"
         ]
       },
       {
         "richText": [
           "title: 协程是如何实现异步的",
-          "text: 编译器对挂起函数的CPS（续体传递风格）变换，变换后的函数多了一个 Continuation<T> 类型的参数，这个就是协程在挂起之后应该继续执行的代码，也就是续体。\n\n除了这个还会有一个ContinuationInterceptor。续体拦截器负责拦截协程在恢复后应执行的代码（即续体）并将其在指定线程或线程池恢复。\n\n协程在编译挂起函数时会将函数体编译为状态机，成员变量 label 代表了当前状态机的状态，每一个续体都各自对应了一个状态，当函数运行到每个挂起点时，label 的值都受限会发生改变，有点类似于swatch选择，是通过状态流转再通过函数回调来传递结果值，实现异步的\n\nGlobalScope.launch {\n    val a = a()\n    val y = foo(a).await() // 挂起点1\n    b()\n    val z = bar(a, y).await() // 挂起点2\n    c(z)\n}\n\n上面的代码块被编译成一个匿名内部类，该类有一个方法来实现状态机，有一个成员变量来标志当前状态机的状态。最终通过函数回调来传递结果"
+          "text: 协程实现异步的原理是通过在单个线程中切换协程来实现的。在协程中，通过使用 `suspend` 关键字标记的挂起函数，可以在执行到耗时操作时暂停执行，等待结果返回后再恢复执行。这种挂起和恢复的操作是通过协程的调度器来实现的。\n\n协程的调度器负责管理协程的执行，并在必要时将协程挂起和恢复。当一个协程被挂起时，调度器会将该协程所需的上下文信息保存下来，并将控制权交给其他协程。当该协程准备就绪时，调度器会从保存的上下文信息中恢复该协程的执行。\n\n由于协程的调度器是基于单线程的，因此它能够更高效地利用系统资源，避免了线程切换的开销。同时，它也提供了一种更加直观、易于理解的并发编程方式。",
+          "image:xc_yb",
+          "text:打印结果：\nStart\nDo something else\nData received: Data from async task\nEnd\n\n这表明异步任务在后台执行，而不会阻塞主线程的执行。"
         ]
       },
       {
@@ -1718,7 +1726,9 @@
       {
         "richText": [
           "title: 扩展函数",
-          "text: kotlin中的扩展函数，实际上是在自己的类中添加了一个static final方法，将需要扩展的类，在使用的时候作为第一个参数传入方法中，然后利用这个对象就可以访问这个类中的成员属性和方法了，并且最后返回一个这个接收者类型对象本身\n\n\n   public static final TextView isBold(@NotNull TextView \/$receiver) {//扩展函数isBold对应实际上是Java中的静态函数，并且传入一个接收者类型对象作为参数\n\n      Intrinsics.checkParameterIsNotNull(\/$receiver, \"\/$receiver\");\n\n      \/$receiver.getPaint().setFakeBoldText(true);//设置加粗\n\n      return \/$receiver;//最后返回这个接收者对象自身，以致于我们在Kotlin中完全可以使用this替代接收者对象或者直接不写。\n   }\n}\n\n\n使用：\n\n//扩展函数定义\nfun TextView.isBold() = this.apply { \n paint.isFakeBoldText = true\n}\n\n//扩展函数调用\nactivity.find<TextView>(R.id.course_comment_tv_score).isBold()\n\n扩展属性实际上就是提供某个属性访问的set,get方法，这两个set，get方法是静态函数，同时都会传入一个接收者类型的对象，然后在其内部用这个对象实例去访问和修改对象所对应的类的属性。\n"
+          "text: 使用扩展函数，我们可以在不修改原始类的情况下，为其添加新的函数，这对于向库类或第三方类添加自定义功能非常有用。\n\n它的原理就是编译器会将其转换为一个静态函数，并将接收者对象作为额外的参数传递给该函数，所以只能访问公共成员和其他公共扩展函数，不能访问类的私有或受保护成员。\n",
+          "image:kzhs",
+          "text:此外，扩展函数的作用域是静态分发的，即它们的调用是根据对象的静态类型解析的，而不是运行时类型。这意味着如果类的派生类在相同作用域中定义了相同名称的函数，调用扩展函数时将调用静态类型所定义的函数。"
         ]
       }
     ]
