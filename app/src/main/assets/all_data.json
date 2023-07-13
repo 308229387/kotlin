@@ -1650,20 +1650,21 @@
       {
         "richText": [
           "title: DataBinding的原理",
-          "text: 在我们把书布局转化为DataBinding布局时，DataBinding为根布局外再包裹了一层<layout>标签。每个控件都加了一个tag，通过这些tag就可以读出布局。\n\nDataBinding会通过APT注解处理器来生成DataBinderMapperImpl，再根据我们的xml文件名activity_data_binding，创建出对应的binding实现类ActivityDataBindingBinding，供我们去调用\n\n我们再通过DataBindingUtil.setContentView方法，和数据的set配置，完成双向绑定"
+          "text: Data Binding构建工具会自动运行APT来处理布局文件。APT会解析布局文件中的<data>标签和绑定变量，并根据这些信息生成与布局文件对应的Binding类。这些Binding类包含了与布局文件中定义的绑定变量和视图相关的代码，用于在运行时访问和修改布局文件中的视图。"
         ]
       },
       {
         "richText": [
-          "title: LifeCycle",
-          "text: 原理：\nAppComponentActivity和FragmentActivity都是继承了ComponentActivity。ComponentActivity实现了LifecycleOwner接口。\n在ComponentActivity的onCreate生命周期回调中会添加一个无界面的Fragment，所以我们就是借助Fragment来实现生命周期的观察的，这种实现原理机制并不少见，例如Glide、RxPremission都是用的这种方式实现\n\n\n场景：\n我们在生命周期的回调方法中做了很多事情，一旦代码多了后，是很难维护的。为了方便管理 ，可以统一使用LifeCycle。不用再自己创建的各种生命周期观察者监控管理类\n1、控制视频缓冲的开始与停止：启动App的时候可以更快的开始缓冲视频，App销毁时停止缓冲。\n2、开始和停止网络连接：应用位于前台时可能需要实时传输数据，并在应用进入后台时自动暂停。\n3、控制页面动画的启动与停止：动画在页面可见时进行播放，不可见时停止。\n\n\n使用：\n1、引入依赖库\n2、自定义一个类实现LifecycleObserver，在类中监听生命周期回调\n3、在Activity或者fragment中注册。getLifecycle().addObserver(getJsBridge());",
+          "title: LifeCycle原理",
+          "text: Lifecycle库会创建一个无界面的LifecycleFragment，把它添加到ComponentActivity生命周期onCreate回调中去，我们就可以借助这个Fragment来实现生命周期了，确保它们在Activity生命周期内正确地进行管理和操作。",
           "image:life_cycle_image"
         ]
       },
       {
         "richText": [
-          "title: LiveData",
-          "text: LiveData 是一个可感知生命周期的可观察类 (Observable)。 通过订阅LiveData中当前Name数据变化，当数据发生变化时，onCreat中的观察者就会收到数据改变的回调。其优点包括：\n\n1、生命周期感知性：LiveData 与 Android 生命周期结合运行的效果良好。它仅会当 UI 被显示时才把数据往前端传递。\n2、与 Room 无缝整合：LiveData 可被设为 Room 的回调类。\n3、可与 ViewModel 和 Data Binding 混合使用，建立反应式 UI 。\n4、提供基本数据转换方法，例如 switchMap 和 MediatorLiveData。\n\n使用方法：\n\nActivity在onCreate()方法中通过LiveData.observe()方法添加观察者，当数据变化时会通过回调方法通知观察者，在lambda表达式中更新当前姓名和打印姓名列表。\n \npublic class NameViewModel extends ViewModel{\n    // 创建一个String类型的LiveData\n    private MutableLiveData<String> mCurrentName;\n\n    public MutableLiveData<String> getCurrentName() {\n        if (mCurrentName == null) {\n            mCurrentName = new MutableLiveData<>();\n        ]}\n        return mCurrentName;\n    }\n}\n\n\n// 订阅LiveData中当前Name数据变化，以lambda形式定义Observer\n  mNameViewModel.getCurrentName().observe(this, new Observer<String>() {\n            @Override\n            public void onChanged(String name) {\n                mTvName.setText(name);\n                Log.d(TAG, \"currentName: \" + name);\n            ]}\n        ]});\n\n// 当数据发生变化时，onCreat中的观察者就会收到数据改变的回调\nonClick(){\n    mNameViewModel.getCurrentName().setValue(\"Jane\");\n}"
+          "title: LiveData原理",
+          "text:更新数据是通过观察者模式原理实现的。首先，LiveData是一个可观察的数据持有者，它持有数据，并负责通知观察者数据的更新。\n\n观察者（Observer）可以通过调用LiveData的observe()方法来注册自己，以便接收LiveData数据的更新通知。\n\n当LiveData持有的数据发生变化时，LiveData会调用观察者的onChanged()方法，将最新的数据传递给观察者。\n\nLiveData通过与LifecycleOwner的关联来感知生命周期，它会根据观察者的生命周期状态来自动管理观察者的注册和注销。避免了内存泄漏和不必要的资源消耗。\n\nLiveData要求数据的更新操作必须在主线程中进行。当调用LiveData的setValue()方法时，它会在主线程中发送数据更新通知。而当调用postValue()方法时，它会在异步线程中发送数据更新通知，确保数据更新操作不会阻塞主线程。",
+          "image:live_data"
         ]
       }
     ]
