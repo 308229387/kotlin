@@ -1605,21 +1605,21 @@
       {
         "richText": [
           "title: 介绍下MVC及优缺点",
-          "text: MVC特点是设计简单，适用于更新频率不太高，改动不大的项目，但因为它的view和model是可见的，外加它的Controller也就是Activity角色比较模糊，当业务越来越复杂时，就会变的十分臃肿了，不容易维护。\n\n优点：对model进行了隔离\n缺点：activity会变得臃肿\n\n\nView层：一般由XML布局文件充当。\nModel层：一些数据处理的工作，比如网络数据请求、数据库操作等。\nController层：通常由Activity、Fragment充当，并在其中进行界面、数据相关的业务处理。",
+          "text:MVC它将应用程序分为三个主要组件：数据层（Model）、视图层（View）和控制器（Controller）。\n1. 数据层（Model）：模型通常是负责获取、存储和更新数据，比如数据库、网络请求等\n2. 视图层（View）：视图负责展示数据和与用户进行交互。通常由Activity或Fragment来实现，\n3. 视图模型（ViewModel）：控制器层通常也是由Activity或Fragment来承担。控制器负责处理业务和调度的相关逻辑。\n\nMVVM的工作流程如下：\n1. 视图层接收用户输入，比如点击按钮、输入文本等操作，这些操作会被视图捕捉并发送给控制器。\n2. 控制器接收到视图的用户输入，并根据输入执行相应的操作。它可能会调用数据层的方法来处理数据，也可能会调用视图的方法来更新界面。\n3. 当控制器需要处理数据时，它会调用数据层的方法来执行相应的操作，如发送网络请求、查询数据库等。\n\nMVC的优点就是开发比较省事，没有那么多类和组件，学习成本也不高，缺点就是当业务越来越复杂时，Activity和Fragment就会变的比较臃肿",
           "image:mvc_image"
         ]
       },
       {
         "richText": [
-          "title: 介绍下MVP",
-          "text: model 数据以及数据相关的逻辑操作\nview是由xml与Activity来承担的\nPresenter 用来承担业务逻辑与操作view与model的\n\n引用了presenter，interface是用来管理presenter能控制view的哪些功能\n\n在activity中，负责创建presenter，接口有activity来实现，由presenter来调用。presenter构造函数把view（Activity）做为参数传入，接口单独创建。activity实现接口，并负责响应些事件，交给presenter。在presenter中，创建model，并通过view与model的一些方法，来对两边进行更新与通信。\n\n优点：基于MVC做了进一步的解耦合\n缺点：接口部分开发与维护比较繁琐\n",
+          "title: 介绍下MVP及优缺点",
+          "text: MVP将应用程序分为三个主要组件：模型（Model）、视图（View）和Presenter。\n1. 模型（Model）：模型层负责处理数据和业务逻辑。它通常包含数据源、网络请求、数据库操作等。模型层不直接与视图层进行交互，而是通过Presenter来处理数据的请求和更新。\n2. 视图（View）：视图层负责用户界面的展示和用户交互。它通常是由Activity、Fragment、View等组成。视图层只负责展示数据和接收用户输入，不包含任何业务逻辑。\n3. Presenter：Presenter层充当了模型和视图之间的中间人，负责处理业务逻辑和数据的交互。Presenter从模型层获取数据，并将其转换为视图可以展示的格式。它还接收视图的用户输入，并根据输入更新模型的状态。\n\nMVP的工作流程如下：\n1. 视图层接收用户的输入，并将其传递给Presenter。\n2. Presenter通过调用模型层的方法来获取和处理数据。\n3. 模型层将数据返回给Presenter。\n4. Presenter将处理后的数据传递给视图层，以便展示给用户。\n\n优缺点：\n优点是相比较MVC耦合性更低，便于开发及拓展，缺点就是相比较MVC会复杂一些，接口类比较多。",
           "image:mvp_image"
         ]
       },
       {
         "richText": [
           "title: 介绍下MVVM及优缺点",
-          "text: MVVM分为Model，View，ViewModel 三个部分\n\nModel:数据层，包含数据实体和对数据实体的操作,和MVP的model没有区别。\n\nView: 界面层，对应于Activity，XML，负责数据显示以及用户交互。相比MVP的view，这里面的 view视图数据一般是在xml中使用DataBinding进来双向绑定数据的。    \n\nViewModel：关联层，作为中间桥梁 去通知model数据层处理数据业务，并将结果回调给 UI 层处 理 UI 逻辑。ViewModel中只有activity持有vm引用，vm是不持有view的引用的，所以vm的构造方 法中不能传入视图相关的对象。所以重点在于怎么通知view，可以通过观察者回调的方式。但是现 在一般是结合Jetpack来进行view的更新的。\n\n\n\n优点：1、数据源和视图实现了双向绑定，很好的做到了数据的一致性\n\n           2、相比于mvp各层的耦合度更低，一个viewmodel层可以给多个view层共用。\n\n\n\n缺点：1、因为使用了dataBinding，增加了大量的内存开销，增加了程序的编译时间，项目越大内存开销越大。\n\n           2、数据绑定使得 Bug 很难被调试。你看到界面异常了，有可能是你 View 的代码有 Bug，也可能是 Model 的代码有问   ",
+          "text: MVVM它将应用程序分为三个主要组件：数据层（Model）、视图层（View）和视图模型（ViewModel）。\n1. 数据层（Model）：数据层负责处理数据和业务逻辑。它通常包含数据源、网络请求、数据库操作等。数据层与视图层和视图模型层保持独立，不直接进行交互。\n2. 视图层（View）：视图层负责用户界面的展示和用户交互。它通常是由Activity、Fragment、View等组成。视图层只负责展示数据和接收用户输入，不包含任何业务逻辑。\n3. 视图模型（ViewModel）：视图模型层充当了模型和视图之间的中间人，负责处理业务逻辑和数据展示。视图模型从模型层获取数据，并将其转换为视图可以展示的格式。它还接收视图的用户输入，并根据输入更新模型的状态。\n\nMVVM的工作流程如下：\n1. 视图层接收用户的输入，并将其传递给视图模型。\n2. 视图模型通过调用数据层的方法来获取和处理数据。\n3. 数据层将数据返回给视图模型。\n4. 视图模型将处理后的数据传递给视图层，以便展示给用户。\n\n优缺点：\nMVVM模式相比较MVP少了很多接口类，同时通过数据绑定机制（Data Binding），使得视图能够自动更新，使得代码更加简洁和易于维护。缺点就是有一定学习成本，还有就是依赖于数据绑定框架",
           "image:mvvm_image"
         ]
       },
@@ -1633,7 +1633,18 @@
       {
         "richText": [
           "title: DataBinding使用",
-          "text: DataBinding使用\n1、配置gradle来开启DataBinding      buildFeatures {dataBinding true}\n\n2、将布局转换为DataBinding布局   在xml布局中，点击小黄灯，选择Convert to data binding layout    此时会自动帮我们包裹一层<layout>标签，这样就转换完成了\n\n3、创建一个数据类User来模拟网络请求返回的数据类，所有字段都定义为ObservableField类型，并把实际类型通过泛型传入。如果想要实现双向绑定，必须要使用ObservableField，这样才能收到数据变化的回调\n\n4、在xml的data标签中，引入数据类\n\n5、双向绑定    在Activity中我就可以直接使用DataBinding为我们生成的类ActivityDataBindingBinding - mBinding setContentView绑定布局文件，再绑定数据mBinding.user = mUser完成双向绑定。\n\n\nvar mBinding: ActivityDataBindingBinding\n\nmBinding = DataBindingUtil.setContentView(this, R.layout.activity_data_binding)\n\nmBinding.user = mUser"
+          "text: 1. 在build.gradle文件中启用Data Binding。",
+          "image:binding_1",
+          "text: 2. 在布局文件的根元素中添加<data>标签，用于指定数据源的绑定变量。",
+          "image:binding_2",
+          "text: 3. 定义数据源类，该类应与布局文件中的变量类型匹配。",
+          "image:binding_3",
+          "text: 4. 在Activity的onCreate()方法中，使用DataBindingUtil类的inflate()方法来设置Data Binding。",
+          "image:binding_4",
+          "text: 5. 在布局文件中使用绑定变量：在布局文件中，可以使用@{}语法将绑定变量与视图属性进行绑定。",
+          "image:binding_5",
+          "text: 6. 数据的双向绑定（可选），如果需要实现数据的双向绑定，可以使用@={}语法。例如，要将EditText的文本与绑定变量中的email属性进行双向绑定。",
+          "image:binding_6"
         ]
       },
       {
@@ -1668,14 +1679,28 @@
       },
       {
         "richText": [
-          "title: 介绍下Kotlin Coroutines(协程)",
-          "text: 协程可以理解是轻量级的线程，它依赖于线程，但不像线程，切换或阻塞的开销都比较大，协程挂起时不需要阻塞线程，还有就是一个线程中可以创建任意个协程。\n\n另外它不需要多次回调，有点类似rxjava，协程代码的程序流是顺序的，不再需要一堆的回调函数，就像同步代码一样（协程底层库也是异步处理阻塞任务，但是这些复杂的操作被底层库封装起来）\n\nfun main(args: Array<String>) {\n    launch(CommonPool) {\n        delay(1000L) \n        println(\"World!\") \n    }\n    println(\"Hello,\")\n    Thread.sleep(2000L)\n}\n\n/* \n运行结果: (\"Hello,\"会立即被打印, 1000毫秒之后, \"World!\"会被打印)\nHello, \nWorld!\n*/"
+          "title: 在Java中存在但在Kotlin中没有直接的对应的特性",
+          "text: 1. 原始类型（Primitive Types）：Kotlin中没有明确的原始类型，它使用封装类型来代替。例如，使用Int代替int，使用Double代替double等。\n\n2. 静态成员和静态方法（Static Members and Methods）：Kotlin没有static关键字，它使用companion object来模拟静态成员和方法。\n\n3. 可变参数（Varargs）：Kotlin中的可变参数使用vararg关键字进行声明，但在调用时需要使用扩展符号（*）来传递参数。\n\n4. 原始数组（Primitive Arrays）：Kotlin中没有直接支持原始数组的语法，它推荐使用集合类（如List、Array等）来替代原始数组。\n\n5. 异常处理（Exception Handling）：Kotlin中的异常处理与Java类似，但在函数签名中没有throws关键字，而是使用try/catch块进行异常捕获。\n\n6. 枚举（Enums）：Kotlin中的枚举与Java的枚举类似，但在语法上有些不同。例如，Kotlin中的枚举类可以有属性、方法和实现接口。\n\n7. 包级函数和属性（Top-level Functions and Properties）：Kotlin中可以在文件级别上定义函数和属性，而不需要将它们放在类内部。这使得代码更加简洁和直观。"
+        ]
+      },
+      {
+        "richText": [
+          "title: 协程的定义与使用",
+          "text: 协程（Coroutines）是一种轻量级的并发编程工具，用于简化异步编程和并发任务的处理。它们提供了一种顺序编写异步代码的方式，使代码看起来像是同步执行的，而实际上是在异步执行。\n\n协程可以在函数或代码块内部使用 suspend 修饰符来定义挂起函数，这些函数可以在遇到耗时操作时主动挂起当前协程，而不会阻塞线程。挂起函数可以被其他协程调用，或者在协程内部使用 async 和 await 的方式来处理并发任务和获取结果。",
+          "image:xie_cheng"
         ]
       },
       {
         "richText": [
           "title: 在 Kotlin 中，处理空值的方式",
-          "text: 1、可空类型：可空类型的字符串，可以存储字符串或空值\n\nval nullableString: String? = null\n\n2、安全调用运算符：使用安全调用运算符 ?. 来获取可空字符串的长度。如果 nullableString 为 null，则 length 的值将为 null\n\nval length: Int? = nullableString?.length\n\n3、非空断言运算符：使用非空断言运算符 !! 来告诉编译器 nullableString 不为 null，并将其强制转换为非空类型。如果 nullableString 为 null，会抛出空指针异常\n\nval length: Int = nullableString!!.length\n\n4、安全类型转换：在类型转换时，Kotlin 提供了安全类型转换操作符（\"as?\"）。它可以将一个对象转换为指定类型，如果转换失败，则结果为 null，而不是抛出异常。\n\nval castedString: String? = nullableString as? String\n\n5、lvis 运算符:使用 Elvis 运算符 ?: 来提供一个默认值。如果 nullableString 为 null，则将使用提供的默认值 \"Default Value\"。\n\nval nonNullString: String = nullableString ?: \"Default Value\""
+          "text: 1、可空类型：可空类型的字符串，可以存储字符串或空值\n\nval nullableString: String? = null\n\n2、安全调用运算符：使用安全调用运算符 ?. 来获取可空字符串的长度。如果 nullableString 为 null，则 length 的值将为 null\n\nval length: Int? = nullableString?.length\n\n3、非空断言运算符：使用非空断言运算符 !! 来告诉编译器 nullableString 不为 null，并将其强制转换为非空类型。如果 nullableString 为 null，会抛出空指针异常\n\nval length: Int = nullableString!!.length\n\n4、安全类型转换：在类型转换时，Kotlin 提供了安全类型转换操作符（\"as?\"）。它可以将一个对象转换为指定类型，如果转换失败，则结果为 null，而不是抛出异常。\n\nval castedString: String? = nullableString as? String\n\n5、Elvis 运算符:使用 Elvis 运算符 ?: 来提供一个默认值。如果 nullableString 为 null，则将使用提供的默认值 \"Default Value\"。\n\nval nonNullString: String = nullableString ?: \"Default Value\""
+        ]
+      },
+      {
+        "richText": [
+          "title: kotlin中的数据类",
+          "text: 数据类的作用：\n\n自动化生成标准方法：数据类会自动根据主构造函数中的属性生成equals()、hashCode()、toString()等标准方法，无需手动实现这些方法。\n提供复制方法：数据类提供了copy()方法，可以快速创建一个属性值相同的新对象，方便进行对象复制和修改。\n支持解构声明：可以使用解构声明（Destructuring Declarations）来将数据类的属性解构为多个变量，方便地访问和使用属性。",
+          "image:data_class"
         ]
       },
       {
@@ -1691,14 +1716,11 @@
       {
         "richText": [
           "title: cancel()与join()",
-          "text: cancel代码取消协程的执行，join意思是阻塞等待协程结束。也就是说cancel执行后会马上返回，执行后续的代码，但是这个时候协程不一定结束。再调用join方法，这里表示阻塞等待协程结束。确保协程结束之后才执行后续的代码。我们也可以调用job.cancelAndJoin()\n\n协程的取消操作是协作完成的，也就是协程必须协作才能取消。假如协程正在执行任务，如果没有检查协程是否是处于取消状态的话，则无法取消协程的执行。\n\nsuspend fun main() {\n    //构建作用区域\n    coroutineScope {\n        var job = launch {\n            var time = System.currentTimeMillis()\n            var i = 0\n            while (i < 5) {\n                if (System.currentTimeMillis() >= time) {\n                    println(\"这是第 \/${++i} 次\")\n                    time += 500\n                ]}\n            ]}\n        ]}\n        //非阻塞等待1300毫秒\n        delay(1300)\n        println(\"我已等待结束....\")\n        job.cancel()\n        job.join()\n        // job.cancelAndJoin()\n    }\n}\n\n这是第 1 次\n这是第 2 次\n这是第 3 次\n我已等待结束....\n这是第 4 次\n这是第 5 次\n"
-        ]
-      },
-      {
-        "richText": [
-          "title: 协程的定义与使用",
-          "text: 协程（Coroutines）是一种轻量级的并发编程工具，用于简化异步编程和并发任务的处理。它们提供了一种顺序编写异步代码的方式，使代码看起来像是同步执行的，而实际上是在异步执行。\n\n协程可以在函数或代码块内部使用 suspend 修饰符来定义挂起函数，这些函数可以在遇到耗时操作时主动挂起当前协程，而不会阻塞线程。挂起函数可以被其他协程调用，或者在协程内部使用 async 和 await 的方式来处理并发任务和获取结果。",
-          "image:xie_cheng"
+          "text: 区别：\n1、cancel()是取消协程的方法，会立即终止协程的执行并抛出CancellationException异常。\n2、join()是等待协程执行完成的方法，会阻塞当前线程直到协程执行完成或被取消。\n3、cancel()可以在任何时候调用，会立即取消协程，而join()必须在协程执行期间调用，否则会抛出异常。\n4、cancel()可以通过参数传递一个取消原因，join()没有这个功能。",
+          "image:xc_cancel1",
+          "text: 无日志",
+          "image:xc_join",
+          "text: 首先会输出\"Job is running\"，每隔1秒输出一次，共输出10次。当所有输出完成后，才会输出\"Job completed\"，表示协程已经执行完成。"
         ]
       },
       {
@@ -1719,8 +1741,17 @@
       },
       {
         "richText": [
-          "title: kotlin操作符",
-          "text: let：使用it替代object对象去访问其公有的属性 & 方法\n\nalso类似let函数，但区别在于返回值：let只反最后一行变量给result，also把=号后面整体返给result\n\nwith：需要调用同一个对象的多个方法 / 属性\n\nrun结合了let、with两个函数的作用，调用同一个对象的多个方法 / 属性时，统一做判空处理\n\napply与run函数类似，但区别在于返回值：run函数返回最后一行的值 / 表达式，apply函数返回传入的对象的本身\n\nout T  等价于 ? extends T\nin T  等价于  ? super T  \n\n\nList<? extends Animal> list1 = new ArrayList<>()\nlist1.add(new Dog())  // Dog是Animal的子类，编译器不然通过，\n\n**************\n\nlet\n// 作用1：使用it替代object对象去访问其公有的属性 & 方法\nobject.let{\n   it.todo()\n}\n// 作用2：判断object为null的操作\nobject?.let{//表示object不为null的条件下，才会去执行let函数体\n   it.todo()\n}\n\n*************\n\nalso类似let函数，但区别在于返回值：\nvar result = mVar.let {\n               it.function3()\n               999\n}\n// 最终结果 = 返回999给变量result\n\nvar result = mVar.also {\n               it.function1()\n               999\n}\n// 最终结果 = 返回一个mVar对象给变量result\n\n**************\n\nwith需要调用同一个对象的多个方法 / 属性\nval people = People(\"carson\", 25)\nwith(people) {\nprintln(\"my name is \/$name, I am \/$age years old\")\n}\n\n**************\n\nrun结合了let、with两个函数的作用，调用同一个对象的多个方法 / 属性时，统一做判空处理\nval people = People(\"carson\", 25)\npeople?.run{\n    println(\"my name is \/$name, I am \/$age years old\")\n}\n\n*************\n\napply与run函数类似，但区别在于返回值：run函数返回最后一行的值 / 表达式，apply函数返回传入的对象的本身\n\nval people = People(\"carson\", 25)\nval result = people?.run{\n    println(\"my name is \/$name, I am \/$age years old\")\n    999\n}\n// 最终结果 = 返回一个people对象给变量result"
+          "title: kotlin作用域函数",
+          "text: let：在一个非空对象上执行代码块",
+          "image:let",
+          "text: with：在一个对象上执行多个操作，避免重复引用对象名",
+          "image:with",
+          "text: run：在一个对象上执行代码块，并返回最后一个表达式的结果",
+          "image:run",
+          "text: apply：在一个对象上执行代码块，并返回该对象本身",
+          "image:apply",
+          "text: also：在一个对象上执行代码块，并返回该对象本身，类似于apply，但使用it引用当前对象",
+          "image:also"
         ]
       },
       {
