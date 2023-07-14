@@ -470,7 +470,7 @@
       {
         "richText": [
           "title: 类加载机制、流程",
-          "text: 类加载指的是将类的class文件动态的加载到内存中，最终可以被虚拟机直接使用， 这些工作是通过加载器来完成的\n\nJVM采用的是双亲委派加载，也就是有任务会先委派给父加载器，这样从下到上逐层委派，最终会给到根类加载器，如果父类无法加载，子类才会自己尝试加载。双亲委派机制的好处一是可以避免重复加载，二是防止核心API被随意篡改。\n\n整体加载流程也可以叫生命周期有七步：\n1、加载：把class文件加载到内存里，转换成二进制字节流\n2、验证：格式、字节码等验证，保证符合虚拟机要求\n3、准备：在方法区为类变量分配内存设默认值\n4、解析：把虚拟机常量池中的符号引用转换为直接引用也就是内存地址\n5、初始化：为类的静态变量赋初值\n6、使用：\n7、卸载：执行完成\n\n解析这一步是不固定的，有可能会放在初始化之后，为了支持JAVA语言的动态绑定"
+          "text: 类加载指的是将类的class文件动态的加载到内存中，最终可以被虚拟机直接使用， 这些工作是通过加载器来完成的\n\nJVM采用的是双亲委派加载，也就是有任务会先委派给父加载器，这样从下到上逐层委派，如果父类无法加载，子类才会自己尝试加载。双亲委派机制的好处一是可以避免重复加载，二是防止核心API被随意篡改。\n\n整体加载流程也可以叫生命周期有七步：\n1、加载：把class文件加载到内存里，转换成二进制字节流\n2、验证：格式、字节码等验证，保证符合虚拟机要求\n3、准备：在方法区为类变量分配内存设默认值\n4、解析：把虚拟机常量池中的符号引用转换为直接引用也就是内存地址\n5、初始化：为类的静态变量赋初值\n6、使用：\n7、卸载：执行完成\n\n解析这一步是不固定的，有可能会放在初始化之后，为了支持JAVA语言的动态绑定"
         ]
       },
       {
@@ -1456,68 +1456,71 @@
       {
         "richText": [
           "title: EventBus的原理",
-          "text: EventBus会在对象register时，会通过注解，遍历对象的方法，将带有@Subscribe标签并且合法的方法加入到typesBySubscriber。\ntypesBySubscriber是HashMap形式，key是注册的对象本身，由于一个注册的对象中可能有多个监听事件，所以value是用list保存的Event。 \n\n后注册的对象中sticky方法能够收到之前的stickyEvent方法的原因是EventBus中维护了stickyEvent的hashMap表，在subsribe注册的时候就遍历其中有没有注册监听stickyEvent如果有就会执行一次回调。\n\n\nEventBus中一个Map结构： Map<Object, List<Class<?>>>  typesBySubscriber;\n\n\n\nEventBus2.x使用的是运行时注解，它采用了反射的方式对整个注册的类的所有方法进行扫描来完成注册，因而会对性能有一定影响。\n\nEventBus3.x使用的是编译时注解，Java文件会编译成.class文件，再对class文件进行打包等一系列处理。然后用生成Java类来保存所有订阅者的订阅信息。这样就创建出了对文件或类的索引关系，并将其编入到apk中。"
+          "text: EventBus也是通过观察者模式来进行通信的，它内部的有一个注册表，是基于HashMap和ArrayList的数据结构，它以事件类型作为键（Key），以订阅者（Subscriber）列表作为值（Value）进行存储。当事件被发布时，EventBus会根据事件的类型从SubscriberRegistry中查找对应的ArrayList，并依次分发事件给其中的订阅者。\n\n有时候我们希望订阅者在注册之后能够立即收到之前发布的事件，这时就可以使用粘性事件。当使用EventBus.getDefault().postSticky(event)方法发布粘性事件时，EventBus会将该事件保存在一个专门用于存储粘性事件的数据结构中。\n当订阅者通过EventBus.getDefault().register(this)方法进行注册时，EventBus会检查是否存在对应类型的粘性事件。如果存在，则会立即将该粘性事件发送给订阅者。"
         ]
       },
       {
         "richText": [
           "title: 介绍下JetPack",
-          "text: Jetpack是Goolge推出的一套组件库，目的是让开发者能够使用标准的架构组件，而不用去纠结架构的方案设计，可以将更多的精力放在自己的业务代码上。 主要包括 4 个方面。\n\n架构（Architecture）常用的有：databinding、lifecycles、viewmodel\n\n界面（UI）常用的有：Animation动画、emoje表情、fragment、layout\n\n行为（behavior）有：AppCompat（依赖库）、mutidex（short类型的范围65535解决方案，DexPathList）\n\n基础（foundation）有：media多媒体、permission权限"
+          "text: Jetpack是由Google推出的一套Android开发组件库，Jetpack的主要组件可以分为4个类别：基础、架构、UI、行为\n\n1. 基础组件：提供了一些核心功能，包括生命周期管理（Lifecycle）、数据绑定（Data Binding）、应用间通信（Navigation）等。\n\n2. 架构组件：这些是帮助开发者构建健壮、可测试和易于维护的应用架构。包括Room（本地数据库）、ViewModel（视图模型）、LiveData（数据观察者）和Paging（分页加载）等。\n\n3. UI组件：包括了一些UI相关的组件，用于构建漂亮、响应式的用户界面。其中包括RecyclerView（高性能列表）、ViewPager2（可滑动页面）和Fragment（模块化UI等）等。\n\n4. 行为组件：提供了一些用于处理Android应用常见行为的组件，如WorkManager（调度后台任务）、Notifications（通知）和Permissions（权限管理）等。"
         ]
       },
       {
         "richText": [
-          "title: 如何捕捉异常",
-          "text: Exception分为两类：一种是CheckedException，一种是UncheckedException，如果是CheckedException，可以用try\\catch来捕捉，如果是运行时异常，可以自定义一个工具类，实现UncaughtExceptionHandler接口，然后在application中初始化，用这个工具来捕获unchecked异常。里面需要重写一个uncaughtException方法，在里面完成错误信息收集，发送错误报告等操作"
+          "title: 异常Exception与错误Error",
+          "text: Exception异常分为两大类：可检查异常（Checked Exception）和不可检查异常（Unchecked Exception）。\n\n1. 可检查异常：这些异常在代码编译时会被检查器强制要求进行处理。如果不进行处理，编译器会报错。常见的可检查异常包括IOException（输入输出异常）、SQLException（数据库异常）等。可以通过try-catch语句块或者throws关键字来处理可检查异常。\n\n2. 不可检查异常：常见的运行时异常RuntimeException及其子类都是，如NullPointerException（空指针异常）、ArrayIndexOutOfBoundsException（数组越界异常）等。不可检查异常可以通过实现UncaughtExceptionHandler接口来进行捕捉。",
+          "image:exception_catch",
+          "text: 还有种比较严重的Error错误：例如OutOfMemoryError（内存溢出错误）和StackOverflowError（栈溢出错误），这些无法通过代码来恢复或处理，需要提高代码的健壮性和可靠性来预防的。"
         ]
       },
       {
         "richText": [
           "title: RecyclerView 与 ListView 的区别",
-          "text: 一. RecyclerView多了一些LayoutManager工作，但实现了布局效果多样化\n1、ListView 的布局比较单一，只有一个纵向效果。\n2、RecyclerView 可以在LayoutMananger中设置：线性布局（纵向，横向），表格布局，瀑布流布局\n\n二.一些常用功能的api不同，比如 Listview可以通过addHeaderView() 与 addFooterView()来添加头部item与底部item，但RecyclerView需要在Adapter中自己编写。还有Listview有onItemClickListener、onItemLongClickListener(),但RecyclerView需要通过addOnItemTouchListener或在item中实现。其他还有Listview没有局部刷新（notifyItemChanged），setTag()、getTag()等。\n\n三.ViewHolder的编写规范化，ListView是需要自己定义的，而RecyclerView是规范好的\n\n四.RecyclerView有嵌套滚动机制，但Listview没有：\n在事件分发机制中，Touch事件在进行分发的时候，由父View向子View传递，一旦子View消费这个事件的话，那么接下来的事件分发的时候，父View将不接受，由子View进行处理；但是与Android的事件分发机制不同，嵌套滚动机制（Nested Scrolling）可以弥补这个不足，能让子View与父View同时处理这个Touch事件，主要实现在于NestedScrollingChild与NestedScrollingParent这两个接口；而在RecyclerView中，实现的是NestedScrollingChild，所以能实现嵌套滚动机制；"
+          "text: RecyclerView相对于ListView提供了更多的灵活性和性能优化，适用于不同的列表需求。\n\n1. RecyclerView更灵活，可以支持多种布局方式，比如线性布局、网格布局、瀑布流布局等。\n2. RecyclerView需要使用ViewHolder来提高性能；\n3. RecyclerView的数据操作更灵活，可以局部刷新；\n4. RecyclerView内置了ItemAnimator用于添加动画效果；\n5. RecyclerView在性能优化方面进行了改进。"
         ]
       },
       {
         "richText": [
           "title: RecyclerView的缓存机制",
-          "text: 从流程来说有四个\n屏幕内（一级） -> 屏幕外（二级） -> 用户自定义（三级） -> 缓存pool池（四级）\n\n\n屏幕内缓存：\n1.在屏幕中显示的ViewHolder，这些ViewHolder会缓存在mAttachedScrap、mChangedScrap中。 \n主要用于缓存出现在屏幕内的item，当我们通过notifyItemRemoved()，notifyItemChanged()通知item发生变化的时候，通过mAttachedScrap缓存没有发生变化的ViewHolder，其他的则由mChangedScrap缓存，添加itemView的时候快速从里面取出，完成局部刷新\n\n屏幕外缓存：\n1.当列表滑动出了屏幕时，ViewHolder会被缓存在 mCachedViews。 \n2.mCachedViews大小由mViewCacheMax决定，默认DEFAULT_CACHE_SIZE为2，可通过Recyclerview.setItemViewCacheSize()动态设置。 \n3.mCachedViews中的ViewHolder没有进行清理，ViewHolder相关的position，flag等标志都一并被缓存了，从mCachedViews中取出的ViewHolder不需要再进行绑定操作而可以直接使用。 \n\n自定义缓存ViewCacheExtension ： \n1.开发者可自定义的一层缓存，是虚拟类ViewCacheExtension的一个实例，开发者可实现方法getViewForPositionAndType(Recycler recycler, int position, int type)来实现自己的缓存。\n\n缓存池：\n1.RecycledViewPool类是用来缓存ViewHolder，如果多个RecyclerView之间用setRecycledViewPool(RecycledViewPool)设置同一个RecycledViewPool，他们就可以共享ViewHolder。\n2.pool的大小默认为5。 \n3.不同viewType的viewHolder存在不同的list中。 \n4.从pool池中拿出来的viewholder是剥了层皮的（清除所有的position，flag等），需要重新绑定一次数据。",
+          "text: RecyclerView的缓存机制主要是通过ViewHolder的重用来提高列表的性能。官方提供的RecyclerView的缓存机制有三级缓存，包括：\n\n 1.Active Views（活动视图）：这是列表中当前可见的ViewHolder对象，它们保存在RecyclerView的一个集合中。这些ViewHolder对象在屏幕上显示的列表项对应的视图对象。\n\n 2.Scrap Views（废弃视图）：这是列表中已经不可见但仍然可以被重用的ViewHolder对象，它们保存在RecyclerView的一个集合中。当列表项滚出屏幕时，ViewHolder会被放入Scrap Views中，以备下次可见时重用。\n\n 3.Cached Views（缓存视图）：这是列表中已经不再需要的ViewHolder对象，它们保存在RecyclerView的一个内部缓存池中。这些ViewHolder对象可以被其他RecyclerView实例重用，以减少ViewHolder的创建和销毁操作。\n\n这三级缓存机制通过ViewHolder的重用，减少了不必要的视图创建和销毁操作，提高了列表的性能和滚动的流畅性。如果需要更高级的缓存机制，开发者可以自行实现，例如通过自定义缓存策略、使用对象池等方式来扩展RecyclerView的缓存机制。\n",
           "image:recyclerview_cache"
         ]
       },
       {
         "richText": [
           "title: ButterKnife作用及原理",
-          "text: 编译代码时，butterKnife会扫描Java代码中所有的ButterKnife注解@Bind、@OnClick、@OnItemClicked这些类，然后ButterKnifeProcessor会帮你生成一个Java类，这个ViewBinder类中包含了所有对应的代码，比如@Bind注解对应findViewById(), @OnClick对应了view.setOnClickListener()等等 。我们会调用ButterKnife.bind(this)，动态注入所有的注解过的View属性和click方法\n\n有个Zelezny插件，可以针对布局所有子view一键声明，很好用，推荐使用\n\n@BindView(R.id.login_btn_login)\nButton btn_login;\n\n@OnClick({R.id.login_btn_login})   \npublic void onViewClicked(View view) {   //xml不需要去写\n        switch (view.getId()) {\n            case R.id.login_btn_login:\n    ……\n                break;\n            default:\n                break;\n        ]}\n    }\n"
+          "text: ButterKnife是一个Android开发中常用的View注入框架，它简化了视图的初始化、事件绑定等操作，提高了开发效率和代码的可读性。ButterKnife的原理可以简述为以下几个步骤：\n\n1. 注解处理器扫描：在编译时，ButterKnife的注解处理器会扫描代码中使用的ButterKnife注解，如@BindView、@OnClick等。\n\n2. 生成代码：注解处理器根据扫描到的注解信息，生成对应的Java代码。生成的代码主要包括视图绑定和事件绑定的相关逻辑。\n\n3. 运行时调用：在应用程序运行时，通过反射机制调用生成的代码，完成视图的绑定和事件的绑定。",
+          "image:butter_knife"
         ]
       },
       {
         "richText": [
           "title: Glide优点与原理",
-          "text: glide最大的优势就是对bitmap的管理是跟随生命周期发生改变的。当Activity销毁的时候，之前加载的所有图片的内存都释放了。其它的框架基本都是用Lru算法，当Activity销毁的时候，是不会释放之前加载图片占用的所有内存。\n\n当我们用glide进行加载时，它创建一个无UI的Fragment，并绑定到通过glide.with(context)传进来的Activity上，这样Fragment就可以感知Activity的生命周期了。RequestManager是用来加载、管理图片请求的，它会通过传入的Lifecycle对象，监听到Fragment的生命周期，从而根据生命周期管理让Request做出相对应的处理了。"
+          "text: 1. 性能管理非常出色：Glide使用了多级缓存策略，还生命周期管理，可以与Activity和Fragment的生命周期进行绑定，自动管理图片加载和释放。体验上更流畅\n\n2. 支持各种图片格式：Glide支持加载和显示各种图片格式，包括常见的JPEG、PNG、GIF，以及WebP、SVG等。\n\n3. 强大的图片转换和处理：Glide提供了丰富的图片转换和处理功能，可以对图片进行裁剪、缩放、旋转、模糊等各种处理操作。开发者可以通过简单的API调用，实现复杂的图片处理需求。\n\n4. 灵活的配置选项：Glide提供了丰富的配置选项，可以根据应用的需求进行灵活的配置和调整。开发者可以设置缓存大小、缓存位置、网络请求策略等，以优化图片加载的性能和效果。"
         ]
       },
       {
         "richText": [
           "title: Glide缓存",
-          "text: 内存缓存主要用于防止将重复的图读入内存中，硬盘缓存则用于防止从网络或者其他地方将重复下载和数据读取\n\n\n一、内存\n查找顺序：先从LruResourceCache中查找，找到了移除并添加到activeResources（弱引用 ）中，找不到再从activeResources（弱引用）中查找。\n\n引用逻辑acquired:acquired()方法让其+1，release()方法让其-1，经过acquired()方法使acquired>0在activeResources中存储，然后不再使用调用release()方法使acquired==0被activeResources移除并且put到LruResourceCache中\n\n\n二、磁盘\n优先读取优化后的图片，读取不到再读取原图\nDiskCacheStrategy.RESULT： 表示只缓存转换过后的图片（默认选项）。\n\n\n缓存key：决定缓存key的参数有十几个(包括url，宽，高，signature等等)\n\nandroid 4.4以前是Bitmap复用必须长宽相等才可以复用，而android 4.4及以后是Size>=所需就可以复用，只不过需要调用reconfigure来调整尺寸"
+          "text: 存取的顺序：\n存入缓存的顺序：先磁盘，再内存。\n读取缓存的顺序：先内存，再磁盘\n\n内存缓存分为两级：\n一级内存缓存是Glide的主要内存缓存机制，使用LruCache（最近最少使用算法）实现。它存储了最近使用的图片，以便快速访问。\n二级内存缓存是一种可选的附加内存缓存机制，使用弱引用（WeakReference）实现。它的目的是缓存一些不常用的图片，以便在内存紧张时进行释放。\n\n内存的存入和读取顺序：都是先一级内存缓存，然后才是二级内存缓存"
         ]
       },
       {
         "richText": [
-          "title: 类加载方案",
-          "text: 虚拟机加载类的时候都需要ClassLoader,ClassLoader有一个子类BaseDexClassLoader，而BaseDexClassLoader下有一个\n \n数组——DexPathList，是用来存放dex文件，当BaseDexClassLoader通过调用findClass方法时，实际上就是遍历数组，\n \n找到相应的dex文件，找到，则直接将它return。而热修复的解决方法就是将新的dex添加到该集合中，并且是在旧的dex的前面，\n \n所以就会优先被取出来并且return返回。\n\nQQ空间超级补丁和Nuwa用的就是这种\n\n微信tinker是新旧apk做diff，得到path.dex再与手机原本的dex合并，生成新的class.dex，然后再反射将此dex放在第一个元素。bsdiff可以得到两个不同文件中的不同信息，旧文件+新文件=差分文件\nbspatch：旧文件+差分文件=新文件\n\n优点：补丁包较小，支持资源替换\n缺点：需要重启才能生效。"
+          "title: 热修复之Tinker",
+          "text: Tinker通过以下几个步骤实现热修复的效果\n\n1. 我们需要先用最新的代码和基础包做比对，生成一个补丁文件\n\n2. Tinker框架会创建一个自定义的ClassLoader，用于加载补丁文件。这个自定义的ClassLoader继承自PathClassLoader，可以加载APK文件中的dex文件。\n\n3. Tinker加载补丁文件后，会将补丁文件的路径添加到ClassLoader的dexElements数组的最前面。这样，在后续的类加载过程中，ClassLoader会先从补丁文件中查找对应的类，而不会再去加载有问题的dex文件。"
         ]
       },
       {
         "richText": [
-          "title: 底层替换方案",
-          "text: 底层替换方法，不会从新加载类，限制较多，不能增减原有类的方法和字段，是及时生效的\n\n原理是直接在native层，通过反射替换方法入口，或者整个方法体。\n\n阿里Andfix用的就是这种方案\n\n优点：立即生效，消耗低。\n缺点：仅支持方法的替换。"
+          "title: 热修复之阿里AndFix",
+          "text: 阿里AndFix热修复框架的原理是通过加载修复补丁，使用自定义ClassLoader加载补丁中的修复代码，并通过反射技术将修复后的方法替换掉原有的方法，实现热修复效果。它的优点是使用简单，无需重新打包和发布应用程序，但限制在于无法修复类结构的改变。"
         ]
       },
       {
         "richText": [
-          "title: instantRun方案",
-          "text: 原理是每个类都增加一个静态变量，在每个方法执行前，判断此变量是否发生变化，变化了执行新的类中方法\n\n像美团的Robust为每个class增加了个类型为ChangeQuickRedirect的静态成员，而在每个方法前都插入了使用changeQuickRedirect相关的逻辑，当 changeQuickRedirect不为null时，可能会执行到accessDispatch从而替换掉之前老的逻辑，达到fix的目的。替换的方式也是通过反射将changeQuickRedirect的值赋为补丁对象完成补丁加载操作。\n\n优点：兼容性高，开发透明；实时生效。\n缺点：会增大方法数，影响运行效率，不支持资源替换。\n\n了解 --> 当应用获取到加载补丁后，会创建DexClassLoader加载补丁，每个补丁有被修复的类信息及该类对应的补丁信息。通过被修复的类信息找到该类，反射将changeQuickRedirect的值赋为补丁对象完成补丁加载操作。"
+          "title: 热修复之美团Robust",
+          "text: Robust是基于代码插桩的热修复方案，通过在编译阶段通过Gradle插件在源码中插入特殊标记，生成补丁文件，当应用程序执行到被修复的代码时，Robust会通过反射技术调用修复代码。   \n\n注1：提前制定好规则，比如加注解@modify，然后在新代码中加上@modify，执行到这里的时候就会调用补丁中的修复方法。\n\n注2：Robust是基于代码插桩的热修复方案，通过在编译阶段插入特殊标记，生成补丁文件，并在运行时加载和执行补丁代码实现修复。Tinker则是基于增量更新的热修复方案，通过在应用更新时只传输变更的差异文件，然后通过合并差异文件和原有安装包生成新的安装包来实现修复。"
         ]
       },
       {
