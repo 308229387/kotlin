@@ -1455,19 +1455,19 @@
     "data": [
       {
         "richText": [
-          "title: EventBus的原理",
+          "title: *-EventBus的原理",
           "text: EventBus也是通过观察者模式来进行通信的，它内部的有一个注册表，是基于HashMap和ArrayList的数据结构，它以事件类型作为键（Key），以订阅者（Subscriber）列表作为值（Value）进行存储。当事件被发布时，EventBus会根据事件的类型从SubscriberRegistry中查找对应的ArrayList，并依次分发事件给其中的订阅者。\n\n有时候我们希望订阅者在注册之后能够立即收到之前发布的事件，这时就可以使用粘性事件。当使用EventBus.getDefault().postSticky(event)方法发布粘性事件时，EventBus会将该事件保存在一个专门用于存储粘性事件的数据结构中。\n当订阅者通过EventBus.getDefault().register(this)方法进行注册时，EventBus会检查是否存在对应类型的粘性事件。如果存在，则会立即将该粘性事件发送给订阅者。"
         ]
       },
       {
         "richText": [
-          "title: 介绍下JetPack",
+          "title: *-介绍下JetPack",
           "text: Jetpack是由Google推出的一套Android开发组件库，Jetpack的主要组件可以分为4个类别：基础、架构、UI、行为\n\n1. 基础组件：提供了一些核心功能，包括生命周期管理（Lifecycle）、数据绑定（Data Binding）、应用间通信（Navigation）等。\n\n2. 架构组件：这些是帮助开发者构建健壮、可测试和易于维护的应用架构。包括Room（本地数据库）、ViewModel（视图模型）、LiveData（数据观察者）和Paging（分页加载）等。\n\n3. UI组件：包括了一些UI相关的组件，用于构建漂亮、响应式的用户界面。其中包括RecyclerView（高性能列表）、ViewPager2（可滑动页面）和Fragment（模块化UI等）等。\n\n4. 行为组件：提供了一些用于处理Android应用常见行为的组件，如WorkManager（调度后台任务）、Notifications（通知）和Permissions（权限管理）等。"
         ]
       },
       {
         "richText": [
-          "title: 异常Exception与错误Error",
+          "title: *-异常Exception与错误Error",
           "text: Exception异常分为两大类：可检查异常（Checked Exception）和不可检查异常（Unchecked Exception）。\n\n1. 可检查异常：这些异常在代码编译时会被检查器强制要求进行处理。如果不进行处理，编译器会报错。常见的可检查异常包括IOException（输入输出异常）、SQLException（数据库异常）等。可以通过try-catch语句块或者throws关键字来处理可检查异常。\n\n2. 不可检查异常：常见的运行时异常RuntimeException及其子类都是，如NullPointerException（空指针异常）、ArrayIndexOutOfBoundsException（数组越界异常）等。不可检查异常可以通过实现UncaughtExceptionHandler接口来进行捕捉。",
           "image:exception_catch",
           "text: 还有种比较严重的Error错误：例如OutOfMemoryError（内存溢出错误）和StackOverflowError（栈溢出错误），这些无法通过代码来恢复或处理，需要提高代码的健壮性和可靠性来预防的。"
@@ -1475,64 +1475,65 @@
       },
       {
         "richText": [
-          "title: RecyclerView 与 ListView 的区别",
+          "title: *-RecyclerView 与 ListView 的区别",
           "text: RecyclerView相对于ListView提供了更多的灵活性和性能优化，适用于不同的列表需求。\n\n1. RecyclerView更灵活，可以支持多种布局方式，比如线性布局、网格布局、瀑布流布局等。\n2. RecyclerView需要使用ViewHolder来提高性能；\n3. RecyclerView的数据操作更灵活，可以局部刷新；\n4. RecyclerView内置了ItemAnimator用于添加动画效果；\n5. RecyclerView在性能优化方面进行了改进。"
         ]
       },
       {
         "richText": [
-          "title: RecyclerView的缓存机制",
+          "title: *-RecyclerView的缓存机制",
           "text: RecyclerView的缓存机制主要是通过ViewHolder的重用来提高列表的性能。官方提供的RecyclerView的缓存机制有三级缓存，包括：\n\n 1.Active Views（活动视图）：这是列表中当前可见的ViewHolder对象，它们保存在RecyclerView的一个集合中。这些ViewHolder对象在屏幕上显示的列表项对应的视图对象。\n\n 2.Scrap Views（废弃视图）：这是列表中已经不可见但仍然可以被重用的ViewHolder对象，它们保存在RecyclerView的一个集合中。当列表项滚出屏幕时，ViewHolder会被放入Scrap Views中，以备下次可见时重用。\n\n 3.Cached Views（缓存视图）：这是列表中已经不再需要的ViewHolder对象，它们保存在RecyclerView的一个内部缓存池中。这些ViewHolder对象可以被其他RecyclerView实例重用，以减少ViewHolder的创建和销毁操作。\n\n这三级缓存机制通过ViewHolder的重用，减少了不必要的视图创建和销毁操作，提高了列表的性能和滚动的流畅性。如果需要更高级的缓存机制，开发者可以自行实现，例如通过自定义缓存策略、使用对象池等方式来扩展RecyclerView的缓存机制。\n",
           "image:recyclerview_cache"
         ]
       },
       {
         "richText": [
-          "title: ButterKnife作用及原理",
+          "title: *-ButterKnife作用及原理",
           "text: ButterKnife是一个Android开发中常用的View注入框架，它简化了视图的初始化、事件绑定等操作，提高了开发效率和代码的可读性。ButterKnife的原理可以简述为以下几个步骤：\n\n1. 注解处理器扫描：在编译时，ButterKnife的注解处理器会扫描代码中使用的ButterKnife注解，如@BindView、@OnClick等。\n\n2. 生成代码：注解处理器根据扫描到的注解信息，生成对应的Java代码。生成的代码主要包括视图绑定和事件绑定的相关逻辑。\n\n3. 运行时调用：在应用程序运行时，通过反射机制调用生成的代码，完成视图的绑定和事件的绑定。",
           "image:butter_knife"
         ]
       },
       {
         "richText": [
-          "title: Glide优点与原理",
+          "title: *-Glide优点与原理",
           "text: 1. 性能管理非常出色：Glide使用了多级缓存策略，还生命周期管理，可以与Activity和Fragment的生命周期进行绑定，自动管理图片加载和释放。体验上更流畅\n\n2. 支持各种图片格式：Glide支持加载和显示各种图片格式，包括常见的JPEG、PNG、GIF，以及WebP、SVG等。\n\n3. 强大的图片转换和处理：Glide提供了丰富的图片转换和处理功能，可以对图片进行裁剪、缩放、旋转、模糊等各种处理操作。开发者可以通过简单的API调用，实现复杂的图片处理需求。\n\n4. 灵活的配置选项：Glide提供了丰富的配置选项，可以根据应用的需求进行灵活的配置和调整。开发者可以设置缓存大小、缓存位置、网络请求策略等，以优化图片加载的性能和效果。"
         ]
       },
       {
         "richText": [
-          "title: Glide缓存",
+          "title: *-Glide缓存",
           "text: 存取的顺序：\n存入缓存的顺序：先磁盘，再内存。\n读取缓存的顺序：先内存，再磁盘\n\n内存缓存分为两级：\n一级内存缓存是Glide的主要内存缓存机制，使用LruCache（最近最少使用算法）实现。它存储了最近使用的图片，以便快速访问。\n二级内存缓存是一种可选的附加内存缓存机制，使用弱引用（WeakReference）实现。它的目的是缓存一些不常用的图片，以便在内存紧张时进行释放。\n\n内存的存入和读取顺序：都是先一级内存缓存，然后才是二级内存缓存"
         ]
       },
       {
         "richText": [
-          "title: 热修复之Tinker",
+          "title: *-热修复之Tinker",
           "text: Tinker通过以下几个步骤实现热修复的效果\n\n1. 我们需要先用最新的代码和基础包做比对，生成一个补丁文件\n\n2. Tinker框架会创建一个自定义的ClassLoader，用于加载补丁文件。这个自定义的ClassLoader继承自PathClassLoader，可以加载APK文件中的dex文件。\n\n3. Tinker加载补丁文件后，会将补丁文件的路径添加到ClassLoader的dexElements数组的最前面。这样，在后续的类加载过程中，ClassLoader会先从补丁文件中查找对应的类，而不会再去加载有问题的dex文件。"
         ]
       },
       {
         "richText": [
-          "title: 热修复之阿里AndFix",
+          "title: *-热修复之阿里AndFix",
           "text: 阿里AndFix热修复框架的原理是通过加载修复补丁，使用自定义ClassLoader加载补丁中的修复代码，并通过反射技术将修复后的方法替换掉原有的方法，实现热修复效果。它的优点是使用简单，无需重新打包和发布应用程序，但限制在于无法修复类结构的改变。"
         ]
       },
       {
         "richText": [
-          "title: 热修复之美团Robust",
+          "title: *-热修复之美团Robust",
           "text: Robust是基于代码插桩的热修复方案，通过在编译阶段通过Gradle插件在源码中插入特殊标记，生成补丁文件，当应用程序执行到被修复的代码时，Robust会通过反射技术调用修复代码。   \n\n注1：提前制定好规则，比如加注解@modify，然后在新代码中加上@modify，执行到这里的时候就会调用补丁中的修复方法。\n\n注2：Robust是基于代码插桩的热修复方案，通过在编译阶段插入特殊标记，生成补丁文件，并在运行时加载和执行补丁代码实现修复。Tinker则是基于增量更新的热修复方案，通过在应用更新时只传输变更的差异文件，然后通过合并差异文件和原有安装包生成新的安装包来实现修复。"
         ]
       },
       {
         "richText": [
-          "title: RxJava的基础使用",
-          "text: Rxjava的特点，由于其基于事件流的链式调用、逻辑非常简洁，非常适合于复杂异步的问题处理\n\n\n   创建被观察者，产生事件\n设置事件传递过程中的过滤，合并，变换等加工操作。\n订阅一个观察者对象，实现事件最终的处理。\n\nObservable.create(new ObservableOnSubscribe<Integer>() {\n\n    @Override\n    public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Throwable {\n        emitter.onNext(1);\n        emitter.onNext(2);\n        emitter.onNext(3);\n        emitter.onComplete();\n    }\n}).subscribe(new Observer<Integer>() {\n    @Override\n    public void onSubscribe(@NonNull Disposable d) {\n        Log.d(TAG, \"onSubscribe:\" + d.getClass().getName());\n    }\n\n    @Override\n    public void onNext(@NonNull Integer integer) {\n        Log.d(TAG, \"onNext: \" + integer);\n    }\n\n    @Override\n    public void onError(@NonNull Throwable e) {\n        Log.d(TAG, \"onError: \" + e.getMessage());\n    }\n\n    @Override\n    public void onComplete() {\n        Log.d(TAG, \"onComplete\");\n    }\n});\n"
+          "title: *-RxJava的基础使用",
+          "text: RxJava是一个基于观察者模式和函数式编程思想的响应式编程库。通过订阅的方式将观察者与Observable关联起来。当Observable发射事件时，观察者会接收到并进行相应处理。\n\n我们一般使用Rxjava来处理处理异步任务、处理复杂的数据流、并发编程之类的。"
         ]
       },
       {
         "richText": [
-          "title: RxJava线程切换",
-          "text: 线程切换\n\nRxJava 默认，事件的发出和消费都是在同一个线程的。\u2028\n在哪个线程调用 subscribe()，就在哪个线程生产事件；在哪个线程生产事件，就在哪个线程消费事件。如果需要切换线程，就需要用到 Scheduler （调度器）\n\nSchedulers.immediate(): 直接在当前线程运行，相当于不指定线程。默认 Scheduler。\nSchedulers.newThread(): 总是启用新线程，并在新线程执行操作。\nSchedulers.io(): I/O 操作（读写文件、读写数据库、网络信息交互等）所使用的 Scheduler\nSchedulers.computation(): 计算所使用的 Scheduler。\n另外， Android 还有一个专用的 AndroidSchedulers.mainThread()，\n\nObservable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {\n            @Override\n            public void subscribe(ObservableEmitter<String> e) throws Exception {\n               …\n            ]}\n        ]})\n                .subscribeOn(Schedulers.io())\n                .observeOn(AndroidSchedulers.mainThread());"
+          "title: *-RxJava线程切换",
+          "text: 在RxJava中，线程切换是通过使用调度器（Scheduler）来实现的。它提供了一些用于线程切换的调度器和操作符，\n\nRxJava中常用的调度器有以下几种：\n1. Schedulers.io(): 该调度器适用于I/O密集型任务，使用一个无数量限制的线程池来执行任务。可以用于网络请求、数据库操作等耗时的I/O操作。\n2. Schedulers.computation(): 该调度器适用于计算密集型任务，使用一个固定数量的线程池来执行任务。可以用于CPU密集型的计算操作。\n3. Schedulers.newThread(): 该调度器会为每个任务创建一个新的线程来执行。\n4. AndroidSchedulers.mainThread(): 该调度器用于Android平台，将任务切换到主线程执行，用于更新UI等操作。\n\n常用的操作符有subscribeOn()和observeOn()\nsubscribeOn()主要改变的是订阅的线程，即call()执行的线程;\nobserveOn()主要改变的是发送的线程，即onNext()执行的线程。",
+          "image:rxjava_schedulers"
         ]
       },
       {
@@ -1549,8 +1550,9 @@
       },
       {
         "richText": [
-          "title: 发射器与Disposable",
-          "text:  ObservableEmitter:发射器可以分别发出next事件、complete事件和error事件。\n\n Disposable当调用它的dispose()方法时, 上游还会继续发送,但下游将不再接收事件.\n\n Observable.create(new ObservableOnSubscribe<Integer>() {\n        @Override\n        public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {\n            emitter.onNext(1);\n            emitter.onNext(2);\n            emitter.onNext(3);\n            emitter.onComplete();\n        ]}\n    }).subscribe(new Observer<Integer>() {   \n        @Override\n        public void onNext(Integer value) {\n            Log.d(TAG, \"\" + value);\n            new Disposable().dispose();\n        ]}\n}"
+          "title: *-发射器与Disposable",
+          "text: 在RxJava中，发射器（Observable、Flowable等）用于产生数据流，可以通过操作符进行数据处理和操作。\n\n而Disposable用于取消订阅和释放资源，我们通常将Disposable对象保存在类的成员变量中，以便在适当的时候取消订阅。例如，在Activity或Fragment的生命周期结束时取消订阅，以避免内存泄漏",
+          "image:rxjava_disposable"
         ]
       },
       {
@@ -1607,35 +1609,35 @@
     "data": [
       {
         "richText": [
-          "title: 介绍下MVC及优缺点",
+          "title: *-介绍下MVC及优缺点",
           "text:MVC它将应用程序分为三个主要组件：数据层（Model）、视图层（View）和控制器（Controller）。\n1. 数据层（Model）：模型通常是负责获取、存储和更新数据，比如数据库、网络请求等\n2. 视图层（View）：视图负责展示数据和与用户进行交互。通常由Activity或Fragment来实现，\n3. 视图模型（ViewModel）：控制器层通常也是由Activity或Fragment来承担。控制器负责处理业务和调度的相关逻辑。\n\nMVVM的工作流程如下：\n1. 视图层接收用户输入，比如点击按钮、输入文本等操作，这些操作会被视图捕捉并发送给控制器。\n2. 控制器接收到视图的用户输入，并根据输入执行相应的操作。它可能会调用数据层的方法来处理数据，也可能会调用视图的方法来更新界面。\n3. 当控制器需要处理数据时，它会调用数据层的方法来执行相应的操作，如发送网络请求、查询数据库等。\n\nMVC的优点就是开发比较省事，没有那么多类和组件，学习成本也不高，缺点就是当业务越来越复杂时，Activity和Fragment就会变的比较臃肿",
           "image:mvc_image"
         ]
       },
       {
         "richText": [
-          "title: 介绍下MVP及优缺点",
+          "title: *-介绍下MVP及优缺点",
           "text: MVP将应用程序分为三个主要组件：模型（Model）、视图（View）和Presenter。\n1. 模型（Model）：模型层负责处理数据和业务逻辑。它通常包含数据源、网络请求、数据库操作等。模型层不直接与视图层进行交互，而是通过Presenter来处理数据的请求和更新。\n2. 视图（View）：视图层负责用户界面的展示和用户交互。它通常是由Activity、Fragment、View等组成。视图层只负责展示数据和接收用户输入，不包含任何业务逻辑。\n3. Presenter：Presenter层充当了模型和视图之间的中间人，负责处理业务逻辑和数据的交互。Presenter从模型层获取数据，并将其转换为视图可以展示的格式。它还接收视图的用户输入，并根据输入更新模型的状态。\n\nMVP的工作流程如下：\n1. 视图层接收用户的输入，并将其传递给Presenter。\n2. Presenter通过调用模型层的方法来获取和处理数据。\n3. 模型层将数据返回给Presenter。\n4. Presenter将处理后的数据传递给视图层，以便展示给用户。\n\n优缺点：\n优点是相比较MVC耦合性更低，便于开发及拓展，缺点就是相比较MVC会复杂一些，接口类比较多。",
           "image:mvp_image"
         ]
       },
       {
         "richText": [
-          "title: 介绍下MVVM及优缺点",
+          "title: *-介绍下MVVM及优缺点",
           "text: MVVM它将应用程序分为三个主要组件：数据层（Model）、视图层（View）和视图模型（ViewModel）。\n1. 数据层（Model）：数据层负责处理数据和业务逻辑。它通常包含数据源、网络请求、数据库操作等。数据层与视图层和视图模型层保持独立，不直接进行交互。\n2. 视图层（View）：视图层负责用户界面的展示和用户交互。它通常是由Activity、Fragment、View等组成。视图层只负责展示数据和接收用户输入，不包含任何业务逻辑。\n3. 视图模型（ViewModel）：视图模型层充当了模型和视图之间的中间人，负责处理业务逻辑和数据展示。视图模型从模型层获取数据，并将其转换为视图可以展示的格式。它还接收视图的用户输入，并根据输入更新模型的状态。\n\nMVVM的工作流程如下：\n1. 视图层接收用户的输入，并将其传递给视图模型。\n2. 视图模型通过调用数据层的方法来获取和处理数据。\n3. 数据层将数据返回给视图模型。\n4. 视图模型将处理后的数据传递给视图层，以便展示给用户。\n\n优缺点：\nMVVM模式相比较MVP少了很多接口类，同时通过数据绑定机制（Data Binding），使得视图能够自动更新，使得代码更加简洁和易于维护。缺点就是有一定学习成本，还有就是依赖于数据绑定框架",
           "image:mvvm_image"
         ]
       },
       {
         "richText": [
-          "title: 开发模式对比",
+          "title: *-开发模式对比",
           "text: 在Android开发初期，基本都会使用MVC模式，但随着业务的增加，Activity会变得很臃肿，业务代码与界面显示全部耦合在一起，扩展性差，维护起来很不方便，于是MVP模式就应运而生了。\n\nMVP模式实现了V和M的解耦，分层清晰，把业务处理搬到P层，通过接口实现V层和P层之间通信。MVP模式也存在一些问题，随着项目的增大，接口类会越来越多，而且每一个小的改动，都需要通过接口来通信，有时候一个简单的功能，都需要写好几个接口，会造成接口爆炸。这时候MVVM模式就出现了。\n\nMVVM模式同样也是解耦，将业务代码放到VM层，V层与VM层通过双向绑定来相互通知变化，不再需要那么多的接口来通信了。双向绑定，指的是将数据与界面绑定起来，当数据发生变化时会体现在界面上，反过来界面内容变化也会同步更新到数据上。",
           "image:dif_dev_model"
         ]
       },
       {
         "richText": [
-          "title: DataBinding使用",
+          "title: *-DataBinding使用",
           "text: 1. 在build.gradle文件中启用Data Binding。",
           "image:binding_1",
           "text: 2. 在布局文件的根元素中添加<data>标签，用于指定数据源的绑定变量。",
@@ -1652,20 +1654,20 @@
       },
       {
         "richText": [
-          "title: DataBinding的原理",
+          "title: *-DataBinding的原理",
           "text: Data Binding构建工具会自动运行APT来处理布局文件。APT会解析布局文件中的<data>标签和绑定变量，并根据这些信息生成与布局文件对应的Binding类。这些Binding类包含了与布局文件中定义的绑定变量和视图相关的代码，用于在运行时访问和修改布局文件中的视图。"
         ]
       },
       {
         "richText": [
-          "title: LifeCycle原理",
+          "title: *-LifeCycle原理",
           "text: Lifecycle库会创建一个无界面的LifecycleFragment，把它添加到ComponentActivity生命周期onCreate回调中去，我们就可以借助这个Fragment来实现生命周期了，确保它们在Activity生命周期内正确地进行管理和操作。",
           "image:life_cycle_image"
         ]
       },
       {
         "richText": [
-          "title: LiveData原理",
+          "title: *-LiveData原理",
           "text:更新数据是通过观察者模式原理实现的。首先，LiveData是一个可观察的数据持有者，它持有数据，并负责通知观察者数据的更新。\n\n观察者（Observer）可以通过调用LiveData的observe()方法来注册自己，以便接收LiveData数据的更新通知。\n\n当LiveData持有的数据发生变化时，LiveData会调用观察者的onChanged()方法，将最新的数据传递给观察者。\n\nLiveData通过与LifecycleOwner的关联来感知生命周期，它会根据观察者的生命周期状态来自动管理观察者的注册和注销。避免了内存泄漏和不必要的资源消耗。\n\nLiveData要求数据的更新操作必须在主线程中进行。当调用LiveData的setValue()方法时，它会在主线程中发送数据更新通知。而当调用postValue()方法时，它会在异步线程中发送数据更新通知，确保数据更新操作不会阻塞主线程。",
           "image:live_data"
         ]
@@ -1677,39 +1679,39 @@
     "data": [
       {
         "richText": [
-          "title: Kotlin相比Java的优点",
+          "title: *-Kotlin相比Java的优点",
           "text: 1. 简洁：Kotlin可以使用更少的代码实现相同的功能，这使得代码更易于阅读和维护。\n\n2. 安全：Kotlin在类型检查方面更为严格，可以避免一些Java程序中的空指针异常和类型转换异常等问题。\n\n3. 互操作性：Kotlin可以与Java代码无缝地互操作，这意味着您可以在现有的Java项目中逐步采用Kotlin，而无需重写整个项目。\n\n4. 函数式编程：Kotlin支持函数式编程范式，这使得代码更加模块化、可重用和易于测试。\n\n5. 扩展函数：Kotlin的扩展函数功能可以让您在不修改现有类的情况下为其添加新的方法，这使得代码更加灵活和可扩展。\n\nKotlin相比Java的缺点：\n\n1. 学习成本：Kotlin相对于Java来说是一门新的语言，需要一定的学习成本。\n\n2. 依赖问题：由于Kotlin是一个相对较新的语言，因此它的生态系统相对较小，可能存在某些库或工具不支持Kotlin。\n\n3. 运行时性能：虽然Kotlin编译后的字节码与Java非常相似，但是在某些情况下，Kotlin代码可能会比Java代码运行缓慢。\n\n总体而言，Kotlin是一门非常优秀的语言，它可以使得开发者更加高效地编写代码，并且具有更高的安全性和可维护性。"
         ]
       },
       {
         "richText": [
-          "title: 在Java中存在但在Kotlin中没有直接的对应的特性",
+          "title: *-在Java中存在但在Kotlin中没有直接的对应的特性",
           "text: 1. 原始类型（Primitive Types）：Kotlin中没有明确的原始类型，它使用封装类型来代替。例如，使用Int代替int，使用Double代替double等。\n\n2. 静态成员和静态方法（Static Members and Methods）：Kotlin没有static关键字，它使用companion object来模拟静态成员和方法。\n\n3. 可变参数（Varargs）：Kotlin中的可变参数使用vararg关键字进行声明，但在调用时需要使用扩展符号（*）来传递参数。\n\n4. 原始数组（Primitive Arrays）：Kotlin中没有直接支持原始数组的语法，它推荐使用集合类（如List、Array等）来替代原始数组。\n\n5. 异常处理（Exception Handling）：Kotlin中的异常处理与Java类似，但在函数签名中没有throws关键字，而是使用try/catch块进行异常捕获。\n\n6. 枚举（Enums）：Kotlin中的枚举与Java的枚举类似，但在语法上有些不同。例如，Kotlin中的枚举类可以有属性、方法和实现接口。\n\n7. 包级函数和属性（Top-level Functions and Properties）：Kotlin中可以在文件级别上定义函数和属性，而不需要将它们放在类内部。这使得代码更加简洁和直观。"
         ]
       },
       {
         "richText": [
-          "title: 协程的定义与使用",
+          "title: *-协程的定义与使用",
           "text: 协程（Coroutines）是一种轻量级的并发编程工具，用于简化异步编程和并发任务的处理。它们提供了一种顺序编写异步代码的方式，使代码看起来像是同步执行的，而实际上是在异步执行。\n\n协程可以在函数或代码块内部使用 suspend 修饰符来定义挂起函数，这些函数可以在遇到耗时操作时主动挂起当前协程，而不会阻塞线程。挂起函数可以被其他协程调用，或者在协程内部使用 async 和 await 的方式来处理并发任务和获取结果。",
           "image:xie_cheng"
         ]
       },
       {
         "richText": [
-          "title: 在 Kotlin 中，处理空值的方式",
+          "title: *-在 Kotlin 中，处理空值的方式",
           "text: 1、可空类型：可空类型的字符串，可以存储字符串或空值\n\nval nullableString: String? = null\n\n2、安全调用运算符：使用安全调用运算符 ?. 来获取可空字符串的长度。如果 nullableString 为 null，则 length 的值将为 null\n\nval length: Int? = nullableString?.length\n\n3、非空断言运算符：使用非空断言运算符 !! 来告诉编译器 nullableString 不为 null，并将其强制转换为非空类型。如果 nullableString 为 null，会抛出空指针异常\n\nval length: Int = nullableString!!.length\n\n4、安全类型转换：在类型转换时，Kotlin 提供了安全类型转换操作符（\"as?\"）。它可以将一个对象转换为指定类型，如果转换失败，则结果为 null，而不是抛出异常。\n\nval castedString: String? = nullableString as? String\n\n5、Elvis 运算符:使用 Elvis 运算符 ?: 来提供一个默认值。如果 nullableString 为 null，则将使用提供的默认值 \"Default Value\"。\n\nval nonNullString: String = nullableString ?: \"Default Value\""
         ]
       },
       {
         "richText": [
-          "title: kotlin中的数据类",
+          "title: *-kotlin中的数据类",
           "text: 数据类的作用：\n\n自动化生成标准方法：数据类会自动根据主构造函数中的属性生成equals()、hashCode()、toString()等标准方法，无需手动实现这些方法。\n提供复制方法：数据类提供了copy()方法，可以快速创建一个属性值相同的新对象，方便进行对象复制和修改。\n支持解构声明：可以使用解构声明（Destructuring Declarations）来将数据类的属性解构为多个变量，方便地访问和使用属性。",
           "image:data_class"
         ]
       },
       {
         "richText": [
-          "title: async与launch 创建的区别",
+          "title: *-async与launch 创建的区别",
           "text:在Kotlin协程中，`async`和`launch`是两种常用的协程构建器，它们之间有以下区别：\n\n1. 返回值类型：`async`函数返回一个`Deferred`对象，它代表一个异步计算的结果。可以使用`await`函数来获取`Deferred`的最终结果。而`launch`函数没有返回值，它启动一个协程但不返回任何结果。\n\n2. 并发性：`async`函数可以使用`await`函数来等待多个异步任务的完成，并发执行它们。而`launch`函数启动的协程是并发执行的，但没有内置的机制来等待其他协程的完成。\n\n3. 协程间的通信：`async`函数可以通过`await`函数来等待其他协程的结果，从而实现协程间的通信。而`launch`函数不能直接获取其他协程的结果。\n\n4. 异常处理：`async`函数会将异常封装在`Deferred`对象中，可以使用`try-catch`块来捕获异常。而`launch`函数不会捕获任何异常，需要通过`CoroutineExceptionHandler`来处理协程中的异常。\n\n综上所述，`async`适用于需要获取异步计算结果或协程间通信的场景，而`launch`适用于启动并发执行的协程，不需要关心其结果或与其他协程进行通信。",
           "image:xc_yb",
           "text:打印结果：\nStart\nDo something else\nData received: Data from async task\nEnd\n\n这表明异步任务在后台执行，而不会阻塞主线程的执行。",
@@ -1719,7 +1721,7 @@
       },
       {
         "richText": [
-          "title: cancel()与join()",
+          "title: *-cancel()与join()",
           "text: 区别：\n1、cancel()是取消协程的方法，会立即终止协程的执行并抛出CancellationException异常。\n2、join()是等待协程执行完成的方法，会阻塞当前线程直到协程执行完成或被取消。\n3、cancel()可以在任何时候调用，会立即取消协程，而join()必须在协程执行期间调用，否则会抛出异常。\n4、cancel()可以通过参数传递一个取消原因，join()没有这个功能。",
           "image:xc_cancel1",
           "text: 无日志",
@@ -1729,7 +1731,7 @@
       },
       {
         "richText": [
-          "title: 如何停止任务中的协程",
+          "title: *-如何停止任务中的协程",
           "text: 在Kotlin协程中，可以使用cancel函数来停止正在运行的协程，并通过检查isActive属性来判断协程是否仍处于活动状态",
           "image:xc_cancel",
           "text:打印结果：\nStart\nAfter launching coroutine\nCoroutine started\nCoroutine is still active\nCoroutine is still active\nCoroutine is cancelled\nEnd\n\n在主线程中，我们使用job.cancel()来取消协程。当协程被取消时，它将立即停止执行，并且在协程中的return@launch语句处退出。"
@@ -1737,7 +1739,7 @@
       },
       {
         "richText": [
-          "title: 协程是如何实现异步的",
+          "title: *-协程是如何实现异步的",
           "text: 协程实现异步的原理是通过在单个线程中切换协程来实现的。在协程中，通过使用 `suspend` 关键字标记的挂起函数，可以在执行到耗时操作时暂停执行，等待结果返回后再恢复执行。这种挂起和恢复的操作是通过协程的调度器来实现的。\n\n协程的调度器负责管理协程的执行，并在必要时将协程挂起和恢复。当一个协程被挂起时，调度器会将该协程所需的上下文信息保存下来，并将控制权交给其他协程。当该协程准备就绪时，调度器会从保存的上下文信息中恢复该协程的执行。\n\n由于协程的调度器是基于单线程的，因此它能够更高效地利用系统资源，避免了线程切换的开销。同时，它也提供了一种更加直观、易于理解的并发编程方式。",
           "image:xc_yb",
           "text:打印结果：\nStart\nDo something else\nData received: Data from async task\nEnd\n\n这表明异步任务在后台执行，而不会阻塞主线程的执行。"
@@ -1745,7 +1747,7 @@
       },
       {
         "richText": [
-          "title: kotlin作用域函数",
+          "title: *kotlin作用域函数",
           "text: let：在一个非空对象上执行代码块",
           "image:let",
           "text: with：在一个对象上执行多个操作，避免重复引用对象名",
@@ -1760,7 +1762,7 @@
       },
       {
         "richText": [
-          "title: 扩展函数",
+          "title: *-扩展函数",
           "text: 使用扩展函数，我们可以在不修改原始类的情况下，为其添加新的函数，这对于向库类或第三方类添加自定义功能非常有用。\n\n它的原理就是编译器会将其转换为一个静态函数，并将接收者对象作为额外的参数传递给该函数，所以只能访问公共成员和其他公共扩展函数，不能访问类的私有或受保护成员。\n",
           "image:kzhs",
           "text:此外，扩展函数的作用域是静态分发的，即它们的调用是根据对象的静态类型解析的，而不是运行时类型。这意味着如果类的派生类在相同作用域中定义了相同名称的函数，调用扩展函数时将调用静态类型所定义的函数。"

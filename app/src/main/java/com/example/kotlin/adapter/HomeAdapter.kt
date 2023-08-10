@@ -62,7 +62,7 @@ class HomeAdapter(private val context: Context, private val dataList: ArrayList<
                     "圆角、圆头像" -> context.startActivity(Intent(context, RoundImageActivity::class.java))
                     "Glide图片显示" -> context.startActivity(Intent(context, GlideShowImageActivity::class.java))
                     "重复定时任务" -> context.startActivity(Intent(context, ScheduleTaskActivity::class.java))
-                    "RxJava学习" -> context.startActivity(Intent(context, RxJavaLeanActivity::class.java))
+                    "RxJava学习" -> context.startActivity(Intent(context, RxJavaActivity::class.java))
                     "权限管理" -> context.startActivity(Intent(context, PermissionActivity::class.java))
                     "触摸滑动事件" -> context.startActivity(Intent(context, TouchEventActivity::class.java))
                     "上拉加载、下拉刷新" -> context.startActivity(Intent(context, LoadMoreActivity::class.java))
