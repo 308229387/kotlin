@@ -1384,8 +1384,9 @@
     "data": [
       {
         "richText": [
-          "title: 帧式动画",
-          "text: 1、在res/drawable目录下定义一个XML文件，根节点为系统提供的animation-list，然后放入定义更好的图片；\nandroid:oneshot true：只播放一次，false：循环播放。\nandroid:duration=\"100\"：相隔两张图片播放时间间隔。单位/毫秒。\n\u20282、使用AnimationDrawable在代码中调用start()以及stop()开始或停止播放动画。（在layout中，用imageview显示，然后代码中调animationDrawable = (AnimationDrawable) imageView.getBackground()获取实例来控制动画）\n\n<ImageView\n        android:id=\"@+id/img_show\"\n        android:background=\"@drawable/start_show\" />\n\nimageView = findViewById(R.id.img_show);\nanimationDrawable = (AnimationDrawable) imageView.getBackground();\u2028animationDrawable.start();\nanimationDrawable.stop();\n\n缺点就是图片非常占内存，损耗大"
+          "title: *-帧式动画",
+          "text: 1. 准备好一系列的静态图像（帧），通常是一些连续变化的图像，可以是位图（Bitmap）或矢量图（Vector Drawable）。\n2. 在res目录下创建drawable文件夹（如果不存在），然后在该文件夹下创建一个XML文件，用于定义帧动画。例如，可以创建一个名为animation_frame.xml的文件。\n3. 在XML文件中使用<animation-list>标签来定义帧动画，每个帧使用<item>标签表示，并设置对应的图像资源、持续时间等属性。\n4. 在代码中获取AnimationDrawable对象，并将其设置给一个ImageView控件。\n5. 调用start()方法开始播放帧动画，或者调用stop()方法停止播放。",
+          "image:android_zhenshi"
         ]
       },
       {
@@ -1538,14 +1539,9 @@
       },
       {
         "richText": [
-          "title: RxJava - map与flatmap区别",
-          "text: map与flatmap区别\n\n结论：\n\nmap适用于一对一转换\nflatmap适用于一对多，多对多的场景\n\n区别：\n\n1、map是通过原始数据类型返回另外一种数据类型，而flatMap是通过原始数据类型返回另外一种被观察者。\n\n2、map被订阅时每传递一个事件执行一次onNext方法，flatmap多用于多对多，一对多，再被转化为多个时，一般利用from/just进行一一分发，被订阅时将所有数据传递完毕汇总到一个Observable然后一一执行onNext方法\n\n3、map只能一对一进行转换，flatmap既可以单一转换也可以一对多/多对多转换。flatMap并不保证数据有序。\n\n4、concatMap与flatMap使用基本一致，它可以保证数据有序\n\n相同点：\n\n1. 都是依赖FuncX(入参，返回值)进行转换（将一个类型依据程序逻辑转换成另一种类型，根据入参和返回值）\n2. 都能在转换后直接被subscribe\n"
-        ]
-      },
-      {
-        "richText": [
-          "title: RxJava相关问题",
-          "text: 1、Observer处理完onComplete后会还能onNext吗?\n\nonComplete是用来控制不能发送数据的，也就是不能onNext了，包括onError也是不能再发送onNext数据了，该方法中也是调用了dispose方法\n\n\n2、你还用过其他哪些操作符?\n\n关于其他的操作符比如merge、concat、zip都是合并，interval是周期执行，timer是延迟发送数据。\n\n\n3、Maybe、Single、Flowable、Completable几种观察者的区别，以及他们在什么场景用？\n\n从上面各个对应的observer接口来看，如果只想发一条数据，或者不发数据就用Maybe，如果想法多条数据或者不发数据就用Observable，如果只发一条数据或者失败就用Single，如果想用背压策略使用Flowable，如果不发数据就用Completable。\t\t\n\n\n4、RxJava的subscribeOn只有第一次生效?\n\n最开始调用的subscribeOn返回的observable会把后面执行的subscribeOn返回的observable给覆盖了，因此我们感官的是只有第一次的subscribeOn能生效。\n\n5、RxJava中背压是怎么回事？\n\n由于被观察者发送事件速度太快，而观察者来不及响应处理所有事件，从而导致事件丢失、OOM等异常。\n\n主要是通过Flowable类来实现的，Flowable其实就是被观察者（Observable）的一种新实现\n\n观察者通过Subscription.request获取事件, request决定了观察者能够接收多少个事件, 如设置了s.request(3)，这就说明观察者能够接收3个事件（多出的事件存放在缓存区）\n\nFlowable默认缓冲区的队列大小为128，即存储128个事件，超出会报错。\n"
+          "title: *-RxJava背压",
+          "text: RxJava的背压机制是为了解决观察者发送事件速度太快，而观察者来不及响应处理所有事件，从而导致事件丢失、OOM等异常。RxJava提供了多种处理背压的策略\n\n1. onBackpressureBuffer()：在被观察者和观察者之间使用一个缓冲区来存储发射的数据项，当观察者准备好处理数据时再逐个发送给观察者。\n2. onBackpressureDrop()：当被观察者的发射速度快于观察者的处理速度时，丢弃多余的数据项，保持观察者的处理速度。\n3. onBackpressureLatest()：当被观察者的发射速度快于观察者的处理速度时，只保留最新的数据项，丢弃较旧的数据项。\n\nFlowable是RxJava中一种支持背压的可观察序列，Flowable默认缓冲区的队列大小为128，即存储128个事件，超出会报错。",
+          "image:rxjava_flowable"
         ]
       },
       {
@@ -1557,8 +1553,21 @@
       },
       {
         "richText": [
-          "title: 常用操作符",
-          "text: 创建操作符\n\ncreate:创建1个被观察者对象（Observable）\n\nJust:快速创建 被观察者对象（Observable） & 发送10个以下事件\nObservable.just(“1”, “2”, “3”)\n\nempty() :该方法创建的被观察者对象发送事件的特点：仅发送Complete事件\n\nerror():该方法创建的被观察者对象发送事件的特点：仅发送Error事件，直接通知异常\n\n\n延时操作符：\n\nDelay : 使得被观察者延迟一段时间再发送事件，delay(long delay,TimeUnit unit)\n\nTimer:timer操作符默认运行在一个新线程上，也可自定义线程调度器（第3个参数）：\ntimer(long, TimeUnit, Scheduler)\n\n\n过滤操作符：\n\ntake, takeFirst, takeLast，只发射指定项的数据\nObservable.just(\"Hello\", \"RxJava\", \"Nice to meet you\") .take(2)\n\nskip,发射数据时忽略前N项数据\n\n\n变换操作符\n\nMap:是通过原始数据类型返回另外一种数据类型,适用于一对一转换\n\nObservable.just(\"Hello\", \"RxJava\", \"Nice to meet you\")\n.map(new Func1<String, Integer>() { //泛型第一个类型是原数据类型，第二个类型是想要变换的数据类型\n    @Override\n    public Integer call(String s) {\n        return s.hashCode();        //将数据转换为了int（取得其hashCode值）\n    }\n})\n.subscribe(new Action1<Integer>() {\n    @Override\n    public void call(Integer o) {\n        System.out.println(\"onNext--> \" + o);\n    }\n}\n\n\u2028  \nflaMap: 通过原始数据类型返回另外一种被观察者,适用于一对多，多对多的场景\u2028\nObservable.just(\"Hello\", \"RxJava\", \"Nice to meet you\")\n.flatMap(new Func1<String, Observable<Integer>>() {\n    @Override\n    public Observable<Integer> call(String s) {\n        return Observable.just(s.hashCode());\n    }\n})\n.subscribe(new Action1<Integer>() {\n    @Override\n    public void call(Integer o) {\n        System.out.println(\"onNext--> \" + o);\n    }\n}\n\nconcatMap:与flatMap的区别是，新合并生成的事件序列顺序是有序的\n\n其他还有retry遇到错误重试、repeat重复、marge合并之类的。\n"
+          "title: *-常用操作符",
+          "text: 1. map：用于将Observable发射的每个数据项通过一个函数进行转换，适用于数据转换或映射的场景。",
+          "image:rxjava_map",
+          "text: 2. flatMap操作符用于将Observable发射的每个数据项转换成一个Observable，然后将这些Observable发射的数据合并成一个新的Observable。",
+          "image:rxjava_flatmap",
+          "text: 3. filter：用于过滤Observable发射的数据项，只保留满足指定条件的数据项，适用于数据筛选的场景。",
+          "image:rxjava_filter",
+          "text: 4. delay：延迟发射Observable发射的数据项。",
+          "image:rxjava_delay",
+          "text: 5. debounce：操作符用于过滤掉Observable发射的过快的数据项",
+          "image:rxjava_debounce",
+          "text: 6. retry：如果出现错误事件，则会重新发送所有事件序列",
+          "image:rxjava_retry",
+          "text: 7. distince：使用distinct()方法可以去除重复的数据项",
+          "image:rxjava_distinct"
         ]
       }
     ]
