@@ -1355,26 +1355,33 @@
       },
       {
         "richText": [
-          "title: 长图的加载",
-          "text: 在Android中，如果要加载很大的图片，可以考虑使用以下几种方法：\n\n1. 使用BitmapRegionDecoder：BitmapRegionDecoder是Android提供的一个用于解码局部区域的图片的类。使用BitmapRegionDecoder可以解码图片的局部区域，从而避免一次性加载整张图片导致内存溢出的问题。\n\n2. 使用inSampleSize缩放图片：在加载图片时，可以通过设置inSampleSize参数来对图片进行缩放。设置inSampleSize可以减小图片的分辨率，从而降低内存占用。\n\n3. 使用LruCache缓存图片：在加载图片时，可以使用LruCache来缓存图片。LruCache是Android提供的一个用于缓存对象的类，可以根据缓存对象的使用频率和时间来自动清理缓存对象，从而避免内存溢出的问题。\n\n4. 使用分段加载：在加载图片时，可以将图片分成多个部分进行加载，并在需要显示的时候再将它们合并成完整的图片。这种方法可以避免一次性加载整张图片导致内存溢出的问题。\n\n需要注意的是，无论使用哪种方法，都需要根据具体情况进行相应的处理。如果要加载很大的图片，建议使用以上方法中的一种或多种组合来减小内存占用并提高性能。"
+          "title: *-长图的加载",
+          "text: 1.第一种策略是局部加载，使用BitmapRegionDecoder可以解码图片的局部区域，再配合手势来实现长图的滑动和缩放功能。从而避免一次性加载整张图片导致内存溢出的问题。",
+          "image:big_image",
+          "text: 2.第二种策略是压缩，可以自己使用bitmap的inSampleSize，或者使用glide框架，指定加载图片的尺寸，而不是直接加载原始尺寸。",
+          "image:big_image1"
         ]
       },
       {
         "richText": [
-          "title: activity页面构成",
-          "text: Activity 包含了一个管理窗口的继承至 Window 的 PhoneWindow 对象\n\n而在 PhoneWindow 中创建了一个继承至 FrameLayout 类的 DecorView 对象\n\u2028并且把包含了ActionBar、TitleBar和Content的布局文件通过 addView() 方法添加到了DecorView 中\n\n当开发者定义了layout.xml布局并调用了 setContentView() 方法时，就是将自定义的布局加载到了DecorView 中表示  content 的部分\n\n（setContentView() 部分具体过程同 【setContentView() 方法过程总结】）。"
+          "title: *-activity页面构成",
+          "text: Activity 包含了一个管理窗口的继承至 Window 的 PhoneWindow 对象\n\n而在 PhoneWindow 中创建了一个继承至 FrameLayout 类的 DecorView 对象\n\u2028并且把包含了ActionBar、TitleBar和Content的布局文件通过 addView() 方法添加到了DecorView 中\n\n当开发者定义了layout.xml布局并调用了 setContentView() 方法时，就是将自定义的布局加载到了DecorView 中表示  content 的部分\n\n（setContentView() 部分具体过程同 【setContentView() 方法过程总结】）。",
+          "image:activity_layout"
         ]
       },
       {
         "richText": [
-          "title: 回调中获取view的宽高",
-          "text: View的宽高是在onLayout阶段才能最终确定的，Activity的声明周期与View的绘制流程并不是一一绑定的。通过post，队列中会包含一条询问是否完成布局的消息，而我们的任务通过View#post方法被添加到队列尾部\n\nmButton.post(new Runnable() {\n @Override\u2028  \n     public void run() {\u2028 \n        Log.e(TAG, \"宽度：\" + mButton.getWidth());\u2028\u2028 \n }"
+          "title: *-回调中获取view的宽高",
+          "text: 1.使用post()方法延迟执行获取宽高的操作，将一个Runnable对象添加到视图的消息队列中，该Runnable对象会在视图布局完成后被执行，从而获取到视图的宽高。",
+          "image:view_post",
+          "text: 2.使用ViewTreeObserver的addOnGlobalLayoutListener()添加一个布局监听器，该监听器会在视图树的布局发生变化时被调用。",
+          "image:view_listener"
         ]
       },
       {
         "richText": [
-          "title: 如何统计帧率",
-          "text: 一、可以利用Choreographer的doFrame方法，我们屏幕的刷新，都会触发这个方法，可以在这个方法中，去做计数统计的逻辑\n\n\n1、实现Choreographer.FrameCallback接口，比如实现类是FrameSkipMonitor\n2、在doFrame中统计两帧绘制的时间，代码与注释如下：\n\n@Override\npublic void doFrame(long frameTimeNanos) {\nif (mLastFrameNanoTime != 0) {//mLastFrameNanoTime 上一次绘制的时间\nlong frameInterval = frameTimeNanos - mLastFrameNanoTime;//计算两帧的时间间隔\n\n\n二、还有一种方法，是通过设置中的GPU呈现模式分析，里面可以通过命令行，导出每一帧的耗时等信息text。"
+          "title: *-如何统计帧率",
+          "text: 1. 使用开发者选项中的\"显示GPU过渡条”，屏幕的顶部会出现一个彩色的条形图，表示每一帧的绘制时间。如果条形图中的颜色出现较长的红色或黄色区块，就表示应用存在掉帧的问题。\n\n2. 使用Choreographer类进行代码级别的掉帧统计，在doFrame回调函数中，你可以根据需要自定义掉帧次数的统计逻辑。"
         ]
       }
     ]
@@ -1385,20 +1392,22 @@
       {
         "richText": [
           "title: *-帧式动画",
-          "text: 1. 准备好一系列的静态图像（帧），通常是一些连续变化的图像，可以是位图（Bitmap）或矢量图（Vector Drawable）。\n2. 在res目录下创建drawable文件夹（如果不存在），然后在该文件夹下创建一个XML文件，用于定义帧动画。例如，可以创建一个名为animation_frame.xml的文件。\n3. 在XML文件中使用<animation-list>标签来定义帧动画，每个帧使用<item>标签表示，并设置对应的图像资源、持续时间等属性。\n4. 在代码中获取AnimationDrawable对象，并将其设置给一个ImageView控件。\n5. 调用start()方法开始播放帧动画，或者调用stop()方法停止播放。",
+          "text: 帧动画是预先定义好的一系列静态图像，通过连续切换图像来实现动画效果\n\n1. 准备好一系列的静态图像（帧），通常是一些连续变化的图像，可以是位图（Bitmap）或矢量图（Vector Drawable）。\n2. 在res目录下创建drawable文件夹（如果不存在），然后在该文件夹下创建一个XML文件，用于定义帧动画。例如，可以创建一个名为animation_frame.xml的文件。\n3. 在XML文件中使用<animation-list>标签来定义帧动画，每个帧使用<item>标签表示，并设置对应的图像资源、持续时间等属性。\n4. 在代码中获取AnimationDrawable对象，并将其设置给一个ImageView控件。\n5. 调用start()方法开始播放帧动画，或者调用stop()方法停止播放。",
           "image:android_zhenshi"
         ]
       },
       {
         "richText": [
-          "title: 补间动画",
-          "text: 补间动画有4种类型，平移TranslateAnimation，旋转RotateAnimation，透明度AlphaAnimation，缩放ScaleAnimation。补间动画不会改变View的属性,只会改变显示效果.\n\n可以理解在每一次VSYN到来时 在View的draw方法里面 根据当前时间计算动画进度 计算出一个需要变换的Transformation矩阵 然后最终设置到canvas上去 调用canvas concat做矩阵变换.\n\n\nTranslateAnimation translateAnimation = new TranslateAnimation(0, 200, 0, 0);\ntranslateAnimation.setDuration(2000);\nview.startAnimation(translateAnimation);"
+          "title: *-视图、补间动画",
+          "text: 设置好动画的开始属性 和 结束属性。 系统会在我们设置的动画时间内， 从开始时属性过渡到结束时候的属性。\n\n补间动画有4种类型，平移TranslateAnimation，旋转RotateAnimation，透明度AlphaAnimation，缩放ScaleAnimation。补间动画不会改变View的属性,只会改变显示效果\n",
+          "image:animation_view"
         ]
       },
       {
         "richText": [
-          "title: 属性动画介绍",
-          "text: ValueAnimator是整个属性动画机制当中最核心的一个类，我们只需要将初始值和结束值提供给ValueAnimator，并且告诉它动画所需运行的时长，那么ValueAnimator就会自动帮我们完成从初始值平滑地过渡到结束值。\n\n缺点：就是只能对数值计算。要是想对哪个控件操作，需要监听动画过程（通过 addUpdateListener 的监听方法），在监听中对控件操作。这样使用比较麻烦。\n\n而ObjectAnimator就在 ValueAnimator的基础上又做了一层封装,重写了ofInt() ofFloat() ofObject() ofArgb()等方法，可以直接传入view控件，并传入控件的set对应函数名称，拼装成对应的set函数就能实现动画效果，所以用ObjectAnimator来实现动画会更容易些。"
+          "title: *-属性动画介绍",
+          "text: ValueAnimator是整个属性动画机制当中最核心的一个类，我们只需要将初始值和结束值提供给ValueAnimator，并且告诉它动画所需运行的时长，那么ValueAnimator就会自动帮我们完成从初始值平滑地过渡到结束值。\n\n缺点：就是只能对数值计算。要是想对哪个控件操作，需要监听动画过程（通过 addUpdateListener 的监听方法），在监听中对控件操作。这样使用比较麻烦。\n\n而ObjectAnimator就在 ValueAnimator的基础上又做了一层封装,重写了ofInt() ofFloat() ofObject() ofArgb()等方法，可以直接传入view控件，并传入控件的set对应函数名称，拼装成对应的set函数就能实现动画效果，所以用ObjectAnimator来实现动画会更容易些。",
+          "image:animation_shuxing"
         ]
       },
       {

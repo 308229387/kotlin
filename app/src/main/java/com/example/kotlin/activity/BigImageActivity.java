@@ -9,6 +9,7 @@ import android.view.OrientationEventListener;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
 import com.example.kotlin.R;
 import com.example.kotlin.utils.ZoomableImageView;
 
@@ -25,7 +26,7 @@ public class BigImageActivity extends Activity {
         ZoomableImageView imageView = findViewById(R.id.image_view);
 //        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),image);
 //        imageView.setImageBitmap(bitmap);
-        Glide.with(this).load(image).into(imageView);
+        Glide.with(this).load(image).override(Target.SIZE_ORIGINAL) .into(imageView);
 
 
         mOrientationEventListener = new OrientationEventListener(this, SensorManager.SENSOR_DELAY_NORMAL) {
